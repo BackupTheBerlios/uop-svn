@@ -1,0 +1,15 @@
+entity start
+	def start()
+		def int x
+		x = 20
+		if (x >= 1 and x <= 10)
+			writeln("x entre 1 e 10")
+		else
+			if (x >= 11 and x <= 20)
+				writeln("x entre 11 e 20")
+			else
+				writeln("x > 20")
+			end
+		end
+	end
+end

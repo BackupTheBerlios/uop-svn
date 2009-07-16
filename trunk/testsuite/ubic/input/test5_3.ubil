@@ -1,0 +1,18 @@
+entity start
+	def start()
+		element x = util.new()
+		x.metodo1("aaa")
+		writeln("Depois de invocar metodo1")
+		x.metodo2(111)
+		writeln("Depois de invocar metodo2")
+	end
+end
+
+entity util
+	def metodo1(string param)
+		writeln(param)
+	end
+	def metodo2(int param)
+		writeln(param)
+	end
+end

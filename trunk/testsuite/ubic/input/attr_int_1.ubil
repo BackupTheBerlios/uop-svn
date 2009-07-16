@@ -1,0 +1,7 @@
+entity start
+	def start()
+		def int var1
+		var1 = 10
+	end
+end
+

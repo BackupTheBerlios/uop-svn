@@ -1,0 +1,38 @@
+Entity start
+	Constants
+		7 B false
+		6 B true
+		2 I 1
+		5 I 12345
+		8 R 10.000000
+		9 R 20.987600
+		4 S "12345 true false 10.0 20.9876"
+		1 S "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+		0 S start
+		3 S writeln
+	End
+	Def start
+		ldconst 1 --> ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 4 --> ["12345 true false 10.0 20.9876"]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 5 --> [12345]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 6 --> [true]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 7 --> [false]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 8 --> [10.000000]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		ldconst 9 --> [20.987600]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		stop
+	End
+End

@@ -1,0 +1,6 @@
+Entity Start
+	def start()
+		string var1 = "Hello world !!!"
+		writeln(var1)
+	end
+end

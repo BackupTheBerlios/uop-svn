@@ -1,0 +1,10 @@
+entity start
+	def start()
+		def string var1
+		def string var2
+		var1 = "aaa"
+		var2 = var1 + "bbb"
+		writeln( var2 )
+	end
+end
+

@@ -1,0 +1,11 @@
+entity start
+	def start()
+		def int var1
+		def int var2
+		var1 = 10
+		writeln(var1)
+		var2 = 20
+		writeln(var2)
+	end
+end
+

@@ -1,0 +1,21 @@
+// NOME       : test6.ubil
+// DATA       : 01/08/2002
+// RESPONSAVEL: Alex Sandro Garzao (alexgarzao@bol.com.br)
+// FUNCAO     : Demonstra que as variaveis criadas em uma acao sempre 
+//              tem escopo local.
+// ENTRADA    : Nenhuma.
+// SAIDA      : Nenhuma.
+// OBSERVACOES: Nenhuma.
+
+entity start
+	def start()
+		int V1 = 0
+		writeln("V1 no metodo start/0: ", V1)
+		metodo1()
+		writeln("V1 no metodo start/0: ", V1)
+	end
+	def metodo1()
+		int V1 = 1
+		writeln("V1 no metodo metodo1/0: ", V1)
+	end
+end

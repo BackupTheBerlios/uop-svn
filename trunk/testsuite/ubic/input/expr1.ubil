@@ -1,0 +1,7 @@
+entity start
+  def start()
+//	x = 10 + 20
+    writeln( 10 + 20 )
+  end
+end
+

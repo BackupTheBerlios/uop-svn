@@ -1,0 +1,9 @@
+entity start
+	def start()
+		["MeuGrupo"].data.af({dado1, 10})
+		["MeuGrupo"].data.qu({dado1})
+		int Value = 10
+		["MeuGrupo"].data.dqu({dado1, Value})
+	end
+end
+

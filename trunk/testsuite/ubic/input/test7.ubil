@@ -1,0 +1,11 @@
+entity start
+	def start()
+		int V1 = 0
+		writeln("V1 em start/0: ", V1)
+		metodo1("Nome")
+		writeln("V1 em start/0: ", V1)
+	end
+	def metodo1(string V1)
+		writeln("V1 em metodo1/1: ", V1)
+	end
+end

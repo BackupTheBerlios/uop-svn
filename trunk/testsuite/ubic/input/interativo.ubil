@@ -1,0 +1,20 @@
+//////////////////////////////////////////////////////////////////////
+//   NOME: interativo.ubil
+//   DATA: 09/17/2009
+//   RESPONSAVEL: Alex Sandro Garzao (alexgarzao@gmail.com)
+//   FUNCAO: Testar desempenho em um laco for com mensagem a cada 
+//           interacao.
+//   ENTRADA: Via parametros abaixo:
+//              Final = Quantidade de interacoes
+//   SAIDA: Mensagem informando a interacao atual.
+//   OBSERVACOES: Nenhuma.
+//////////////////////////////////////////////////////////////////////
+
+Entity start
+	def start(int final)
+		writeln("Contando de 1 ate ", Final, ". Aguarde !!!")
+		for(int x=1; x<=final; x++)
+			writeln("Iteracao: ", x)
+		end
+	end
+end

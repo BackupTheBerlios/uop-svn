@@ -1,0 +1,22 @@
+entity start
+	def start()
+		writeln("Hello world !!!")
+		metodo1()
+		writeln("Depois de metodo1/0")
+		metodo2()
+		writeln("Depois de metodo2/0")
+		metodo3()
+		writeln("Depois de metodo3/0")
+	end
+	def metodo1()
+		writeln("Hello world in action1/0 !!!")
+	end
+	defmetodo2()
+		writeln("Hello world in action2/0 !!!")
+	end
+	def metodo3()
+		writeln("Hello world in action3/0 !!!")
+		metodo2()
+		writeln("Depois da acao2/0 na acao 3")
+	end
+end

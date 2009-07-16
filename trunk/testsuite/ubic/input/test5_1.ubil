@@ -1,0 +1,15 @@
+Entity start
+	def start()
+		writeln("Hello world in start/0 !!!")
+		start("Hello world in start/1")
+		writeln("Depois de start/1")
+		start("Hello world in ", "start/2 !!!")
+		writeln("Depois de start/2")
+	end
+	def start(string Msg)
+		writeln(Msg)
+	end
+	def start(string Msg, string ActionName)
+		writeln(Msg, ActionName)
+	end
+end

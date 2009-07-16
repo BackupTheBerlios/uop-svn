@@ -1,0 +1,8 @@
+Entity Start
+	def Start()
+		def int I
+		for( I:=1; I<=10; I++)
+			writeln( I )
+		end
+	end
+end

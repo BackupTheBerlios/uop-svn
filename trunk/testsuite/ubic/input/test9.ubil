@@ -1,0 +1,20 @@
+// NOME       : test9.ubil
+// DATA       : 01/08/2002
+// RESPONSAVEL: Alex Sandro Garzao (alexgarzao@bol.com.br)
+// FUNCAO     : Demonstra como um programa ubil pode receber parametros
+//              atraves da linha de comando.
+// ENTRADA    : Atraves do parametro:
+//              Nome = Nome que sera exibido.
+// SAIDA      : Mensagem contendo o nome informado.
+// OBSERVACOES:
+//   1) O metodo start sem argumentos serve apenas para informar ao usuario
+//      que ele deve informar um nome ao executar este programa.
+
+entity start
+	def start()
+		writeln("Eh necessario especificar o nome...")
+	end
+	def start(string Nome)
+		writeln("Ola Sr(a) ", Nome)
+	end
+end

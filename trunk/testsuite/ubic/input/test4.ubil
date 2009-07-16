@@ -1,0 +1,8 @@
+Entity start
+	def start()
+		int Quantos = 10
+		for(int X = 1; X <= Quantos; X++)
+			writeln(X)
+		end
+	end
+end

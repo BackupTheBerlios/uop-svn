@@ -1,0 +1,7 @@
+entity start
+	def start()
+		["MeuGrupo"].data.af({dado1})
+		["MeuGrupo"].data.qu({dado1})
+		["MeuGrupo"].data.dqu({dado1})
+	end
+end

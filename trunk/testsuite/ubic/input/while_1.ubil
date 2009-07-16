@@ -1,0 +1,10 @@
+entity start
+	def start()
+		def int x
+		x = 1
+		while (x <= 10)
+			writeln("x=", x)
+			x=x+1
+		end
+	end
+end

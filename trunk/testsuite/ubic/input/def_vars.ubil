@@ -1,0 +1,9 @@
+entity start
+	def start()
+		def int var1
+		def string var2
+		def real var3
+		def bool var4
+	end
+end
+

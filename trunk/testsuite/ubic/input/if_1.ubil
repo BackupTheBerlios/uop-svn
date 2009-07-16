@@ -1,0 +1,11 @@
+entity start
+	def start()
+		def int x
+		x = 1
+		if (x > 10)
+			writeln("x>10")
+		else
+			writeln("x not > 10")
+		end
+	end
+end

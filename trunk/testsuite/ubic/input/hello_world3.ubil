@@ -1,0 +1,7 @@
+entity start
+  def start()
+    writeln( "Olá mundo !!!" )
+    writeln( "Olá mundo !!!", "Mais teste !!!" )
+  end
+end
+

@@ -1,0 +1,7 @@
+entity start
+	def start()
+		def real var1
+		var1 = 10.99
+	end
+end
+
