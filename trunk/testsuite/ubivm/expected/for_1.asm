@@ -14,21 +14,21 @@ Entity start
 		End
 			ldconst 2 --> [1]
 			stvar 0 --> [x]
-			ldvar 0 --> [x]
+		2:	ldvar 0 --> [x]
 			ldconst 3 --> [10]
 			le
 			ifnot 17 --> [17]
 			jmp 12 --> [12]
-			ldvar 0 --> [x]
+		7:	ldvar 0 --> [x]
 			ldconst 2 --> [1]
 			add
 			stvar 0 --> [x]
 			jmp 2 --> [2]
-			ldconst 4 --> [x=]
+		12:	ldconst 4 --> [x=]
 			ldvar 0 --> [x]
 			ldconst 5 --> [2]
 			lcall 6 --> [writeln]
 			jmp 7 --> [7]
-			stop
+		17:	stop
 	End
 End

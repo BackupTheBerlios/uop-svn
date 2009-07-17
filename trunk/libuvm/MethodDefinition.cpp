@@ -204,6 +204,8 @@ bool CMethodDefinition::loadBytecode(CBinString& bytecode)
 		_instructionList.push_back(instruction);
 	}
 
+	adjustInstructionsLabels();
+
 	return true;
 }
 
@@ -295,4 +297,17 @@ int CMethodDefinition::setNextInstructionLabel(int label)
 	_nextInstructionLabelList.push_back(label);
 
 	return label;
+}
+
+void CMethodDefinition::adjustInstructionsLabels()
+{
+	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
+		if ((*instruction)->_opcode == IFNOT_OPCODE || (*instruction)->_opcode == IF_OPCODE || (*instruction)->_opcode == JMP_OPCODE) {
+			if ((*instruction)->_arg1 >= _instructionList.size()) {
+				std::cerr << "Instrucao de salto apontando para instrucao inexistente: " << (*instruction)->_arg1  << std::endl;
+			} else {
+				_instructionList[(*instruction)->_arg1]->_label = (*instruction)->_arg1;
+			}
+		}
+	}
 }

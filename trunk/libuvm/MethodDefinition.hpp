@@ -47,6 +47,8 @@ public:
 	std::vector<CLocalVarDefinition*>            _localVarList;
 
 private:
+	void adjustInstructionsLabels();
+
 //	std::map<const char *, CParamDefinition*> _test;
 	std::vector<CParameterDefinition*>           _parameterList;
 //	std::vector<CParameterDefinition*>           _parameterVector;

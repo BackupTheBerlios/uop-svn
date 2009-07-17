@@ -9,8 +9,6 @@ entitydefinition ou RunBytecode vai ir para element...
 
 alias, a implementacao dos opcodes deveria mesmo ficar em runbytecode ???
 
-commit no svn do berlios
-
 codigo atual nao funciona com metodos recursivos... sempre q entrar em
 um metodo deveria criar espaco para as variaveis locais no registro de
 ativacao (naquela outra pilha ???)
@@ -74,8 +72,6 @@ uma "otimizacao", e nao eh tao necessario assim para logo...
   - http://www.linkedin.com/groupAnswers?viewQuestionAndAnswers=&discussionID=2627816&gid=100895&trk=EML
 _anet_qa_ttle-cThOon0JumNFomgJt7dBpSBA
 
-* hospedar projeto no berlios
-
 * Ver código da HoloVm para ver o que se aproveita da interface das classes
 
 * Ver código da Cecil para ver o que se aproveita da interface das classes
@@ -117,7 +113,6 @@ PENDENCIAS
   - usar multiindex template
     - antes de alterar os fontes, guardar o resultado esperado de cada teste, para poder testar depois...
   - Adicionar .ubil no ubic antes de ler o fonte ???
-  - Quando carrega o bytecode, nao ta setando os labels corretamente (nota-se qdo converte para texto)
 
 
 === Fluxo de desenvolvimento ===
@@ -157,13 +152,13 @@ Alvo: compilar e executar expressoes matematicas (OK)
 
 
 Alvo: Ambiente de teste automatizado (OK)
------------------------------------------
+------------------------------------
 
 Alvo: Especificar os testes iniciais (basear-se nos testes do HoloC) (OK)
--------------------------------------------------------------------------
+--------------------------------------------------------------------
 
 Alvo: Definir variaveis + inicializar + exibir os valores (somente tipo int) (OK)
----------------------------------------------------------------------------------
+----------------------------------------------------------------------------
 
 * UbiC
   - Parser entender definicao de variaveis locais (OK)
@@ -176,22 +171,22 @@ Alvo: Definir variaveis + inicializar + exibir os valores (somente tipo int) (OK
   - Ao executar um metodo criar area para as variaveis locais (OK)
 
 Alvo: Definir + inicializar + exibir variaveis de todos os tipos (OK)
----------------------------------------------------------------------
+----------------------------------------------------------------
 
 Alvo: Expressoes relacionais (tipo int apenas) e booleanas (OK)
----------------------------------------------------------------
+----------------------------------------------------------
 
 Alvo: Comandos condicionais (if) para tipo int (OK)
----------------------------------------------------
+----------------------------------------------
 
 Alvo: Lacos de repeticao (while) para tipo int (OK)
----------------------------------------------------
+----------------------------------------------
 
 Alvo: Lacos de repeticao (for) para tipo int (OK)
--------------------------------------------------
+--------------------------------------------
 
 Alvo: Expressoes relacionais para todos os tipos (OK)
------------------------------------------------------
+------------------------------------------------
 
 Alvo: chamada de metodos na entidade atual
 ------------------------------------------
