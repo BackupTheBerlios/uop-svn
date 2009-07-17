@@ -12,21 +12,21 @@ Entity start
 		Local variables
 			0 int x
 		End
-			ldconst 2 --> [1]
-			stvar 0 --> [x]
-			ldvar 0 --> [x]
-			ldconst 3 --> [10]
-			le
-			ifnot 15 --> [15]
-			ldconst 4 --> [x=]
-			ldvar 0 --> [x]
-			ldconst 5 --> [2]
-			lcall 6 --> [writeln]
-			ldvar 0 --> [x]
-			ldconst 2 --> [1]
-			add
-			stvar 0 --> [x]
-			jmp 2 --> [2]
-			stop
+		ldconst 2 --> [1]
+		stvar 0 --> [x]
+	2:	ldvar 0 --> [x]
+		ldconst 3 --> [10]
+		le
+		ifnot 15 --> [15]
+		ldconst 4 --> [x=]
+		ldvar 0 --> [x]
+		ldconst 5 --> [2]
+		lcall 6 --> [writeln]
+		ldvar 0 --> [x]
+		ldconst 2 --> [1]
+		add
+		stvar 0 --> [x]
+		jmp 2 --> [2]
+	15:	stop
 	End
 End

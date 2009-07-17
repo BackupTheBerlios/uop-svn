@@ -142,6 +142,8 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[STVAR_OPCODE      ] = &CRunBytecode::stvarOpcode;
    _opcodePointer[LDCONST_OPCODE    ] = &CRunBytecode::ldconstOpcode;
    _opcodePointer[STOP_OPCODE       ] = &CRunBytecode::stopOpcode;
+   _opcodePointer[RET_OPCODE        ] = &CRunBytecode::retOpcode;
+   _opcodePointer[MCALL_OPCODE      ] = &CRunBytecode::mcallOpcode;
    _opcodePointer[ADD_OPCODE        ] = &CRunBytecode::addOpcode;
    _opcodePointer[SUB_OPCODE        ] = &CRunBytecode::subOpcode;
    _opcodePointer[LT_OPCODE         ] = &CRunBytecode::ltOpcode;
@@ -600,6 +602,42 @@ void CRunBytecode::stopOpcode()
 //
 //   popRA();
 	_stop = true;
+}
+
+void CRunBytecode::retOpcode()
+{
+	trace ("ret opcode");
+
+	_ip = _controlStack.top();
+	_controlStack.pop();
+}
+
+void CRunBytecode::mcallOpcode()
+{
+	trace ("mcall opcode");
+
+	_controlStack.push(_ip);
+
+	_ip.method  = _ip.element->getMethod(_ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name);
+
+	if (_ip.method == NULL) {
+		std::cout << "Metodo " << _ip.element->getSymbolByIndex(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
+	}
+
+	// Define variaveis locais
+	// TODO: isso deve ficar definido no metodo !!!!
+
+//	_localVarList.clear();
+//	_localVarList.reserve(_ip.method->_localVarList.size());
+
+//	std::cout << "Criando as variaveis locais do metodo..." << std::endl;
+
+// 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
+// 		var != _ip.method->_localVarList.end(); var++) {
+// 		_localVarList.push_back(CLiteral((*var)->_type));
+// 	}
+
+	_ip.ip      = 0;
 }
 
 void CRunBytecode::addOpcode()

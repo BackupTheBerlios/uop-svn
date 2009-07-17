@@ -8,8 +8,8 @@ Entity start
 		Local variables
 			0 string var1
 		End
-		ldconst 2 --> [aaa]
-		stvar 0 --> [var1]
-		stop
+			ldconst 2 --> [aaa]
+			stvar 0 --> [var1]
+			stop
 	End
 End

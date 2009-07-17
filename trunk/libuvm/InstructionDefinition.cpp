@@ -57,7 +57,9 @@ static Mnemonic_t opcodeListDesc [ ] = {
 //	{ "ret", NoOpcodeArgumentType },
 	{ LDCONST_OPCODE, "ldconst", ConstantOpcodeArgumentType },
 	{ LCALL_OPCODE, "lcall", ConstantOpcodeArgumentType },
+	{ MCALL_OPCODE, "mcall", ConstantOpcodeArgumentType },
 	{ STOP_OPCODE, "stop", NoOpcodeArgumentType },
+	{ RET_OPCODE, "ret", NoOpcodeArgumentType },
 	{ ADD_OPCODE, "add", NoOpcodeArgumentType },
 	{ SUB_OPCODE, "sub", NoOpcodeArgumentType },
 	{ OR_OPCODE, "or", NoOpcodeArgumentType },
@@ -122,7 +124,7 @@ std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDe
 {
 	std::stringstream result;
 
-	result << "\t\t";
+	result << "\t";
 	if (_label != -1) {
 		result << _label;
 		result << ":\t";

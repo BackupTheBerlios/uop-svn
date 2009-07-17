@@ -1,0 +1,11 @@
+entity start
+	def start()
+		writeln("antes da chamada a x")
+		x()
+		writeln("depois da chamada a x")
+	end
+	def x()
+		writeln("no metodo x")
+	end
+end
+

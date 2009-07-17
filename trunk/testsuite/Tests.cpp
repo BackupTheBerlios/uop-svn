@@ -131,16 +131,16 @@ void CTests::define()
 	test = compiler.addTest(PASS, "while_1");
 	test = vm.addTest(PASS, "while_1");
 
+	test = compiler.addTest(PASS, "method_1");
+	test = vm.addTest(PASS, "method_1");
+
+	test = compiler.addTest(PASS, "method_2");
+	test = vm.addTest(PASS, "method_2");
+
 	// proximos testes...
-	// writeln_one_message
-	// writeln_two_messages
-	// writeln_three_messages
-	// writeln_varios_tipos
 	// writeln 1+2, 1-2, 2+1, 2-1, 10*20, 10/2, 20/2, 10* -20, 5/10, 2 * ( 5 + 1 )
 	// writeln (igual ao anterior) mas com tipo real
 	// writeln "a" + "b", "aaa" + "bbb"
-	// teste define variaveis
-	// teste define e inicializa variaveis
 	// teste define, inicializa e imprime uma variavel de cada tipo
 }
 

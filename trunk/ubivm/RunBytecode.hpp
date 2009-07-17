@@ -60,6 +60,8 @@ private:
    void stvarOpcode();
    void ldconstOpcode();
    void stopOpcode();
+   void retOpcode();
+   void mcallOpcode();
    void addOpcode();
    void subOpcode();
    void ltOpcode();
@@ -224,6 +226,7 @@ private:
 	CAssemblyDefinition _asmDef;
 	CInstructionDefinition* _currentInstruction;
 	std::vector<CLiteral> _localVarList;
+	std::stack<SIp> _controlStack;
 };
 
 #endif

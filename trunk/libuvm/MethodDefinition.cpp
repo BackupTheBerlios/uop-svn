@@ -117,11 +117,15 @@ std::string CMethodDefinition::toTextAssembly()
 	result += "\tDef " + _name + '\n';
 	// TODO: listar parametros e retornos
 
-	result += "\t\tLocal variables\n";
-	for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
-		result += (*var)->toTextAssembly();
+	if (_localVarList.size() == 0) {
+		result += "\t\tNo local variables\n";
+	} else {
+		result += "\t\tLocal variables\n";
+		for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
+			result += (*var)->toTextAssembly();
+		}
+		result += "\t\tEnd\n";
 	}
-	result += "\t\tEnd\n";
 
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
 		result += (*instruction)->toTextAssembly(_localVarList);

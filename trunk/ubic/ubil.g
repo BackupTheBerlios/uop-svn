@@ -127,7 +127,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    CEntityDefinition *entityDef = NULL;
    CMethodDefinition *methodDef = NULL;
 //   CSymbolTable* symbolTable;
-   #define GETTEXT(token) ((const char*)(token->getText(token))->chars)
+   #define GETTEXT(token) std::string((const char*)(token->getText(token))->chars)
 
 //   symbolTable = new CSymbolTable();
 //	char* getTest() { return "oi!!!"; }
@@ -200,7 +200,11 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       code_block
       'end'
       {
-         methodDef->addInstruction(STOP_OPCODE);
+         if (std::string((const char*)$Identifier.text->chars) == "start") {
+            methodDef->addInstruction(STOP_OPCODE);
+         } else {
+            methodDef->addInstruction(RET_OPCODE);
+         }
          methodDef->resolveLabels();
       }
    ;
@@ -355,11 +359,21 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //         printf("Metodo [\%s] ", $Identifier.text->chars);
 //      }
       '('
-         (argument_list {methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));})?
+         (argument_list
+            {
+               if (GETTEXT($Identifier) == "writeln") {
+                  methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+               }
+            }
+         )?
       ')'
 //      { printf("\n"); }
       {
-         methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($Identifier), StringType));
+         if (GETTEXT($Identifier) == "writeln") {
+            methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($Identifier), StringType));
+         } else {
+            methodDef->addInstruction(MCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($Identifier), StringType));
+         }
       }
    ;
 

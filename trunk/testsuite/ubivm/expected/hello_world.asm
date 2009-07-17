@@ -6,11 +6,10 @@ Entity start
 		3 S writeln
 	End
 	Def start
-		Local variables
-		End
-			ldconst 1 --> [Olá mundo !!!]
-			ldconst 2 --> [1]
-			lcall 3 --> [writeln]
-			stop
+		No local variables
+		ldconst 1 --> [Olá mundo !!!]
+		ldconst 2 --> [1]
+		lcall 3 --> [writeln]
+		stop
 	End
 End

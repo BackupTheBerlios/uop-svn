@@ -38,14 +38,6 @@ mcall metodo: seta ip->method e ip->ip
 empilha na datastack a estrutura ip antes de alterar (para poder retornar)
 mcall empilha estrutura IP na datastack ou em outra pilha ???
 
-teste:
-def x()
-    writeln("antes da chamada")
-    y() // geta mcall y
-    writeln("depois da chamada")
-def y()
-    writeln("no metodo y")
-
 ---------
 
 ///
@@ -113,6 +105,7 @@ PENDENCIAS
   - usar multiindex template
     - antes de alterar os fontes, guardar o resultado esperado de cada teste, para poder testar depois...
   - Adicionar .ubil no ubic antes de ler o fonte ???
+  - executar apenas antlr, sem o path...
 
 
 === Fluxo de desenvolvimento ===
