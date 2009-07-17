@@ -397,7 +397,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    literal
 ///----------
-   :  Identifier     { methodDef->addInstruction(LDVAR_OPCODE  , methodDef->getVarIndex(GETTEXT($Identifier)));  }
+   :  Identifier     { methodDef->addLoadInstruction(GETTEXT($Identifier));  }
+//   :  Identifier     { methodDef->addInstruction(LDVAR_OPCODE  , methodDef->getVarIndex(GETTEXT($Identifier)));  }
    |  IntegerLiteral { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($IntegerLiteral), IntegerType)); }
    |  RealLiteral    { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($RealLiteral),    RealType));    }
 //   |  StringLiteral  { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex($StringLiteral,  StringType));  }
@@ -505,7 +506,8 @@ op_unario
 
 expr_elemento
   : method_invocation
-  | Identifier { methodDef->addInstruction(LDVAR_OPCODE, methodDef->getVarIndex(GETTEXT($Identifier))); }
+  | Identifier     { methodDef->addLoadInstruction(GETTEXT($Identifier));  }
+//  | Identifier { methodDef->addInstruction(LDVAR_OPCODE, methodDef->getVarIndex(GETTEXT($Identifier))); }
   | literal
   | '(' expr ')' 
   ;

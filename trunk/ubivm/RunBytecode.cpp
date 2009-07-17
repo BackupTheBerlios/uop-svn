@@ -141,6 +141,7 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[LDVAR_OPCODE      ] = &CRunBytecode::ldvarOpcode;
    _opcodePointer[STVAR_OPCODE      ] = &CRunBytecode::stvarOpcode;
    _opcodePointer[LDCONST_OPCODE    ] = &CRunBytecode::ldconstOpcode;
+   _opcodePointer[LDPARAM_OPCODE    ] = &CRunBytecode::ldparamOpcode;
    _opcodePointer[STOP_OPCODE       ] = &CRunBytecode::stopOpcode;
    _opcodePointer[RET_OPCODE        ] = &CRunBytecode::retOpcode;
    _opcodePointer[MCALL_OPCODE      ] = &CRunBytecode::mcallOpcode;
@@ -329,6 +330,8 @@ int CRunBytecode::run()
 		var != _ip.method->_localVarList.end(); var++) {
 		_localVarList.push_back(CLiteral((*var)->_type));
 	}
+
+	// TODO: fazer o mesmo para os parametros...
 
 
    _ip.ip      = 0;
@@ -592,6 +595,15 @@ void CRunBytecode::stvarOpcode()
 	_localVarList[_currentInstruction->getArg1()] = _dataStack.pop();
 }
 
+void CRunBytecode::ldparamOpcode()
+{
+	trace ("ldparam opcode");
+
+	CLiteral literal = _paramList[_currentInstruction->getArg1()];
+
+	_dataStack.push(literal);
+}
+
 void CRunBytecode::stopOpcode()
 {
    trace ("stop opcode");
@@ -636,6 +648,11 @@ void CRunBytecode::mcallOpcode()
 // 		var != _ip.method->_localVarList.end(); var++) {
 // 		_localVarList.push_back(CLiteral((*var)->_type));
 // 	}
+
+	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
+		par != _ip.method->_parameterList.end(); par++) {
+		_paramList.push_back(_dataStack.pop());
+	}
 
 	_ip.ip      = 0;
 }

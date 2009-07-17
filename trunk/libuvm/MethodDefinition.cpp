@@ -37,6 +37,8 @@ CParameterDefinition * CMethodDefinition::addParameter(LiteralType type, std::st
 
 	addParameter(parameter);
 
+//	addLocalVar(type, name);
+
 	return parameter;
 }
 
@@ -128,7 +130,7 @@ std::string CMethodDefinition::toTextAssembly()
 	}
 
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
-		result += (*instruction)->toTextAssembly(_localVarList);
+		result += (*instruction)->toTextAssembly(_localVarList, _parameterList);
 	}
 
 	result += "\tEnd\n";
@@ -253,6 +255,18 @@ size_t CMethodDefinition::getVarIndex(std::string name)
 	}
 }
 
+size_t CMethodDefinition::getParamIndex(std::string name)
+{
+	std::map<std::string, size_t>::iterator param = _parameterNumber.find(name);
+	if (param == _parameterNumber.end()) {
+		size_t number = _parameterNumber.size();
+		_parameterNumber[name] = number;
+		return number;
+	} else {
+		return param->second;
+	}
+}
+
 void CMethodDefinition::resolveLabels()
 {
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
@@ -313,5 +327,16 @@ void CMethodDefinition::adjustInstructionsLabels()
 				_instructionList[(*instruction)->_arg1]->_label = (*instruction)->_arg1;
 			}
 		}
+	}
+}
+
+void CMethodDefinition::addLoadInstruction(std::string identifier)
+{
+	// TODO: improve this...
+	std::map<std::string, size_t>::iterator var = _localVarNumber.find(identifier);
+	if (var == _localVarNumber.end()) {
+		addInstruction(LDPARAM_OPCODE, getVarIndex(identifier));
+	} else {
+		addInstruction(LDVAR_OPCODE, getParamIndex(identifier));
 	}
 }

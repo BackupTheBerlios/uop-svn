@@ -38,19 +38,21 @@ public:
 	std::string getName() const;
 	CInstructionDefinition* getInstruction(ushort number);
 	size_t getVarIndex(std::string name);
+	size_t getParamIndex(std::string name);
 	int getNewLabel() {
 		return _nextLabel++;
 	}
 	int setNextInstructionLabel(int label);
 	void resolveLabels();
+	void addLoadInstruction(std::string identifier);
 
 	std::vector<CLocalVarDefinition*>            _localVarList;
+	std::vector<CParameterDefinition*>           _parameterList;
 
 private:
 	void adjustInstructionsLabels();
 
 //	std::map<const char *, CParamDefinition*> _test;
-	std::vector<CParameterDefinition*>           _parameterList;
 //	std::vector<CParameterDefinition*>           _parameterVector;
 //	std::map<std::string, CParameterDefinition*> _parameterMap;
 //	std::map<std::string, CLocalVarDefinition*>  _localVarList;
@@ -60,6 +62,7 @@ private:
 	VisibilityType _visibility;
 	std::string    _name;
 	std::map<std::string, size_t> _localVarNumber;
+	std::map<std::string, size_t> _parameterNumber;
 	int _nextLabel;
 	std::vector<int> _nextInstructionLabelList;
 	std::map<int,int> _labelAddress;

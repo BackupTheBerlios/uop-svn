@@ -1,0 +1,9 @@
+entity start
+	def start()
+		x("oi")
+	end
+	def x(string msg)
+		writeln("msg=", msg)
+	end
+end
+

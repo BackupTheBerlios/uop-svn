@@ -18,7 +18,7 @@ public:
     ~CParameterDefinition();
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
-private:
+//private:
 	LiteralType _type;
 	std::string _name;
 };

@@ -22,4 +22,4 @@ all: $(objects)
 
 
 clean:
-	rm -f *.o tests
+	rm -f *.o tests core

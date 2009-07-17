@@ -17,6 +17,8 @@
  *   Free Software Foundation, Inc.,                                       *
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
+
+#include <iostream>
 #include <sstream>
 
 #include "InstructionDefinition.hpp"
@@ -29,7 +31,8 @@ enum OpcodeArgumentType {
 	NoOpcodeArgumentType = 0,
 	VariableOpcodeArgumentType = 1,
 	ConstantOpcodeArgumentType = 2,
-	LabelOpcodeArgumentType    = 3
+	LabelOpcodeArgumentType    = 3,
+	ParameterOpcodeArgumentType = 4 // TODO: se unificar a tabela de simbolos, talvez esse tipo nao seja mais necessario...
 };
 
 typedef struct Mnemonic_t {
@@ -75,6 +78,7 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ MOD_OPCODE, "mod", NoOpcodeArgumentType },
 	{ LDVAR_OPCODE, "ldvar", VariableOpcodeArgumentType },
 	{ STVAR_OPCODE, "stvar", VariableOpcodeArgumentType },
+	{ LDPARAM_OPCODE, "ldpar", ParameterOpcodeArgumentType },
 	{ IFNOT_OPCODE, "ifnot", LabelOpcodeArgumentType },
 	{ IF_OPCODE, "if", LabelOpcodeArgumentType },
 	{ JMP_OPCODE, "jmp", LabelOpcodeArgumentType },
@@ -120,7 +124,7 @@ std::string CInstructionDefinition::getTextOpcode()
 }
 
 
-std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDefinition*> &localVarList)
+std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList)
 {
 	std::stringstream result;
 
@@ -140,8 +144,12 @@ std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDe
 			if (opcodeListDesc[pos]._argType == ConstantOpcodeArgumentType) {
 				result << " " << _arg1 << " --> [" << _symbolTable->getSymbolByIndex(_arg1)->_name << "]"; //opcodeListDesc[pos].argType();
 			} else if (opcodeListDesc[pos]._argType == VariableOpcodeArgumentType) {
+// 				std::cout << "arg1=" << _arg1 << " localVarList.size()=" << localVarList.size() << std::endl;
 				result << " " << _arg1 << " --> [" << localVarList[_arg1]->_name << "]";
 //				result << " LocalVar[" << _arg1 << "]";
+			} else if (opcodeListDesc[pos]._argType == ParameterOpcodeArgumentType) {
+// 				std::cout << "arg1=" << _arg1 << " paramList.size()=" << paramList.size() << std::endl;
+				result << " " << _arg1 << " --> [" << paramList[_arg1]->_name << "]";
 			} else if (opcodeListDesc[pos]._argType == LabelOpcodeArgumentType) {
 				result << " " << _arg1 << " --> [" << _arg1 << "]";
 			}
