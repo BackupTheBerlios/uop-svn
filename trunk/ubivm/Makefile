@@ -5,7 +5,7 @@ INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON)
 CC=g++
 CCFLAGS=-g -Wall -pedantic
 
-objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o
+objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o ActivationRecord.o
 
 all: $(objects)
 	g++ -o ubivm $(objects) -static -L$(LIBUVM) -L$(LIBCOMMON) -luvm -lcommon -ldl
@@ -21,4 +21,4 @@ all: $(objects)
 
 
 clean:
-	rm -f *.o ubivm
+	rm -f *.o ubivm core

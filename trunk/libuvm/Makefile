@@ -50,7 +50,7 @@ libuvm: $(OBJS)
 	$(AR) r $(LIB) $(OBJS)
 
 clean:
-	rm -f $(OBJS) $(EXTRACLEAN) $(TARGETS) $(LIB) *~
+	rm -f $(OBJS) $(EXTRACLEAN) $(TARGETS) $(LIB) *~ core
 
 depend:
 	$(CPP) -M $(CFLAGS) $(SRCS) >.depend

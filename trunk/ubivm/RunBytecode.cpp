@@ -326,10 +326,14 @@ int CRunBytecode::run()
 
 //	std::cout << "Criando as variaveis locais do metodo..." << std::endl;
 
+	CActivationRecord* ar = new CActivationRecord();
+
 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
 		var != _ip.method->_localVarList.end(); var++) {
-		_localVarList.push_back(CLiteral((*var)->_type));
+		ar->_localVarList.push_back(CLiteral((*var)->_type));
 	}
+
+	_controlStack.push(ar);
 
 	// TODO: fazer o mesmo para os parametros...
 
@@ -583,7 +587,7 @@ void CRunBytecode::ldvarOpcode()
 {
 	trace ("ldvar opcode");
 
-	CLiteral literal = _localVarList[_currentInstruction->getArg1()];
+	CLiteral literal = _controlStack.top()->_localVarList[_currentInstruction->getArg1()];
 
 	_dataStack.push(literal);
 }
@@ -592,14 +596,14 @@ void CRunBytecode::stvarOpcode()
 {
 	trace ("stvar opcode");
 
-	_localVarList[_currentInstruction->getArg1()] = _dataStack.pop();
+	_controlStack.top()->_localVarList[_currentInstruction->getArg1()] = _dataStack.pop();
 }
 
 void CRunBytecode::ldparamOpcode()
 {
 	trace ("ldparam opcode");
 
-	CLiteral literal = _paramList[_currentInstruction->getArg1()];
+	CLiteral literal = _controlStack.top()->_paramList[_currentInstruction->getArg1()];
 
 	_dataStack.push(literal);
 }
@@ -620,7 +624,10 @@ void CRunBytecode::retOpcode()
 {
 	trace ("ret opcode");
 
-	_ip = _controlStack.top();
+	_ip = _controlStack.top()->_ip;
+
+	delete _controlStack.top();
+
 	_controlStack.pop();
 }
 
@@ -628,7 +635,9 @@ void CRunBytecode::mcallOpcode()
 {
 	trace ("mcall opcode");
 
-	_controlStack.push(_ip);
+	CActivationRecord* ar = new CActivationRecord();
+
+	ar->_ip = _ip;
 
 	_ip.method  = _ip.element->getMethod(_ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name);
 
@@ -636,25 +645,19 @@ void CRunBytecode::mcallOpcode()
 		std::cout << "Metodo " << _ip.element->getSymbolByIndex(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
 	}
 
-	// Define variaveis locais
-	// TODO: isso deve ficar definido no metodo !!!!
-
-//	_localVarList.clear();
-//	_localVarList.reserve(_ip.method->_localVarList.size());
-
-//	std::cout << "Criando as variaveis locais do metodo..." << std::endl;
-
-// 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
-// 		var != _ip.method->_localVarList.end(); var++) {
-// 		_localVarList.push_back(CLiteral((*var)->_type));
-// 	}
+ 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
+ 		var != _ip.method->_localVarList.end(); var++) {
+ 		ar->_localVarList.push_back(CLiteral((*var)->_type));
+ 	}
 
 	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
 		par != _ip.method->_parameterList.end(); par++) {
-		_paramList.push_back(_dataStack.pop());
+		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
 	}
 
-	_ip.ip      = 0;
+	_ip.ip = 0;
+
+	_controlStack.push(ar);
 }
 
 void CRunBytecode::addOpcode()

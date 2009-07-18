@@ -9,24 +9,19 @@
 //#include "CHeader.hpp"
 #include "SymbolTable.hpp"
 #include "LibuvmDefs.hpp"
+#include "UbivmDefs.hpp"
 //#include "CBinString.hpp"
 //#include "CBytecode.hpp"
 //#include "Common.hpp"
 #include "DataStack.hpp"
 #include "AssemblyDefinition.hpp"
 #include "MethodDefinition.hpp"
+#include "ActivationRecord.hpp"
 
 
 class CRunBytecode;
 
 typedef void (CRunBytecode:: *OpcodePointer) ( );
-
-struct SIp {
-	//CElement *element;
-	CEntityDefinition *element;
-	CMethodDefinition *method;
-	u_short ip;
-};
 
 
 class CRunBytecode
@@ -226,9 +221,7 @@ private:
    SIp _ip;
 	CAssemblyDefinition _asmDef;
 	CInstructionDefinition* _currentInstruction;
-	std::vector<CLiteral> _localVarList;
-	std::vector<CLiteral> _paramList;
-	std::stack<SIp> _controlStack;
+	std::stack<CActivationRecord*> _controlStack;
 };
 
 #endif

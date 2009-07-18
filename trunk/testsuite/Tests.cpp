@@ -137,6 +137,15 @@ void CTests::define()
 	test = compiler.addTest(PASS, "method_2");
 	test = vm.addTest(PASS, "method_2");
 
+	test = compiler.addTest(PASS, "method_3");
+	test = vm.addTest(PASS, "method_3");
+
+	test = compiler.addTest(PASS, "method_4");
+	test = vm.addTest(PASS, "method_4");
+
+	test = compiler.addTest(PASS, "method_with_result_1");
+	test = vm.addTest(PASS, "method_with_result_1");
+
 	// proximos testes...
 	// writeln 1+2, 1-2, 2+1, 2-1, 10*20, 10/2, 20/2, 10* -20, 5/10, 2 * ( 5 + 1 )
 	// writeln (igual ao anterior) mas com tipo real

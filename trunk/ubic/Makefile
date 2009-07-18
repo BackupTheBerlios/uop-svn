@@ -32,4 +32,4 @@ ubilLexer.o ubilParser.o: ubil.g
 
 
 clean:
-	rm -f *.o ubic ubilLexer.h ubilLexer.c ubilParser.h ubilParser.c ubil.tokens
+	rm -f *.o ubic ubilLexer.h ubilLexer.c ubilParser.h ubilParser.c ubil.tokens core
