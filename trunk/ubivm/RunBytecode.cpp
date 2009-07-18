@@ -148,6 +148,8 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[MCALL_OPCODE      ] = &CRunBytecode::mcallOpcode;
    _opcodePointer[ADD_OPCODE        ] = &CRunBytecode::addOpcode;
    _opcodePointer[SUB_OPCODE        ] = &CRunBytecode::subOpcode;
+   _opcodePointer[MUL_OPCODE        ] = &CRunBytecode::mulOpcode;
+   _opcodePointer[DIV_OPCODE        ] = &CRunBytecode::divOpcode;
    _opcodePointer[LT_OPCODE         ] = &CRunBytecode::ltOpcode;
    _opcodePointer[GT_OPCODE         ] = &CRunBytecode::gtOpcode;
    _opcodePointer[LE_OPCODE         ] = &CRunBytecode::leOpcode;
@@ -721,6 +723,34 @@ void CRunBytecode::subOpcode()
    } else {
 	   error("Tipos invalidos !!!");
    }
+}
+
+void CRunBytecode::mulOpcode()
+{
+   trace ("mul opcode");
+
+   CLiteral arg2 = _dataStack.pop();
+   CLiteral arg1 = _dataStack.pop();
+
+   if (arg1._type == IntegerType && arg2._type == IntegerType) {
+	   _dataStack.push(CLiteral(arg1.getInteger()*arg2.getInteger()));
+   } else {
+	   error("Tipos invalidos !!!");
+   }
+}
+
+void CRunBytecode::divOpcode()
+{
+	trace ("div opcode");
+
+	CLiteral arg2 = _dataStack.pop();
+	CLiteral arg1 = _dataStack.pop();
+
+	if (arg1._type == IntegerType && arg2._type == IntegerType) {
+		_dataStack.push(CLiteral((int)(arg1.getInteger()/arg2.getInteger())));
+	} else {
+		error("Tipos invalidos !!!");
+	}
 }
 
 void CRunBytecode::ltOpcode()

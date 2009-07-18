@@ -357,8 +357,8 @@ void CMethodDefinition::addLoadInstruction(std::string identifier)
 	// TODO: improve this...
 	std::map<std::string, size_t>::iterator var = _localVarNumber.find(identifier);
 	if (var == _localVarNumber.end()) {
-		addInstruction(LDPARAM_OPCODE, getVarIndex(identifier));
+		addInstruction(LDPARAM_OPCODE, getParamIndex(identifier));
 	} else {
-		addInstruction(LDVAR_OPCODE, getParamIndex(identifier));
+		addInstruction(LDVAR_OPCODE, getVarIndex(identifier));
 	}
 }

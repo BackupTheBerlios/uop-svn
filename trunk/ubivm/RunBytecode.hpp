@@ -61,6 +61,8 @@ private:
    void mcallOpcode();
    void addOpcode();
    void subOpcode();
+   void mulOpcode();
+   void divOpcode();
    void ltOpcode();
    void gtOpcode();
    void leOpcode();
