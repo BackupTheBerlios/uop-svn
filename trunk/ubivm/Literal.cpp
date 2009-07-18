@@ -73,9 +73,9 @@ const void* CLiteral::getValue()
 	}
 }
 
-void CLiteral::setValue(const void* value)
-{
-}
+// void CLiteral::setValue(const void* value)
+// {
+// }
 
 void CLiteral::setValue(LiteralType type, const void* value)
 {

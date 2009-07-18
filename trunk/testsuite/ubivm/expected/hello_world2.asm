@@ -7,8 +7,9 @@ Entity start
 		4 S Mais um olá mundo !!!
 	End
 	Def start
-		Local variables
-		End
+		No parameters
+		No local variables
+		No results
 		ldconst 1 --> [Olá mundo !!!]
 		ldconst 2 --> [1]
 		lcall 3 --> [writeln]

@@ -7,9 +7,11 @@ Entity start
 		4 S writeln
 	End
 	Def start
+		No parameters
 		Local variables
 			0 string var1
 		End
+		No results
 		ldconst 2 --> [aaa]
 		stvar 0 --> [var1]
 		ldvar 0 --> [var1]

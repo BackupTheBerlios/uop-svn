@@ -4,6 +4,7 @@ LIBCOMMON=../libcommon/
 INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON)
 CC=g++
 CCFLAGS=-g -Wall -pedantic
+CCFLAGS_ANTLR=-g -Wall
 
 objects = ubilLexer.o ubilParser.o UbiC.o main.o 
 
@@ -18,8 +19,8 @@ all: $(objects)
 
 ubilLexer.o ubilParser.o: ubil.g
 	java -jar ~/downloads/apps/antlr-3.1.3.jar ubil.g
-	$(CC) $(CCFLAGS) -c $(INCLUDE_DIR) ubilLexer.c -o ubilLexer.o
-	$(CC) $(CCFLAGS) -c $(INCLUDE_DIR) ubilParser.c -o ubilParser.o
+	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubilLexer.c -o ubilLexer.o
+	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubilParser.c -o ubilParser.o
 
 %.o: %.cpp %.hpp
 	$(CC) $(CCFLAGS) -c $(INCLUDE_DIR) $< -o $@

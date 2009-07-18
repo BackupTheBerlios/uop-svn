@@ -196,6 +196,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          methodDef = entityDef->addMethod(PublicVisibility, (const char*)$Identifier.text->chars);
       }
       '(' (parameters_definition)? ')'
+      (returns_definition)?
       (var_definition)*
       code_block
       'end'
@@ -225,6 +226,22 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       )*
    ;
 
+///----------
+   returns_definition
+///----------
+   :  '['
+      type1=type
+      {
+         methodDef->addResult($type1.ret);
+      }
+      ( ',' type2=type
+         {
+            methodDef->addResult($type2.ret);
+         }
+      )*
+      ']'
+   ;
+
 ///--------------
    var_definition
 ///--------------
@@ -243,7 +260,35 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    statement
 ///----------
-   : if_statement|iteration_statement|assignment_statement|method_invocation
+   : assignment_statement|return_statement|if_statement|iteration_statement|method_invocation
+   ;
+
+///----------
+   assignment_statement
+///----------
+   :  Identifier '=' expr
+      { methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex(GETTEXT($Identifier))); }
+   ;
+
+///----------
+   return_statement
+///----------
+@declarations
+{
+   uint number = 0;
+}
+   :  'return'
+      (
+         expr
+         {
+            methodDef->addInstruction(STRESULT_OPCODE, number++);
+         }
+         ( ',' expr
+            {
+               methodDef->addInstruction(STRESULT_OPCODE, number++);
+            }
+         )*
+      )?
    ;
 
 ///----------
@@ -342,13 +387,6 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    repeat_statement
 ///----------
    :  'repeat' // ...
-   ;
-
-///----------
-   assignment_statement
-///----------
-   :  Identifier '=' expr
-      { methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex(GETTEXT($Identifier))); }
    ;
 
 ///----------

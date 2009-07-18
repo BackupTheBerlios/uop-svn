@@ -17,6 +17,7 @@ public:
 	SIp _ip;
 	std::vector<CLiteral> _localVarList;
 	std::vector<CLiteral> _paramList;
+	std::vector<CLiteral> _resultList;
 };
 
 #endif

@@ -48,6 +48,7 @@ public:
 
 	std::vector<CLocalVarDefinition*>            _localVarList;
 	std::vector<CParameterDefinition*>           _parameterList;
+	std::vector<CResultDefinition*>              _resultList;
 
 private:
 	void adjustInstructionsLabels();
@@ -56,7 +57,6 @@ private:
 //	std::vector<CParameterDefinition*>           _parameterVector;
 //	std::map<std::string, CParameterDefinition*> _parameterMap;
 //	std::map<std::string, CLocalVarDefinition*>  _localVarList;
-	std::vector<CResultDefinition*>              _resultList;
 	std::vector<CInstructionDefinition*>         _instructionList;
 	CSymbolTable *_symbolTable;
 	VisibilityType _visibility;

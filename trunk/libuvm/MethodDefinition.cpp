@@ -33,7 +33,7 @@ typedef struct SMethodHeader {
 
 CParameterDefinition * CMethodDefinition::addParameter(LiteralType type, std::string name)
 {
-	CParameterDefinition* parameter = new CParameterDefinition(type, name);
+	CParameterDefinition* parameter = new CParameterDefinition(_symbolTable, _parameterList.size(), type, name);
 
 	addParameter(parameter);
 
@@ -58,7 +58,9 @@ CLocalVarDefinition * CMethodDefinition::addLocalVar(LiteralType type, std::stri
 
 CResultDefinition * CMethodDefinition::addResult(LiteralType type)
 {
-	CResultDefinition* result = new CResultDefinition(type);
+// 	std::cout << __FUNCTION__ << ": Tipo=" << type << std::endl;
+
+	CResultDefinition* result = new CResultDefinition(_resultList.size(), type);
 
 	addResult(result);
 
@@ -117,7 +119,17 @@ std::string CMethodDefinition::toTextAssembly()
 	std::string result;
 
 	result += "\tDef " + _name + '\n';
-	// TODO: listar parametros e retornos
+	// TODO: listar parametros
+
+	if (_parameterList.size() == 0) {
+		result += "\t\tNo parameters\n";
+	} else {
+		result += "\t\tParameters\n";
+		for(std::vector<CParameterDefinition*>::iterator par = _parameterList.begin(); par != _parameterList.end(); par++) {
+			result += (*par)->toTextAssembly();
+		}
+		result += "\t\tEnd\n";
+	}
 
 	if (_localVarList.size() == 0) {
 		result += "\t\tNo local variables\n";
@@ -125,6 +137,16 @@ std::string CMethodDefinition::toTextAssembly()
 		result += "\t\tLocal variables\n";
 		for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
 			result += (*var)->toTextAssembly();
+		}
+		result += "\t\tEnd\n";
+	}
+
+	if (_resultList.size() == 0) {
+		result += "\t\tNo results\n";
+	} else {
+		result += "\t\tResult\n";
+		for(std::vector<CResultDefinition*>::iterator res = _resultList.begin(); res != _resultList.end(); res++) {
+			result += (*res)->toTextAssembly();
 		}
 		result += "\t\tEnd\n";
 	}
@@ -183,14 +205,14 @@ bool CMethodDefinition::loadBytecode(CBinString& bytecode)
 
 	// Carrega os parametros do metodo
 	for(u_int count = 0; count < header.parametersCount; count++) {
-		CParameterDefinition* parameter = new CParameterDefinition();
+		CParameterDefinition* parameter = new CParameterDefinition(_symbolTable, _parameterList.size());
 		parameter->loadBytecode(bytecode);
 		addParameter(parameter);
 	}
 
 	// Carrega os resultados do metodo
 	for(u_int count = 0; count < header.resultsCount; count++) {
-		CResultDefinition* result = new CResultDefinition();
+		CResultDefinition* result = new CResultDefinition(_resultList.size());
 		result->loadBytecode(bytecode);
 		addResult(result);
 	}

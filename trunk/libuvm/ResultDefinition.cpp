@@ -18,16 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "ResultDefinition.hpp"
+#include "Tools.hpp"
+#include "LibUvmCommon.hpp"
 
 //namespace ASSEMBLY_DEFINITION {
 
-CResultDefinition::CResultDefinition()
+CResultDefinition::CResultDefinition(size_t index)
+	: _index(index)
 {
 }
 
-CResultDefinition::CResultDefinition(LiteralType type)
-	: _type(type)
+CResultDefinition::CResultDefinition(size_t index, LiteralType type)
+	: _index(index), _type(type)
 {
+// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
 }
 
 CResultDefinition::~CResultDefinition()
@@ -36,12 +40,29 @@ CResultDefinition::~CResultDefinition()
 
 void CResultDefinition::saveBytecode(CBinString& bytecode)
 {
+	bytecode.save(&_type, sizeof(_type));
+// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
 }
 
 bool CResultDefinition::loadBytecode(CBinString& bytecode)
 {
+	bytecode.load(&_type, sizeof(_type));
+// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
+
 	return true;
 }
 
+std::string CResultDefinition::toTextAssembly()
+{
+	std::string result;
+
+	result += "\t\t\t";
+	result += itoa(_index);
+	result += " ";
+	result += typeToText(_type);
+	result += "\n";
+
+	return result;
+}
 
 //}

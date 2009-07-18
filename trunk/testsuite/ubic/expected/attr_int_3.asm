@@ -9,20 +9,22 @@ Entity start
 		6 I 20
 	End
 	Def start
+		No parameters
 		Local variables
 			0 int var1
 			1 int var2
 		End
-			ldconst 3 --> [10]
-			stvar 0 --> [var1]
-			ldvar 0 --> [var1]
-			ldconst 4 --> [1]
-			lcall 5 --> [writeln]
-			ldconst 6 --> [20]
-			stvar 1 --> [var2]
-			ldvar 1 --> [var2]
-			ldconst 4 --> [1]
-			lcall 5 --> [writeln]
-			stop
+		No results
+		ldconst 3 --> [10]
+		stvar 0 --> [var1]
+		ldvar 0 --> [var1]
+		ldconst 4 --> [1]
+		lcall 5 --> [writeln]
+		ldconst 6 --> [20]
+		stvar 1 --> [var2]
+		ldvar 1 --> [var2]
+		ldconst 4 --> [1]
+		lcall 5 --> [writeln]
+		stop
 	End
 End

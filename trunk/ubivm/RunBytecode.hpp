@@ -53,6 +53,7 @@ private:
    void lcallOpcode();
    void ldvarOpcode();
    void stvarOpcode();
+   void stresultOpcode();
    void ldconstOpcode();
    void ldparamOpcode();
    void stopOpcode();

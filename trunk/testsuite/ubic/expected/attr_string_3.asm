@@ -9,10 +9,12 @@ Entity start
 		6 S bbb
 	End
 	Def start
+		No parameters
 		Local variables
 			0 string var1
 			1 string var2
 		End
+		No results
 		ldconst 3 --> [aaa]
 		stvar 0 --> [var1]
 		ldvar 0 --> [var1]

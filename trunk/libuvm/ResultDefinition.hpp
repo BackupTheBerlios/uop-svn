@@ -12,12 +12,14 @@
 */
 class CResultDefinition{
 public:
-    CResultDefinition();
-    CResultDefinition(LiteralType type);
+    CResultDefinition(size_t index);
+    CResultDefinition(size_t index, LiteralType type);
     ~CResultDefinition();
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
-private:
+	std::string toTextAssembly();
+//private:
+	size_t _index;
 	LiteralType _type;
 };
 

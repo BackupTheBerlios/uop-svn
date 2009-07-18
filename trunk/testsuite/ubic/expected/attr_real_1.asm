@@ -5,11 +5,13 @@ Entity start
 		2 R 10.990000
 	End
 	Def start
+		No parameters
 		Local variables
 			0 real var1
 		End
-			ldconst 2 --> [10.990000]
-			stvar 0 --> [var1]
-			stop
+		No results
+		ldconst 2 --> [10.990000]
+		stvar 0 --> [var1]
+		stop
 	End
 End

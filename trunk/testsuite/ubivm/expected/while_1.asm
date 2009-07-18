@@ -9,9 +9,11 @@ Entity start
 		6 S writeln
 	End
 	Def start
+		No parameters
 		Local variables
 			0 int x
 		End
+		No results
 		ldconst 2 --> [1]
 		stvar 0 --> [x]
 	2:	ldvar 0 --> [x]

@@ -18,6 +18,7 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "LocalVarDefinition.hpp"
+#include "LibUvmCommon.hpp"
 
 #include "Tools.hpp"
 
@@ -37,22 +38,6 @@ CLocalVarDefinition::CLocalVarDefinition(CSymbolTable *symbolTable, size_t index
 CLocalVarDefinition::~CLocalVarDefinition()
 {
 }
-
-const std::string typeToText(const LiteralType &type)
-{
-	if (type == StringType) {
-		return "string";
-	} else if (type == IntegerType) {
-		return "int";
-	} else if (type == RealType) {
-		return "real";
-	} else if (type == BooleanType) {
-		return "bool";
-	}
-
-	return "ERRO !!!";
-}
-
 
 std::string CLocalVarDefinition::toTextAssembly()
 {

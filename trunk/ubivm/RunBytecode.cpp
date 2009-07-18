@@ -140,6 +140,7 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[LCALL_OPCODE      ] = &CRunBytecode::lcallOpcode;
    _opcodePointer[LDVAR_OPCODE      ] = &CRunBytecode::ldvarOpcode;
    _opcodePointer[STVAR_OPCODE      ] = &CRunBytecode::stvarOpcode;
+   _opcodePointer[STRESULT_OPCODE   ] = &CRunBytecode::stresultOpcode;
    _opcodePointer[LDCONST_OPCODE    ] = &CRunBytecode::ldconstOpcode;
    _opcodePointer[LDPARAM_OPCODE    ] = &CRunBytecode::ldparamOpcode;
    _opcodePointer[STOP_OPCODE       ] = &CRunBytecode::stopOpcode;
@@ -335,7 +336,7 @@ int CRunBytecode::run()
 
 	_controlStack.push(ar);
 
-	// TODO: fazer o mesmo para os parametros...
+	// TODO: fazer o mesmo para os parametros... resultados..
 
 
    _ip.ip      = 0;
@@ -599,6 +600,18 @@ void CRunBytecode::stvarOpcode()
 	_controlStack.top()->_localVarList[_currentInstruction->getArg1()] = _dataStack.pop();
 }
 
+void CRunBytecode::stresultOpcode()
+{
+	trace ("stresult opcode");
+
+// 	std::cout << "controlStack.size=" << _controlStack.size() << std::endl;
+// 	std::cout << "resultList.size  =" << _controlStack.top()->_resultList.size() << std::endl;
+// 	std::cout << "dataStack.size=" << _dataStack.size() << std::endl;
+// 	std::cout << "arg1=" << _currentInstruction->getArg1() << std::endl;
+
+	_controlStack.top()->_resultList[_currentInstruction->getArg1()] = _dataStack.pop();
+}
+
 void CRunBytecode::ldparamOpcode()
 {
 	trace ("ldparam opcode");
@@ -624,11 +637,22 @@ void CRunBytecode::retOpcode()
 {
 	trace ("ret opcode");
 
-	_ip = _controlStack.top()->_ip;
-
-	delete _controlStack.top();
-
+	CActivationRecord* ar = _controlStack.top();
 	_controlStack.pop();
+
+// 	std::cout << "resultList.size   =" << ar->_resultList.size() << std::endl;
+// 	std::cout << "dataStack.size    =" << _dataStack.size() << std::endl;
+// 	std::cout << "controlStack.size =" << _controlStack.size() << std::endl;
+
+ 	for(std::vector<CLiteral>::iterator ret = ar->_resultList.begin();
+ 		ret != ar->_resultList.end(); ret++) {
+ 		_dataStack.push(*ret); // TODO: ordem inversa...
+ 	}
+
+	_ip = ar->_ip;
+
+	delete ar;
+
 }
 
 void CRunBytecode::mcallOpcode()
@@ -654,6 +678,11 @@ void CRunBytecode::mcallOpcode()
 		par != _ip.method->_parameterList.end(); par++) {
 		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
 	}
+
+ 	for(std::vector<CResultDefinition*>::iterator ret = _ip.method->_resultList.begin();
+ 		ret != _ip.method->_resultList.end(); ret++) {
+ 		ar->_resultList.push_back(CLiteral((*ret)->_type));
+ 	}
 
 	_ip.ip = 0;
 

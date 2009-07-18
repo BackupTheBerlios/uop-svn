@@ -32,7 +32,8 @@ enum OpcodeArgumentType {
 	VariableOpcodeArgumentType = 1,
 	ConstantOpcodeArgumentType = 2,
 	LabelOpcodeArgumentType    = 3,
-	ParameterOpcodeArgumentType = 4 // TODO: se unificar a tabela de simbolos, talvez esse tipo nao seja mais necessario...
+	ParameterOpcodeArgumentType = 4, // TODO: se unificar a tabela de simbolos, talvez esse tipo nao seja mais necessario...
+	NumberOpcodeArgumentType = 5
 };
 
 typedef struct Mnemonic_t {
@@ -78,6 +79,7 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ MOD_OPCODE, "mod", NoOpcodeArgumentType },
 	{ LDVAR_OPCODE, "ldvar", VariableOpcodeArgumentType },
 	{ STVAR_OPCODE, "stvar", VariableOpcodeArgumentType },
+	{ STRESULT_OPCODE, "stresult", NumberOpcodeArgumentType },
 	{ LDPARAM_OPCODE, "ldpar", ParameterOpcodeArgumentType },
 	{ IFNOT_OPCODE, "ifnot", LabelOpcodeArgumentType },
 	{ IF_OPCODE, "if", LabelOpcodeArgumentType },
@@ -152,6 +154,8 @@ std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDe
 				result << " " << _arg1 << " --> [" << paramList[_arg1]->_name << "]";
 			} else if (opcodeListDesc[pos]._argType == LabelOpcodeArgumentType) {
 				result << " " << _arg1 << " --> [" << _arg1 << "]";
+			} else if (opcodeListDesc[pos]._argType == NumberOpcodeArgumentType) {
+				result << " " << _arg1;
 			}
 		}
 		result << "\n";

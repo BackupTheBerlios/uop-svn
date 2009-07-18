@@ -12,11 +12,11 @@ TARGETS = libuvm
 
 SRCS = AssemblyDefinition.cpp  InstructionDefinition.cpp  MethodDefinition.cpp  PropertyDefinition.cpp  SymbolTable.cpp \
        EntityDefinition.cpp    LocalVarDefinition.cpp     ParameterDefinition.cpp   ResultDefinition.cpp    Symbol.cpp \
-	   UvmHeader.cpp BinString.cpp Log.cpp
+	   UvmHeader.cpp BinString.cpp Log.cpp LibUvmCommon.cpp
 
 OBJS = AssemblyDefinition.o  InstructionDefinition.o  MethodDefinition.o  PropertyDefinition.o  SymbolTable.o \
        EntityDefinition.o    LocalVarDefinition.o     ParameterDefinition.o   ResultDefinition.o    Symbol.o \
-	   UvmHeader.o   BinString.o Log.o
+	   UvmHeader.o   BinString.o Log.o LibUvmCommon.o
 
 #
 # include dependencies if present

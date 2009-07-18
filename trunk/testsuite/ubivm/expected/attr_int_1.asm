@@ -5,11 +5,13 @@ Entity start
 		2 I 10
 	End
 	Def start
+		No parameters
 		Local variables
 			0 int var1
 		End
-			ldconst 2 --> [10]
-			stvar 0 --> [var1]
-			stop
+		No results
+		ldconst 2 --> [10]
+		stvar 0 --> [var1]
+		stop
 	End
 End

@@ -8,8 +8,9 @@ Entity start
 		5 I 2
 	End
 	Def start
-		Local variables
-		End
+		No parameters
+		No local variables
+		No results
 		ldconst 1 --> [Olá mundo !!!]
 		ldconst 2 --> [1]
 		lcall 3 --> [writeln]

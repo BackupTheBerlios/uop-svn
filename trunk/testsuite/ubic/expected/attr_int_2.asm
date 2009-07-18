@@ -7,14 +7,16 @@ Entity start
 		4 S writeln
 	End
 	Def start
+		No parameters
 		Local variables
 			0 int var1
 		End
-			ldconst 2 --> [10]
-			stvar 0 --> [var1]
-			ldvar 0 --> [var1]
-			ldconst 3 --> [1]
-			lcall 4 --> [writeln]
-			stop
+		No results
+		ldconst 2 --> [10]
+		stvar 0 --> [var1]
+		ldvar 0 --> [var1]
+		ldconst 3 --> [1]
+		lcall 4 --> [writeln]
+		stop
 	End
 End

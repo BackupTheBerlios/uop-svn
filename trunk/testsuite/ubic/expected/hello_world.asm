@@ -6,7 +6,9 @@ Entity start
 		3 S writeln
 	End
 	Def start
+		No parameters
 		No local variables
+		No results
 		ldconst 1 --> [Olá mundo !!!]
 		ldconst 2 --> [1]
 		lcall 3 --> [writeln]

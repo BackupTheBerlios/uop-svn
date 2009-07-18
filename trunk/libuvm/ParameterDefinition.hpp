@@ -5,6 +5,7 @@
 
 #include "BinString.hpp"
 #include "LibuvmDefs.hpp"
+#include "SymbolTable.hpp"
 
 //namespace ASSEMBLY_DEFINITION {
 
@@ -13,12 +14,15 @@
 */
 class CParameterDefinition{
 public:
-    CParameterDefinition();
-    CParameterDefinition(LiteralType type, std::string name);
+    CParameterDefinition(CSymbolTable* symbolTable, size_t index);
+    CParameterDefinition(CSymbolTable* symbolTable, size_t index, LiteralType type, std::string name);
     ~CParameterDefinition();
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
+	std::string toTextAssembly();
 //private:
+	CSymbolTable* _symbolTable;
+	size_t _index;
 	LiteralType _type;
 	std::string _name;
 };

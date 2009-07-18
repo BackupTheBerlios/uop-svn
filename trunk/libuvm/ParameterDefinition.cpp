@@ -18,15 +18,19 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "ParameterDefinition.hpp"
+#include "LibUvmCommon.hpp"
+#include "Tools.hpp"
 
 //namespace ASSEMBLY_DEFINITION {
 
-CParameterDefinition::CParameterDefinition(LiteralType type, std::string name)
-	: _type(type), _name(name)
+CParameterDefinition::CParameterDefinition(CSymbolTable* symbolTable, size_t index, LiteralType type, std::string name)
+	: _symbolTable(symbolTable), _index(index), _type(type), _name(name)
 {
+	_symbolTable->getSymbolIndex(_name, StringType); // forca o simbolo a ser criado na tabela de simbolos
 }
 	
-CParameterDefinition::CParameterDefinition()
+CParameterDefinition::CParameterDefinition(CSymbolTable*symbolTable, size_t index)
+	: _symbolTable(symbolTable), _index(index)
 {
 }
 
@@ -37,11 +41,40 @@ CParameterDefinition::~CParameterDefinition()
 
 void CParameterDefinition::saveBytecode(CBinString& bytecode)
 {
+	u_int indexName = _symbolTable->getSymbolIndex(_name, StringType);
+
+	bytecode.save(&_type, sizeof(_type));
+	bytecode.save(&indexName, sizeof(indexName));
+// 	std::cout << "name=" << _name << " type=" << _type << " indexName=" << indexName << std::endl;
 }
 
 bool CParameterDefinition::loadBytecode(CBinString& bytecode)
 {
+	u_int indexName;
+
+	bytecode.load(&_type, sizeof(_type));
+	bytecode.load(&indexName, sizeof(indexName));
+
+// 	std::cout << " type=" << _type << " indexName=" << indexName << std::endl;
+
+	_name = _symbolTable->getSymbolByIndex(indexName)->_name;
+
 	return true;
+}
+
+std::string CParameterDefinition::toTextAssembly()
+{
+	std::string result;
+
+	result += "\t\t\t";
+	result += itoa(_index);
+	result += " ";
+	result += typeToText(_type);
+	result += " ";
+	result += _name;
+	result += "\n";
+
+	return result;
 }
 
 //}
