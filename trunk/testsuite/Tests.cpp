@@ -145,6 +145,9 @@ void CTests::define()
 	test = compiler.addTest(PASS, "while_1");
 	test = vm.addTest(PASS, "while_1");
 
+	test = compiler.addTest(PASS, "repeat_until_1");
+	test = vm.addTest(PASS, "repeat_until_1");
+
 	test = compiler.addTest(PASS, "method_1");
 	test = vm.addTest(PASS, "method_1");
 

@@ -327,7 +327,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    iteration_statement
 ///----------
-   :  for_statement|while_statement|/*do_while_statement|*/repeat_statement
+   :  for_statement|while_statement|repeat_statement
   // o do..while nao funciona pq o while eh identificado como uma nova sentenca while dentro do do..while...
    ;
 
@@ -381,24 +381,18 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    ;
 
 ///----------
-   do_while_statement
+   repeat_statement
 ///----------
 @declarations
 {
 	int startLabel;
 }
-   :  'do'
+   :  'repeat'
       { startLabel = methodDef->getNewLabel(); }
       { methodDef->setNextInstructionLabel(startLabel); }
       code_block
-      'while' '(' expr ')'
-      { methodDef->addInstruction(IF_OPCODE, startLabel); }
-   ;
-
-///----------
-   repeat_statement
-///----------
-   :  'repeat' // ...
+      'until' '(' expr ')'
+      { methodDef->addInstruction(IFNOT_OPCODE, startLabel); }
    ;
 
 ///----------

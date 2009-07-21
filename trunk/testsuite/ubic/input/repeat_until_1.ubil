@@ -2,10 +2,10 @@ entity start
 	def start()
 		def int x
 		x = 1
-		do
+		repeat
 			writeln("x=", x)
 			x=x+1
-		while (x <= 10)
+		until (x > 10)
 	end
 end
 
