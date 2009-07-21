@@ -34,7 +34,7 @@ int main(int argc, char* argv[])
 	}
 
 	int param;
-	while ((param = getopt(argc, argv, "r:c:e:d:vh")) != -1) {
+	while ((param = getopt(argc, argv, "r:c:e:d:o:vh")) != -1) {
 		switch (param) {
 			case 'r': // Run test (all meaning all tests)
 				if (strcmp(optarg, "all") == 0) {
@@ -66,6 +66,13 @@ int main(int argc, char* argv[])
 					tests.showDiff(optarg);
 				}
 				break;
+			case 'o': // Show output (all meaning all tests)
+				if (strcmp(optarg, "all") == 0) {
+					tests.showOutputAll();
+				} else {
+					tests.showOutput(optarg);
+				}
+				break;
 			case 'v': // Version
 //				showVersion();
 				exit(1);
@@ -90,7 +97,7 @@ int main(int argc, char* argv[])
 
 	if (argc > 0) {
 		std::cerr << "Error: unexpected parameters..." << std::endl;
-        showSyntax(EXIT_FAILURE);
+		showSyntax(EXIT_FAILURE);
 	}
 
 	return 0;

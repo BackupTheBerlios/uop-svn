@@ -17,6 +17,7 @@ public:
 	SResult _expectedResult;
 	CArgs _args1;
 	CArgs _args2;
+	SResult _status;
 };
 
 #endif

@@ -5,6 +5,7 @@
 #include "Tool.hpp"
 #include "Tools.hpp"
 
+
 CTool::CTool()
 {
 }
@@ -41,6 +42,16 @@ void CTool::addCopyingResultsCommandLine(std::string commandLine)
 void CTool::addTestingResultsCommandLine(std::string commandLine, std::string whenError)
 {
 	_testCommandLine.push_back(STestCommand(commandLine, whenError));
+}
+
+void CTool::addShowOutputCommandLine(std::string commandLine)
+{
+	_showOutputCommandLine.push_back(commandLine);
+}
+
+void CTool::addClearOutputCommandLine(std::string commandLine)
+{
+	_clearOutputCommandLine.push_back(commandLine);
 }
 
 CTest* CTool::getTest(std::string name)
@@ -100,6 +111,7 @@ std::string CTool::replaceAllTags(std::string command, CTest* test, CSubtest* su
 
 int CTool::runTest(std::string name)
 {
+	clearOutput(name);
 	std::cout << "Running test " << name << std::endl;
 	CTest* test = getTest(name); // usar map, hash_map ou afins...
 	if (test == NULL) {
@@ -149,24 +161,30 @@ int CTool::check(std::string name)
 	std::cout << "Running check test " << name << std::endl;
 	CTest* test = getTest(name); // usar map, hash_map ou afins...
 	for(std::vector<CSubtest*>::iterator subtest = test->_subtestList.begin(); subtest != test->_subtestList.end(); subtest++ ) {
+		(*subtest)->_status = PASS;
+		_stat.count++;
 		for(std::vector<STestCommand>::iterator command = _testCommandLine.begin(); command != _testCommandLine.end(); command++) {
 			std::string commandToExec = replaceAllTags(command->_testCommand, test, (*subtest));
 			std::cout << "\t" << commandToExec;
 //			std::cout << "\tCommand line: " << commandToExec << " ";
 			if (system(commandToExec.c_str()) != 0) {
-				_stat.failed++;
 				std::cout << " (FAIL)";
+				(*subtest)->_status = FAIL;
 //				if (command->_whenError.size() > 0) {
 //					std::string commandToExecWhenError = replaceAllTags(command->_whenError, test, (*subtest));
 //					std::cout << "\tCommand line when error: " << commandToExecWhenError << std::endl;
 //					//system(commandToExecWhenError.c_str());
 //				}
 			} else {
-				_stat.passed++;
 				std::cout << " (OK)";
 			}
 			std::cout << std::endl;
 		}
+		if ((*subtest)->_status == PASS) {
+			_stat.passed++;
+		} else {
+			_stat.failed++;
+		}			
 	}
 
 	return 0;
@@ -182,7 +200,7 @@ int CTool::showDiff(std::string name)
 			std::cout << "\t" << commandToExec;
 			//std::cout << "\tCommand line: " << commandToExec << " ";
 			if (system(commandToExec.c_str()) != 0) {
-				_stat.failed++;
+// 				_stat.failed++;
 				std::cout << " (FAIL)" << std::endl;
 				if (command->_whenError.size() > 0) {
 					std::string commandToExecWhenError = replaceAllTags(command->_whenError, test, (*subtest));
@@ -191,7 +209,7 @@ int CTool::showDiff(std::string name)
 					system(commandToExecWhenError.c_str());
 				}
 			} else {
-				_stat.passed++;
+// 				_stat.passed++;
 				std::cout << " (OK)" << std::endl;
 			}
 		}
@@ -199,6 +217,53 @@ int CTool::showDiff(std::string name)
 
 	return 0;
 }
+
+int CTool::showOutput(std::string name)
+{
+	std::cout << "Running output test " << name << std::endl;
+	CTest* test = getTest(name); // usar map, hash_map ou afins...
+	for(std::vector<CSubtest*>::iterator subtest = test->_subtestList.begin(); subtest != test->_subtestList.end(); subtest++ ) {
+		for(std::vector<std::string>::iterator command = _showOutputCommandLine.begin(); command != _showOutputCommandLine.end(); command++) {
+			std::string commandToExec = replaceAllTags((*command), test, (*subtest));
+			std::cout << "\t" << commandToExec;
+			if (system(commandToExec.c_str()) != 0) {
+// 				_stat.failed++;
+				std::cout << " (FAIL)" << std::endl;
+			} else {
+// 				_stat.passed++;
+				std::cout << " (OK)" << std::endl;
+			}
+		}
+	}
+
+	return 0;
+}
+
+
+int CTool::clearOutput(std::string name)
+{
+	std::cout << "Clear output " << name << std::endl;
+	CTest* test = getTest(name); // usar map, hash_map ou afins...
+	if (test == NULL) {
+		std::cout << "Test " << name << " not defined !!!" << std::endl;
+		return 1;
+	}
+	for(std::vector<CSubtest*>::iterator subtest = test->_subtestList.begin(); subtest != test->_subtestList.end(); subtest++ ) {
+		for(std::vector<std::string>::iterator command = _clearOutputCommandLine.begin(); command != _clearOutputCommandLine.end(); command++) {
+			std::string commandToExec = replaceAllTags((*command), test, (*subtest));
+			std::cout << "\t" << commandToExec;
+			if (system(commandToExec.c_str()) == 0) {
+				std::cout << " (OK)";
+			} else {
+				std::cout << " (FAIL)";
+			}
+			std::cout << std::endl;
+		}
+	}
+
+	return 0;
+}
+
 
 CTest* CTool::addTest(SResult expectedResult, std::string name)
 {
@@ -244,3 +309,51 @@ int CTool::showDiffAll()
 	return 0;
 }
 
+int CTool::showOutputAll()
+{
+	for(std::vector<CTest*>::iterator test = _testList.begin(); test != _testList.end(); test++) {
+		showOutput((*test)->_name);
+	}
+	return 0;
+}
+
+const std::string statusToText(const SResult result)
+{
+	if (result == UNDEFINED) {
+		return "UNDEFINED";
+	} else if (result == PASS) {
+		return "PASS";
+	} else if (result == FAIL) {
+		return "FAIL";
+	} else {
+		return "STATUS ERROR !!!";
+	}
+}
+
+
+void CTool::report()
+{
+	std::cout << "**** Summary report ****" << std::endl;
+	std::cout << "Total tests: " << _stat.count << std::endl;
+	std::cout << "Tests passed: " << _stat.passed << std::endl;
+	std::cout << "Tests failed: " << _stat.failed << std::endl;
+	std::cout << std::endl;
+
+	std::cout << "Listing tests results..." << std::endl;
+
+	for(std::vector<CTest*>::iterator test = _testList.begin(); test != _testList.end(); test++) {
+		std::cout << "Test\t" << (*test)->_name;
+		std::cout << "\t";
+		if ((*test)->_subtestList.size() == 1) {
+			std::cout << statusToText((*test)->_subtestList[0]->_status) << "\t" << std::endl;
+		} else {
+			std::cout << std::endl;
+			for(std::vector<CSubtest*>::iterator subtest = (*test)->_subtestList.begin(); subtest != (*test)->_subtestList.end(); subtest++ ) {
+				std::cout << "\t";
+				std::cout << subtest - (*test)->_subtestList.begin();
+				std::cout << ": ";
+				std::cout << statusToText((*subtest)->_status) << "\t" << std::endl;
+			}	
+		}
+	}
+}

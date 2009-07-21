@@ -27,6 +27,11 @@ void CTests::config()
 			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	compiler.addTestingResultsCommandLine("cmp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out -s",
 			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out");
+	compiler.addShowOutputCommandLine("cat %INPUTPATH%/%TEST%.ubil");
+	compiler.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+	compiler.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
+	compiler.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+	compiler.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
 
 	// Config vm tests
 	vm.setInputPath("./ubic/output/");
@@ -43,21 +48,30 @@ void CTests::config()
 			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	vm.addTestingResultsCommandLine("cmp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out -s",
 			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out");
+	// TODO: nao ficou legal a abordagem abaixo :-/
+	vm.addTestingResultsCommandLine("cmp ./ubic/output/%TEST%%SUBTESTNUMBER%.asm %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm -s",
+			"vimdiff ./ubic/output/%TEST%%SUBTESTNUMBER%.asm %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+	vm.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+	vm.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
+	vm.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+	vm.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
 }
 
 void CTests::define()
 {
 	CTest* test = compiler.addTest(PASS, "hello_world");
 //	test->addSubtest(PASS, CArgs("COMPILERARGS", ""));
-
 	test = vm.addTest(PASS, "hello_world");
 
 	test = compiler.addTest(PASS, "hello_world2");
 	test = vm.addTest(PASS, "hello_world2");
+
 	test = compiler.addTest(PASS, "hello_world3");
 	test = vm.addTest(PASS, "hello_world3");
+
 	test = compiler.addTest(PASS, "writeln_varios_tipos");
 	test = vm.addTest(PASS, "writeln_varios_tipos");
+
 //	test->addSubtest(PASS, CArgs("VMARGS", ""), CArgs("TESTARGS", ""));
 //	test->addSubtest(PASS, CArgs("VMARGS", "varg3 varg4"), CArgs("TESTARGS", "aarg3 aarg4"));
 
@@ -217,6 +231,9 @@ void CTests::checkAll()
 {
 	compiler.checkAll();
 	vm.checkAll();
+
+	compiler.report();
+	vm.report();
 }
 
 void CTests::check(std::string name)
@@ -237,3 +254,14 @@ void CTests::showDiff(std::string name)
 	vm.showDiff(name);
 }
 
+void CTests::showOutputAll()
+{
+	compiler.showOutputAll();
+	vm.showOutputAll();
+}
+
+void CTests::showOutput(std::string name)
+{
+	compiler.showOutput(name);
+	vm.showOutput(name);
+}

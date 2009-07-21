@@ -5,6 +5,8 @@
 
 #include "Tool.hpp"
 
+// TODO: Maybe it's a unecessary class... it seems to be only a proxy to real classes...
+
 class CTests
 {
 public:
@@ -20,6 +22,8 @@ public:
 	void testOkAll();
 	void showDiff(std::string name);
 	void showDiffAll();
+	void showOutput(std::string name);
+	void showOutputAll();
 private:
 	CTool compiler;
 	CTool vm;
