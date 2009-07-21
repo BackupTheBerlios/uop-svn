@@ -2,12 +2,7 @@
 
 #include <sstream>
 #include <iostream>
-//#include <dlfcn.h>
 #include "Log.hpp"
-
-//#include "Tools.hpp"
-
-// TODO: Armazenar todas as strings em memoria com o tamanho na frente ???
 
 /*
 #pragma pack(1)
@@ -646,9 +641,9 @@ void CRunBytecode::retOpcode()
 // 	std::cout << "dataStack.size    =" << _dataStack.size() << std::endl;
 // 	std::cout << "controlStack.size =" << _controlStack.size() << std::endl;
 
- 	for(std::vector<CLiteral>::iterator ret = ar->_resultList.begin();
- 		ret != ar->_resultList.end(); ret++) {
- 		_dataStack.push(*ret); // TODO: ordem inversa...
+ 	for(std::vector<CLiteral>::reverse_iterator ret = ar->_resultList.rbegin();
+ 		ret != ar->_resultList.rend(); ret++) {
+ 		_dataStack.push(*ret);
  	}
 
 	_ip = ar->_ip;

@@ -266,8 +266,20 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    assignment_statement
 ///----------
-   :  Identifier '=' expr
-      { methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex(GETTEXT($Identifier))); }
+@declarations
+{
+   std::vector<std::string> idList;
+}
+   :  Id1=Identifier { idList.push_back(GETTEXT($Id1)); }
+      (
+         ',' Id2=Identifier { idList.push_back(GETTEXT($Id2)); }
+      )*
+      '=' expr
+      {
+         for(std::vector<std::string>::iterator id = idList.begin(); id != idList.end(); id++) {
+            methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex((*id)));
+         }
+      }
    ;
 
 ///----------
