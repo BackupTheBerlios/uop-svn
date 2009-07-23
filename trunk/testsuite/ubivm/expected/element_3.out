@@ -1,0 +1,6 @@
+UbiVM - Release 0.1.0 (development release)
+antes da chamada a elemento::x
+antes da chamada a elemento::y
+no metodo elemento::y
+depois da chamada a elemento::y
+depois da chamada a elemento::x
