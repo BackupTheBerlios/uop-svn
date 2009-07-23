@@ -1,0 +1,6 @@
+entity start
+  def start()
+    writeln( 10.0 + 20.0 )
+  end
+end
+

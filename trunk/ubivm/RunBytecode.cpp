@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Log.hpp"
 
+#include "Element.hpp"
+
 /*
 #pragma pack(1)
 
@@ -141,6 +143,7 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[STOP_OPCODE       ] = &CRunBytecode::stopOpcode;
    _opcodePointer[RET_OPCODE        ] = &CRunBytecode::retOpcode;
    _opcodePointer[MCALL_OPCODE      ] = &CRunBytecode::mcallOpcode;
+   // TODO: trocar ADD por SUM
    _opcodePointer[ADD_OPCODE        ] = &CRunBytecode::addOpcode;
    _opcodePointer[SUB_OPCODE        ] = &CRunBytecode::subOpcode;
    _opcodePointer[MUL_OPCODE        ] = &CRunBytecode::mulOpcode;
@@ -155,41 +158,15 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[OR_OPCODE         ] = &CRunBytecode::orOpcode;
    _opcodePointer[IFNOT_OPCODE      ] = &CRunBytecode::ifnotOpcode;
    _opcodePointer[JMP_OPCODE        ] = &CRunBytecode::jmpOpcode;
+   _opcodePointer[LDSELF_OPCODE     ] = &CRunBytecode::ldselfOpcode;
+   _opcodePointer[NEWELEM_OPCODE    ] = &CRunBytecode::newelemOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
 
 //   _opcodePointer[OP_HLT        ] = &CRunBytecode::hltOpcode;
 
-//   _opcodePointer[OP_ISUM       ] = &CRunBytecode::isumOpcode;
-//   _opcodePointer[OP_SSUM       ] = &CRunBytecode::ssumOpcode;
-//   _opcodePointer[OP_RSUM       ] = &CRunBytecode::rsumOpcode;
-//   _opcodePointer[OP_ISUB       ] = &CRunBytecode::isubOpcode;
-//   _opcodePointer[OP_SSUB       ] = &CRunBytecode::ssubOpcode;
-//   _opcodePointer[OP_RSUB       ] = &CRunBytecode::rsubOpcode;
-//   _opcodePointer[OP_IMUL       ] = &CRunBytecode::imulOpcode;
-//   _opcodePointer[OP_RMUL       ] = &CRunBytecode::rmulOpcode;
-//   _opcodePointer[OP_IDIV       ] = &CRunBytecode::idivOpcode;
-//   _opcodePointer[OP_RDIV       ] = &CRunBytecode::rdivOpcode;
 //   _opcodePointer[OP_IMOD       ] = &CRunBytecode::imodOpcode;
-//   _opcodePointer[OP_IGE        ] = &CRunBytecode::igeOpcode;
-//   _opcodePointer[OP_SGE        ] = &CRunBytecode::sgeOpcode;
-//   _opcodePointer[OP_RGE        ] = &CRunBytecode::rgeOpcode;
-//   _opcodePointer[OP_ILE        ] = &CRunBytecode::ileOpcode;
-//   _opcodePointer[OP_SLE        ] = &CRunBytecode::sleOpcode;
-//   _opcodePointer[OP_RLE        ] = &CRunBytecode::rleOpcode;
-//   _opcodePointer[OP_INE        ] = &CRunBytecode::ineOpcode;
-//   _opcodePointer[OP_SNE        ] = &CRunBytecode::sneOpcode;
-//   _opcodePointer[OP_RNE        ] = &CRunBytecode::rneOpcode;
-//   _opcodePointer[OP_IGT        ] = &CRunBytecode::igtOpcode;
-//   _opcodePointer[OP_SGT        ] = &CRunBytecode::sgtOpcode;
-//   _opcodePointer[OP_RGT        ] = &CRunBytecode::rgtOpcode;
-//   _opcodePointer[OP_ILT        ] = &CRunBytecode::iltOpcode;
-//   _opcodePointer[OP_SLT        ] = &CRunBytecode::sltOpcode;
-//   _opcodePointer[OP_RLT        ] = &CRunBytecode::rltOpcode;
-//   _opcodePointer[OP_IEQ        ] = &CRunBytecode::ieqOpcode;
-//   _opcodePointer[OP_SEQ        ] = &CRunBytecode::seqOpcode;
-//   _opcodePointer[OP_REQ        ] = &CRunBytecode::reqOpcode;
 //   _opcodePointer[OP_OR         ] = &CRunBytecode::orOpcode;
 //   _opcodePointer[OP_AND        ] = &CRunBytecode::andOpcode;
 //   _opcodePointer[OP_XOR        ] = &CRunBytecode::xorOpcode;
@@ -230,16 +207,11 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[OP_ISETV      ] = &CRunBytecode::isetvOpcode;
    _opcodePointer[OP_SSETV      ] = &CRunBytecode::ssetvOpcode;
    _opcodePointer[OP_RSETV      ] = &CRunBytecode::rsetvOpcode;
-   _opcodePointer[OP_JMP        ] = &CRunBytecode::jmpOpcode;
-   _opcodePointer[OP_IF         ] = &CRunBytecode::ifOpcode;
-   _opcodePointer[OP_IFNOT      ] = &CRunBytecode::ifnotOpcode;
    _opcodePointer[OP_POPSV      ] = &CRunBytecode::popsvOpcode;
    _opcodePointer[OP_POPIV      ] = &CRunBytecode::popivOpcode;
    _opcodePointer[OP_POPRV      ] = &CRunBytecode::poprvOpcode;
    _opcodePointer[OP_POPDV      ] = &CRunBytecode::popdvOpcode;
    _opcodePointer[OP_POPMV      ] = &CRunBytecode::popmvOpcode;
-   _opcodePointer[OP_INCSP      ] = &CRunBytecode::incspOpcode;
-   _opcodePointer[OP_DECSP      ] = &CRunBytecode::decspOpcode;
    _opcodePointer[OP_PUSH_0     ] = &CRunBytecode::push_0Opcode;
    _opcodePointer[OP_PUSH_1     ] = &CRunBytecode::push_1Opcode;
    _opcodePointer[OP_PUSH_2     ] = &CRunBytecode::push_2Opcode;
@@ -252,12 +224,6 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[OP_PUSHDV     ] = &CRunBytecode::pushdvOpcode;
    _opcodePointer[OP_PUSHMV     ] = &CRunBytecode::pushmvOpcode;
 
-//   _opcodePointer[OP_PUSHSR     ] = &CRunBytecode::pushsrOpcode;
-//   _opcodePointer[OP_PUSHIR     ] = &CRunBytecode::pushirOpcode;
-//   _opcodePointer[OP_PUSHRR     ] = &CRunBytecode::pushrrOpcode;
-//   _opcodePointer[OP_PUSHDR     ] = &CRunBytecode::pushdrOpcode;
-//   _opcodePointer[OP_PUSHMR     ] = &CRunBytecode::pushmrOpcode;
-
    _opcodePointer[OP_PUSHST     ] = &CRunBytecode::pushstOpcode;
    _opcodePointer[OP_PUSHIT     ] = &CRunBytecode::pushitOpcode;
    _opcodePointer[OP_PUSHRT     ] = &CRunBytecode::pushrtOpcode;
@@ -265,11 +231,6 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[OP_PUSHBT     ] = &CRunBytecode::pushbtOpcode;
    _opcodePointer[OP_PUSHDT     ] = &CRunBytecode::pushdtOpcode;
    _opcodePointer[OP_PUSHMT     ] = &CRunBytecode::pushmtOpcode;
-
-   _opcodePointer[OP_INCSP_4    ] = &CRunBytecode::incsp_4Opcode;
-   _opcodePointer[OP_INCSP_8    ] = &CRunBytecode::incsp_8Opcode;
-   _opcodePointer[OP_DECSP_4    ] = &CRunBytecode::decsp_4Opcode;
-   _opcodePointer[OP_DECSP_8    ] = &CRunBytecode::decsp_8Opcode;
 
    _opcodePointer[OP_IRET       ] = &CRunBytecode::iretOpcode;
    _opcodePointer[OP_RRET       ] = &CRunBytecode::rretOpcode;
@@ -300,8 +261,20 @@ int CRunBytecode::run()
 //   std::cout << "Code size=" << _code.size() << std::endl;
 
    initOpcodePointer();
+
+   // Empilha referencia para entidade start
+//    uint startIndex = _symbolTable.getSymbolIndex("start", StringType);
+//    _dataStack.push(CLiteral(IntegerType, &startIndex));
+//    newOpcode(); // new recebe na datastack ou como argumento a entidade a ser instanciada ???
+//    _dataStack.push(_asmDef.getEntity("start")->getMethod("start"));
+//    mcallOpcode(); // mas mcall recebe como argumento, e nao na datastack :-/
+
+
    //_code.setIP(0); // TODO: pegar o endereco de main
-   _ip.element = _asmDef.getEntity("start");
+
+   CElement* element = new CElement(_asmDef.getEntity("start"));
+
+   _ip.element = element;
 
    if (_ip.element == NULL) {
 	   std::cout << "Entidade start nao encontrada !!!" << std::endl;
@@ -330,6 +303,8 @@ int CRunBytecode::run()
 		var != _ip.method->_localVarList.end(); var++) {
 		ar->_localVarList.push_back(CLiteral((*var)->_type));
 	}
+
+	ar->_ip = _ip;
 
 	_controlStack.push(ar);
 
@@ -657,10 +632,15 @@ void CRunBytecode::mcallOpcode()
 	trace ("mcall opcode");
 
 	CActivationRecord* ar = new CActivationRecord();
+	CElement* element = _dataStack.pop().getElement();
+// 	std::cout << "mcall: _dataStack.pop() " << element << ")" << std::endl;
 
 	ar->_ip = _ip;
 
-	_ip.method  = _ip.element->getMethod(_ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name);
+	std::string method = _ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name;
+
+	_ip.element = element;
+	_ip.method = _ip.element->getMethod(method);
 
 	if (_ip.method == NULL) {
 		std::cout << "Metodo " << _ip.element->getSymbolByIndex(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
@@ -684,6 +664,17 @@ void CRunBytecode::mcallOpcode()
 	_ip.ip = 0;
 
 	_controlStack.push(ar);
+}
+
+void CRunBytecode::ldselfOpcode()
+{
+	trace ("ldself opcode");
+
+//	std::cout << "ldself: _dataStack.push(CLiteral(" << _controlStack.top()->_ip.element << ")" << std::endl;
+// 	std::cout << "ldself: _ip.element->getName()=" << _ip.element->getName() << std::endl;
+//	std::cout << "ldself: _dataStack.push(" << _controlStack.top()->_ip.element->getName() << ")" << std::endl;
+// 	_dataStack.push(CLiteral(_controlStack.top()->_ip.element));
+	_dataStack.push(CLiteral(_ip.element));
 }
 
 void CRunBytecode::addOpcode()
@@ -715,6 +706,8 @@ void CRunBytecode::subOpcode()
 
    if (arg1._type == IntegerType && arg2._type == IntegerType) {
 	   _dataStack.push(CLiteral(arg1.getInteger()-arg2.getInteger()));
+   } else if (arg1._type == RealType && arg2._type == RealType) {
+	   _dataStack.push(CLiteral(arg1.getReal()-arg2.getReal()));
    } else {
 	   error("Tipos invalidos !!!");
    }
@@ -729,6 +722,8 @@ void CRunBytecode::mulOpcode()
 
    if (arg1._type == IntegerType && arg2._type == IntegerType) {
 	   _dataStack.push(CLiteral(arg1.getInteger()*arg2.getInteger()));
+   } else if (arg1._type == RealType && arg2._type == RealType) {
+	   _dataStack.push(CLiteral(arg1.getReal()*arg2.getReal()));
    } else {
 	   error("Tipos invalidos !!!");
    }
@@ -743,6 +738,8 @@ void CRunBytecode::divOpcode()
 
 	if (arg1._type == IntegerType && arg2._type == IntegerType) {
 		_dataStack.push(CLiteral((int)(arg1.getInteger()/arg2.getInteger())));
+	} else if (arg1._type == RealType && arg2._type == RealType) {
+		_dataStack.push(CLiteral(arg1.getReal()/arg2.getReal()));
 	} else {
 		error("Tipos invalidos !!!");
 	}
@@ -910,6 +907,19 @@ void CRunBytecode::jmpOpcode()
    trace ("jmp opcode");
 
    _ip.ip = _currentInstruction->getArg1();
+}
+
+
+void CRunBytecode::newelemOpcode()
+{
+	trace ("new opcode");
+
+//	std::string entity = _symbolTable.getSymbolByIndex(_currentInstruction->getArg1())->_name;
+	std::string entity = _ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name;
+
+	CElement* element = new CElement(_asmDef.getEntity(entity));
+
+	_dataStack.push(CLiteral(element));
 }
 
 

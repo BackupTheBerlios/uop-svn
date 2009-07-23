@@ -1,0 +1,13 @@
+entity start
+	def start()
+		def int result1
+		def int result2
+		result1,result2 = x()
+		writeln("result1: ", result1)
+		writeln("result2: ", result2)
+	end
+	def x() [int,int]
+		return
+	end
+end
+

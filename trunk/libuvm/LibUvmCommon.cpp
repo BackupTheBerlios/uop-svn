@@ -10,6 +10,8 @@ const std::string typeToText(const LiteralType &type)
 		return "real";
 	} else if (type == BooleanType) {
 		return "bool";
+	} else if (type == ElementType) {
+		return "element";
 	}
 
 	return "ERRO !!!";

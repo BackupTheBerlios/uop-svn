@@ -1,0 +1,31 @@
+entity start
+	def start()
+		writeln("antes da chamada a start::x")
+		x()
+		writeln("depois da chamada a start::x")
+	end
+	def x()
+		writeln("antes da chamada a start::y")
+		y()
+		writeln("depois da chamada a start::y")
+	end
+	def y()
+	    def element e
+		writeln("antes da chamada a elemento::x")
+		e = elemento.new()
+		e.x()
+		writeln("depois da chamada a elemento::x")
+	end
+end
+
+entity elemento
+	def x()
+		writeln("antes da chamada a elemento::y")
+		y()
+		writeln("depois da chamada a elemento::y")
+	end
+	def y()
+		writeln("no metodo elemento::y")
+	end
+end
+

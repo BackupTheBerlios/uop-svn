@@ -56,6 +56,8 @@ CLiteral::CLiteral(LiteralType type)
 		_value.realValue = 0.0;
 	} else if (_type == BooleanType) {
 		_value.booleanValue = false;
+	} else if (_type == ElementType) {
+		_value.elementValue = new CElement();
 	}
 }
 
@@ -68,6 +70,8 @@ const void* CLiteral::getValue()
 {
 	if (_type == StringType) {
 		return _value.stringValue;
+	} else if (_type == ElementType) {
+		return _value.elementValue;
 	} else {
 		return &_value;
 	}
@@ -85,12 +89,16 @@ void CLiteral::setValue(LiteralType type, const void* value)
 		_value.stringValue = new std::string();
 		*_value.stringValue = *((std::string*) value);
 		//std::cout << "Literal string contendo " << *_value.stringValue << std::endl;
+	} else if (_type == ElementType) {
+		_value.elementValue = ((CElement*) value);
+// 		std::cout << "Element contendo " << _value.elementValue << std::endl;
 	} else {
 		std::map<LiteralType, size_t> typeSizeMap;
 
 		typeSizeMap[IntegerType] = sizeof(int);
 		typeSizeMap[RealType] = sizeof(double);
 		typeSizeMap[BooleanType] = sizeof(bool);
+//		typeSizeMap[ElementType] = sizeof(CElement*);
 
 		memcpy(&_value, value, typeSizeMap[type]);
 	}
@@ -111,6 +119,8 @@ std::string CLiteral::getText()
 		} else {
 			return "false";
 		}
+	} else if (_type == ElementType) {
+		return "Element*";
 	}
 	return "Invalid literal value !!!";
 }
@@ -133,4 +143,10 @@ double CLiteral::getReal()
 bool CLiteral::getBoolean()
 {
 	return _value.booleanValue;
+}
+
+CElement* CLiteral::getElement()
+{
+// 	std::cout << "getElement: " << _value.elementValue << std::endl;
+	return _value.elementValue;
 }

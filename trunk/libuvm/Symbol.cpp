@@ -65,7 +65,7 @@ bool CSymbol::loadBytecode(CBinString& bytecode)
 	bytecode.load(&symbolSize, sizeof(symbolSize));
 	char* buffer = new char[symbolSize+1];
 	bytecode.load(buffer, symbolSize);
-	buffer[symbolSize+1] = NULL;
+	buffer[symbolSize] = NULL;
 	_name = std::string(buffer).substr(0, symbolSize);
 
 	delete []buffer;

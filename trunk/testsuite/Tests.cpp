@@ -97,6 +97,54 @@ void CTests::define()
 	test = compiler.addTest(PASS, "expr2");
 	test = vm.addTest(PASS, "expr2");
 
+	test = compiler.addTest(PASS, "expr3");
+	test = vm.addTest(PASS, "expr3");
+
+	test = compiler.addTest(PASS, "expr4");
+	test = vm.addTest(PASS, "expr4");
+
+	test = compiler.addTest(PASS, "expr5");
+	test = vm.addTest(PASS, "expr5");
+
+	test = compiler.addTest(PASS, "expr6");
+	test = vm.addTest(PASS, "expr6");
+
+	test = compiler.addTest(PASS, "expr7");
+	test = vm.addTest(PASS, "expr7");
+
+	test = compiler.addTest(PASS, "expr8");
+	test = vm.addTest(PASS, "expr8");
+
+	test = compiler.addTest(PASS, "expr9");
+	test = vm.addTest(PASS, "expr9");
+
+	test = compiler.addTest(PASS, "expr_real_1");
+	test = vm.addTest(PASS, "expr_real_1");
+
+	test = compiler.addTest(PASS, "expr_real_2");
+	test = vm.addTest(PASS, "expr_real_2");
+
+	test = compiler.addTest(PASS, "expr_real_3");
+	test = vm.addTest(PASS, "expr_real_3");
+
+	test = compiler.addTest(PASS, "expr_real_4");
+	test = vm.addTest(PASS, "expr_real_4");
+
+	test = compiler.addTest(PASS, "expr_real_5");
+	test = vm.addTest(PASS, "expr_real_5");
+
+	test = compiler.addTest(PASS, "expr_real_6");
+	test = vm.addTest(PASS, "expr_real_6");
+
+	test = compiler.addTest(PASS, "expr_real_7");
+	test = vm.addTest(PASS, "expr_real_7");
+
+	test = compiler.addTest(PASS, "expr_real_8");
+	test = vm.addTest(PASS, "expr_real_8");
+
+	test = compiler.addTest(PASS, "expr_real_9");
+	test = vm.addTest(PASS, "expr_real_9");
+
 	test = compiler.addTest(PASS, "def_vars");
 	test = vm.addTest(PASS, "def_vars");
 
@@ -172,14 +220,59 @@ void CTests::define()
 	test = compiler.addTest(PASS, "method_with_result_3");
 	test = vm.addTest(PASS, "method_with_result_3");
 
+	test = compiler.addTest(PASS, "method_with_result_4");
+	test = vm.addTest(PASS, "method_with_result_4");
+
+	test = compiler.addTest(PASS, "method_with_result_5");
+	test = vm.addTest(PASS, "method_with_result_5");
+
+	test = compiler.addTest(PASS, "method_with_result_6");
+	test = vm.addTest(PASS, "method_with_result_6");
+
 	test = compiler.addTest(PASS, "fatorial");
 	test = vm.addTest(PASS, "fatorial");
 
+	test = compiler.addTest(PASS, "element_1");
+	test = vm.addTest(PASS, "element_1");
+
+	test = compiler.addTest(PASS, "element_2");
+	test = vm.addTest(PASS, "element_2");
+
+	test = compiler.addTest(PASS, "element_3");
+	test = vm.addTest(PASS, "element_3");
+
+	test = compiler.addTest(PASS, "element_4");
+	test = vm.addTest(PASS, "element_4");
+
+	test = compiler.addTest(PASS, "element_5");
+	test = vm.addTest(PASS, "element_5");
+
+	test = compiler.addTest(PASS, "element_6");
+	test = vm.addTest(PASS, "element_6");
+
+	test = compiler.addTest(PASS, "element_7");
+	test = vm.addTest(PASS, "element_7");
+
+	test = compiler.addTest(PASS, "element_method_with_result_1");
+	test = vm.addTest(PASS, "element_method_with_result_1");
+
+	test = compiler.addTest(PASS, "element_method_with_result_2");
+	test = vm.addTest(PASS, "element_method_with_result_2");
+
+	test = compiler.addTest(PASS, "element_method_with_result_3");
+	test = vm.addTest(PASS, "element_method_with_result_3");
+
+	test = compiler.addTest(PASS, "element_method_with_result_4");
+	test = vm.addTest(PASS, "element_method_with_result_4");
+
+	test = compiler.addTest(PASS, "element_method_with_result_5");
+	test = vm.addTest(PASS, "element_method_with_result_5");
+
+	test = compiler.addTest(PASS, "element_method_with_result_6");
+	test = vm.addTest(PASS, "element_method_with_result_6");
+
 	// proximos testes...
-	// writeln 1+2, 1-2, 2+1, 2-1, 10*20, 10/2, 20/2, 10* -20, 5/10, 2 * ( 5 + 1 )
-	// writeln (igual ao anterior) mas com tipo real
-	// writeln "a" + "b", "aaa" + "bbb"
-	// teste define, inicializa e imprime uma variavel de cada tipo
+	// testes com expressoes matematicas "complexas" tb para o tipo real
 }
 
 void CTests::runAll()

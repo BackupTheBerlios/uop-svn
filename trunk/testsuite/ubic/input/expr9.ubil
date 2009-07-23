@@ -1,0 +1,23 @@
+//////////////////////////////////////////////////////////////////////
+// NOME       : test11_1.holo
+// DATA       : 01/08/2002
+// RESPONSAVEL: Alex Sandro Garzao (alexgarzao@bol.com.br)
+// FUNCAO     : Demonstra o uso de expressoes matematicas, com uso de
+//              parenteses e precedencia de operadores.
+// ENTRADA    : Nenhuma.
+// SAIDA      : Os calculos efetuados.
+// OBSERVACOES: Nenhuma.
+//////////////////////////////////////////////////////////////////////
+
+entity start
+	def start()
+		writeln("2 - 1=", 2 - 1)
+		writeln("2 * 7=", 2 * 7)
+		writeln("2 * 8 - 5=", 2 * 8 - 5)
+		writeln("2 - 8 * 5=", 2 - 8 * 5)
+		writeln("(2 - 8) * 5=", (2 - 8) * 5)
+		writeln(
+			"(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=",
+			(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3)))
+	end
+end

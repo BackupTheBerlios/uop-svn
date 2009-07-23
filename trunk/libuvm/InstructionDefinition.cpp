@@ -84,6 +84,8 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ IFNOT_OPCODE, "ifnot", LabelOpcodeArgumentType },
 	{ IF_OPCODE, "if", LabelOpcodeArgumentType },
 	{ JMP_OPCODE, "jmp", LabelOpcodeArgumentType },
+	{ NEWELEM_OPCODE, "newelem", ConstantOpcodeArgumentType },
+	{ LDSELF_OPCODE, "ldself", NoOpcodeArgumentType },
 	{ INVALID_OPCODE, "XXX", NoOpcodeArgumentType }
 };
 
@@ -171,6 +173,7 @@ void CInstructionDefinition::saveBytecode(CBinString& bytecode)
 
 	if (opcodeListDesc[opcodeIndex(_opcode)].size() > 1) {
 		bytecode.save(&_arg1, sizeof(_arg1));
+//		bytecode.save(_arg1);
 	}
 }
 
@@ -180,6 +183,7 @@ bool CInstructionDefinition::loadBytecode(CBinString& bytecode)
 
 	if (opcodeListDesc[opcodeIndex(_opcode)].size() > 1) {
 		bytecode.load(&_arg1, sizeof(_arg1));
+//		bytecode.load(&_arg1);
 	}
 
 	return true;

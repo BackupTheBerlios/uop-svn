@@ -7,13 +7,14 @@ Entity start
 		4 S writeln
 	End
 	Def start
-		Local variables
-		End
-			ldconst 1 --> [10]
-			ldconst 2 --> [20]
-			add
-			ldconst 3 --> [1]
-			lcall 4 --> [writeln]
-			stop
+		No parameters
+		No local variables
+		No results
+		ldconst 1 --> [10]
+		ldconst 2 --> [20]
+		add
+		ldconst 3 --> [1]
+		lcall 4 --> [writeln]
+		stop
 	End
 End

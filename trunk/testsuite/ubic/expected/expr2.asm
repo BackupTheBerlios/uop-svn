@@ -1,14 +1,17 @@
 Entity start
 	Constants
-		3 I 1
+		0 S start
 		1 I 10
 		2 I 20
+		3 I 1
+		4 S writeln
 		5 I 30
 		6 I 5
-		0 S start
-		4 S writeln
 	End
 	Def start
+		No parameters
+		No local variables
+		No results
 		ldconst 1 --> [10]
 		ldconst 2 --> [20]
 		add

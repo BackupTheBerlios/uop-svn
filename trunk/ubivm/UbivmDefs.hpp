@@ -3,6 +3,7 @@
 
 #include "EntityDefinition.hpp"
 #include "MethodDefinition.hpp"
+#include "Element.hpp"
 
 typedef struct SOptions {
 	std::string sourcefile;
@@ -10,8 +11,7 @@ typedef struct SOptions {
 };
 
 struct SIp {
-	//CElement *element;
-	CEntityDefinition *element;
+	CElement *element;
 	CMethodDefinition *method;
 	u_short ip;
 };

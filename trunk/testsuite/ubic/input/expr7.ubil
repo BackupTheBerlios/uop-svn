@@ -1,0 +1,5 @@
+entity start
+	def start()
+		writeln( "(2 * (8 - 18 / 9 * 6) * (49 / 7 - 3))=", (2 * (8 - 18 / 9 * 6) * (49 / 7 - 3)) )
+	end
+end

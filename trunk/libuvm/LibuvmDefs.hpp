@@ -31,6 +31,8 @@ enum OpcodeType {
 	MCALL_OPCODE,
 	LDPARAM_OPCODE,
 	STRESULT_OPCODE,
+	NEWELEM_OPCODE,
+	LDSELF_OPCODE,
 	INVALID_OPCODE,
 	OPCODE_COUNT
 };
@@ -41,7 +43,9 @@ enum LiteralType {
 	RealType = 'R',
 	BooleanType = 'B',
 	MethodType = 'M',
-	EntityType = 'E'
+//	EntityType = 'E',
+	ElementType= 'E'
+// 	PointerType = 'P'
 };
 
 enum SymbolType {
@@ -49,6 +53,7 @@ enum SymbolType {
 	integerttt,
 	realttt
 };
+
 enum VisibilityType {
 	PublicVisibility = '+',
 	PrivateVisibility = '-'

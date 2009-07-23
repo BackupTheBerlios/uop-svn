@@ -1,0 +1,19 @@
+entity start
+	def start()
+		x()
+	end
+	def x()
+		def string result
+		def element e
+		e = elemento.new()
+		result = e.y()
+		writeln("result: ", result)
+	end
+end
+
+entity elemento
+	def y() [string]
+		return "oi"
+	end
+end
+

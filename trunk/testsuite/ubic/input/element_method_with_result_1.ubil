@@ -1,0 +1,16 @@
+entity start
+	def start()
+		def string result
+		def element e
+		e = elemento.new()
+		result = e.x()
+		writeln("result: ", result)
+	end
+end
+
+entity elemento
+	def x() [string]
+		return "oi"
+	end
+end
+

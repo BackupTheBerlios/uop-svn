@@ -1,0 +1,13 @@
+entity start
+	def start()
+		def element e
+		e = elemento.new()
+		e.imprime()
+	end
+end
+
+entity elemento
+	def imprime()
+		writeln("Oi !!!!")
+	end
+end

@@ -23,30 +23,31 @@
 #include <string>
 
 #include "LibuvmDefs.hpp"
+#include "Element.hpp"
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
 class CLiteral{
 public:
-    CLiteral(const CLiteral& literal);
-    CLiteral(LiteralType type, const void* value);
-    CLiteral(LiteralType type);
+	CLiteral(const CLiteral& literal);
+	CLiteral(LiteralType type, const void* value);
+	CLiteral(LiteralType type);
 	CLiteral(int value) { setValue(IntegerType, &value); }
 	CLiteral(double value) { setValue(RealType, &value); }
 	CLiteral(bool value) { setValue(BooleanType, &value); }
 	CLiteral(std::string value) { setValue(StringType, &value); }
-    ~CLiteral();
-   const void* getValue();
-   void setValue(const void* value);
-   void setValue(LiteralType type, const void* value);
+	CLiteral(CElement* value) { setValue(ElementType, value); }
+	~CLiteral();
+	const void* getValue();
+	void setValue(const void* value);
+	void setValue(LiteralType type, const void* value);
 	std::string getText();
 	std::string getString();
 	int getInteger();
 	double getReal();
 	bool getBoolean();
-
-
+ 	CElement* getElement();
 //private:
     LiteralType _type;
 //	size_t size;
@@ -55,6 +56,7 @@ public:
 		double realValue;
 		bool booleanValue;
 		std::string* stringValue;
+		CElement* elementValue;
 	} _value;
 };
 

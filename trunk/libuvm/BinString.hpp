@@ -16,6 +16,18 @@ public:
 
     void save(const void* data, size_t size);
     void load(const void* data, size_t size);
+/*	void save(uint data) {
+		save(&data, sizeof(data));
+	}
+	void load(uint* data) {
+		load(data, sizeof(data));
+	}
+	void save(unsigned short int data) {
+		save(&data, sizeof(data));
+	}
+	void load(unsigned short int* data) {
+		load(data, sizeof(data));
+	}*/
 	void assign(std::string data);
 	size_t size() const
 	{

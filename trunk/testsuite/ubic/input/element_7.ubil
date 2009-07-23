@@ -1,0 +1,15 @@
+entity start
+	def start()
+		def element e
+		e = elemento.new()
+		e.x(1, "um", 2, "dois")
+	end
+end
+
+entity elemento
+	def x(int number1, string msg1, int number2, string msg2)
+		writeln("number1=", number1, " msg1=", msg1)
+		writeln("number2=", number2, " msg2=", msg2)
+	end
+end
+

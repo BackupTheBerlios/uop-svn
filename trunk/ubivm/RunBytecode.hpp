@@ -73,6 +73,8 @@ private:
    void orOpcode();
    void ifnotOpcode();
    void jmpOpcode();
+   void newelemOpcode();
+   void ldselfOpcode();
    /*
    void nopOpcode();
    void pcallOpcode();
@@ -219,8 +221,8 @@ private:
    bool            _stop;
    int             _returnCode;
    CDataStack      _dataStack;
-   std::stack<int> _executionStack;
-   std::map<std::string, void*> syslibHandlerList;
+//   std::stack<int> _executionStack;
+//   std::map<std::string, void*> syslibHandlerList;
    SIp _ip;
 	CAssemblyDefinition _asmDef;
 	CInstructionDefinition* _currentInstruction;

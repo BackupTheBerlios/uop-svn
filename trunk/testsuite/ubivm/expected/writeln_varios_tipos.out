@@ -1,12 +1,8 @@
 UbiVM - Release 0.1.0 (development release)
-Entidade start encontrada !!!
-Metodo start encontrado !!!
-Literal string contendo "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-Opcode writeln: "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-Literal string contendo "12345 true false 10.0 20.9876"
-Opcode writeln: "12345 true false 10.0 20.9876"
-Opcode writeln: 12345
-Opcode writeln: true
-Opcode writeln: false
-Opcode writeln: 10.000000
-Opcode writeln: 20.987600
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+12345 true false 10.0 20.9876
+12345
+true
+false
+10.000000
+20.987600
