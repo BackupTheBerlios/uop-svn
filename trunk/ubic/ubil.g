@@ -187,11 +187,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    type returns [LiteralType ret]
 ///----------
-   :  'int'     { $ret = IntegerType; }
-   |  'real'    { $ret = RealType;    }
-   |  'string'  { $ret = StringType;  }
-   |  'bool'    { $ret = BooleanType; }
-   |  'element' { $ret = ElementType; }
+   :  'int'      { $ret = IntegerType; }
+   |  'real'     { $ret = RealType;    }
+   |  'string'   { $ret = StringType;  }
+   |  'bool'     { $ret = BooleanType; }
+   |  'element'  { $ret = ElementType; }
+   |  'userdata' { $ret = UserdataType; }
    ;
 
 ///----------
@@ -255,6 +256,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       {
          methodDef->addLocalVar($type.ret, (const char*)$IDENTIFIER.text->chars);
       }
+      (
+         '=' expr
+         {
+            methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER)));
+         }
+      )?
    ;
 
 ///----------
@@ -381,7 +388,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       {  methodDef->setNextInstructionLabel(testLabel); }
       'while' '(' expr ')'
       { methodDef->addInstruction(IFNOT_OPCODE, nextCommandLabel); }
-      code_block 'end'
+      code_block
+      'end'
       { methodDef->addInstruction(JMP_OPCODE, testLabel); }
       { methodDef->setNextInstructionLabel(nextCommandLabel); }
    ;
@@ -460,6 +468,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    :  expr
    |  literal
    |  'nil'          { methodDef->addInstruction(LDNIL_OPCODE); }
+//   |  context_property // TODO: acho que esse nao seria o nome mais adequado...
    ;
 
 ///----------
@@ -473,6 +482,25 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    |  STRING_LITERAL  { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(removeQuotes(GETTEXT($STRING_LITERAL)),  StringType));  }
    |  BOOLEAN_LITERAL { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($BOOLEAN_LITERAL),  BooleanType));  }
    ;
+
+///----------
+   context_property
+///----------
+   : context '.' IDENTIFIER
+   ;
+
+///----------
+   context
+///----------
+   : 'identity' | 'location' | 'activity' | 'time'
+   ;
+
+///----------
+   element_property
+///----------
+   : IDENTIFIER '.' IDENTIFIER
+   ;
+
 
 
 //$$$$$$$$$$$$$$$$$$$$$
@@ -577,6 +605,8 @@ expr_elemento
   | IDENTIFIER     { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER));  }
 //  | IDENTIFIER { methodDef->addInstruction(LDVAR_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
   | literal
+  | context_property
+  | element_property
   | '(' expr ')' 
   ;
 
@@ -658,7 +688,7 @@ ESCAPE_SEQUENCE
 //	;
 
 IDENTIFIER
-   :  LETTER (LETTER|DIGIT)*
+   :  LETTER (LETTER|DIGIT|'_')*
    ;
 
 

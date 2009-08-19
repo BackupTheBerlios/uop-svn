@@ -187,6 +187,15 @@ void CTests::define()
 	test = compiler.addTest(PASS, "if_1");
 	test = vm.addTest(PASS, "if_1");
 
+	test = compiler.addTest(PASS, "if_2");
+	test = vm.addTest(PASS, "if_2");
+
+	test = compiler.addTest(PASS, "if_3");
+	test = vm.addTest(PASS, "if_3");
+
+	test = compiler.addTest(PASS, "if_4");
+	test = vm.addTest(PASS, "if_4");
+
 	test = compiler.addTest(PASS, "for_1");
 	test = vm.addTest(PASS, "for_1");
 

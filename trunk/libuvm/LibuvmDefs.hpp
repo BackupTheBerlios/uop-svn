@@ -44,8 +44,9 @@ enum LiteralType {
 	BooleanType = 'B',
 	MethodType = 'M',
 //	EntityType = 'E',
-	ElementType= 'E'
+	ElementType= 'E',
 // 	PointerType = 'P'
+	UserdataType= 'U'
 };
 
 enum SymbolType {

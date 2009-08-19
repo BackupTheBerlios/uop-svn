@@ -58,6 +58,9 @@ CLiteral::CLiteral(LiteralType type)
 		_value.booleanValue = false;
 	} else if (_type == ElementType) {
 		_value.elementValue = new CElement();
+	} else if (_type == UserdataType) {
+		//_value.elementValue = new CElement();
+		//TODO: userdata
 	}
 }
 
@@ -75,6 +78,7 @@ const void* CLiteral::getValue()
 	} else {
 		return &_value;
 	}
+	//TODO: userdata
 }
 
 // void CLiteral::setValue(const void* value)
@@ -102,6 +106,7 @@ void CLiteral::setValue(LiteralType type, const void* value)
 
 		memcpy(&_value, value, typeSizeMap[type]);
 	}
+	// TODO: userdata
 }
 
 std::string CLiteral::getText()
@@ -122,6 +127,7 @@ std::string CLiteral::getText()
 	} else if (_type == ElementType) {
 		return "Element*";
 	}
+	// TODO: userdata
 	return "Invalid literal value !!!";
 }
 

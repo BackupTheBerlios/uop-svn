@@ -12,6 +12,8 @@ const std::string typeToText(const LiteralType &type)
 		return "bool";
 	} else if (type == ElementType) {
 		return "element";
+	} else if (type == UserdataType) {
+		return "userdata";
 	}
 
 	return "ERRO !!!";
