@@ -280,6 +280,12 @@ void CTests::define()
 	test = compiler.addTest(PASS, "element_method_with_result_6");
 	test = vm.addTest(PASS, "element_method_with_result_6");
 
+	test = compiler.addTest(PASS, "group_1");
+	test = vm.addTest(PASS, "group_1");
+
+	test = compiler.addTest(PASS, "service_1");
+	test = vm.addTest(PASS, "service_1");
+
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real
 }

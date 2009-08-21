@@ -45,6 +45,8 @@ CEntityDefinition *CAssemblyDefinition::addEntity(std::string name)
 	CEntityDefinition* entity = new CEntityDefinition(name);
 	_entityList["S::" + name] = entity;
 
+	entity->getSymbolIndex(name, StringType);
+
 	return entity;
 }
 

@@ -86,6 +86,15 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ JMP_OPCODE, "jmp", LabelOpcodeArgumentType },
 	{ NEWELEM_OPCODE, "newelem", ConstantOpcodeArgumentType },
 	{ LDSELF_OPCODE, "ldself", NoOpcodeArgumentType },
+	{ BINDG_OPCODE, "bindg", NoOpcodeArgumentType },
+	{ LEAVEG_OPCODE, "leaveg", NoOpcodeArgumentType },
+	{ DATAAF_OPCODE, "dataaf", NoOpcodeArgumentType },
+	{ DATADQU_OPCODE, "datadqu", NoOpcodeArgumentType },
+	{ PUBLISHS_OPCODE, "publishs", NoOpcodeArgumentType },
+	{ SCALL_OPCODE, "scall", NoOpcodeArgumentType },
+	{ FINDS_OPCODE, "finds", NoOpcodeArgumentType },
+	{ BINDS_OPCODE, "binds", NoOpcodeArgumentType },
+	{ LDCONTEXT_OPCODE, "ldcontext", ConstantOpcodeArgumentType },
 	{ INVALID_OPCODE, "XXX", NoOpcodeArgumentType }
 };
 

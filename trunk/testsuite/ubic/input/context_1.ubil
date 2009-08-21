@@ -1,0 +1,7 @@
+entity start
+	def start()
+		writeln("Host atual: ", identity.host)
+		writeln("Onde estou: ", location.symbolic)
+	end
+end
+

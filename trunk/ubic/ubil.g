@@ -148,7 +148,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    compilation_unit [SParamOptions options]
 ///----------
-   :  //{ symbolTable = new CSymbolTable(); /*nao tem um init do antlr ???*/ }
+   :  (import_declaration)*
       (entity_definition)+
       EOF
       {
@@ -161,6 +161,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    ;
 
 ///----------
+   import_declaration
+///----------
+   :  'import' IDENTIFIER ('.' IDENTIFIER)*
+   ;
+
+///----------
    entity_definition
 ///----------
 @init{
@@ -169,7 +175,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       {
 //          entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
           entityDef = asmDef.addEntity(GETTEXT($IDENTIFIER));
-          entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
+//          entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
       }
       (property_definition|method_definition)*
       'end'
@@ -180,19 +186,19 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    :  'def' type IDENTIFIER
       {
-         entityDef->addProperty(PublicVisibility, $type.ret, (const char*)$IDENTIFIER.text->chars);
+         entityDef->addProperty(PublicVisibility, $type.iret, (const char*)$IDENTIFIER.text->chars);
       }
    ;
 
 ///----------
-   type returns [LiteralType ret]
+   type returns [LiteralType iret, std::string sret]
 ///----------
-   :  'int'      { $ret = IntegerType; }
-   |  'real'     { $ret = RealType;    }
-   |  'string'   { $ret = StringType;  }
-   |  'bool'     { $ret = BooleanType; }
-   |  'element'  { $ret = ElementType; }
-   |  'userdata' { $ret = UserdataType; }
+   :  'int'      { $iret = IntegerType;  $sret = "int";      }
+   |  'real'     { $iret = RealType;     $sret = "real";     }
+   |  'string'   { $iret = StringType;   $sret = "string";   }
+   |  'bool'     { $iret = BooleanType;  $sret = "bool";     }
+   |  'element'  { $iret = ElementType;  $sret = "element";  }
+   |  'userdata' { $iret = UserdataType; $sret = "userdata"; }
    ;
 
 ///----------
@@ -222,12 +228,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    :  type1=type id1=IDENTIFIER
       {
-         methodDef->addParameter($type1.ret, (const char*) $id1.text->chars);
+         methodDef->addParameter($type1.iret, (const char*) $id1.text->chars);
 //         methodDef->addParameter((const char*)$type1.text->chars, (const char*) $id1.text->chars);
       }
       ( ',' type2=type id2=IDENTIFIER
          {
-            methodDef->addParameter($type2.ret, (const char*) $id2.text->chars);
+            methodDef->addParameter($type2.iret, (const char*) $id2.text->chars);
 //            methodDef->addParameter((const char*)$type2.text->chars, (const char*) $id2.text->chars);
          }
       )*
@@ -239,11 +245,11 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    :  '['
       type1=type
       {
-         methodDef->addResult($type1.ret);
+         methodDef->addResult($type1.iret);
       }
       ( ',' type2=type
          {
-            methodDef->addResult($type2.ret);
+            methodDef->addResult($type2.iret);
          }
       )*
       ']'
@@ -254,7 +260,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///--------------
    :  'def' type IDENTIFIER
       {
-         methodDef->addLocalVar($type.ret, (const char*)$IDENTIFIER.text->chars);
+         methodDef->addLocalVar($type.iret, (const char*)$IDENTIFIER.text->chars);
       }
       (
          '=' expr
@@ -273,7 +279,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    statement
 ///----------
-   : assignment_statement|return_statement|if_statement|iteration_statement|method_invocation
+   : assignment_statement|return_statement|if_statement|iteration_statement|method_invocation|group_interation
    ;
 
 ///----------
@@ -292,6 +298,82 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          for(std::vector<std::string>::iterator id = idList.begin(); id != idList.end(); id++) {
             methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex((*id)));
          }
+      }
+   ;
+
+///----------
+   group_interation
+///----------
+   :  group_invocation
+   |  data_group_interation
+   |  service_group_interation
+   ;
+
+///----------
+   group_invocation
+///----------
+   : '[' expr ']' '.' IDENTIFIER '(' ')'
+      {
+         if (GETTEXT($IDENTIFIER) == "bind") {
+            methodDef->addInstruction(BINDG_OPCODE);
+         } else if (GETTEXT($IDENTIFIER) == "leave") {
+            methodDef->addInstruction(LEAVEG_OPCODE);
+         }
+      }
+   ;
+
+///----------
+   data_group_interation
+///----------
+   : '[' expr ']' '.' 'data' '.' IDENTIFIER
+      '(' (arg1=argument_list '=>' arg2=argument_list)? ')'
+      {
+         if (GETTEXT($IDENTIFIER) == "af") {
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($arg1.args), IntegerType));
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($arg2.args), IntegerType));
+            methodDef->addInstruction(DATAAF_OPCODE);
+         }
+      }
+   ;
+
+///----------
+   service_group_interation
+///----------
+@declarations
+{
+   std::string serviceName;
+}
+   : '[' expr ']' '.' 'service' '+=' IDENTIFIER { serviceName = GETTEXT($IDENTIFIER); }
+      '('
+         ( type1=type { /*serviceName += ":" + $type1.sret;*/ } ( ',' type2=type { /*serviceName += ":" + $type2.sret;*/ } )* )?
+      ')'
+      {
+         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
+         methodDef->addInstruction(PUBLISHS_OPCODE);
+      }
+   ;
+
+///----------
+   rgroup
+///----------
+@declarations
+{
+   std::string serviceName;
+}
+   : '[' expr ']' '.' 'data' '.' IDENTIFIER ( '(' argument_list ')' )?
+      {
+         if (GETTEXT($IDENTIFIER) == "dqu") {
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            methodDef->addInstruction(DATADQU_OPCODE);
+         }
+      }
+   | '[' expr ']' '.' 'datalist'
+   | '[' expr ']' '.' IDENTIFIER
+      { serviceName = GETTEXT($IDENTIFIER); methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType)); }
+      { methodDef->addInstruction(FINDS_OPCODE); methodDef->addInstruction(BINDS_OPCODE); }
+      ( '(' argument_list ')' )?
+      {
+         methodDef->addInstruction(SCALL_OPCODE);
       }
    ;
 
@@ -340,7 +422,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    iteration_statement
 ///----------
-   :  for_statement|while_statement|repeat_statement
+   :  for_statement|while_statement|repeat_statement|foreach_statement
   // o do..while nao funciona pq o while eh identificado como uma nova sentenca while dentro do do..while...
    ;
 
@@ -410,6 +492,14 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    ;
 
 ///----------
+   foreach_statement
+///----------
+   :  'foreach' '(' IDENTIFIER 'in' rgroup ')'
+      code_block
+      'end'
+   ;
+
+///----------
    method_invocation
 ///----------
    :  local_method_invocation
@@ -456,10 +546,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    argument_list returns [uint args]
 ///----------
-   :
-//{uint $args = 0;}
-      argument {$args++;} (',' argument {$args++;} )*
-//   :  arg1=argument {printf("argumento [\%s] ", $arg1.text->chars);} (',' arg2=argument {printf("argumento [\%s] ", $arg2.text->chars);})*
+   :  argument {$args++;} (',' argument {$args++;} )*
    ;
 
 ///----------
@@ -486,13 +573,17 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    context_property
 ///----------
-   : context '.' IDENTIFIER
+   :  context '.' IDENTIFIER
+      { methodDef->addInstruction(LDCONTEXT_OPCODE, entityDef->getSymbolIndex($context.value + "." + GETTEXT($IDENTIFIER), StringType)); }
    ;
 
 ///----------
-   context
+   context returns [int teste, std::string value] // teste nao eh necessario... mas qdo so tem um parametro, antlr gera codigo para inicializar
 ///----------
-   : 'identity' | 'location' | 'activity' | 'time'
+   :  'identity' { $value = "identity"; }
+   |  'location' { $value = "location"; }
+   |  'activity' { $value = "avtivity"; }
+   |  'time'     { $value = "time";     }
    ;
 
 ///----------
@@ -607,6 +698,7 @@ expr_elemento
   | literal
   | context_property
   | element_property
+  | rgroup
   | '(' expr ')' 
   ;
 

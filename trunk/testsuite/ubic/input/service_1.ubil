@@ -1,0 +1,15 @@
+entity servico
+	def soma(int x, int y) [int]
+		return x+y
+	end
+	def servico()
+		["group"].service += soma(int,int)
+	end
+end
+
+entity start
+	def start()
+		writeln("Soma: ", ["group"].soma(10,20))
+	end
+end
+
