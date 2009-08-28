@@ -1,0 +1,156 @@
+========
+VERSAO 1
+========
+
+Seguir apenas o cenário de colocar os alunos em contato por similiaridade e complementariedade. Somente aquele parte que está mais relacionado com grupos.
+
+
+===============================
+CENÁRIO DO ARTIGO SOBRE O LOCAL
+===============================
+
+
+
+Learner profiles
+----------------
+
+* informacoes relacionadas ao processo de aprendizado
+* Persistent data: contact, preferences e interests
+  - contact (name, address, e-mail, phone number)
+  - preferences (prefered media - audio, video e/ou texto)
+    - Sistema prove o mesmo conteudo em diferentes formatos. Transcricao para videos (cegos).
+  - interests
+    - general knowledge (math, por exemplo)
+    - specific interest area (group theory, por exemplo), classificadas em "to learn" ou "to teach"
+
+
+
+Location System (entidade)
+--------------------------
+
+* o usuario vai indicar onde esta
+* location system atualiza no tutor o contexto (posicao) do aprendiz
+  - isso faz sentido no UOP ???
+
+
+
+Tutor (entidade)
+----------------
+
+* faz inferencias utilizando profiles e location system
+  - profiles e location system sao os contextos do UOP
+* usa profile e dados localizacao para encontrar oportunidades de aprendizado
+* age de 2 formas (versao 1 de 1 forma apenas):
+  - estimulando interacao entre aprendizes
+* 2 formas de interacao
+  - interesses similares: tutor encontra aprendizes com interesses similares no mesmo contexto e estimula interacao
+    - pode ser utilizado para formacao de grupos de trabalho na sala de aula
+  - interesses complementares: aprendiz gostaria de aprender x é "pareado" com usuario que gostaria de ensinar ou sabe mais sobre x
+
+
+
+Communications system (entidade)
+--------------------------------
+
+* estabelece comunicacao entre componentes do LOCAL, e entre o sistema e os usuarios
+* Estabelece contato entre aprendizes, informando eles sobre novas oportunidades pedagogicas
+* usuarios sao contactados por notificacoes textuais
+* envia msgs para usuario, para todos usuarios de um contexto, para usuario (se estiver em determinado contexto) ou para todos os usuarios
+
+
+
+========================================
+
+Recursos do prototipo
+---------------------
+
+* usuarios sao notificados quando um professor que eles querem interagir por chat esta disponivel
+* prototipo busca por matches entre profile dos participantes, sugerindo recursos de aprendizado relacionado aos seus interesses
+* poderia sugerir interacao entre usuarios ???
+  - para formacao de grupos
+  - poderia mostrar interesses de varios usuarios para auxiliar na formacao de grupos de trabalho "misto"
+
+
+
+Telas
+-----
+
+* login (OK)
+  - nome do usuario
+* cadastro com profile do usuario (OK)
+  - contact (name, address, e-mail, phone number)
+  - preferences (prefered media - audio, video e/ou texto)
+  - interests
+    - general knowledge (math, por exemplo)
+    - specific interest area, classificada em "to learn" ou "to teach"
+* alteracao status do usuario (OK)
+  - novo status do usuario
+* notificacao recebida / enviar notificacao
+  - mensagem
+* usuario disponivel
+  - gera notificacao
+* usuarios com interesses similares
+  - usuario
+  - localizacao
+  - general knowledge
+  - area de interesse especifico
+* usuarios com interesses complementares
+  - usuario
+  - localizacao
+  - general knowledge
+  - area de interesse especifico
+
+
+
+RECURSOS DO UOP NECESSARIOS
+---------------------------
+
+* Grupos com dados e elementos
+* Binding bibliotecas
+  - ncurses ? QT ?
+  - location system ? mas acho que o usuario poderia indicar nesta primeira versao
+  - tb poderia implementar read, write e writeln, e esquecer os bindings por enquanto...
+* Eventos ? acho que facilitaria
+* Comunicacao em grupo (da para simular com os dados disponibilizados nos grupos, mas nao fica "a mesma coisa"...)
+
+* Tela com mensagens, eventos e usuarios
+  - podem ser implementadas com o recurso de mensagens
+  - dados podem ser armazenados em arrays ou nos proprios componentes da tela
+
+
+DUVIDAS
+-------
+
+* Learner profiles usa contextos (UOP) para implementar persistent data (contact, preferences e interests) ?
+* Learning objects serao armazenados nos grupos do UOP ?
+* LOCAL eh contexto, UOP eh grupo... LOCAL eh profile, UOP eh contexto... qual o correto ???
+* Se a mobilidade eh do aplicativo, os elementos (ou os aplicativos) estao nos grupos ??? Acho q confundi, sao os elementos sim, de qq forma...
+* acho que vou precisar de elementos concorrentes para implementar tutor... teria como evitar isso ? talvez ate tem como, mas talvez complicaria (e muito) o codigo... ver com o barbosa se o codigo vai ser tao "importante" para o SBIE...
+* as notificacoes serao enviadas ou o usuario (aplicativo) verifica no grupo se tem algo q lhe interessa ???
+* As notificacoes enviadas sao as msgs enviadas para grupos. Onde elas seriam armazenadas ? nos grupos (acho)...
+* Grupo do UOP seria communication system ??? Se bem q eu tenho suporte a msgs tb... na teoria eu poderia implementar esse communication system com msgs ou com os grupos, mas acho q com msgs fica mais facil...
+* "pode ser controlado automaticamente ou atraves de interface administrativa..." o que eh isso ???
+
+
+
+TELA UNICA
+----------
+
++--------------------------------------------------------------------------------+
+|                                Meu Perfil                                      |
+| Nome:                                                                          |
+| E-mail:                                  Mídia preferencial: audio/video/texto |
+| Interesse geral:                                                               |
+| Interesse específico:                    Ensinar?  Aprender?                   |
+| Localização:                             Status:                               |
+| <Publicar dados>                                                               |
++---------+--------+-----------------+----------------------+---------+----------+
+| Usuario | Status | Interesse geral | Interesse específico | Ensinar | Aprender |
++---------+--------+-----------------+----------------------+---------+----------+
+| xxx     | xxx    | xxx             | xxx                  | xxx     | xxx      |
+| xxx     | xxx    | xxx             | xxx                  | xxx     | xxx      |
++---------+--------+-----------------+----------------------+---------+----------+
+
+
+
+* Para cada usuário abre um tela similar ao jabber (algo bem simples)

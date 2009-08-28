@@ -1,0 +1,112 @@
+VERSAO 2
+
+entity start
+	def start()
+		def personal_assitant pa = personal_assistant.new()
+		if (pa.login())
+			pa.run()
+		end
+	end
+end
+
+entity personal_assistant
+	def login()
+		def string username
+		readln("Username: ", username)
+		if (username=="")
+			return false
+		else
+			return true, username
+		end
+	end
+	def run()
+		def ls = location_system.parallel()
+		def tutor = tutor.parallel()
+		def cs = communication_system.parallel()
+		def es = event_system.parallel()
+		main_ui()
+	end
+	def main_ui
+		menu com opcoes registrar_evento, trocar localizacao, completar perfil usuario, trocar status usuario, ...
+		qt.xxx()
+		qt.yyy()
+		qt.qtnmain()
+	end
+	def change_location()
+		def string loc
+		readln("Location: ", loc) // usuário escolhe o local (xxx, yyy, zzz)
+		if (loc <> "")
+			location.symbolic = loc
+		end
+	end
+	def register_event()
+		// browser mostra todas. Dai da para incluir, excluir e alterar
+		def string keywords, start_date, location, duration_time, description
+		readln("Keywords: ", keywords)
+		readln("Data de inicio: ", start_date)
+		readln("Localizacao: ", location)
+		readln("Tempo de duraca: ", duration_time)
+		readln("Descricao: ", description)
+		// TODO: registra onde ???
+	end
+	def user_profile
+		writeln("Dados de Contato")
+		readln("Nome: ", name)
+		readln("Endereco: ", address)
+		readln("E-mail: ", email)
+		readln("Telefone: ", phone)
+		writeln("Preferencias")
+		readln("Tipo de midia: ", prefered_media)
+		writeln("Interesses") // Podem ter varios...
+		readln("Conhecimento geral: ", general_knowledge)
+		readln("Conhecimento especifico", specific_interest_area)
+		readln("Aprendiz ou professor ?", learn_or_teach)
+		// TODO: registra onde ???
+	end
+	def change_user_status()
+		def string status
+		readln("Novo status: ", status)
+		// TODO: seta no contexto o status...
+	end
+	def my_learning_objects
+		tela.showmodal()
+		browser mostra todos os meus objetos
+		for_each(xxx in ["grupo"].data)
+			if xxx.user == username
+				browser.add(xxx.name, xxx.description, ...)
+			end
+		end
+		...
+	end
+end
+
+//entity location_system
+//	def location_system()
+//		def string loc
+//		while(true)
+//			write("Location: ")
+//			readln(loc)
+//			if (loc <> "")
+//				location.symbolic = loc
+//			end
+//		end
+//	end
+//end
+
+entity event_system
+	def event_system()
+		while(true)
+			// TODO: talvez cada evento gera um id sequencial para facilitar a busca e saber se ja foi lido o evento...
+			if (tem_evento() && compativel_perfil_usuario())
+				// TODO: de onde obtem estes dados ???
+				def string keywords, start_date, location, duration_time, description
+				writeln("Keywords: ", keywords)
+				writeln("Data de inicio: ", start_date)
+				writeln("Localizacao: ", location)
+				writeln("Tempo de duraca: ", duration_time)
+				writeln("Descricao: ", description)
+			end
+			time.sleep(60)
+		end	
+	end
+end

@@ -1,0 +1,228 @@
+========
+VERSAO 2
+========
+
+===============================
+CENÁRIO DO ARTIGO SOBRE O LOCAL
+===============================
+
+
+
+Learner profiles
+----------------
+
+* informacoes relacionadas ao processo de aprendizado
+* Persistent data: contact, preferences e interests
+  - contact (name, address, e-mail, phone number)
+  - preferences (prefered media - audio, video e/ou texto)
+    - Sistema prove o mesmo conteudo em diferentes formatos. Transcricao para videos (cegos).
+  - interests
+    - general knowledge (math, por exemplo)
+    - specific interest area (group theory, por exemplo), classificadas em "to learn" ou "to teach"
+* Contextual data: relations, performance e security
+  - Relations: relacoes entre usuarios de um mesmo contexto: student, teacher, researcher.
+  - Performance: metas propostas e avaliações conduzidas em um contexto
+  - Security: armazena credenciais (nome e password) para acesso
+
+
+
+Learning objects
+----------------
+
+* sao disponibilizados aos aprendizes qdo interagem com os contextos (grupos do UOP)
+* Learning objects repository: armazena e indexa conteúdo relacionado ao processo de ensino
+  - creation date, expiration date, category, keywords
+
+
+
+Personal assistant (entidade)
+-----------------------------
+
+* faz autenticacao (VERSAO 2)
+* recebe e armazena notificacoes de eventos do communication system
+
+
+
+Location System (entidade)
+--------------------------
+
+* determina posicao fisica
+* varios metodos para determinar a localizacao fisica do usuario. Converte localizacao fisica para nomes simbolicos (contextos)
+* o usuario pode desabilitar esta feature
+* talvez, na versao 1, o usuario vai indicar onde esta :-/
+* se o usuario autoriza eh possivel fazer tracking dos seus movimentos
+* location system atualiza no tutor o contexto (posicao) do aprendiz
+  - isso faz sentido no UOP ???
+
+
+
+Tutor (entidade)
+----------------
+
+* faz inferencias utilizando profiles e location system
+  - profiles e location system sao os contextos do UOP
+* usa profile e dados localizacao para encontrar oportunidades de aprendizado
+* age de 2 formas:
+  - enviando learning objects
+  - estimulando interacao entre aprendizes
+* 2 formas de interacao
+  - interesses similares: tutor encontra aprendizes com interesses similares no mesmo contexto e estimula interacao
+    - pode ser utilizado para formacao de grupos de trabalho na sala de aula
+  - interesses complementares: aprendiz gostaria de aprender x é "pareado" com usuario que gostaria de ensinar ou sabe mais sobre x
+* tutor usa localizacao e profile para selecionar objetos que reunem as metas do aprendiz. Esses objetos sao enviados para o aprendiz.
+  - esta adaptacao ocorre (1) quando o aprendiz entre em um contexto e (2) durante a insercao de novo material no objeto repository
+
+
+
+Communications system (entidade)
+--------------------------------
+
+* estabelece comunicacao entre componentes do LOCAL, e entre o sistema e os usuarios
+* Estabelece contato entre aprendizes, informando eles sobre novas oportunidades pedagogicas
+* usuarios sao contactados por notificacoes textuais
+* envia msgs para usuario, para todos usuarios de um contexto, para usuario (se estiver em determinado contexto) ou para todos os usuarios
+* mensagens tem data de expiracao
+
+
+
+Event system (entidade)
+-----------------------
+
+* agenda tarefas
+  - data, hora, localizacao, tempo, duracao, mensagem, titulo
+* agenda eventos
+  - keywords
+  - data de inicio
+  - localizacao
+  - pode ser definido para data futura
+  - tempo de duracao
+  - tem mensagem associada (opcional)
+* as notificacoes sao enviadas de acordo com os profiles (contextos do UOP), objetos, localizacao e dados do evento
+
+
+
+========================================
+
+Recursos do prototipo
+---------------------
+
+* participantes recebem sugestao para participar em 1 de 2 eventos (baseado no seu profile)
+* usuario escolhe evento
+* usuarios sao instruidos para irem ao evento
+* usuarios sao notificados quando um professor que eles querem interagir por chat esta disponivel
+* prototipo busca por matches entre profile dos participantes, sugerindo recursos de aprendizado relacionado aos seus interesses
+* poderia sugerir interacao entre usuarios ???
+  - para formacao de grupos
+  - poderia mostrar interesses de varios usuarios para auxiliar na formacao de grupos de trabalho "misto"
+
+B: Creio que podes seguir apenas o cenário de colocar os alunos em contato por similiaridade e complementariedade. Somente aquele parte que está mais relacionado com grupos.
+
+
+Telas
+-----
+
+* login (OK)
+  - nome do usuario
+* cadastro com profile do usuario (OK)
+  - contact (name, address, e-mail, phone number)
+  - preferences (prefered media - audio, video e/ou texto)
+  - interests
+    - general knowledge (math, por exemplo)
+    - specific interest area, classificada em "to learn" ou "to teach"
+* cadastro eventos (OK)
+  - keywords
+  - data de inicio
+  - quando enviar notificacao
+  - localizacao
+  - tempo de duracao
+  - mensagem associada
+* sugestao de eventos (OK)
+  - keywords
+  - data de inicio
+  - localizacao
+  - tempo de duracao
+  - mensagem associada
+* alteracao status do usuario (OK)
+  - novo status do usuario
+* cadastro de objetos de aprendizados
+  - general knowledge
+  - area de interesse especifico
+  - descricao
+  - arquivo ???
+* notificacao recebida / enviar notificacao
+  - mensagem
+* usuario disponivel
+  - gera notificacao
+* usuarios com interesses similares
+  - usuario
+  - localizacao
+  - general knowledge
+  - area de interesse especifico
+* usuarios com interesses complementares
+  - usuario
+  - localizacao
+  - general knowledge
+  - area de interesse especifico
+* objetos de aprendizados disponiveis
+  - descricao
+  - objeto (arquivo ???)
+
+
+
+RECURSOS DO UOP NECESSARIOS
+---------------------------
+
+* Grupos com dados e elementos
+* Binding bibliotecas
+  - ncurses ? QT ?
+  - location system ? mas acho que o usuario poderia indicar nesta primeira versao
+  - tb poderia implementar read, write e writeln, e esquecer os bindings por enquanto...
+* Mobilidade ? Nao... 
+* Eventos ? acho que facilitaria
+* Comunicacao em grupo (da para simular com os dados disponibilizados nos grupos, mas nao fica "a mesma coisa"...)
+
+* Tela com mensagens, eventos e usuarios
+  - podem ser implementadas com o recurso de mensagens
+  - dados podem ser armazenados em arrays ou nos proprios componentes da tela
+* Tela com objetos de aprendizagem
+  - Utiliza grupo do UOP para procurar, armazenar e compartilhar os objetos
+
+
+DUVIDAS
+-------
+
+* Learner profiles usa contextos (UOP) para implementar persistent data (contact, preferences e interests) ?
+* Learning objects serao armazenados nos grupos do UOP ?
+* LOCAL eh contexto, UOP eh grupo... LOCAL eh profile, UOP eh contexto... qual o correto ???
+* Se a mobilidade eh do aplicativo, os elementos (ou os aplicativos) estao nos grupos ??? Acho q confundi, sao os elementos sim, de qq forma...
+* acho que vou precisar de elementos concorrentes para implementar tutor... teria como evitar isso ? talvez ate tem como, mas talvez complicaria (e muito) o codigo... ver com o barbosa se o codigo vai ser tao "importante" para o SBIE...
+* as notificacoes serao enviadas ou o usuario (aplicativo) verifica no grupo se tem algo q lhe interessa ???
+* É facil portar a VM para rodar nos IPAQ's ???
+* As notificacoes enviadas sao as msgs enviadas para grupos. Onde elas seriam armazenadas ? nos grupos (acho)...
+* Grupo do UOP seria communication system ??? Se bem q eu tenho suporte a msgs tb... na teoria eu poderia implementar esse communication system com msgs ou com os grupos, mas acho q com msgs fica mais facil...
+* "pode ser controlado automaticamente ou atraves de interface administrativa..." o que eh isso ???
+
+
+TODO
+----
+
+* Criar subsecao em cada secao com "ideias sobre como implementar"
+
+
+
+TELA UNICA
+----------
+
++-----------------------------------------------------------------------------------------+
+|                                 M E N U                                                 |
+|  Meu Perfil  |  Meus Eventos  |  Meus Objetos Aprendizagem   |  Enviar mensagens        |
++-----------------------------------------------------------------------------------------+
+| Mensagens recebidas                | Eventos                                            |
+| User::Msg xxx <LER> <APAGAR>       | User::Evento xxx  (Participar/Nao tenho interesse) |
+| User::Msg yyy <LER> <APAGAR>       | User::Evento yyy  (Sair)                           |
+| User::Msg zzz <LER> <APAGAR>       | User::Evento zzz  (Participar/Nao tenho interesse) |
++------------------------------------+----------------------------------------------------+
+| Usuarios                           | Objetos de aprendizagem                            |
+| xxx (status) <Nao tenho interesse> | User::Objeto xxx <Ver/Nao tenho interesse>         |
+| yyy (status)                       | User::Objeto yyy <Ver/Nao tenho interesse>         |
++------------------------------------+----------------------------------------------------+

@@ -312,7 +312,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    group_invocation
 ///----------
-   : '[' expr ']' '.' IDENTIFIER '(' ')'
+   : '[' expr ']' '.' IDENTIFIER '(' argument ')'
       {
          if (GETTEXT($IDENTIFIER) == "bind") {
             methodDef->addInstruction(BINDG_OPCODE);

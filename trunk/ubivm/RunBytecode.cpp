@@ -160,6 +160,9 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[JMP_OPCODE        ] = &CRunBytecode::jmpOpcode;
    _opcodePointer[LDSELF_OPCODE     ] = &CRunBytecode::ldselfOpcode;
    _opcodePointer[NEWELEM_OPCODE    ] = &CRunBytecode::newelemOpcode;
+   _opcodePointer[BINDG_OPCODE      ] = &CRunBytecode::bindgOpcode;
+   _opcodePointer[DATAAF_OPCODE     ] = &CRunBytecode::dataafOpcode;
+   _opcodePointer[DATADQU_OPCODE    ] = &CRunBytecode::datadquOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
@@ -920,6 +923,69 @@ void CRunBytecode::newelemOpcode()
 	CElement* element = new CElement(_asmDef.getEntity(entity));
 
 	_dataStack.push(CLiteral(element));
+}
+
+
+void CRunBytecode::bindgOpcode()
+{
+	trace("bindg opcode");
+
+	std::string object    = _dataStack.pop().getString();
+	std::string groupName = _dataStack.pop().getString();
+	CGroup* group;
+
+	std::map<std::string, CGroup*>::iterator groupit = _groupList.find(groupName);
+	if (groupit == _groupList.end()) {
+		group = new CGroup(groupName);
+		_groupList[groupName] = group;
+	} else {
+		group = (*groupit).second;
+	}
+
+	group->addObject(object);
+}
+
+
+void CRunBytecode::dataafOpcode()
+{
+	trace("dataaf opcode");
+
+	uint tupleValues = _dataStack.pop().getInteger();
+	uint tupleKeys   = _dataStack.pop().getInteger();
+	CTuple* tuple = new CTuple();
+
+	// TODO: eu estou forcando que key e values sejam string... mas eu posso deixar como CLiteral, a principio, e converter para texto para poder montar as chaves... so nao sei como ficaria o o resultado qdo eu rodo o getComposedValues da tupla...
+
+	// Read tuple values
+	for(uint value=0; value<tupleValues;value++) {
+		tuple->addValueAtEnd(_dataStack.pop().getString());
+	}
+
+	// Read tuple keys
+	for(uint key=0; key<tupleKeys;key++) {
+		tuple->addKeyAtEnd(_dataStack.pop().getString());
+	}
+
+	std::string groupName = _dataStack.pop().getString();
+	_groupList[groupName]->addTuple(tuple);
+}
+
+
+void CRunBytecode::datadquOpcode()
+{
+	trace("datadqu opcode");
+
+	uint tupleKeys = _dataStack.pop().getInteger();
+	CTuple tuple;
+
+	// Read tuple keys
+	for(uint key=0; key<tupleKeys;key++) {
+		tuple.addKeyAtEnd(_dataStack.pop().getString());
+	}
+
+	std::string groupName = _dataStack.pop().getString();
+	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
+	_dataStack.push(_groupList[groupName]->getTuple(&tuple)->getComposedValues());
 }
 
 

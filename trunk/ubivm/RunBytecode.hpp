@@ -17,6 +17,7 @@
 #include "AssemblyDefinition.hpp"
 #include "MethodDefinition.hpp"
 #include "ActivationRecord.hpp"
+#include "Group.hpp"
 
 
 class CRunBytecode;
@@ -75,6 +76,9 @@ private:
    void jmpOpcode();
    void newelemOpcode();
    void ldselfOpcode();
+	void bindgOpcode();
+	void dataafOpcode();
+	void datadquOpcode();
    /*
    void nopOpcode();
    void pcallOpcode();
@@ -227,6 +231,7 @@ private:
 	CAssemblyDefinition _asmDef;
 	CInstructionDefinition* _currentInstruction;
 	std::stack<CActivationRecord*> _controlStack;
+	std::map<std::string, CGroup*> _groupList;
 };
 
 #endif

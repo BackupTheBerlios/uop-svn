@@ -1,0 +1,91 @@
+// VERSAO 1
+
+import ncurses
+
+entity start
+	def start()
+		def element pa = personal_assistant.new()
+		if (pa.login())
+			pa.main_ui()
+		end
+	end
+end
+
+entity personal_assistant
+	def userdata perfil_win
+	def userdata users_win
+	def constructor()
+		ncurses.initscr()
+	end
+	def destructor()
+//		ncurses.destroy_win(perfil_win)
+//		ncurses.destroy_win(users_win)
+		ncurses.endwin()
+	end
+	def login() [bool]
+		ncurses.mvprintw(2, 5, "Usuário: ")
+		ncurses.getstr(identity.username)
+		ncurses.refresh()
+		return identity.username<>""
+	end
+	def main_ui()
+		perfil_win = ncurses.newwin(17, 80, 0, 0)
+		ncurses.box(perfil_win, 0, 0)
+		ncurses.mvwprintw(perfil_win, 2, 5, "Nome: ")
+		ncurses.wgetstr(perfil_win, identity.name)
+		ncurses.mvwprintw(perfil_win, 3, 5, "E-mail: ")
+		ncurses.wgetstr(perfil_win, identity.email)
+		ncurses.mvwprintw(perfil_win, 4, 5, "Mídia preferencial: ")
+		ncurses.wgetstr(perfil_win, identity.prefered_media)
+		ncurses.mvwprintw(perfil_win, 5, 5, "Interesse geral: ")
+		ncurses.wgetstr(perfil_win, identity.general_interest)
+		ncurses.mvwprintw(perfil_win, 6, 5, "Interesse especifico")
+		ncurses.wgetstr(perfil_win, identity.specific_interest)
+		ncurses.mvwprintw(perfil_win, 7, 5, "Ensinar ?")
+		ncurses.wgetstr(perfil_win, identity.to_teach)
+		ncurses.mvwprintw(perfil_win, 8, 5, "Aprender ?")
+		ncurses.wgetstr(perfil_win, identity.to_learn)
+		ncurses.mvwprintw(perfil_win, 9, 5, "Localização: ")
+		ncurses.wgetstr(perfil_win, location.symbolic) // usuário escolhe o local (xxx, yyy, zzz)
+		ncurses.mvwprintw(perfil_win, 10, 5, "Status: ")
+		ncurses.wgetstr(perfil_win, activity.status)
+		ncurses.wrefresh(perfil_win)
+		["users"].data.af(identity.username => identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status)
+		// TODO: outras propostas de sintaxe para grupos
+//		["users"].data.af(identity.username => {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status})
+//		["users"].data.af(identity.username, {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status})
+//		["users"].data[identity.username] = {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status}
+
+		users_win = ncurses.newwin(7, 80, 18, 0)
+		ncurses.box(users_win, 0, 0)
+		ncurses.mvwprintw(users_win, 1,  1, "Usuário")
+		ncurses.mvwprintw(users_win, 1, 10, "Status")
+		ncurses.mvwprintw(users_win, 1, 20, "Interesse geral")
+		ncurses.mvwprintw(users_win, 1, 40, "Interesse específico")
+		ncurses.mvwprintw(users_win, 1, 60, "Ensinar ?")
+		ncurses.mvwprintw(users_win, 1, 70, "Aprender ?")
+		ncurses.wrwefresh(users_win)
+
+		refresh_users_info.parallel()
+	end
+	def refresh_users_info()
+		def int line
+		while (true)
+			line = 1
+			ncurses.clear()
+			foreach(info in ["users"].datalist)
+				if (info.status == "disponível" and info.general_insterest == identity.general_interest and info.specific_interest == identity.specific_interest)
+					ncurses.mvprintw(line,  1, info.username)
+					ncurses.mvprintw(line, 10, info.status)
+					ncurses.mvprintw(line, 20, info.general_interest)
+					ncurses.mvprintw(line, 40, info.specific_interest)
+					ncurses.mvprintw(line, 60, info.to_teach)
+					ncurses.mvprintw(line, 70, info.to_learn)
+					line=line+1
+				end
+			end
+			ncurses.refresh()
+		end
+		sleep(60)
+	end
+end
