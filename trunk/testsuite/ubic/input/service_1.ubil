@@ -3,12 +3,15 @@ entity servico
 		return x+y
 	end
 	def servico()
+		["group"].bind("Alex")
 		["group"].service += soma(int,int)
 	end
 end
 
 entity start
 	def start()
+		def element s = servico.new()
+		s.servico()
 		writeln("Soma: ", ["group"].soma(10,20))
 	end
 end

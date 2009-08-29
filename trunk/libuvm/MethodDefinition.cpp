@@ -79,25 +79,31 @@ CInstructionDefinition * CMethodDefinition::addInstruction(OpcodeType opcode)
 
 CInstructionDefinition * CMethodDefinition::addInstruction(OpcodeType opcode, ArgType arg1)
 {
-	if (_nextInstructionLabelList.size() > 0) {
-		// TODO: eu devo guardar o numero da instrucao ou a posicao no bytecode gerado ???
-		for(std::vector<int>::iterator label = _nextInstructionLabelList.begin();
-			label != _nextInstructionLabelList.end();
-			label++) {
-			_labelAddress[*label] = _instructionList.size();
-		}
-// 		std::cout << "Label " << _nextInstructionLabel << " endereco " << _instructionList.size() << std::endl;
-	}
-
-	// TODO: E nesse caso, como eu coloco varios labels em uma intrucao ??? E precisa ???
+	CInstructionDefinition* instruction;
 	int label = -1;
-	if (_nextInstructionLabelList.size() > 0) {
-		label = _nextInstructionLabelList[0];
-	}
-	CInstructionDefinition* instruction = new CInstructionDefinition(_symbolTable, label, opcode, arg1);
-	_instructionList.push_back(instruction);
 
-	_nextInstructionLabelList.clear();
+	if (_pushInstructions == false) {
+		if (_nextInstructionLabelList.size() > 0) {
+			// TODO: eu devo guardar o numero da instrucao ou a posicao no bytecode gerado ???
+			for(std::vector<int>::iterator label = _nextInstructionLabelList.begin();
+				label != _nextInstructionLabelList.end();
+				label++) {
+				_labelAddress[*label] = _instructionList.size();
+			}
+		}
+
+		// TODO: E nesse caso, como eu coloco varios labels em uma intrucao ??? E precisa ???
+		if (_nextInstructionLabelList.size() > 0) {
+			label = _nextInstructionLabelList[0];
+		}
+		instruction = new CInstructionDefinition(_symbolTable, label, opcode, arg1);
+		_instructionList.push_back(instruction);
+	
+		_nextInstructionLabelList.clear();
+	} else {
+		instruction = new CInstructionDefinition(_symbolTable, label, opcode, arg1);
+		_pushedInstructions.push_back(instruction);
+	}
 
 	return instruction;
 }
@@ -238,12 +244,12 @@ bool CMethodDefinition::loadBytecode(CBinString& bytecode)
 }
 
 CMethodDefinition::CMethodDefinition(CSymbolTable* symbolTable)
-	: _symbolTable(symbolTable), _nextLabel(0)//, _nextInstructionLabel(-1)
+	: _symbolTable(symbolTable), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
 {
 }
 
 CMethodDefinition::CMethodDefinition(CSymbolTable *symbolTable, VisibilityType visibility, std::string name)
-	: _symbolTable(symbolTable), _visibility(visibility), _name(name), _nextLabel(0)//, _nextInstructionLabel(-1)
+	: _symbolTable(symbolTable), _visibility(visibility), _name(name), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
 {
 	// Forca que o simbolo seja criado na tabela de simbolos... 
 	// TODO: ta meio estranho o codigo, melhorar...
@@ -361,4 +367,21 @@ void CMethodDefinition::addLoadInstruction(std::string identifier)
 	} else {
 		addInstruction(LDVAR_OPCODE, getVarIndex(identifier));
 	}
+}
+
+void CMethodDefinition::pushInstructions()
+{
+	_pushInstructions = true;
+}
+
+void CMethodDefinition::addInstructions()
+{
+	_pushInstructions = false;
+}
+
+void CMethodDefinition::addPushedInstructions()
+{
+	// TODO: e se houver labels para serem gerados ??? talvez o ideal seria salvar o opcode e arg mesmo em _pushedInstructions, e essa rotina invocaria a rotina normal para gerar opcodes...
+	_instructionList.insert(_instructionList.end(), _pushedInstructions.begin(), _pushedInstructions.end());
+	_pushedInstructions.clear();
 }

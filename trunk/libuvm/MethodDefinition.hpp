@@ -45,6 +45,9 @@ public:
 	int setNextInstructionLabel(int label);
 	void resolveLabels();
 	void addLoadInstruction(std::string identifier);
+	void pushInstructions();
+	void addInstructions();
+	void addPushedInstructions();
 
 	std::vector<CLocalVarDefinition*>            _localVarList;
 	std::vector<CParameterDefinition*>           _parameterList;
@@ -58,6 +61,7 @@ private:
 //	std::map<std::string, CParameterDefinition*> _parameterMap;
 //	std::map<std::string, CLocalVarDefinition*>  _localVarList;
 	std::vector<CInstructionDefinition*>         _instructionList;
+	std::vector<CInstructionDefinition*>         _pushedInstructions;
 	CSymbolTable *_symbolTable;
 	VisibilityType _visibility;
 	std::string    _name;
@@ -66,6 +70,7 @@ private:
 	int _nextLabel;
 	std::vector<int> _nextInstructionLabelList;
 	std::map<int,int> _labelAddress;
+	bool _pushInstructions;
 };
 
 //}

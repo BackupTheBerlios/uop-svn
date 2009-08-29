@@ -360,11 +360,11 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 }
    : '[' expr ']' '.' 'service' '+=' IDENTIFIER { serviceName = GETTEXT($IDENTIFIER); }
       '('
-         ( type1=type { /*serviceName += ":" + $type1.sret;*/ } ( ',' type2=type { /*serviceName += ":" + $type2.sret;*/ } )* )?
+         ( type1=type ( ',' type2=type )* )?
+//         ( type1=type { /*serviceName += ":" + $type1.sret;*/ } ( ',' type2=type { /*serviceName += ":" + $type2.sret;*/ } )* )?
       ')'
       {
-         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
-         methodDef->addInstruction(PUBLISHS_OPCODE);
+         methodDef->addInstruction(PUBLISHS_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
       }
    ;
 
@@ -383,12 +383,15 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          }
       }
    | '[' expr ']' '.' 'datalist'
-   | '[' expr ']' '.' IDENTIFIER
-      { serviceName = GETTEXT($IDENTIFIER); methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType)); }
-      { methodDef->addInstruction(FINDS_OPCODE); methodDef->addInstruction(BINDS_OPCODE); }
+   | { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
       ( '(' argument_list ')' )?
+//      { methodDef->addInstruction(FINDS_OPCODE); methodDef->addInstruction(BINDS_OPCODE); }
       {
-         methodDef->addInstruction(SCALL_OPCODE);
+//         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+         serviceName = GETTEXT($IDENTIFIER);
+         methodDef->addPushedInstructions();
+         //methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
+         methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
       }
    ;
 

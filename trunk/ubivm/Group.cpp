@@ -32,3 +32,18 @@ CTuple* CGroup::getTuple(CTuple* tuple)
 {
 	return _dataList[tuple->getComposedKey()];
 }
+
+
+void CGroup::addService(std::string serviceName, std::string element)
+{
+	_serviceList[serviceName] = element;
+}
+
+std::string CGroup::findService(std::string serviceName)
+{
+	std::map<std::string, std::string>::iterator service = _serviceList.find(serviceName);
+	if (service == _serviceList.end())
+		return "";
+	else
+		return (*service).second;
+}

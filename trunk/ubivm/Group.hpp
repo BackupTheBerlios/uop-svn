@@ -39,9 +39,13 @@ public:
 	void addTuple(CTuple* tuple);
 	void remTuple(CTuple* tuple);
 	CTuple* getTuple(CTuple* tuple);
+	void addService(std::string serviceName, std::string element);
+	std::string findService(std::string serviceName);
+
 	std::string _name;
 	std::set<std::string> _objectList;
 	std::map<std::string, CTuple*> _dataList;
+	std::map<std::string, std::string> _serviceList;
 };
 
 #endif

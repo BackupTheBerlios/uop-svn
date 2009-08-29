@@ -84,6 +84,8 @@ private:
 	void datadquOpcode();
 	void stcontextOpcode();
 	void ldcontextOpcode();
+	void publishsOpcode();
+	void scallOpcode();
 
 //   CHeader         _header;
    CSymbolTable    _symbolTable;
@@ -101,6 +103,7 @@ private:
 	std::stack<CActivationRecord*> _controlStack;
 	std::map<std::string, CGroup*> _groupList;
 	std::map<std::string, CLiteral> _contextsInfo;
+	std::vector<CElement*> _elementList;
 };
 
 #endif

@@ -165,6 +165,8 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[DATADQU_OPCODE    ] = &CRunBytecode::datadquOpcode;
    _opcodePointer[STCONTEXT_OPCODE  ] = &CRunBytecode::stcontextOpcode;
    _opcodePointer[LDCONTEXT_OPCODE  ] = &CRunBytecode::ldcontextOpcode;
+   _opcodePointer[PUBLISHS_OPCODE   ] = &CRunBytecode::publishsOpcode;
+   _opcodePointer[SCALL_OPCODE      ] = &CRunBytecode::scallOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
@@ -918,6 +920,7 @@ void CRunBytecode::newelemOpcode()
 	std::string entity = getSymbolName(_currentInstruction->getArg1());
 
 	CElement* element = new CElement(_asmDef.getEntity(entity));
+	_elementList.push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
 
 	_dataStack.push(CLiteral(element));
 }
@@ -1003,6 +1006,76 @@ void CRunBytecode::ldcontextOpcode()
 	std::string context = getSymbolName(_currentInstruction->getArg1());
 
 	_dataStack.push(_contextsInfo[context]);
+}
+
+
+void CRunBytecode::publishsOpcode()
+{
+	trace("publishs opcode");
+
+	std::string groupName   = _dataStack.pop().getString();
+	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+
+	_groupList[groupName]->addService(serviceName, _ip.element->getName());
+}
+
+
+void CRunBytecode::scallOpcode()
+{
+	trace ("scall opcode");
+
+	std::string groupName   = _dataStack.pop().getString();
+	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+	std::string elementName = _groupList[groupName]->findService(serviceName);
+
+	if (elementName == "") {
+		std::cout << "Servico " << serviceName << " no grupo " << groupName << " nao encontrado !!!" << std::endl;
+	}
+
+	CElement* element = NULL;
+
+	for(std::vector<CElement*>::iterator elementIt = _elementList.begin();
+		elementIt != _elementList.end();
+		elementIt++) {
+		if ((*elementIt)->getName() == elementName) {
+			element = (*elementIt);
+			break;
+		}
+	}
+
+	if (element == NULL) {
+		std::cout << "Elemento " << elementName << " nao encontrado em elementList !!!" << std::endl;
+	}
+
+	CActivationRecord* ar = new CActivationRecord();
+
+	ar->_ip = _ip;
+
+	_ip.element = element;
+	_ip.method = _ip.element->getMethod(serviceName);
+
+	if (_ip.method == NULL) {
+		std::cout << "Metodo " << getSymbol(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
+	}
+
+ 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
+ 		var != _ip.method->_localVarList.end(); var++) {
+ 		ar->_localVarList.push_back(CLiteral((*var)->_type));
+ 	}
+
+	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
+		par != _ip.method->_parameterList.end(); par++) {
+		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
+	}
+
+ 	for(std::vector<CResultDefinition*>::iterator ret = _ip.method->_resultList.begin();
+ 		ret != _ip.method->_resultList.end(); ret++) {
+ 		ar->_resultList.push_back(CLiteral((*ret)->_type));
+ 	}
+
+	_ip.ip = 0;
+
+	_controlStack.push(ar);
 }
 
 

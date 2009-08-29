@@ -5,6 +5,7 @@ Entity servico
 		2 S x
 		3 S y
 		4 S group
+		5 S Alex
 	End
 	Def soma
 		Parameters
@@ -26,36 +27,43 @@ Entity servico
 		No local variables
 		No results
 		ldconst 4 --> [group]
-		ldconst 1 --> [soma]
-		publishs
+		ldconst 5 --> [Alex]
+		bindg
+		ldconst 4 --> [group]
+		publishs 1 --> [soma]
 		ret
 	End
 End
 Entity start
 	Constants
 		0 S start
-		1 S Soma: 
-		2 S group
-		3 S soma
-		4 I 10
-		5 I 20
-		6 I 2
-		7 S writeln
+		1 S s
+		2 S servico
+		3 S Soma: 
+		4 S group
+		5 I 10
+		6 I 20
+		7 S soma
+		8 I 2
+		9 S writeln
 	End
 	Def start
 		No parameters
-		No local variables
+		Local variables
+			0 element s
+		End
 		No results
-		ldconst 1 --> [Soma: ]
-		ldconst 2 --> [group]
-		ldconst 3 --> [soma]
-		finds
-		binds
-		ldconst 4 --> [10]
-		ldconst 5 --> [20]
-		scall
-		ldconst 6 --> [2]
-		lcall 7 --> [writeln]
+		newelem 2 --> [servico]
+		stvar 0 --> [s]
+		ldvar 0 --> [s]
+		mcall 2 --> [servico]
+		ldconst 3 --> [Soma: ]
+		ldconst 5 --> [10]
+		ldconst 6 --> [20]
+		ldconst 4 --> [group]
+		scall 7 --> [soma]
+		ldconst 8 --> [2]
+		lcall 9 --> [writeln]
 		stop
 	End
 End
