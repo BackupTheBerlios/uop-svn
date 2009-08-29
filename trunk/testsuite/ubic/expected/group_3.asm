@@ -7,7 +7,7 @@ Entity start
 		4 I 1
 		5 S writeln
 		6 S Numero 1
-		7 S 54321
+		7 I 54321
 		8 S Informacoes inseridas: 
 		9 I 2
 	End

@@ -95,7 +95,12 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ FINDS_OPCODE, "finds", NoOpcodeArgumentType },
 	{ BINDS_OPCODE, "binds", NoOpcodeArgumentType },
 	{ LDCONTEXT_OPCODE, "ldcontext", ConstantOpcodeArgumentType },
-	{ INVALID_OPCODE, "XXX", NoOpcodeArgumentType }
+	{ STCONTEXT_OPCODE, "stcontext", ConstantOpcodeArgumentType },
+/*	{ LDIDENTITY_OPCODE, "ldidentity", ConstantOpcodeArgumentType },
+	{ LDLOCATION_OPCODE, "ldlocation", ConstantOpcodeArgumentType },
+	{ LDTIME_OPCODE, "ldtime", ConstantOpcodeArgumentType },
+	{ LDACTIVITY_OPCODE, "ldactivity", ConstantOpcodeArgumentType },*/
+	{ INVALID_OPCODE, "invalid", NoOpcodeArgumentType }
 };
 
 

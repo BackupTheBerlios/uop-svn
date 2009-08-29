@@ -30,6 +30,7 @@
 */
 class CLiteral{
 public:
+	CLiteral();
 	CLiteral(const CLiteral& literal);
 	CLiteral(LiteralType type, const void* value);
 	CLiteral(LiteralType type);

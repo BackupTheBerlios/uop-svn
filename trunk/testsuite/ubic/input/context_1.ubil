@@ -1,7 +1,11 @@
 entity start
 	def start()
+		identity.host = "Meu Host"
+		location.symbolic = "Mobilab - sala 1"
+		time.now = 101010
 		writeln("Host atual: ", identity.host)
 		writeln("Onde estou: ", location.symbolic)
+		writeln("Horario   : ", time.now)
 	end
 end
 

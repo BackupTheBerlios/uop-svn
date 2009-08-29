@@ -13,6 +13,7 @@ void showSyntax(int valor) {
     std::cout << "\t-c\tCheck test testname." << std::endl;
     std::cout << "\t-e\tDefine last output as expected result for testname." << std::endl;
     std::cout << "\t-d\tShow diff between last output and expected result for testname." << std::endl;
+    std::cout << "\t-o\tShow test output for testname." << std::endl;
     std::cout << "\t-h\tShow this help." << std::endl;
     std::cout << "\t-v\tShow version." << std::endl;
     std::cout << std::endl;

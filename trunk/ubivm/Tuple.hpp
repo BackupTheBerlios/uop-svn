@@ -24,19 +24,21 @@
 #include <string>
 #include <list>
 
+#include "Literal.hpp"
+
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
 class CTuple{
 public:
 	CTuple();
-	void addKeyAtEnd(std::string name);
-	void addValueAtEnd(std::string name);
+	void addKeyAtEnd(CLiteral name);
+	void addValueAtEnd(CLiteral name);
 	std::string getComposedKey();
 	std::string getComposedValues();
 
-	std::list<std::string> _keyList;
-	std::list<std::string> _valueList;
+	std::list<CLiteral> _keyList;
+	std::list<CLiteral> _valueList;
 };
 
 #endif

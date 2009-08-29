@@ -163,6 +163,8 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[BINDG_OPCODE      ] = &CRunBytecode::bindgOpcode;
    _opcodePointer[DATAAF_OPCODE     ] = &CRunBytecode::dataafOpcode;
    _opcodePointer[DATADQU_OPCODE    ] = &CRunBytecode::datadquOpcode;
+   _opcodePointer[STCONTEXT_OPCODE  ] = &CRunBytecode::stcontextOpcode;
+   _opcodePointer[LDCONTEXT_OPCODE  ] = &CRunBytecode::ldcontextOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
@@ -501,6 +503,19 @@ void CRunBytecode::callSyslib(const std::string &libname, const std::string &pro
 }
 */
 
+
+std::string CRunBytecode::getSymbolName(uint index)
+{
+	return _ip.element->getSymbolByIndex(index)->_name;
+}
+
+
+CSymbol* CRunBytecode::getSymbol(uint index)
+{
+	return _ip.element->getSymbolByIndex(index);
+}
+
+
 /////////////
 // opcodes //
 /////////////
@@ -527,7 +542,8 @@ void CRunBytecode::lcallOpcode()
 
 //   procAddress=sumAddress(procAddress, 1);
 
-   std::string procname = _ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name;
+   std::string procname = getSymbolName(_currentInstruction->getArg1());
+
 
 //   if (libname == "io") {
       if (procname == "writeln") {
@@ -551,7 +567,7 @@ void CRunBytecode::ldconstOpcode()
 {
    trace ("ldconst opcode");
 
-   CSymbol* symbol = _ip.element->getSymbolByIndex(_currentInstruction->getArg1());
+   CSymbol* symbol = getSymbol(_currentInstruction->getArg1());
 
    // TODO: nao ta certo !!!!
    //_dataStack.push(CLiteral(symbol->_type, &symbol->_name));
@@ -579,11 +595,6 @@ void CRunBytecode::stresultOpcode()
 {
 	trace ("stresult opcode");
 
-// 	std::cout << "controlStack.size=" << _controlStack.size() << std::endl;
-// 	std::cout << "resultList.size  =" << _controlStack.top()->_resultList.size() << std::endl;
-// 	std::cout << "dataStack.size=" << _dataStack.size() << std::endl;
-// 	std::cout << "arg1=" << _currentInstruction->getArg1() << std::endl;
-
 	_controlStack.top()->_resultList[_currentInstruction->getArg1()] = _dataStack.pop();
 }
 
@@ -598,13 +609,8 @@ void CRunBytecode::ldparamOpcode()
 
 void CRunBytecode::stopOpcode()
 {
-   trace ("stop opcode");
+	trace ("stop opcode");
 
-//   int raSize  = _code.fetchInt();
-//
-//   _dataStack.decSP(raSize);
-//
-//   popRA();
 	_stop = true;
 }
 
@@ -615,10 +621,6 @@ void CRunBytecode::retOpcode()
 	CActivationRecord* ar = _controlStack.top();
 	_controlStack.pop();
 
-// 	std::cout << "resultList.size   =" << ar->_resultList.size() << std::endl;
-// 	std::cout << "dataStack.size    =" << _dataStack.size() << std::endl;
-// 	std::cout << "controlStack.size =" << _controlStack.size() << std::endl;
-
  	for(std::vector<CLiteral>::reverse_iterator ret = ar->_resultList.rbegin();
  		ret != ar->_resultList.rend(); ret++) {
  		_dataStack.push(*ret);
@@ -627,7 +629,6 @@ void CRunBytecode::retOpcode()
 	_ip = ar->_ip;
 
 	delete ar;
-
 }
 
 void CRunBytecode::mcallOpcode()
@@ -640,13 +641,13 @@ void CRunBytecode::mcallOpcode()
 
 	ar->_ip = _ip;
 
-	std::string method = _ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name;
+	std::string method = getSymbolName(_currentInstruction->getArg1());
 
 	_ip.element = element;
 	_ip.method = _ip.element->getMethod(method);
 
 	if (_ip.method == NULL) {
-		std::cout << "Metodo " << _ip.element->getSymbolByIndex(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
+		std::cout << "Metodo " << getSymbol(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
 	}
 
  	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
@@ -673,10 +674,6 @@ void CRunBytecode::ldselfOpcode()
 {
 	trace ("ldself opcode");
 
-//	std::cout << "ldself: _dataStack.push(CLiteral(" << _controlStack.top()->_ip.element << ")" << std::endl;
-// 	std::cout << "ldself: _ip.element->getName()=" << _ip.element->getName() << std::endl;
-//	std::cout << "ldself: _dataStack.push(" << _controlStack.top()->_ip.element->getName() << ")" << std::endl;
-// 	_dataStack.push(CLiteral(_controlStack.top()->_ip.element));
 	_dataStack.push(CLiteral(_ip.element));
 }
 
@@ -918,7 +915,7 @@ void CRunBytecode::newelemOpcode()
 	trace ("new opcode");
 
 //	std::string entity = _symbolTable.getSymbolByIndex(_currentInstruction->getArg1())->_name;
-	std::string entity = _ip.element->getSymbolByIndex(_currentInstruction->getArg1())->_name;
+	std::string entity = getSymbolName(_currentInstruction->getArg1());
 
 	CElement* element = new CElement(_asmDef.getEntity(entity));
 
@@ -958,12 +955,12 @@ void CRunBytecode::dataafOpcode()
 
 	// Read tuple values
 	for(uint value=0; value<tupleValues;value++) {
-		tuple->addValueAtEnd(_dataStack.pop().getString());
+		tuple->addValueAtEnd(_dataStack.pop());
 	}
 
 	// Read tuple keys
 	for(uint key=0; key<tupleKeys;key++) {
-		tuple->addKeyAtEnd(_dataStack.pop().getString());
+		tuple->addKeyAtEnd(_dataStack.pop());
 	}
 
 	std::string groupName = _dataStack.pop().getString();
@@ -986,6 +983,26 @@ void CRunBytecode::datadquOpcode()
 	std::string groupName = _dataStack.pop().getString();
 	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
 	_dataStack.push(_groupList[groupName]->getTuple(&tuple)->getComposedValues());
+}
+
+
+void CRunBytecode::stcontextOpcode()
+{
+	trace("stcontext opcode");
+
+	std::string context = getSymbolName(_currentInstruction->getArg1());
+
+	_contextsInfo[context] = _dataStack.pop();
+}
+
+
+void CRunBytecode::ldcontextOpcode()
+{
+	trace("ldcontext opcode");
+
+	std::string context = getSymbolName(_currentInstruction->getArg1());
+
+	_dataStack.push(_contextsInfo[context]);
 }
 
 
@@ -2345,4 +2362,3 @@ void CRunBytecode::mgetSize2Opcode()
    _dataStack.setInt(resultAddress, matrix->_elements[1]);
 }
 */
-

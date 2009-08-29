@@ -29,6 +29,12 @@
 //{ 
 //};
 
+CLiteral::CLiteral()
+{
+	_type = UserdataType; // TODO: nao deveria ter um tipo especifico ???
+	memset(&_value, 0, sizeof(_value));
+}
+
 CLiteral::CLiteral(const CLiteral& literal)
 {
 	_type = literal._type;

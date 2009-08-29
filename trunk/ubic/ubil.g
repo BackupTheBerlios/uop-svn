@@ -47,7 +47,7 @@
 //            // and manipulate it with a local reference after that. Make sure you understand this if you are going to use
 //            // the .text references... which you don't have to of course. If you are using C++ and want the
 //            // standard template libraries or some other implementation , then write yourself a constructor that takes a
-//            // token/tree/whatever and constructs the string itself like input->subString does. 
+//            // token/tree/whatever and constructs the string itself like input->subString does.
 //            //
 //            c2 = $c.text;
 //            e2 = $e.text;
@@ -73,10 +73,10 @@
 
 grammar ubil;
 
-options 
+options
 {
-//    k		= 2; 
-    backtrack	= true; 
+//    k		= 2;
+    backtrack	= true;
     memoize	= true;
     language	= C;
 }
@@ -110,7 +110,7 @@ options
 //    }
 }
 
-@lexer::members 
+@lexer::members
 {
 static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 }
@@ -282,8 +282,15 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    : assignment_statement|return_statement|if_statement|iteration_statement|method_invocation|group_interation
    ;
 
+
 ///----------
    assignment_statement
+///----------
+   :  var_assignment_statement | context_assignment_statement
+   ;
+
+///----------
+   var_assignment_statement
 ///----------
 @declarations
 {
@@ -300,6 +307,14 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          }
       }
    ;
+
+///----------
+   context_assignment_statement
+///----------
+   :  context '.' IDENTIFIER '=' expr
+      { methodDef->addInstruction(STCONTEXT_OPCODE, entityDef->getSymbolIndex($context.value + "." + GETTEXT($IDENTIFIER), StringType)); }
+   ;
+
 
 ///----------
    group_interation
@@ -578,7 +593,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    ;
 
 ///----------
-   context returns [int teste, std::string value] // teste nao eh necessario... mas qdo so tem um parametro, antlr gera codigo para inicializar
+   context returns [int teste, std::string value] // teste nao eh necessario... mas qdo so tem um parametro, antlr gera codigo para inicializar value como "NULL"
 ///----------
    :  'identity' { $value = "identity"; }
    |  'location' { $value = "location"; }
@@ -597,7 +612,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //$$$$$$$$$$$$$$$$$$$$$
 
 
-// ----------------------------- Expressoes ---------------------------------- 
+// ----------------------------- Expressoes ----------------------------------
 
 ////-------------------------
 	expr
@@ -608,8 +623,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       {methodDef->addInstruction(OR_OPCODE);}
 	)*
   ;
-  
-expr_e 
+
+expr_e
   : expr_bit_ou
     (
       'and' expr_bit_ou
@@ -625,7 +640,7 @@ expr_bit_ou
   ;
 
 expr_bit_xou
-  : expr_bit_e 
+  : expr_bit_e
     (
       '~' expr_bit_e
     )*
@@ -637,9 +652,9 @@ expr_bit_e
       '&' expr_igual
     )*
   ;
-  
+
 expr_igual
-@init { OpcodeType opcode; } 
+@init { OpcodeType opcode; }
   : expr_relacional
     (
       ( '==' {opcode=EQ_OPCODE;} | '<>' {opcode=NE_OPCODE;} )
@@ -647,10 +662,10 @@ expr_igual
       {methodDef->addInstruction(opcode);}
     )*
   ;
-        
+
 expr_relacional
-@init { OpcodeType opcode; } 
-  : expr_ad 
+@init { OpcodeType opcode; }
+  : expr_ad
     (
       ( '>' {opcode=GT_OPCODE;} | '>=' {opcode=GE_OPCODE;} | '<' {opcode=LT_OPCODE;} | '<=' {opcode=LE_OPCODE;} )
       expr_ad
@@ -659,9 +674,9 @@ expr_relacional
   ;
 
 expr_ad
-@init { OpcodeType opcode; } 
-  : expr_multip 
-    ( 
+@init { OpcodeType opcode; }
+  : expr_multip
+    (
       ( '+' {opcode = ADD_OPCODE;} | '-' {opcode = SUB_OPCODE;} )
       expr_multip
       {methodDef->addInstruction(opcode);}
@@ -669,7 +684,7 @@ expr_ad
   ;
 
 expr_multip
-@init { OpcodeType opcode; } 
+@init { OpcodeType opcode; }
   : expr_unario
     (
       ( '/' {opcode=DIV_OPCODE;} | '*' {opcode=MUL_OPCODE;} | '%'{opcode=MOD_OPCODE;} )
@@ -689,7 +704,7 @@ op_unario
       | 'not' // n:T_KW_NOT
       | '!' //b:T_BIT_NOT
     )?
-  ; 
+  ;
 
 expr_elemento
   : method_invocation
@@ -699,7 +714,7 @@ expr_elemento
   | context_property
   | element_property
   | rgroup
-  | '(' expr ')' 
+  | '(' expr ')'
   ;
 
 

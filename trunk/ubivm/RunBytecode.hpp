@@ -49,6 +49,9 @@ private:
    std::string getStringData(const int &address);
    void popRA();
    void callSyslib(const std::string &libname, const std::string &procname);
+	std::string getSymbolName(uint index);
+	CSymbol* getSymbol(uint index);
+
    // opcodes
    void invalidOpcode(const std::string &opcode="");
    void lcallOpcode();
@@ -79,143 +82,8 @@ private:
 	void bindgOpcode();
 	void dataafOpcode();
 	void datadquOpcode();
-   /*
-   void nopOpcode();
-   void pcallOpcode();
-   void exitOpcode();
-   void exit_0Opcode();
-   void exit_1Opcode();
-   void hltOpcode();
-
-   void isumOpcode();
-   void ssumOpcode();
-   void rsumOpcode();
-   void isubOpcode();
-   void ssubOpcode();
-   void rsubOpcode();
-   void imulOpcode();
-   void rmulOpcode();
-   void idivOpcode();
-   void rdivOpcode();
-   void imodOpcode();
-   void igeOpcode();
-   void sgeOpcode();
-   void rgeOpcode();
-   void ileOpcode();
-   void sleOpcode();
-   void rleOpcode();
-   void ineOpcode();
-   void sneOpcode();
-   void rneOpcode();
-   void igtOpcode();
-   void sgtOpcode();
-   void rgtOpcode();
-   void iltOpcode();
-   void sltOpcode();
-   void rltOpcode();
-   void ieqOpcode();
-   void seqOpcode();
-   void reqOpcode();
-   void orOpcode();
-   void andOpcode();
-   void xorOpcode();
-   void inegOpcode();
-   void rnegOpcode();
-   void notOpcode();
-   void iincOpcode();
-   void idecOpcode();
-   void i2cOpcode();
-   void r2cOpcode();
-   void s2cOpcode();
-   void b2cOpcode();
-   void i2rOpcode();
-   void c2rOpcode();
-   void s2rOpcode();
-   void b2rOpcode();
-   void i2bOpcode();
-   void c2bOpcode();
-   void r2bOpcode();
-   void s2bOpcode();
-   void i2sOpcode();
-   void c2sOpcode();
-   void r2sOpcode();
-   void b2sOpcode();
-   void p2sOpcode();
-   void c2iOpcode();
-   void r2iOpcode();
-   void s2iOpcode();
-   void b2iOpcode();
-   void isetOpcode();
-   void ssetOpcode();
-   void rsetOpcode();
-   void getaOpcode();
-   void igetvOpcode();
-   void sgetvOpcode();
-   void rgetvOpcode();
-   void isetvOpcode();
-   void ssetvOpcode();
-   void rsetvOpcode();
-   void jmpOpcode();
-   void ifOpcode();
-   void ifnotOpcode();
-   void popsvOpcode();
-   void popivOpcode();
-   void poprvOpcode();
-   void popdvOpcode();
-   void popmvOpcode();
-   void incspOpcode();
-   void decspOpcode();
-   void push_0Opcode();
-   void push_1Opcode();
-   void push_2Opcode();
-   void push_3Opcode();
-   void push_4Opcode();
-   void push_5Opcode();
-   void pushsvOpcode();
-   void pushivOpcode();
-   void pushrvOpcode();
-   void pushdvOpcode();
-   void pushmvOpcode();
-
-//   void pushsrOpcode();
-//   void pushirOpcode();
-//   void pushrrOpcode();
-//   void pushdrOpcode();
-//   void pushmrOpcode();
-
-   void pushstOpcode();
-   void pushitOpcode();
-   void pushrtOpcode();
-   void pushctOpcode();
-   void pushbtOpcode();
-   void pushdtOpcode();
-   void pushmtOpcode();
-
-   void incsp_4Opcode();
-   void incsp_8Opcode();
-   void decsp_4Opcode();
-   void decsp_8Opcode();
-
-   void iretOpcode();
-   void rretOpcode();
-   void sretOpcode();
-   void dretOpcode();
-   void mretOpcode();
-   void sallocOpcode();
-   void sfreeOpcode();
-   void ssetcOpcode();
-   void sgetcOpcode();
-   void m1allocOpcode();
-   void m2allocOpcode();
-   void mfreeOpcode();
-   void m1setOpcode();
-   void m1getOpcode();
-   void m2setOpcode();
-   void m2getOpcode();
-   void mcopyOpcode();
-   void mgetSize1Opcode();
-   void mgetSize2Opcode();
-*/
+	void stcontextOpcode();
+	void ldcontextOpcode();
 
 //   CHeader         _header;
    CSymbolTable    _symbolTable;
@@ -232,7 +100,7 @@ private:
 	CInstructionDefinition* _currentInstruction;
 	std::stack<CActivationRecord*> _controlStack;
 	std::map<std::string, CGroup*> _groupList;
+	std::map<std::string, CLiteral> _contextsInfo;
 };
 
 #endif
-

@@ -283,8 +283,20 @@ void CTests::define()
 	test = compiler.addTest(PASS, "group_1");
 	test = vm.addTest(PASS, "group_1");
 
+	test = compiler.addTest(PASS, "group_2");
+	test = vm.addTest(PASS, "group_2");
+
+	test = compiler.addTest(PASS, "group_3");
+	test = vm.addTest(PASS, "group_3");
+
+	test = compiler.addTest(PASS, "group_4");
+	test = vm.addTest(PASS, "group_4");
+
 	test = compiler.addTest(PASS, "service_1");
 	test = vm.addTest(PASS, "service_1");
+
+	test = compiler.addTest(PASS, "context_1");
+	test = vm.addTest(PASS, "context_1");
 
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real

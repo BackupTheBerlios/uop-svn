@@ -7,9 +7,8 @@ Entity start
 		4 I 1
 		5 S writeln
 		6 S Numero 1
-		7 S 54321
+		7 I 2
 		8 S Informacoes inseridas: 
-		9 I 2
 	End
 	Def start
 		No parameters
@@ -23,16 +22,17 @@ Entity start
 		lcall 5 --> [writeln]
 		ldconst 1 --> [MeuGrupo]
 		ldconst 6 --> [Numero 1]
-		ldconst 7 --> [54321]
 		ldconst 4 --> [1]
+		ldconst 7 --> [2]
 		ldconst 4 --> [1]
+		ldconst 7 --> [2]
 		dataaf
 		ldconst 8 --> [Informacoes inseridas: ]
 		ldconst 1 --> [MeuGrupo]
 		ldconst 6 --> [Numero 1]
 		ldconst 4 --> [1]
 		datadqu
-		ldconst 9 --> [2]
+		ldconst 7 --> [2]
 		lcall 5 --> [writeln]
 		stop
 	End
