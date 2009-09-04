@@ -18,6 +18,7 @@
 #include "MethodDefinition.hpp"
 #include "ActivationRecord.hpp"
 #include "Group.hpp"
+#include "CommunicationProvider.hpp"
 
 
 class CRunBytecode;
@@ -28,7 +29,7 @@ typedef void (CRunBytecode:: *OpcodePointer) ( );
 class CRunBytecode
 {
 public:
-   CRunBytecode();
+	CRunBytecode(SOptions *options);
    ~CRunBytecode();
    bool readFromFile(std::string name);
 //   bool readFromFile(std::ifstream &in);
@@ -82,6 +83,7 @@ private:
 	void bindgOpcode();
 	void dataafOpcode();
 	void datadquOpcode();
+	void dataquOpcode();
 	void stcontextOpcode();
 	void ldcontextOpcode();
 	void publishsOpcode();
@@ -104,6 +106,8 @@ private:
 	std::map<std::string, CGroup*> _groupList;
 	std::map<std::string, CLiteral> _contextsInfo;
 	std::vector<CElement*> _elementList;
+	CCommunicationProvider* _cp;
+	SOptions* _options;
 };
 
 #endif

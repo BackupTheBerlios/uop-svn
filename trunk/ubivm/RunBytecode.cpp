@@ -74,8 +74,8 @@ struct SRealType {
 */
 
 
-CRunBytecode::CRunBytecode()
-   : _returnCode(0)
+CRunBytecode::CRunBytecode(SOptions *options)
+   : _returnCode(0), _options(options)
 {
 	memset(&_ip, 0, sizeof(_ip));
 }
@@ -163,6 +163,7 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[BINDG_OPCODE      ] = &CRunBytecode::bindgOpcode;
    _opcodePointer[DATAAF_OPCODE     ] = &CRunBytecode::dataafOpcode;
    _opcodePointer[DATADQU_OPCODE    ] = &CRunBytecode::datadquOpcode;
+   _opcodePointer[DATAQU_OPCODE    ] = &CRunBytecode::dataquOpcode;
    _opcodePointer[STCONTEXT_OPCODE  ] = &CRunBytecode::stcontextOpcode;
    _opcodePointer[LDCONTEXT_OPCODE  ] = &CRunBytecode::ldcontextOpcode;
    _opcodePointer[PUBLISHS_OPCODE   ] = &CRunBytecode::publishsOpcode;
@@ -266,6 +267,10 @@ int CRunBytecode::run()
 {
    //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
 //   std::cout << "Code size=" << _code.size() << std::endl;
+
+	_cp = new CCommunicationProvider(&_groupList, &_dataStack, _options->bindPort, _options->sendPort);
+	_cp->run();
+
 
    initOpcodePointer();
 
@@ -986,6 +991,29 @@ void CRunBytecode::datadquOpcode()
 	std::string groupName = _dataStack.pop().getString();
 	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
 	_dataStack.push(_groupList[groupName]->getTuple(&tuple)->getComposedValues());
+}
+
+
+void CRunBytecode::dataquOpcode()
+{
+	trace("dataqu opcode");
+
+	uint tupleKeys = _dataStack.pop().getInteger();
+	CTuple tuple;
+
+	// Read tuple keys
+	for(uint key=0; key<tupleKeys;key++) {
+		tuple.addKeyAtEnd(_dataStack.pop().getString());
+	}
+
+	std::string groupName = _dataStack.pop().getString();
+// 	try {
+		_cp->sendRequestDataquOpcode(groupName, tuple);
+// 	}
+// 	catch (std::exception& e)
+// 	{
+// 		std::cerr << "Exception: " << e.what() << "\n";
+// 	}
 }
 
 

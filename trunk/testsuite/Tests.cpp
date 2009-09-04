@@ -295,6 +295,9 @@ void CTests::define()
 	test = compiler.addTest(PASS, "service_1");
 	test = vm.addTest(PASS, "service_1");
 
+	test = compiler.addTest(PASS, "service_2");
+	test = vm.addTest(PASS, "service_2");
+
 	test = compiler.addTest(PASS, "context_1");
 	test = vm.addTest(PASS, "context_1");
 

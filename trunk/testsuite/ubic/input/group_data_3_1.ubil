@@ -1,0 +1,10 @@
+// Terceiro teste: Programa 1 insere num1 e mostra valor num2, Programa 2 insere num2 e mostra valor num1
+
+entity start
+	def start()
+		["MeuGrupo"].bind("prog1")
+		writeln("Programa 1 inserindo Numero 1")
+		["MeuGrupo"].data.af("Numero 1" => 100)
+		writeln("Informacoes inseridas pelo programa 2: ", ["MeuGrupo"].data.qu("Numero 2"))
+	end
+end

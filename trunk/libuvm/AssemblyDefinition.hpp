@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <list>
 
 #include "EntityDefinition.hpp"
 #include "UvmHeader.hpp"
@@ -21,9 +22,12 @@ public:
 	int saveBytecode(std::string name);
 	bool loadBytecode(std::string name);
 	CEntityDefinition* getEntity(std::string name);
+	void addImport(std::string name);
+	bool isLibrary(std::string name);
 private:
 	std::map<std::string, CEntityDefinition*> _entityList;
 	CUvmHeader* _header;
+	std::map<std::string,std::string> _importList;
 };
 
 //}

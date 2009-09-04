@@ -10,22 +10,31 @@ void showSyntax();
 
 int main(int argc, char *argv[])
 {
-   int i;
-   SOptions options;
+	int i;
+	SOptions options;
 
-   std::cout << "UbiVM - Release 0.1.0 (development release)" << std::endl;
+	std::cout << "UbiVM - Release 0.1.0 (development release)" << std::endl;
 
-   while ((i = getopt(argc, argv, "a:h")) != -1) {
-      switch (i) {
-         case 'a': // Make assembly text file
-            options.asmFilename = std::string(optarg);
-            break;
-         case 'h':
-            showSyntax();
-            return EXIT_SUCCESS;
-            break;
-         default:
-            break;
+	options.bindPort = 45555;
+	options.sendPort = 45555;
+
+	while ((i = getopt(argc, argv, "a:hb:s:")) != -1) {
+		switch (i) {
+		case 'a': // Make assembly text file
+			options.asmFilename = std::string(optarg);
+			break;
+		case 'h':
+			showSyntax();
+			return EXIT_SUCCESS;
+			break;
+		case 'b': // Port to bind
+			options.bindPort = atoi(optarg);
+			break;
+		case 's': // Port to send
+			options.sendPort = atoi(optarg);
+			break;
+		default:
+			break;
       }
    }
 

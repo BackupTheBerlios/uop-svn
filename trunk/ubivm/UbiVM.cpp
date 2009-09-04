@@ -13,7 +13,7 @@ int CUbiVM::run()
 {
 //	std::ifstream in(_options->sourcefile.c_str(), std::ios::in|std::ios::binary);
 
-   CRunBytecode bytecode;
+   CRunBytecode bytecode(_options);
 
 //   bytecode.readFromFile(in);
    bytecode.readFromFile(_options->sourcefile);

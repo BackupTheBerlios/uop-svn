@@ -47,3 +47,8 @@ std::string CGroup::findService(std::string serviceName)
 	else
 		return (*service).second;
 }
+
+
+CTuple * CGroup::findTuple(CTuple * tuple)
+{
+}

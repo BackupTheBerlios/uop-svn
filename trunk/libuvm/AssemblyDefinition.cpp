@@ -161,3 +161,13 @@ CEntityDefinition* CAssemblyDefinition::getEntity(std::string name)
 	}
 }
 
+
+void CAssemblyDefinition::addImport(std::string name)
+{
+	_importList[name] = "";
+}
+
+bool CAssemblyDefinition::isLibrary(std::string name)
+{
+	return _importList.find(name) != _importList.end();
+}

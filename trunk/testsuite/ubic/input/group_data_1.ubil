@@ -1,0 +1,15 @@
+// Primeiro teste: programa publica e ele mesmo consulta, através do broadcast
+// Segundo teste: Programa 1 insere informação que o programa 2 irá remover
+// Terceiro teste: Programa 1 insere num1 e mostra valor num2, Programa 2 insere num2 e mostra valor num1
+// Outros testes: ao inves de .qu, usar dqu e nbdqu
+
+entity start
+	def start()
+//		while(true)
+//		end
+		["MeuGrupo"].bind("prog1")
+		writeln("Inserindo informacoes")
+		["MeuGrupo"].data.af("Numero 1" => 100)
+		writeln("Informacoes inseridas: ", ["MeuGrupo"].data.qu("Numero 1"))
+	end
+end

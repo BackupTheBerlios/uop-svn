@@ -163,7 +163,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    import_declaration
 ///----------
-   :  'import' IDENTIFIER ('.' IDENTIFIER)*
+   :  'import' id1=IDENTIFIER {asmDef.addImport(GETTEXT($id1));} ('.' id2=IDENTIFIER {asmDef.addImport(GETTEXT($id2));} )*
    ;
 
 ///----------
@@ -322,18 +322,24 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    :  group_invocation
    |  data_group_interation
    |  service_group_interation
+//   |  service_invocation
    ;
 
 ///----------
    group_invocation
 ///----------
-   : '[' expr ']' '.' IDENTIFIER '(' argument ')'
+@declarations
+{
+   std::string serviceName;
+}
+   :  '[' expr ']' '.' 'bind' '(' argument ')'  { methodDef->addInstruction(BINDG_OPCODE);  }
+   |  '[' expr ']' '.' 'leave' '(' argument ')' { methodDef->addInstruction(LEAVEG_OPCODE); }
+   |  { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
+      ( '(' argument_list ')' )?
       {
-         if (GETTEXT($IDENTIFIER) == "bind") {
-            methodDef->addInstruction(BINDG_OPCODE);
-         } else if (GETTEXT($IDENTIFIER) == "leave") {
-            methodDef->addInstruction(LEAVEG_OPCODE);
-         }
+         serviceName = GETTEXT($IDENTIFIER);
+         methodDef->addPushedInstructions();
+         methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
       }
    ;
 
@@ -371,26 +377,32 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    rgroup
 ///----------
-@declarations
-{
-   std::string serviceName;
-}
    : '[' expr ']' '.' 'data' '.' IDENTIFIER ( '(' argument_list ')' )?
       {
          if (GETTEXT($IDENTIFIER) == "dqu") {
             methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
             methodDef->addInstruction(DATADQU_OPCODE);
+         } else if (GETTEXT($IDENTIFIER) == "qu") {
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            methodDef->addInstruction(DATAQU_OPCODE);
          }
       }
    | '[' expr ']' '.' 'datalist'
-   | { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
+   |  service_invocation
+   ;
+
+///----------
+   service_invocation
+///----------
+@declarations
+{
+   std::string serviceName;
+}
+   :  { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
       ( '(' argument_list ')' )?
-//      { methodDef->addInstruction(FINDS_OPCODE); methodDef->addInstruction(BINDS_OPCODE); }
       {
-//         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
          serviceName = GETTEXT($IDENTIFIER);
          methodDef->addPushedInstructions();
-         //methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
          methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
       }
    ;
@@ -554,6 +566,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       {
          if (GETTEXT($methodId) == "new") {
             methodDef->addInstruction(NEWELEM_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId), StringType));
+         } else if (asmDef.isLibrary(GETTEXT($elementId))) {
+            methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId) + "." + GETTEXT($methodId), StringType));
          } else {
             methodDef->addLoadInstruction(GETTEXT($elementId));
             methodDef->addInstruction(MCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($methodId), StringType));

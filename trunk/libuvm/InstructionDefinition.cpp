@@ -90,6 +90,7 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ LEAVEG_OPCODE, "leaveg", NoOpcodeArgumentType },
 	{ DATAAF_OPCODE, "dataaf", NoOpcodeArgumentType },
 	{ DATADQU_OPCODE, "datadqu", NoOpcodeArgumentType },
+	{ DATAQU_OPCODE, "dataqu", NoOpcodeArgumentType },
 	{ PUBLISHS_OPCODE, "publishs", ConstantOpcodeArgumentType },
 	{ SCALL_OPCODE, "scall", ConstantOpcodeArgumentType },
 	{ FINDS_OPCODE, "finds", NoOpcodeArgumentType },
