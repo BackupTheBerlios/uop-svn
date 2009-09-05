@@ -1,0 +1,9 @@
+entity start
+	def start()
+		def table tab
+		tab[1] = 100
+		tab[2] = 200
+		writeln("tab[1]=", tab[1])
+		writeln("tab[2]=", tab[2])
+	end
+end

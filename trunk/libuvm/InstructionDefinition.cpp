@@ -57,7 +57,6 @@ typedef struct Mnemonic_t {
 static Mnemonic_t opcodeListDesc [ ] = {
 //	{ "nop", NoOpcodeArgumentType },
 //	{ "hlt", NoOpcodeArgumentType },
-//	{ "goto", LabelOpcodeArgumentType },
 //	{ "ret", NoOpcodeArgumentType },
 	{ LDCONST_OPCODE, "ldconst", ConstantOpcodeArgumentType },
 	{ LCALL_OPCODE, "lcall", ConstantOpcodeArgumentType },
@@ -94,14 +93,16 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ PUBLISHS_OPCODE, "publishs", ConstantOpcodeArgumentType },
 	{ SCALL_OPCODE, "scall", ConstantOpcodeArgumentType },
 	{ FINDS_OPCODE, "finds", NoOpcodeArgumentType },
-	{ BINDS_OPCODE, "binds", NoOpcodeArgumentType },
+	{ BINDS_OPCODE,     "binds",     NoOpcodeArgumentType },
 	{ LDCONTEXT_OPCODE, "ldcontext", ConstantOpcodeArgumentType },
 	{ STCONTEXT_OPCODE, "stcontext", ConstantOpcodeArgumentType },
+	{ STTAB_OPCODE,     "sttab",     VariableOpcodeArgumentType },
+	{ LDTAB_OPCODE,     "ldtab",     VariableOpcodeArgumentType },
 /*	{ LDIDENTITY_OPCODE, "ldidentity", ConstantOpcodeArgumentType },
 	{ LDLOCATION_OPCODE, "ldlocation", ConstantOpcodeArgumentType },
 	{ LDTIME_OPCODE, "ldtime", ConstantOpcodeArgumentType },
 	{ LDACTIVITY_OPCODE, "ldactivity", ConstantOpcodeArgumentType },*/
-	{ INVALID_OPCODE, "invalid", NoOpcodeArgumentType }
+	{ INVALID_OPCODE,   "invalid",   NoOpcodeArgumentType }
 };
 
 

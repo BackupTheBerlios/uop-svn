@@ -9,10 +9,10 @@ entity servico
 		writeln("Mensagem: ", msg)
 	end
 	def servico()
-		["group"].bind("Alex")
-		["group"].service += soma(int,int)
-		["group"].service += diminui(int,int)
-		["group"].service += imprime(string)
+		{"group"}.bind("Alex")
+		{"group"}.service += soma(int,int)
+		{"group"}.service += diminui(int,int)
+		{"group"}.service += imprime(string)
 	end
 end
 
@@ -20,9 +20,9 @@ entity start
 	def start()
 		def element s = servico.new()
 		s.servico()
-		writeln("Soma  : ",  ["group"].soma(10,20))
-		writeln("Diminui: ", ["group"].diminui(10,20))
-		["group"].imprime("Ola !!!")
+		writeln("Soma  : ",  {"group"}.soma(10,20))
+		writeln("Diminui: ", {"group"}.diminui(10,20))
+		{"group"}.imprime("Ola !!!")
 	end
 end
 

@@ -22,6 +22,9 @@
 #include <iostream>
 
 #include "Symbol.hpp"
+// #include "MultiIndex.hpp"
+
+// TODO: A classe CLiteral nao substitui essa classe ???
 
 CSymbol::CSymbol()
 {
@@ -106,6 +109,9 @@ void CSymbol::setValue(LiteralType type, const void* value)
 		_value.stringValue = new std::string();
 		*_value.stringValue = *((std::string*) value);
 //		std::cout << "Simbolo string contendo " << *_value.stringValue << std::endl;
+// 	} else if (_type == TableType) {
+// 		_value.tableValue = new CMultiIndex<CLiteral>();
+// 		*_value.tableValue = *((CMultiIndex<CLiteral>*) value);
 	} else {
 		std::map<LiteralType, size_t> typeSizeMap;
 
@@ -132,6 +138,9 @@ void CSymbol::setValue(LiteralType type, std::string value)
 	} else if (_type == BooleanType) {
 		// TODO: fazer conversao descentemente...
 		_value.booleanValue = (value == "true");
+// 	} else if (_type == TableType) {
+// 		_value.tableValue = new CMultiIndex<CLiteral>();
+//		*_value.tableValue = value; // TODO ???
 	}
 }
 
@@ -139,6 +148,8 @@ const void* CSymbol::getValue()
 {
 	if (_type == StringType) {
 		return _value.stringValue;
+// 	} else if (_type == TableType) {
+// 		return _value.tableValue;
 	} else {
 		return &_value;
 	}

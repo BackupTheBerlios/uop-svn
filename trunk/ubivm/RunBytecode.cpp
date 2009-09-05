@@ -168,6 +168,8 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[LDCONTEXT_OPCODE  ] = &CRunBytecode::ldcontextOpcode;
    _opcodePointer[PUBLISHS_OPCODE   ] = &CRunBytecode::publishsOpcode;
    _opcodePointer[SCALL_OPCODE      ] = &CRunBytecode::scallOpcode;
+	_opcodePointer[STTAB_OPCODE      ] = &CRunBytecode::sttabOpcode;
+	_opcodePointer[LDTAB_OPCODE      ] = &CRunBytecode::ldtabOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
@@ -1104,6 +1106,26 @@ void CRunBytecode::scallOpcode()
 	_ip.ip = 0;
 
 	_controlStack.push(ar);
+}
+
+
+void CRunBytecode::ldtabOpcode()
+{
+	trace ("ldtab opcode");
+
+	CLiteral index = _dataStack.pop();
+	CLiteral value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getText());
+
+	_dataStack.push(value);
+}
+
+void CRunBytecode::sttabOpcode()
+{
+	trace ("sttab opcode");
+
+	CLiteral value = _dataStack.pop();
+	CLiteral index = _dataStack.pop();
+	_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getText(), value);
 }
 
 

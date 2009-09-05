@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	options.bindPort = 45555;
 	options.sendPort = 45555;
 
-	while ((i = getopt(argc, argv, "a:hb:s:")) != -1) {
+	while ((i = getopt(argc, argv, "a:hl:s:")) != -1) {
 		switch (i) {
 		case 'a': // Make assembly text file
 			options.asmFilename = std::string(optarg);
@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
 			showSyntax();
 			return EXIT_SUCCESS;
 			break;
-		case 'b': // Port to bind
+		case 'l': // Port to listen (bind)
 			options.bindPort = atoi(optarg);
 			break;
 		case 's': // Port to send
@@ -59,14 +59,15 @@ int main(int argc, char *argv[])
 
 
 void showSyntax() {
-	std::cout << std::endl 
-        << "Desenvolvido por Alex Sandro Garzao (alexgarzao@gmail.com)" << std::endl 
-        << "Junho, 2009"                                                << std::endl 
-                                                                        << std::endl 
-        << "Syntax: ubivm [options] file"                               << std::endl 
-        << "Options:"                                                   << std::endl 
-		<< "         -a asmfile"                                        << std::endl
-        << "         -h help"                                           << std::endl 
-                                                                        << std::endl;
+	std::cout << std::endl
+			<< "Desenvolvido por Alex Sandro Garzao (alexgarzao@gmail.com)" << std::endl
+			<< "Junho, 2009"                                                << std::endl
+			                                                                << std::endl
+			<< "Syntax: ubivm [options] file"                               << std::endl
+			<< "Options:"                                                   << std::endl
+			<< "         -a asmfile"                                        << std::endl
+			<< "         -h help"                                           << std::endl
+			<< "         -l port_to_listen"                                 << std::endl
+			<< "         -s port_to_send"                                   << std::endl
+			                                                                << std::endl;
 }
-

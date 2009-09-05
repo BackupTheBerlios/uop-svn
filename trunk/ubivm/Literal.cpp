@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2009 by Alex Sandro Garzão   *
- *   alexgarzao@gmail.com   *
+ *   Copyright (C) 2009 by Alex Sandro Garzão                              *
+ *   alexgarzao@gmail.com                                                  *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -42,6 +42,9 @@ CLiteral::CLiteral(const CLiteral& literal)
 	if (_type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = *literal._value.stringValue;
+	} else if (_type == TableType) {
+		_value.tableValue = new CMultiIndex<CLiteral>();
+		*_value.tableValue = *literal._value.tableValue;
 	}
 }
 
@@ -67,6 +70,8 @@ CLiteral::CLiteral(LiteralType type)
 	} else if (_type == UserdataType) {
 		//_value.elementValue = new CElement();
 		//TODO: userdata
+	} else if (_type == TableType) {
+		_value.tableValue = new CMultiIndex<CLiteral>();
 	}
 }
 
@@ -81,6 +86,8 @@ const void* CLiteral::getValue()
 		return _value.stringValue;
 	} else if (_type == ElementType) {
 		return _value.elementValue;
+	} else if (_type == TableType) {
+		return _value.tableValue;
 	} else {
 		return &_value;
 	}
@@ -102,6 +109,9 @@ void CLiteral::setValue(LiteralType type, const void* value)
 	} else if (_type == ElementType) {
 		_value.elementValue = ((CElement*) value);
 // 		std::cout << "Element contendo " << _value.elementValue << std::endl;
+	} else if (_type == TableType) {
+		_value.tableValue = new CMultiIndex<CLiteral>();
+		*_value.tableValue = *((CMultiIndex<CLiteral>*) value);
 	} else {
 		std::map<LiteralType, size_t> typeSizeMap;
 
@@ -132,7 +142,11 @@ std::string CLiteral::getText()
 		}
 	} else if (_type == ElementType) {
 		return "Element*";
+	} else if (_type == TableType) {
+		// TODO: poderia converter os literais para string e retornar...
+		return "Table*";
 	}
+	
 	// TODO: userdata
 	return "Invalid literal value !!!";
 }
@@ -161,4 +175,9 @@ CElement* CLiteral::getElement()
 {
 // 	std::cout << "getElement: " << _value.elementValue << std::endl;
 	return _value.elementValue;
+}
+
+CMultiIndex<CLiteral>* CLiteral::getTable()
+{
+	return _value.tableValue;
 }

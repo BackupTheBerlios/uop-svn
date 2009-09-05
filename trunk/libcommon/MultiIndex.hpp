@@ -9,7 +9,7 @@
 // TODO: Eu poderia passar o tipo da chave tambem... mas vale a pena ???
 
 template<class T>
-class MultiIndex {
+class CMultiIndex {
 public:
 	struct Item {
 		std::string key;
@@ -20,7 +20,7 @@ private:
 	std::map<std::string, size_t> _mapIndex;
 	std::vector<Item>             _vectorIndex;
 public:
-	MultiIndex() {}
+	CMultiIndex() {}
 	void add(std::string key, T item)
 	{
 		std::map<std::string, size_t>::iterator pos = _mapIndex.find(key);
@@ -57,12 +57,12 @@ public:
 	class iterator; // Declaration required
 	friend class iterator; // Make it a friend
 	class iterator { // Now define it
-		MultiIndex& s;
+		CMultiIndex& s;
 		int index;
 	public:
-		iterator(MultiIndex& st): s(st), index(0) {}
+		iterator(CMultiIndex& st): s(st), index(0) {}
 		// To create the "end sentinel" iterator:
-		iterator(MultiIndex& st, bool) : s(st), index(s.size()) {}
+		iterator(CMultiIndex& st, bool) : s(st), index(s.size()) {}
 		Item operator*() const { return s._vectorIndex[index];}
 		Item operator++() { // Prefix form
 			//     require(index < s.top,

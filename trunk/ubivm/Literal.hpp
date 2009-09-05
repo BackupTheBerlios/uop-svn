@@ -24,6 +24,7 @@
 
 #include "LibuvmDefs.hpp"
 #include "Element.hpp"
+#include "MultiIndex.hpp"
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
@@ -39,6 +40,7 @@ public:
 	CLiteral(bool value) { setValue(BooleanType, &value); }
 	CLiteral(std::string value) { setValue(StringType, &value); }
 	CLiteral(CElement* value) { setValue(ElementType, value); }
+	CLiteral(CMultiIndex<CLiteral>* value) { setValue(TableType, value); }
 	~CLiteral();
 	const void* getValue();
 	void setValue(const void* value);
@@ -48,7 +50,8 @@ public:
 	int getInteger();
 	double getReal();
 	bool getBoolean();
- 	CElement* getElement();
+	CElement* getElement();
+	CMultiIndex<CLiteral>* getTable();  // TODO: deveria retornar o ponteiro ???
 //private:
     LiteralType _type;
 //	size_t size;
@@ -58,6 +61,7 @@ public:
 		bool booleanValue;
 		std::string* stringValue;
 		CElement* elementValue;
+		CMultiIndex<CLiteral>* tableValue;
 	} _value;
 };
 

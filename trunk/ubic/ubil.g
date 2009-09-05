@@ -191,15 +191,16 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    ;
 
 ///----------
-   type returns [LiteralType iret, std::string sret]
+   type returns [LiteralType iret, std::string sret] :
 ///----------
-   :  'int'      { $iret = IntegerType;  $sret = "int";      }
-   |  'real'     { $iret = RealType;     $sret = "real";     }
-   |  'string'   { $iret = StringType;   $sret = "string";   }
-   |  'bool'     { $iret = BooleanType;  $sret = "bool";     }
-   |  'element'  { $iret = ElementType;  $sret = "element";  }
-   |  'userdata' { $iret = UserdataType; $sret = "userdata"; }
-   ;
+		'int'      { $iret = IntegerType;  $sret = "int";      }
+	|	'real'     { $iret = RealType;     $sret = "real";     }
+	|	'string'   { $iret = StringType;   $sret = "string";   }
+	|	'bool'     { $iret = BooleanType;  $sret = "bool";     }
+	|	'element'  { $iret = ElementType;  $sret = "element";  }
+	|	'userdata' { $iret = UserdataType; $sret = "userdata"; }
+	|	'table'    { $iret = TableType;    $sret = "table";    }
+	;
 
 ///----------
    method_definition
@@ -286,7 +287,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    assignment_statement
 ///----------
-   :  var_assignment_statement | context_assignment_statement
+   :  var_assignment_statement | context_assignment_statement | table_assignment_statement
    ;
 
 ///----------
@@ -315,6 +316,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       { methodDef->addInstruction(STCONTEXT_OPCODE, entityDef->getSymbolIndex($context.value + "." + GETTEXT($IDENTIFIER), StringType)); }
    ;
 
+//--------------------------------------
+   table_assignment_statement :
+//--------------------------------------
+	IDENTIFIER '[' expr ']' '=' expr
+	{ methodDef->addInstruction(STTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	;
 
 ///----------
    group_interation
@@ -332,9 +339,9 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 {
    std::string serviceName;
 }
-   :  '[' expr ']' '.' 'bind' '(' argument ')'  { methodDef->addInstruction(BINDG_OPCODE);  }
-   |  '[' expr ']' '.' 'leave' '(' argument ')' { methodDef->addInstruction(LEAVEG_OPCODE); }
-   |  { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
+   :  '{' expr '}' '.' 'bind' '(' argument ')'  { methodDef->addInstruction(BINDG_OPCODE);  }
+   |  '{' expr '}' '.' 'leave' '(' argument ')' { methodDef->addInstruction(LEAVEG_OPCODE); }
+   |  { methodDef->pushInstructions(); } '{' expr '}' '.' { methodDef->addInstructions(); } IDENTIFIER
       ( '(' argument_list ')' )?
       {
          serviceName = GETTEXT($IDENTIFIER);
@@ -346,7 +353,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    data_group_interation
 ///----------
-   : '[' expr ']' '.' 'data' '.' IDENTIFIER
+   : '{' expr '}' '.' 'data' '.' IDENTIFIER
       '(' (arg1=argument_list '=>' arg2=argument_list)? ')'
       {
          if (GETTEXT($IDENTIFIER) == "af") {
@@ -364,7 +371,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 {
    std::string serviceName;
 }
-   : '[' expr ']' '.' 'service' '+=' IDENTIFIER { serviceName = GETTEXT($IDENTIFIER); }
+   : '{' expr '}' '.' 'service' '+=' IDENTIFIER { serviceName = GETTEXT($IDENTIFIER); }
       '('
          ( type1=type ( ',' type2=type )* )?
 //         ( type1=type { /*serviceName += ":" + $type1.sret;*/ } ( ',' type2=type { /*serviceName += ":" + $type2.sret;*/ } )* )?
@@ -377,7 +384,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    rgroup
 ///----------
-   : '[' expr ']' '.' 'data' '.' IDENTIFIER ( '(' argument_list ')' )?
+   : '{' expr '}' '.' 'data' '.' IDENTIFIER ( '(' argument_list ')' )?
       {
          if (GETTEXT($IDENTIFIER) == "dqu") {
             methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
@@ -387,7 +394,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
             methodDef->addInstruction(DATAQU_OPCODE);
          }
       }
-   | '[' expr ']' '.' 'datalist'
+   | '{' expr '}' '.' 'datalist'
    |  service_invocation
    ;
 
@@ -398,7 +405,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 {
    std::string serviceName;
 }
-   :  { methodDef->pushInstructions(); } '[' expr ']' '.' { methodDef->addInstructions(); } IDENTIFIER
+   :  { methodDef->pushInstructions(); } '{' expr '}' '.' { methodDef->addInstructions(); } IDENTIFIER
       ( '(' argument_list ')' )?
       {
          serviceName = GETTEXT($IDENTIFIER);
@@ -406,6 +413,13 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
       }
    ;
+
+//--------------------------------------
+   rtable :
+//--------------------------------------
+	IDENTIFIER '[' expr ']'
+	{ methodDef->addInstruction(LDTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	;
 
 ///----------
    return_statement
@@ -731,6 +745,7 @@ expr_elemento
   | context_property
   | element_property
   | rgroup
+  | rtable
   | '(' expr ')'
   ;
 

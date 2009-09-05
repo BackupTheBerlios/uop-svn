@@ -14,6 +14,8 @@ const std::string typeToText(const LiteralType &type)
 		return "element";
 	} else if (type == UserdataType) {
 		return "userdata";
+	} else if (type == TableType) {
+		return "table";
 	}
 
 	return "ERRO !!!";

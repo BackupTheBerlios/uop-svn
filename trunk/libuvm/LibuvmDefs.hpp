@@ -42,8 +42,10 @@ enum OpcodeType {
 	SCALL_OPCODE,
 	FINDS_OPCODE,
 	BINDS_OPCODE,
- 	LDCONTEXT_OPCODE,
- 	STCONTEXT_OPCODE,
+	LDCONTEXT_OPCODE,
+	STCONTEXT_OPCODE,
+	STTAB_OPCODE,
+	LDTAB_OPCODE,
 /*	LDIDENTITY_OPCODE,
 	LDLOCATION_OPCODE,
 	LDTIME_OPCODE,
@@ -61,7 +63,8 @@ enum LiteralType {
 //	EntityType = 'E',
 	ElementType= 'E',
 // 	PointerType = 'P'
-	UserdataType= 'U'
+	UserdataType= 'U',
+	TableType = 'T'
 };
 
 enum SymbolType {

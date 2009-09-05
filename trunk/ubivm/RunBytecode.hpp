@@ -88,6 +88,8 @@ private:
 	void ldcontextOpcode();
 	void publishsOpcode();
 	void scallOpcode();
+	void sttabOpcode();
+	void ldtabOpcode();
 
 //   CHeader         _header;
    CSymbolTable    _symbolTable;
