@@ -1114,7 +1114,13 @@ void CRunBytecode::ldtabOpcode()
 	trace ("ldtab opcode");
 
 	CLiteral index = _dataStack.pop();
-	CLiteral value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getText());
+	CLiteral value;
+
+	if (index._type == StringType) {
+		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getText());
+	} else {
+		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getInteger() - 1);
+	}
 
 	_dataStack.push(value);
 }
@@ -1125,7 +1131,12 @@ void CRunBytecode::sttabOpcode()
 
 	CLiteral value = _dataStack.pop();
 	CLiteral index = _dataStack.pop();
-	_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getText(), value);
+
+// 	if (index._type == StringType) {
+		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getText(), value);
+// 	} else {
+// 		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getInteger() - 1, value);
+// 	}
 }
 
 

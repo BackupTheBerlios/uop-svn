@@ -301,6 +301,24 @@ void CTests::define()
 	test = compiler.addTest(PASS, "context_1");
 	test = vm.addTest(PASS, "context_1");
 
+	test = compiler.addTest(PASS, "table_1d_1");
+	test = vm.addTest(PASS, "table_1d_1");
+
+	test = compiler.addTest(PASS, "table_1d_2");
+	test = vm.addTest(PASS, "table_1d_2");
+
+	test = compiler.addTest(PASS, "table_1d_3");
+	test = vm.addTest(PASS, "table_1d_3");
+
+	test = compiler.addTest(PASS, "table_1d_4");
+	test = vm.addTest(PASS, "table_1d_4");
+
+	test = compiler.addTest(PASS, "table_1d_5");
+	test = vm.addTest(PASS, "table_1d_5");
+
+	test = compiler.addTest(PASS, "table_1d_6");
+	test = vm.addTest(PASS, "table_1d_6");
+
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real
 }

@@ -418,7 +418,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    rtable :
 //--------------------------------------
 	IDENTIFIER '[' expr ']'
-	{ methodDef->addInstruction(LDTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	{ methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
 	;
 
 ///----------

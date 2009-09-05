@@ -1,0 +1,14 @@
+entity start
+	def start()
+		def table tab
+
+		tab["Nome" ] = "Alex"
+		tab["Sexo" ] = "M"
+		tab["Idade"] = 34
+
+		writeln("Nome =", tab["Nome" ])
+		writeln("Sexo =", tab["Sexo" ])
+		writeln("Idade=", tab["Idade"])
+	end
+end
+

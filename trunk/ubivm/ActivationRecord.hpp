@@ -18,7 +18,7 @@ public:
 	std::vector<CLiteral> _localVarList;
 	std::vector<CLiteral> _paramList;
 	std::vector<CLiteral> _resultList;
-	std::vector<CMultiIndex<CLiteral> > _localTabList;
+// 	std::vector<CMultiIndex<CLiteral> > _localTabList;
 };
 
 #endif

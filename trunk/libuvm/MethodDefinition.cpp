@@ -273,14 +273,11 @@ CInstructionDefinition* CMethodDefinition::getInstruction(ushort number)
 
 size_t CMethodDefinition::getVarIndex(std::string name)
 {
-	std::map<std::string, size_t>::iterator var = _localVarNumber.find(name);
-	if (var == _localVarNumber.end()) {
-		size_t number = _localVarNumber.size();
-		_localVarNumber[name] = number;
-		return number;
-	} else {
-		return var->second;
+	CLocalVarDefinition* var = _findLocalVarDefinition(name);
+	if (var == NULL) {
+		std::cout << "Forgot to define " << name << std::endl;
 	}
+	return var->_index;
 }
 
 size_t CMethodDefinition::getParamIndex(std::string name)
@@ -361,11 +358,15 @@ void CMethodDefinition::adjustInstructionsLabels()
 void CMethodDefinition::addLoadInstruction(std::string identifier)
 {
 	// TODO: improve this...
-	std::map<std::string, size_t>::iterator var = _localVarNumber.find(identifier);
-	if (var == _localVarNumber.end()) {
+	CLocalVarDefinition* var = _findLocalVarDefinition(identifier);
+	if (var == NULL) {
 		addInstruction(LDPARAM_OPCODE, getParamIndex(identifier));
 	} else {
-		addInstruction(LDVAR_OPCODE, getVarIndex(identifier));
+		if (var->_type == TableType) {
+			addInstruction(LDTAB_OPCODE, var->_index);
+		} else {
+			addInstruction(LDVAR_OPCODE, var->_index);
+		}
 	}
 }
 
@@ -384,4 +385,15 @@ void CMethodDefinition::addPushedInstructions()
 	// TODO: e se houver labels para serem gerados ??? talvez o ideal seria salvar o opcode e arg mesmo em _pushedInstructions, e essa rotina invocaria a rotina normal para gerar opcodes...
 	_instructionList.insert(_instructionList.end(), _pushedInstructions.begin(), _pushedInstructions.end());
 	_pushedInstructions.clear();
+}
+
+CLocalVarDefinition * CMethodDefinition::_findLocalVarDefinition(std::string identifier)
+{
+	for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
+		if ((*var)->_name == identifier) {
+			return (*var);
+		}
+	}
+
+	return NULL;
 }

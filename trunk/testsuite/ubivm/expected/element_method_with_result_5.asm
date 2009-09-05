@@ -35,17 +35,17 @@ Entity start
 		End
 		No results
 		newelem 4 --> [elemento]
-		stvar 0 --> [result1]
-		ldvar 0 --> [result1]
-		mcall 5 --> [x]
-		stvar 1 --> [result2]
 		stvar 2 --> [e]
+		ldvar 2 --> [e]
+		mcall 5 --> [x]
+		stvar 0 --> [result1]
+		stvar 1 --> [result2]
 		ldconst 6 --> [result1: ]
-		ldvar 1 --> [result2]
+		ldvar 0 --> [result1]
 		ldconst 7 --> [2]
 		lcall 8 --> [writeln]
 		ldconst 9 --> [result2: ]
-		ldvar 2 --> [e]
+		ldvar 1 --> [result2]
 		ldconst 7 --> [2]
 		lcall 8 --> [writeln]
 		stop

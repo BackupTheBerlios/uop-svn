@@ -55,6 +55,7 @@ public:
 
 private:
 	void adjustInstructionsLabels();
+	CLocalVarDefinition* _findLocalVarDefinition(std::string identifier);
 
 //	std::map<const char *, CParamDefinition*> _test;
 //	std::vector<CParameterDefinition*>           _parameterVector;
@@ -65,7 +66,7 @@ private:
 	CSymbolTable *_symbolTable;
 	VisibilityType _visibility;
 	std::string    _name;
-	std::map<std::string, size_t> _localVarNumber;
+// 	std::map<std::string, size_t> _localVarNumber;
 	std::map<std::string, size_t> _parameterNumber;
 	int _nextLabel;
 	std::vector<int> _nextInstructionLabelList;
