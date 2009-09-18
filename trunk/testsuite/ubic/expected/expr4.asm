@@ -6,7 +6,7 @@ Entity start
 		3 I 49
 		4 I 7
 		5 I 3
-		6 S writeln
+		6 S io.writeln
 	End
 	Def start
 		No parameters
@@ -21,7 +21,7 @@ Entity start
 		sub
 		mul
 		ldconst 2 --> [2]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		stop
 	End
 End

@@ -6,7 +6,7 @@ Entity start
 		3 S msg
 		4 S msg=
 		5 I 2
-		6 S writeln
+		6 S io.writeln
 	End
 	Def start
 		No parameters
@@ -26,7 +26,7 @@ Entity start
 		ldconst 4 --> [msg=]
 		ldpar 0 --> [msg]
 		ldconst 5 --> [2]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		ret
 	End
 End

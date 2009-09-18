@@ -12,9 +12,9 @@
 
 Entity start
 	def start(int final)
-		writeln("Contando de 1 ate ", Final, ". Aguarde !!!")
+		io.writeln("Contando de 1 ate ", Final, ". Aguarde !!!")
 		for(int x=1; x<=final; x++)
-			writeln("Iteracao: ", x)
+			io.writeln("Iteracao: ", x)
 		end
 	end
 end

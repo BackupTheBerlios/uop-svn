@@ -8,7 +8,7 @@ entity start
 		end
 
 		for(index=1; index<=10; index=index+1)
-			writeln("tab[", index, "]=", tab[index])
+			io.writeln("tab[", index, "]=", tab[index])
 		end
 	end
 end

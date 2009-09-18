@@ -7,7 +7,7 @@ entity start
 		def element e
 		e = elemento.new()
 		result = e.y()
-		writeln("result: ", result)
+		io.writeln("result: ", result)
 	end
 end
 

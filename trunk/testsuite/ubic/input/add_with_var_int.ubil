@@ -4,7 +4,7 @@ entity start
 		def int var2
 		var1 = 10
 		var2 = var1 + 20
-		writeln( var2 )
+		io.writeln( var2 )
 	end
 end
 

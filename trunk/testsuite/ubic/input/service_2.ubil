@@ -6,7 +6,7 @@ entity servico
 		return x-y
 	end
 	def imprime(string msg)
-		writeln("Mensagem: ", msg)
+		io.writeln("Mensagem: ", msg)
 	end
 	def servico()
 		{"group"}.bind("Alex")
@@ -20,8 +20,8 @@ entity start
 	def start()
 		def element s = servico.new()
 		s.servico()
-		writeln("Soma  : ",  {"group"}.soma(10,20))
-		writeln("Diminui: ", {"group"}.diminui(10,20))
+		io.writeln("Soma  : ",  {"group"}.soma(10,20))
+		io.writeln("Diminui: ", {"group"}.diminui(10,20))
 		{"group"}.imprime("Ola !!!")
 	end
 end

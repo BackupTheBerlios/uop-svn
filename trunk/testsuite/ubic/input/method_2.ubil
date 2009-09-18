@@ -1,16 +1,16 @@
 entity start
 	def start()
-		writeln("antes da chamada a x")
+		io.writeln("antes da chamada a x")
 		x()
-		writeln("depois da chamada a x")
+		io.writeln("depois da chamada a x")
 	end
 	def x()
-		writeln("antes da chamada a y")
+		io.writeln("antes da chamada a y")
 		y()
-		writeln("depois da chamada a y")
+		io.writeln("depois da chamada a y")
 	end
 	def y()
-		writeln("no metodo y")
+		io.writeln("no metodo y")
 	end
 end
 

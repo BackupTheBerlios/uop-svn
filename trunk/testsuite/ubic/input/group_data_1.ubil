@@ -8,8 +8,8 @@ entity start
 //		while(true)
 //		end
 		{"MeuGrupo"}.bind("prog1")
-		writeln("Inserindo informacoes")
+		io.writeln("Inserindo informacoes")
 		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.qu("Numero 1"))
+		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.qu("Numero 1"))
 	end
 end

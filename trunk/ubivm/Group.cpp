@@ -19,7 +19,7 @@ void CGroup::remObject(std::string name)
 
 void CGroup::addTuple(CTuple* tuple)
 {
-	_dataList[tuple->getComposedKey()] = tuple;
+	_dataList[tuple->getComposedKeys()] = tuple;
 }
 
 
@@ -30,7 +30,7 @@ void CGroup::remTuple(CTuple* tuple)
 
 CTuple* CGroup::getTuple(CTuple* tuple)
 {
-	return _dataList[tuple->getComposedKey()];
+	return _dataList[tuple->getComposedKeys()];
 }
 
 

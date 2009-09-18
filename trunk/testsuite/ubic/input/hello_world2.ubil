@@ -1,7 +1,7 @@
 entity start
   def start()
-    writeln( "Olá mundo !!!" )
-    writeln( "Mais um olá mundo !!!" )
+    io.writeln( "Olá mundo !!!" )
+    io.writeln( "Mais um olá mundo !!!" )
   end
 end
 

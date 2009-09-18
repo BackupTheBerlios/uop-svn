@@ -12,9 +12,9 @@
 
 entity start
 	def start()
-		writeln("Eh necessario especificar o nome...")
+		io.writeln("Eh necessario especificar o nome...")
 	end
 	def start(string Nome)
-		writeln("Ola Sr(a) ", Nome)
+		io.writeln("Ola Sr(a) ", Nome)
 	end
 end

@@ -41,7 +41,9 @@ private:
    void initOpcodePointer();
    void step();
    void procWriteln();
-   void procLeia();
+   void procWrite();
+   void procReadln();
+   void procSleep();
 //   void setIntData(const int &address, const int &value);
 //   int  getIntData(const int &address);
    void setRealData(const int &address, const double &value);
@@ -84,12 +86,18 @@ private:
 	void dataafOpcode();
 	void datadquOpcode();
 	void dataquOpcode();
+	void datalistOpcode();
 	void stcontextOpcode();
 	void ldcontextOpcode();
 	void publishsOpcode();
 	void scallOpcode();
 	void sttabOpcode();
 	void ldtabOpcode();
+	void ldtuplekOpcode();
+	void ldtuplevOpcode();
+	void sttuplekOpcode();
+	void sttuplevOpcode();
+	void tabsizeOpcode();
 
 //   CHeader         _header;
    CSymbolTable    _symbolTable;

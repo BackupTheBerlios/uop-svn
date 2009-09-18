@@ -45,7 +45,7 @@ Entity start
 		6 I 20
 		7 S soma
 		8 I 2
-		9 S writeln
+		9 S io.writeln
 	End
 	Def start
 		No parameters
@@ -63,7 +63,7 @@ Entity start
 		ldconst 4 --> [group]
 		scall 7 --> [soma]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		stop
 	End
 End

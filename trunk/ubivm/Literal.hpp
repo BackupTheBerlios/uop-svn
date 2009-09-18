@@ -26,6 +26,12 @@
 #include "Element.hpp"
 #include "MultiIndex.hpp"
 
+class CLiteral;
+
+//typedef CTable CMultiIndex<CLiteral>;
+
+#include "Tuple.hpp"
+
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
@@ -41,6 +47,7 @@ public:
 	CLiteral(std::string value) { setValue(StringType, &value); }
 	CLiteral(CElement* value) { setValue(ElementType, value); }
 	CLiteral(CMultiIndex<CLiteral>* value) { setValue(TableType, value); }
+	CLiteral(CTuple* value) { setValue(TupleType, value); }
 	~CLiteral();
 	const void* getValue();
 	void setValue(const void* value);
@@ -52,6 +59,7 @@ public:
 	bool getBoolean();
 	CElement* getElement();
 	CMultiIndex<CLiteral>* getTable();  // TODO: deveria retornar o ponteiro ???
+	CTuple* getTuple();  // TODO: deveria retornar o ponteiro ???
 //private:
     LiteralType _type;
 //	size_t size;
@@ -62,6 +70,7 @@ public:
 		std::string* stringValue;
 		CElement* elementValue;
 		CMultiIndex<CLiteral>* tableValue;
+		CTuple* tupleValue;
 	} _value;
 };
 

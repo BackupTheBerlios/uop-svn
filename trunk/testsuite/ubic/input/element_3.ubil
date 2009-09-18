@@ -1,21 +1,21 @@
 entity start
 	def start()
 		def element e
-		writeln("antes da chamada a elemento::x")
+		io.writeln("antes da chamada a elemento::x")
 		e = elemento.new()
 		e.x()
-		writeln("depois da chamada a elemento::x")
+		io.writeln("depois da chamada a elemento::x")
 	end
 end
 
 entity elemento
 	def x()
-		writeln("antes da chamada a elemento::y")
+		io.writeln("antes da chamada a elemento::y")
 		y()
-		writeln("depois da chamada a elemento::y")
+		io.writeln("depois da chamada a elemento::y")
 	end
 	def y()
-		writeln("no metodo elemento::y")
+		io.writeln("no metodo elemento::y")
 	end
 end
 

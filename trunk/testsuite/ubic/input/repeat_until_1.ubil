@@ -3,7 +3,7 @@ entity start
 		def int x
 		x = 1
 		repeat
-			writeln("x=", x)
+			io.writeln("x=", x)
 			x=x+1
 		until (x > 10)
 	end

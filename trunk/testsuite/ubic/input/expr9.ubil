@@ -11,12 +11,12 @@
 
 entity start
 	def start()
-		writeln("2 - 1=", 2 - 1)
-		writeln("2 * 7=", 2 * 7)
-		writeln("2 * 8 - 5=", 2 * 8 - 5)
-		writeln("2 - 8 * 5=", 2 - 8 * 5)
-		writeln("(2 - 8) * 5=", (2 - 8) * 5)
-		writeln(
+		io.writeln("2 - 1=", 2 - 1)
+		io.writeln("2 * 7=", 2 * 7)
+		io.writeln("2 * 8 - 5=", 2 * 8 - 5)
+		io.writeln("2 - 8 * 5=", 2 - 8 * 5)
+		io.writeln("(2 - 8) * 5=", (2 - 8) * 5)
+		io.writeln(
 			"(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=",
 			(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3)))
 	end

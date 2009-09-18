@@ -319,6 +319,9 @@ void CTests::define()
 	test = compiler.addTest(PASS, "table_1d_6");
 	test = vm.addTest(PASS, "table_1d_6");
 
+	test = compiler.addTest(PASS, "group_data_1");
+	test = vm.addTest(PASS, "group_data_1");
+
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real
 }

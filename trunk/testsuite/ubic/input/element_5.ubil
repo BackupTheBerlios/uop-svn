@@ -8,7 +8,7 @@ end
 
 entity elemento
 	def x(string msg)
-		writeln("msg=", msg)
+		io.writeln("msg=", msg)
 	end
 end
 

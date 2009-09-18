@@ -6,7 +6,7 @@ Entity start
 		3 I 1
 		4 I 10
 		5 S x entre 1 e 10
-		6 S writeln
+		6 S io.writeln
 		7 I 11
 		8 S x entre 11 e 20
 		9 S x > 20
@@ -29,7 +29,7 @@ Entity start
 		ifnot 14 --> [14]
 		ldconst 5 --> [x entre 1 e 10]
 		ldconst 3 --> [1]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		jmp 29 --> [29]
 	14:	ldvar 0 --> [x]
 		ldconst 7 --> [11]
@@ -41,11 +41,11 @@ Entity start
 		ifnot 26 --> [26]
 		ldconst 8 --> [x entre 11 e 20]
 		ldconst 3 --> [1]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		jmp 29 --> [29]
 	26:	ldconst 9 --> [x > 20]
 		ldconst 3 --> [1]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 	29:	stop
 	End
 End

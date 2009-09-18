@@ -5,7 +5,7 @@ Entity start
 		2 R 2.000000
 		3 R 1.000000
 		4 I 2
-		5 S writeln
+		5 S io.writeln
 		6 S 2.0 * 7=
 		7 I 7
 		8 S 2.0 * 8.0 - 5.0=
@@ -31,13 +31,13 @@ Entity start
 		ldconst 3 --> [1.000000]
 		sub
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 6 --> [2.0 * 7=]
 		ldconst 4 --> [2]
 		ldconst 7 --> [7]
 		mul
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 8 --> [2.0 * 8.0 - 5.0=]
 		ldconst 2 --> [2.000000]
 		ldconst 9 --> [8.000000]
@@ -45,7 +45,7 @@ Entity start
 		ldconst 10 --> [5.000000]
 		sub
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 11 --> [2.0 - 8.0 * 5.0=]
 		ldconst 2 --> [2.000000]
 		ldconst 9 --> [8.000000]
@@ -53,7 +53,7 @@ Entity start
 		mul
 		sub
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 12 --> [(2.0 - 8.0) * 5.0=]
 		ldconst 2 --> [2.000000]
 		ldconst 9 --> [8.000000]
@@ -61,7 +61,7 @@ Entity start
 		ldconst 10 --> [5.000000]
 		mul
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 13 --> [(2.0 * (8.0 - 18.0 / 9.0 * (7.0 * 8.0 - 4.0 + 5.0 * 7.0) - 6.0) * (49.0 / 7.0 - 3.0))=]
 		ldconst 2 --> [2.000000]
 		ldconst 9 --> [8.000000]
@@ -89,7 +89,7 @@ Entity start
 		sub
 		mul
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		stop
 	End
 End

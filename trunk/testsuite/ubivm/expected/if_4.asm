@@ -10,7 +10,7 @@ Entity start
 		7 I 9
 		8 S x=
 		9 S  eh impar !!!
-		10 S writeln
+		10 S io.writeln
 		11 I 2
 		12 I 4
 		13 I 6
@@ -60,7 +60,7 @@ Entity start
 		ldvar 0 --> [x]
 		ldconst 9 --> [ eh impar !!!]
 		ldconst 4 --> [3]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		jmp 69 --> [69]
 	38:	ldvar 0 --> [x]
 		ldconst 11 --> [2]
@@ -86,13 +86,13 @@ Entity start
 		ldvar 0 --> [x]
 		ldconst 15 --> [ eh par !!!]
 		ldconst 4 --> [3]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		jmp 69 --> [69]
 	64:	ldconst 8 --> [x=]
 		ldvar 0 --> [x]
 		ldconst 16 --> [ ???]
 		ldconst 4 --> [3]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 	69:	jmp 7 --> [7]
 	70:	stop
 	End

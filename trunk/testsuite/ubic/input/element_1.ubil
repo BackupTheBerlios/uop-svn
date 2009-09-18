@@ -8,6 +8,6 @@ end
 
 entity elemento
 	def imprime()
-		writeln("Oi !!!!")
+		io.writeln("Oi !!!!")
 	end
 end

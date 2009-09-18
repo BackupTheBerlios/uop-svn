@@ -4,7 +4,7 @@ entity start
 		def string var2
 		var1 = "aaa"
 		var2 = var1 + "bbb"
-		writeln( var2 )
+		io.writeln( var2 )
 	end
 end
 

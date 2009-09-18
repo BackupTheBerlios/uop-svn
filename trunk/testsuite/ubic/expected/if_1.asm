@@ -5,7 +5,7 @@ Entity start
 		2 I 1
 		3 I 10
 		4 S x>10
-		5 S writeln
+		5 S io.writeln
 		6 S x not > 10
 	End
 	Def start
@@ -22,11 +22,11 @@ Entity start
 		ifnot 10 --> [10]
 		ldconst 4 --> [x>10]
 		ldconst 2 --> [1]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		jmp 13 --> [13]
 	10:	ldconst 6 --> [x not > 10]
 		ldconst 2 --> [1]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 	13:	stop
 	End
 End

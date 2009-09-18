@@ -1,8 +1,8 @@
 Entity start
 	def start()
 		string V1 = "Hello world !!!"
-		writeln(V1)
+		io.writeln(V1)
 		string V2 = V1
-		writeln(V2)
+		io.writeln(V2)
 	end
 end

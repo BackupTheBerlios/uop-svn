@@ -34,7 +34,27 @@ using boost::asio::ip::udp;
 #include "Tuple.hpp"
 #include "Group.hpp"
 #include "DataStack.hpp"
-				 
+#include "UbivmDefs.hpp"
+#include "Tools.hpp"
+
+
+struct SPacketHeader {
+	int                 _vmId;
+	uint                _packetNumber;
+	OpcodeType          _opcode;
+	PacketOperationType _operation;
+	SPacketHeader() :
+			_packetNumber(0), _opcode(INVALID_OPCODE), _operation(INVALID_OPERATION)
+	{
+		_vmId = getpid();
+	}
+	SPacketHeader(uint packetNumber, OpcodeType opcode, PacketOperationType operation) :
+			_packetNumber(packetNumber), _opcode(opcode), _operation(operation)
+	{
+		_vmId = getpid(); // TODO: Tenho que colocar IP tb no ID...
+	}
+};
+
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
@@ -44,23 +64,30 @@ public:
 	CCommunicationProvider(std::map<std::string, CGroup*>* groupList, CDataStack* dataStack, uint bindPort, uint sendPort);
 	void run();
 	void sendRequestDataquOpcode(std::string groupName, CTuple tuple);
+	void sendRequestDatalistOpcode(std::string groupName);
 
 private:
 	void sendBroadcastPacket(const char* packet, size_t length);
 	void threadedCode();
 	void processReceivedPacket(const char* char_packet, size_t lenght, udp::socket& sock, udp::endpoint& sender_endpoint);
-	void processRequestOperation(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, uint requestNumber, OpcodeType opcode);
-	void processReplyOperation(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, uint requestNumber, OpcodeType opcode);
+	void processRequestOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+	void processDatalistRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+	void processReplyOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+	void processDatalistReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+	std::string dumpPacket(const char* packet, uint length);
+
 	boost::thread*   _thread;
-	uint             _number;
+	uint             _packetNumber;
 // 	boost::mutex     _mutex;
 // 	boost::condition_variable _cond;
 	std::map<std::string, CGroup*>* _groupList;
 	CDataStack*      _dataStack;
-	boost::asio::io_service io_service;
-	bool _dataReady;
+	bool _dataReadyInDataList;
+	bool _dataReadyInDataQu;
 	uint _bindPort;
 	uint _sendPort;
+ 	boost::asio::io_service _io_service;
+	CMultiIndex<CLiteral>* _dataListReplyTable;
 };
 
 #endif

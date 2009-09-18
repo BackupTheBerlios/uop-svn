@@ -6,7 +6,7 @@ Entity start
 		3 S x
 		4 S result1: 
 		5 I 2
-		6 S writeln
+		6 S io.writeln
 		7 S result2: 
 		8 S oi 1
 		9 S oi 2
@@ -25,11 +25,11 @@ Entity start
 		ldconst 4 --> [result1: ]
 		ldvar 0 --> [result1]
 		ldconst 5 --> [2]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		ldconst 7 --> [result2: ]
 		ldvar 1 --> [result2]
 		ldconst 5 --> [2]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		stop
 	End
 	Def x

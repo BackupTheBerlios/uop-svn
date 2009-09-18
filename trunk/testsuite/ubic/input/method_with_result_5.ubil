@@ -3,8 +3,8 @@ entity start
 		def string result1
 		def string result2
 		result1,result2 = x()
-		writeln("result1: ", result1)
-		writeln("result2: ", result2)
+		io.writeln("result1: ", result1)
+		io.writeln("result2: ", result2)
 	end
 	def x() [string,string]
 		return

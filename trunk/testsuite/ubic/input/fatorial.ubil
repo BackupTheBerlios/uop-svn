@@ -1,12 +1,12 @@
 entity start
 	def start()
-		writeln("Fatorial de 0: ", fatorial(0))
-		writeln("Fatorial de 1: ", fatorial(1))
-		writeln("Fatorial de 2: ", fatorial(2))
-		writeln("Fatorial de 3: ", fatorial(3))
-		writeln("Fatorial de 4: ", fatorial(4))
-		writeln("Fatorial de 5: ", fatorial(5))
-		writeln("Fatorial de 6: ", fatorial(6))
+		io.writeln("Fatorial de 0: ", fatorial(0))
+		io.writeln("Fatorial de 1: ", fatorial(1))
+		io.writeln("Fatorial de 2: ", fatorial(2))
+		io.writeln("Fatorial de 3: ", fatorial(3))
+		io.writeln("Fatorial de 4: ", fatorial(4))
+		io.writeln("Fatorial de 5: ", fatorial(5))
+		io.writeln("Fatorial de 6: ", fatorial(6))
 	end
 	def fatorial(int n) [int]
 		if (n == 0)

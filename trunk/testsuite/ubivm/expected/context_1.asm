@@ -9,7 +9,7 @@ Entity start
 		6 S time.now
 		7 S Host atual: 
 		8 I 2
-		9 S writeln
+		9 S io.writeln
 		10 S Onde estou: 
 		11 S Horario   : 
 	End
@@ -26,15 +26,15 @@ Entity start
 		ldconst 7 --> [Host atual: ]
 		ldcontext 2 --> [identity.host]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ldconst 10 --> [Onde estou: ]
 		ldcontext 4 --> [location.symbolic]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ldconst 11 --> [Horario   : ]
 		ldcontext 6 --> [time.now]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		stop
 	End
 End

@@ -7,7 +7,7 @@ Entity start
 		4 I 2
 		5 I 200
 		6 S tab[1]=
-		7 S writeln
+		7 S io.writeln
 		8 S tab[2]=
 	End
 	Def start
@@ -26,12 +26,12 @@ Entity start
 		ldconst 2 --> [1]
 		ldtab 0 --> [tab]
 		ldconst 4 --> [2]
-		lcall 7 --> [writeln]
+		lcall 7 --> [io.writeln]
 		ldconst 8 --> [tab[2]=]
 		ldconst 4 --> [2]
 		ldtab 0 --> [tab]
 		ldconst 4 --> [2]
-		lcall 7 --> [writeln]
+		lcall 7 --> [io.writeln]
 		stop
 	End
 End

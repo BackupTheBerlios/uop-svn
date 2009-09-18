@@ -4,7 +4,7 @@ Entity start
 		1 S 2 - 1=
 		2 I 2
 		3 I 1
-		4 S writeln
+		4 S io.writeln
 		5 S 2 * 7=
 		6 I 7
 		7 S 2 * 8 - 5=
@@ -29,13 +29,13 @@ Entity start
 		ldconst 3 --> [1]
 		sub
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldconst 5 --> [2 * 7=]
 		ldconst 2 --> [2]
 		ldconst 6 --> [7]
 		mul
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldconst 7 --> [2 * 8 - 5=]
 		ldconst 2 --> [2]
 		ldconst 8 --> [8]
@@ -43,7 +43,7 @@ Entity start
 		ldconst 9 --> [5]
 		sub
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldconst 10 --> [2 - 8 * 5=]
 		ldconst 2 --> [2]
 		ldconst 8 --> [8]
@@ -51,7 +51,7 @@ Entity start
 		mul
 		sub
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldconst 11 --> [(2 - 8) * 5=]
 		ldconst 2 --> [2]
 		ldconst 8 --> [8]
@@ -59,7 +59,7 @@ Entity start
 		ldconst 9 --> [5]
 		mul
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldconst 12 --> [(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=]
 		ldconst 2 --> [2]
 		ldconst 8 --> [8]
@@ -87,7 +87,7 @@ Entity start
 		sub
 		mul
 		ldconst 2 --> [2]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		stop
 	End
 End

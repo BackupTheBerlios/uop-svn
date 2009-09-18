@@ -75,7 +75,7 @@ grammar ubil;
 
 options
 {
-//    k		= 2;
+//    k		= 4;
     backtrack	= true;
     memoize	= true;
     language	= C;
@@ -200,6 +200,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 	|	'element'  { $iret = ElementType;  $sret = "element";  }
 	|	'userdata' { $iret = UserdataType; $sret = "userdata"; }
 	|	'table'    { $iret = TableType;    $sret = "table";    }
+	|	'tuple'    { $iret = TupleType;    $sret = "tuple";    }
 	;
 
 ///----------
@@ -319,8 +320,10 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //--------------------------------------
    table_assignment_statement :
 //--------------------------------------
-	IDENTIFIER '[' expr ']' '=' expr
-	{ methodDef->addInstruction(STTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+		IDENTIFIER '[' expr { methodDef->addInstruction(LDTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); } ',' expr ']' '=' expr
+		{ methodDef->addInstruction(STTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	|	IDENTIFIER '[' expr ']' '=' expr
+		{ methodDef->addInstruction(STTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
 	;
 
 ///----------
@@ -384,7 +387,9 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    rgroup
 ///----------
-   : '{' expr '}' '.' 'data' '.' IDENTIFIER ( '(' argument_list ')' )?
+//   : '{' expr '}' '.' 'data' '.' 'list'
+//      { methodDef->addInstruction(DATALIST_OPCODE); }
+   : '{' expr '}' '.' 'data' '.' IDENTIFIER ( '(' (argument_list)? ')' )?
       {
          if (GETTEXT($IDENTIFIER) == "dqu") {
             methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
@@ -392,9 +397,10 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          } else if (GETTEXT($IDENTIFIER) == "qu") {
             methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
             methodDef->addInstruction(DATAQU_OPCODE);
+         } else if (GETTEXT($IDENTIFIER) == "list") {
+            methodDef->addInstruction(DATALIST_OPCODE);
          }
       }
-   | '{' expr '}' '.' 'datalist'
    |  service_invocation
    ;
 
@@ -417,8 +423,17 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //--------------------------------------
    rtable :
 //--------------------------------------
-	IDENTIFIER '[' expr ']'
-	{ methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
+		IDENTIFIER '.' 'size' '(' ')'
+		{ methodDef->addInstruction(TABSIZE_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	|	IDENTIFIER '[' expr { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); } ',' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
+	|	IDENTIFIER '[' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
+	;
+
+//--------------------------------------
+   rtuple :
+//--------------------------------------
+		IDENTIFIER '.' 'keys'   '[' expr ']' { methodDef->addInstruction(LDTUPLEK_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
+	|	IDENTIFIER '.' 'values' '[' expr ']' { methodDef->addInstruction(LDTUPLEV_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
 	;
 
 ///----------
@@ -556,20 +571,20 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    :  methodId=IDENTIFIER
       '('
          (argument_list
-            {
-               if (GETTEXT($methodId) == "writeln") {
-                  methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
-               }
-            }
+//            {
+//               if (GETTEXT($methodId) == "writeln") {
+//                  methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+//               }
+//            }
          )?
       ')'
       {
-         if (GETTEXT($methodId) == "writeln") {
-            methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($methodId), StringType));
-         } else {
+//         if (GETTEXT($methodId) == "writeln") {
+//            methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($methodId), StringType));
+//         } else {
             methodDef->addInstruction(LDSELF_OPCODE);
             methodDef->addInstruction(MCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($methodId), StringType));
-         }
+//         }
       }
    ;
 
@@ -581,6 +596,14 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          if (GETTEXT($methodId) == "new") {
             methodDef->addInstruction(NEWELEM_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId), StringType));
          } else if (asmDef.isLibrary(GETTEXT($elementId))) {
+            if (GETTEXT($methodId) == "writeln" || GETTEXT($methodId) == "write") { // To forcando essa condicao para write e writelnln... com as bibliotecas ok, o mapeamento ira informar que writeln tem numero de argumentos variaveis...
+               methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            }
+            methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId) + "." + GETTEXT($methodId), StringType));
+         } else if (GETTEXT($elementId) == "io") {
+            if (GETTEXT($methodId) == "writeln" || GETTEXT($methodId) == "write") {
+               methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            }
             methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId) + "." + GETTEXT($methodId), StringType));
          } else {
             methodDef->addLoadInstruction(GETTEXT($elementId));
@@ -746,6 +769,7 @@ expr_elemento
   | element_property
   | rgroup
   | rtable
+  | rtuple
   | '(' expr ')'
   ;
 

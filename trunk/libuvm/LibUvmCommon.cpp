@@ -16,6 +16,8 @@ const std::string typeToText(const LiteralType &type)
 		return "userdata";
 	} else if (type == TableType) {
 		return "table";
+	} else if (type == TupleType) {
+		return "tuple";
 	}
 
 	return "ERRO !!!";

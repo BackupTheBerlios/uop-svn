@@ -3,7 +3,7 @@
 entity start
 	def start()
 		{"MeuGrupo"}.bind("prog1")
-		writeln("Programa 1 inserindo informacoes")
+		io.writeln("Programa 1 inserindo informacoes")
 		{"MeuGrupo"}.data.af("Numero 1" => 100)
 		while(true)
 		end

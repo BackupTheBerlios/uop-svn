@@ -4,7 +4,7 @@ Entity elemento
 		1 S x
 		2 S antes da chamada a elemento::y
 		3 I 1
-		4 S writeln
+		4 S io.writeln
 		5 S y
 		6 S depois da chamada a elemento::y
 		7 S no metodo elemento::y
@@ -15,12 +15,12 @@ Entity elemento
 		No results
 		ldconst 2 --> [antes da chamada a elemento::y]
 		ldconst 3 --> [1]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ldself
 		mcall 5 --> [y]
 		ldconst 6 --> [depois da chamada a elemento::y]
 		ldconst 3 --> [1]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ret
 	End
 	Def y
@@ -29,7 +29,7 @@ Entity elemento
 		No results
 		ldconst 7 --> [no metodo elemento::y]
 		ldconst 3 --> [1]
-		lcall 4 --> [writeln]
+		lcall 4 --> [io.writeln]
 		ret
 	End
 End
@@ -38,7 +38,7 @@ Entity start
 		0 S start
 		1 S antes da chamada a start::x
 		2 I 1
-		3 S writeln
+		3 S io.writeln
 		4 S x
 		5 S depois da chamada a start::x
 		6 S antes da chamada a start::y
@@ -55,12 +55,12 @@ Entity start
 		No results
 		ldconst 1 --> [antes da chamada a start::x]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		ldself
 		mcall 4 --> [x]
 		ldconst 5 --> [depois da chamada a start::x]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		stop
 	End
 	Def x
@@ -69,12 +69,12 @@ Entity start
 		No results
 		ldconst 6 --> [antes da chamada a start::y]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		ldself
 		mcall 7 --> [y]
 		ldconst 8 --> [depois da chamada a start::y]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		ret
 	End
 	Def y
@@ -85,14 +85,14 @@ Entity start
 		No results
 		ldconst 10 --> [antes da chamada a elemento::x]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		newelem 11 --> [elemento]
 		stvar 0 --> [e]
 		ldvar 0 --> [e]
 		mcall 4 --> [x]
 		ldconst 12 --> [depois da chamada a elemento::x]
 		ldconst 2 --> [1]
-		lcall 3 --> [writeln]
+		lcall 3 --> [io.writeln]
 		ret
 	End
 End

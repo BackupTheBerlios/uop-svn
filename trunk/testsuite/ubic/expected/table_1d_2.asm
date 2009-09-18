@@ -10,7 +10,7 @@ Entity start
 		7 I 1
 		8 S Alex   =
 		9 I 2
-		10 S writeln
+		10 S io.writeln
 		11 S Gracy  =
 		12 S Gabriel=
 	End
@@ -33,17 +33,17 @@ Entity start
 		ldconst 2 --> [Alex]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		ldconst 11 --> [Gracy  =]
 		ldconst 4 --> [Gracy]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		ldconst 12 --> [Gabriel=]
 		ldconst 6 --> [Gabriel]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		stop
 	End
 End

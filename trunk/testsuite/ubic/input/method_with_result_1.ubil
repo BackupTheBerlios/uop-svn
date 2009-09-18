@@ -2,7 +2,7 @@ entity start
 	def start()
 		def string result
 		result = x()
-		writeln("result: ", result)
+		io.writeln("result: ", result)
 	end
 	def x() [string]
 		return "oi"

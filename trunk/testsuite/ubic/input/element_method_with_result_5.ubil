@@ -5,8 +5,8 @@ entity start
 		def element e
 		e = elemento.new()
 		result1,result2 = e.x()
-		writeln("result1: ", result1)
-		writeln("result2: ", result2)
+		io.writeln("result1: ", result1)
+		io.writeln("result2: ", result2)
 	end
 end
 

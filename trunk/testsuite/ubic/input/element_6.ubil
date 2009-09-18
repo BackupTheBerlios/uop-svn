@@ -8,8 +8,8 @@ end
 
 entity elemento
 	def x(string msg1, string msg2)
-		writeln("msg1=", msg1)
-		writeln("msg2=", msg2)
+		io.writeln("msg1=", msg1)
+		io.writeln("msg2=", msg2)
 	end
 end
 

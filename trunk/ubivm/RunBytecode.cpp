@@ -164,12 +164,16 @@ void CRunBytecode::initOpcodePointer()
    _opcodePointer[DATAAF_OPCODE     ] = &CRunBytecode::dataafOpcode;
    _opcodePointer[DATADQU_OPCODE    ] = &CRunBytecode::datadquOpcode;
    _opcodePointer[DATAQU_OPCODE    ] = &CRunBytecode::dataquOpcode;
+	_opcodePointer[DATALIST_OPCODE    ] = &CRunBytecode::datalistOpcode;
    _opcodePointer[STCONTEXT_OPCODE  ] = &CRunBytecode::stcontextOpcode;
    _opcodePointer[LDCONTEXT_OPCODE  ] = &CRunBytecode::ldcontextOpcode;
    _opcodePointer[PUBLISHS_OPCODE   ] = &CRunBytecode::publishsOpcode;
    _opcodePointer[SCALL_OPCODE      ] = &CRunBytecode::scallOpcode;
 	_opcodePointer[STTAB_OPCODE      ] = &CRunBytecode::sttabOpcode;
 	_opcodePointer[LDTAB_OPCODE      ] = &CRunBytecode::ldtabOpcode;
+	_opcodePointer[LDTUPLEK_OPCODE    ] = &CRunBytecode::ldtuplekOpcode;
+	_opcodePointer[LDTUPLEV_OPCODE    ] = &CRunBytecode::ldtuplevOpcode;
+	_opcodePointer[TABSIZE_OPCODE     ] = &CRunBytecode::tabsizeOpcode;
 //   _opcodePointer[OP_EXIT       ] = &CRunBytecode::exitOpcode;
 //   _opcodePointer[OP_EXIT_0     ] = &CRunBytecode::exit_0Opcode;
 //   _opcodePointer[OP_EXIT_1     ] = &CRunBytecode::exit_1Opcode;
@@ -383,6 +387,35 @@ void CRunBytecode::procWriteln()
 }
 
 
+void CRunBytecode::procWrite()
+{
+	int argNumber = _dataStack.pop().getInteger();
+	std::string out;
+
+	for (int arg=0; arg < argNumber; arg++) {
+		out = _dataStack.pop().getText() + out;
+	}
+	std::cout << out;
+}
+
+
+void CRunBytecode::procReadln()
+{
+	std::string text;
+	std::cin >> text;
+
+	_dataStack.push(text);
+}
+
+
+void CRunBytecode::procSleep()
+{
+   int time = _dataStack.pop().getInteger();
+
+   sleep(time);
+}
+
+
 //void CRunBytecode::procImprima()
 //{
 //   int address = sizeof(int);
@@ -555,12 +588,19 @@ void CRunBytecode::lcallOpcode()
 
 
 //   if (libname == "io") {
-      if (procname == "writeln") {
-         procWriteln();
+	if (procname == "io.writeln") {
+		procWriteln();
+	} else if (procname == "io.write") {
+		procWrite();
+	} else if (procname == "io.readln") {
+		procReadln();
+	} else if (procname == "datetime.sleep") {
+		procSleep();
 //      } else if (procname == "leia") {
 //         procLeia();
       } else {
 		std::cout << "arg1 = " << _currentInstruction->getArg1() << std::endl;
+		std::cout << "procname=" << procname << std::endl;
          error("lcall invocando subrotina desconhecida !!!");
       }
 //   } else {
@@ -965,12 +1005,12 @@ void CRunBytecode::dataafOpcode()
 
 	// Read tuple values
 	for(uint value=0; value<tupleValues;value++) {
-		tuple->addValueAtEnd(_dataStack.pop());
+		tuple->addValueAtBegin(_dataStack.pop());
 	}
 
 	// Read tuple keys
 	for(uint key=0; key<tupleKeys;key++) {
-		tuple->addKeyAtEnd(_dataStack.pop());
+		tuple->addKeyAtBegin(_dataStack.pop());
 	}
 
 	std::string groupName = _dataStack.pop().getString();
@@ -987,7 +1027,7 @@ void CRunBytecode::datadquOpcode()
 
 	// Read tuple keys
 	for(uint key=0; key<tupleKeys;key++) {
-		tuple.addKeyAtEnd(_dataStack.pop().getString());
+		tuple.addKeyAtBegin(_dataStack.pop().getString());
 	}
 
 	std::string groupName = _dataStack.pop().getString();
@@ -1003,9 +1043,9 @@ void CRunBytecode::dataquOpcode()
 	uint tupleKeys = _dataStack.pop().getInteger();
 	CTuple tuple;
 
-	// Read tuple keys
+	// Getting tuple keys
 	for(uint key=0; key<tupleKeys;key++) {
-		tuple.addKeyAtEnd(_dataStack.pop().getString());
+		tuple.addKeyAtBegin(_dataStack.pop().getString());
 	}
 
 	std::string groupName = _dataStack.pop().getString();
@@ -1016,6 +1056,15 @@ void CRunBytecode::dataquOpcode()
 // 	{
 // 		std::cerr << "Exception: " << e.what() << "\n";
 // 	}
+}
+
+
+void CRunBytecode::datalistOpcode()
+{
+	trace("datalist opcode");
+
+	std::string groupName = _dataStack.pop().getString();
+	_cp->sendRequestDatalistOpcode(groupName);
 }
 
 
@@ -1125,6 +1174,7 @@ void CRunBytecode::ldtabOpcode()
 	_dataStack.push(value);
 }
 
+
 void CRunBytecode::sttabOpcode()
 {
 	trace ("sttab opcode");
@@ -1137,6 +1187,40 @@ void CRunBytecode::sttabOpcode()
 // 	} else {
 // 		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getInteger() - 1, value);
 // 	}
+}
+
+
+void CRunBytecode::ldtuplekOpcode()
+{
+	trace ("ldtuplek opcode");
+
+	CLiteral index = _dataStack.pop();
+	CLiteral value;
+
+	value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTuple()->_keyList[index.getInteger()-1];
+
+	_dataStack.push(value);
+}
+
+
+void CRunBytecode::ldtuplevOpcode()
+{
+	trace ("ldtuplev opcode");
+	
+	CLiteral index = _dataStack.pop();
+	CLiteral value;
+
+	value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTuple()->_valueList[index.getInteger()-1];
+
+	_dataStack.push(value);
+}
+
+
+void CRunBytecode::tabsizeOpcode()
+{
+	trace ("tabsize opcode");
+
+	_dataStack.push(CLiteral((int)_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->size()));
 }
 
 

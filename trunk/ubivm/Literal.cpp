@@ -45,6 +45,9 @@ CLiteral::CLiteral(const CLiteral& literal)
 	} else if (_type == TableType) {
 		_value.tableValue = new CMultiIndex<CLiteral>();
 		*_value.tableValue = *literal._value.tableValue;
+	} else if (_type == TupleType) {
+		_value.tupleValue = new CTuple();
+		*_value.tupleValue = *literal._value.tupleValue;
 	}
 }
 
@@ -72,6 +75,8 @@ CLiteral::CLiteral(LiteralType type)
 		//TODO: userdata
 	} else if (_type == TableType) {
 		_value.tableValue = new CMultiIndex<CLiteral>();
+	} else if (_type == TupleType) {
+		_value.tupleValue = new CTuple();
 	}
 }
 
@@ -88,6 +93,8 @@ const void* CLiteral::getValue()
 		return _value.elementValue;
 	} else if (_type == TableType) {
 		return _value.tableValue;
+	} else if (_type == TupleType) {
+		return _value.tupleValue;
 	} else {
 		return &_value;
 	}
@@ -112,6 +119,9 @@ void CLiteral::setValue(LiteralType type, const void* value)
 	} else if (_type == TableType) {
 		_value.tableValue = new CMultiIndex<CLiteral>();
 		*_value.tableValue = *((CMultiIndex<CLiteral>*) value);
+	} else if (_type == TupleType) {
+		_value.tupleValue = new CTuple();
+		*_value.tupleValue = *((CTuple*) value);
 	} else {
 		std::map<LiteralType, size_t> typeSizeMap;
 
@@ -145,6 +155,15 @@ std::string CLiteral::getText()
 	} else if (_type == TableType) {
 		// TODO: poderia converter os literais para string e retornar...
 		return "Table*";
+	} else if (_type == TupleType) {
+		// TODO: poderia converter para string e retornar...
+		std::string result;
+		result += "Keys: [";
+		result += _value.tupleValue->getComposedKeys();
+		result += "] Values: [";
+		result += _value.tupleValue->getComposedValues();
+		result += "]";
+		return result;
 	}
 	
 	// TODO: userdata
@@ -180,4 +199,9 @@ CElement* CLiteral::getElement()
 CMultiIndex<CLiteral>* CLiteral::getTable()
 {
 	return _value.tableValue;
+}
+
+CTuple* CLiteral::getTuple()
+{
+	return _value.tupleValue;
 }

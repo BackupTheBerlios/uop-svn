@@ -45,3 +45,13 @@ void CBinString::assign(std::string data)
 	_data = data;
 }
 
+
+void CBinString::load(std::string& data)
+{
+	size_t size;
+	load(&size, sizeof(size));
+	char* buffer = new char[size];
+	load(buffer, size);
+	data = std::string(buffer, size);
+	delete []buffer;
+}

@@ -6,9 +6,9 @@ entity start
 		tab["Gracy"  ] = 32
 		tab["Gabriel"] = 1
 
-		writeln("Alex   =", tab["Alex"]   )
-		writeln("Gracy  =", tab["Gracy"]  )
-		writeln("Gabriel=", tab["Gabriel"])
+		io.writeln("Alex   =", tab["Alex"]   )
+		io.writeln("Gracy  =", tab["Gracy"]  )
+		io.writeln("Gabriel=", tab["Gabriel"])
 	end
 end
 

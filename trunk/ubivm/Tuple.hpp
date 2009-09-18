@@ -22,7 +22,9 @@
 #define UBIVM_TUPLE_HPP
 
 #include <string>
-#include <list>
+#include <vector>
+
+class CTuple;
 
 #include "Literal.hpp"
 
@@ -32,13 +34,15 @@
 class CTuple{
 public:
 	CTuple();
+	void addKeyAtBegin(CLiteral name);
+	void addValueAtBegin(CLiteral name);
 	void addKeyAtEnd(CLiteral name);
 	void addValueAtEnd(CLiteral name);
-	std::string getComposedKey();
+	std::string getComposedKeys();
 	std::string getComposedValues();
 
-	std::list<CLiteral> _keyList;
-	std::list<CLiteral> _valueList;
+	std::vector<CLiteral> _keyList;
+	std::vector<CLiteral> _valueList;
 };
 
 #endif

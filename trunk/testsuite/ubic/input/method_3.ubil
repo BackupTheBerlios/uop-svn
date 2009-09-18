@@ -3,7 +3,7 @@ entity start
 		x("oi")
 	end
 	def x(string msg)
-		writeln("msg=", msg)
+		io.writeln("msg=", msg)
 	end
 end
 

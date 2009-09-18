@@ -13,7 +13,7 @@ Entity start
 		10 S number1=
 		11 S  msg1=
 		12 I 4
-		13 S writeln
+		13 S io.writeln
 		14 S number2=
 		15 S  msg2=
 	End
@@ -43,13 +43,13 @@ Entity start
 		ldconst 11 --> [ msg1=]
 		ldpar 1 --> [msg1]
 		ldconst 12 --> [4]
-		lcall 13 --> [writeln]
+		lcall 13 --> [io.writeln]
 		ldconst 14 --> [number2=]
 		ldpar 2 --> [number2]
 		ldconst 15 --> [ msg2=]
 		ldpar 3 --> [msg2]
 		ldconst 12 --> [4]
-		lcall 13 --> [writeln]
+		lcall 13 --> [io.writeln]
 		ret
 	End
 End

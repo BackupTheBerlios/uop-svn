@@ -5,7 +5,7 @@ entity start
 	def x()
 		def string result
 		result = y()
-		writeln("result: ", result)
+		io.writeln("result: ", result)
 	end
 	def y() [string]
 		return "oi"

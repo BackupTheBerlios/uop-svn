@@ -5,7 +5,7 @@ Entity start
 		2 I 0
 		3 S fatorial
 		4 I 2
-		5 S writeln
+		5 S io.writeln
 		6 S Fatorial de 1: 
 		7 I 1
 		8 S Fatorial de 2: 
@@ -28,43 +28,43 @@ Entity start
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 6 --> [Fatorial de 1: ]
 		ldconst 7 --> [1]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 8 --> [Fatorial de 2: ]
 		ldconst 4 --> [2]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 9 --> [Fatorial de 3: ]
 		ldconst 10 --> [3]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 11 --> [Fatorial de 4: ]
 		ldconst 12 --> [4]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 13 --> [Fatorial de 5: ]
 		ldconst 14 --> [5]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ldconst 15 --> [Fatorial de 6: ]
 		ldconst 16 --> [6]
 		ldself
 		mcall 3 --> [fatorial]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		stop
 	End
 	Def fatorial

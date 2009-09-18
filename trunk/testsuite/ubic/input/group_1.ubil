@@ -1,8 +1,8 @@
 entity start
 	def start()
 		{"MeuGrupo"}.bind("Alex")
-		writeln("Inserindo informacoes")
+		io.writeln("Inserindo informacoes")
 		{"MeuGrupo"}.data.af("Numero 1" => "54321")
-		writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.dqu("Numero 1"))
+		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.dqu("Numero 1"))
 	end
 end

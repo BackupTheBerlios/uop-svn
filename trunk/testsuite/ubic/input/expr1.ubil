@@ -1,6 +1,6 @@
 entity start
   def start()
-    writeln( 10 + 20 )
+    io.writeln( 10 + 20 )
   end
 end
 

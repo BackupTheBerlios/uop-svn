@@ -38,14 +38,20 @@ enum OpcodeType {
 	DATAAF_OPCODE,
 	DATADQU_OPCODE,
 	DATAQU_OPCODE,
+	DATALIST_OPCODE,
 	PUBLISHS_OPCODE,
 	SCALL_OPCODE,
 	FINDS_OPCODE,
 	BINDS_OPCODE,
 	LDCONTEXT_OPCODE,
 	STCONTEXT_OPCODE,
-	STTAB_OPCODE,
+	STTAB_OPCODE,  // TODO: daria para termos um opcode so para manipular tabelas de qualquer dimensao, mas o assembly ficaria um pouco maior pq, ao inves de ldtab indicar a tabela, a tabela deveria ser carregada antes na pilha... algo como "t[1,2]=10 => ldconst 1, ldref t, ldtab, lsconst 2, ldtab, ldconst 10, sttab"
 	LDTAB_OPCODE,
+	LDTUPLEK_OPCODE,
+	LDTUPLEV_OPCODE,
+	STTUPLEK_OPCODE,
+	STTUPLEV_OPCODE,
+	TABSIZE_OPCODE,
 /*	LDIDENTITY_OPCODE,
 	LDLOCATION_OPCODE,
 	LDTIME_OPCODE,
@@ -64,7 +70,8 @@ enum LiteralType {
 	ElementType= 'E',
 // 	PointerType = 'P'
 	UserdataType= 'U',
-	TableType = 'T'
+	TableType = 'L',
+	TupleType = 'T'
 };
 
 enum SymbolType {

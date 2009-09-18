@@ -3,8 +3,8 @@
 entity start
 	def start()
 		{"MeuGrupo"}.bind("prog2")
-		writeln("Programa 2 inserindo Numero 2")
+		io.writeln("Programa 2 inserindo Numero 2")
 		{"MeuGrupo"}.data.af("Numero 2" => 200)
-		writeln("Informacoes inseridas pelo programa 1: ", {"MeuGrupo"}.data.qu("Numero 1"))
+		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuGrupo"}.data.qu("Numero 1"))
 	end
 end

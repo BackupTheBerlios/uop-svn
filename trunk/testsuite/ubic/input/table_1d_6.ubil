@@ -5,8 +5,8 @@ entity start
 		tab["20"] = 20
 		tab["10"] = 10
 
-		writeln("tab[1]=", tab[1])
-		writeln("tab[2]=", tab[2])
+		io.writeln("tab[1]=", tab[1])
+		io.writeln("tab[2]=", tab[2])
 	end
 end
 

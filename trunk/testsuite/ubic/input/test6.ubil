@@ -10,12 +10,12 @@
 entity start
 	def start()
 		int V1 = 0
-		writeln("V1 no metodo start/0: ", V1)
+		io.writeln("V1 no metodo start/0: ", V1)
 		metodo1()
-		writeln("V1 no metodo start/0: ", V1)
+		io.writeln("V1 no metodo start/0: ", V1)
 	end
 	def metodo1()
 		int V1 = 1
-		writeln("V1 no metodo metodo1/0: ", V1)
+		io.writeln("V1 no metodo metodo1/0: ", V1)
 	end
 end

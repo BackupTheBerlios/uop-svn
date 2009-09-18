@@ -6,7 +6,7 @@ Entity start
 		3 R 10.990000
 		4 R 20.990000
 		5 I 1
-		6 S writeln
+		6 S io.writeln
 	End
 	Def start
 		No parameters
@@ -23,7 +23,7 @@ Entity start
 		stvar 1 --> [var2]
 		ldvar 1 --> [var2]
 		ldconst 5 --> [1]
-		lcall 6 --> [writeln]
+		lcall 6 --> [io.writeln]
 		stop
 	End
 End

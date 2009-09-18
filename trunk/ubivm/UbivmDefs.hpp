@@ -19,6 +19,7 @@ struct SIp {
 };
 
 enum PacketOperationType {
+	INVALID_OPERATION = 0,
 	REQUEST_OPERATION,
 	REPLY_OPERATION
 };

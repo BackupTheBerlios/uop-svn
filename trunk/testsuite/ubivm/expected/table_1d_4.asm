@@ -10,7 +10,7 @@ Entity start
 		7 I 34
 		8 S Nome =
 		9 I 2
-		10 S writeln
+		10 S io.writeln
 		11 S Sexo =
 		12 S Idade=
 	End
@@ -33,17 +33,17 @@ Entity start
 		ldconst 2 --> [Nome]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		ldconst 11 --> [Sexo =]
 		ldconst 4 --> [Sexo]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		ldconst 12 --> [Idade=]
 		ldconst 6 --> [Idade]
 		ldtab 0 --> [tab]
 		ldconst 9 --> [2]
-		lcall 10 --> [writeln]
+		lcall 10 --> [io.writeln]
 		stop
 	End
 End

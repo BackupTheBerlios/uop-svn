@@ -5,7 +5,7 @@ Entity elemento
 		2 S msg
 		3 S msg=
 		4 I 2
-		5 S writeln
+		5 S io.writeln
 	End
 	Def x
 		Parameters
@@ -16,7 +16,7 @@ Entity elemento
 		ldconst 3 --> [msg=]
 		ldpar 0 --> [msg]
 		ldconst 4 --> [2]
-		lcall 5 --> [writeln]
+		lcall 5 --> [io.writeln]
 		ret
 	End
 End

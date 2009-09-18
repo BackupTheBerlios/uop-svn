@@ -8,7 +8,7 @@ Entity start
 		5 S tab[
 		6 S ]=
 		7 I 4
-		8 S writeln
+		8 S io.writeln
 	End
 	Def start
 		No parameters
@@ -53,7 +53,7 @@ Entity start
 		ldvar 1 --> [index]
 		ldtab 0 --> [tab]
 		ldconst 7 --> [4]
-		lcall 8 --> [writeln]
+		lcall 8 --> [io.writeln]
 		jmp 25 --> [25]
 	38:	stop
 	End

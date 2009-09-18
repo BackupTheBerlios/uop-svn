@@ -1,12 +1,12 @@
 entity start
   def start()
-    writeln( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" )
-    writeln( "12345 true false 10.0 20.9876" )
-    writeln( 12345 )
-	writeln( true )
-	writeln( false )
-	writeln( 10.0 )
-	writeln( 20.9876 )
+    io.writeln( "ABCDEFGHIJKLMNOPQRSTUVWXYZ" )
+    io.writeln( "12345 true false 10.0 20.9876" )
+    io.writeln( 12345 )
+	io.writeln( true )
+	io.writeln( false )
+	io.writeln( 10.0 )
+	io.writeln( 20.9876 )
   end
 end
 

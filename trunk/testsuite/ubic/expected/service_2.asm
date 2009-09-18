@@ -9,7 +9,7 @@ Entity servico
 		6 S msg
 		7 S Mensagem: 
 		8 I 2
-		9 S writeln
+		9 S io.writeln
 		10 S group
 		11 S Alex
 	End
@@ -52,7 +52,7 @@ Entity servico
 		ldconst 7 --> [Mensagem: ]
 		ldpar 0 --> [msg]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ret
 	End
 	Def servico
@@ -82,7 +82,7 @@ Entity start
 		6 I 20
 		7 S soma
 		8 I 2
-		9 S writeln
+		9 S io.writeln
 		10 S Diminui: 
 		11 S diminui
 		12 S Ola !!!
@@ -104,14 +104,14 @@ Entity start
 		ldconst 4 --> [group]
 		scall 7 --> [soma]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ldconst 10 --> [Diminui: ]
 		ldconst 5 --> [10]
 		ldconst 6 --> [20]
 		ldconst 4 --> [group]
 		scall 11 --> [diminui]
 		ldconst 8 --> [2]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ldconst 12 --> [Ola !!!]
 		ldconst 4 --> [group]
 		scall 13 --> [imprime]

@@ -9,7 +9,7 @@ Entity elemento
 		6 S number1=
 		7 S  msg1=
 		8 I 4
-		9 S writeln
+		9 S io.writeln
 		10 S number2=
 		11 S  msg2=
 	End
@@ -27,13 +27,13 @@ Entity elemento
 		ldconst 7 --> [ msg1=]
 		ldpar 1 --> [msg1]
 		ldconst 8 --> [4]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ldconst 10 --> [number2=]
 		ldpar 2 --> [number2]
 		ldconst 11 --> [ msg2=]
 		ldpar 3 --> [msg2]
 		ldconst 8 --> [4]
-		lcall 9 --> [writeln]
+		lcall 9 --> [io.writeln]
 		ret
 	End
 End
