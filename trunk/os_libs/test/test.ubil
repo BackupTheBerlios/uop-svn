@@ -1,0 +1,9 @@
+import io
+import libtest
+
+entity start
+	def start()
+		io.writeln("Soma=", libtest.soma_int(10, 20))
+		io.writeln("Soma=", libtest.soma_double(20.2, 40.4))
+	end
+end

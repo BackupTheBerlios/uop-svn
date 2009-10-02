@@ -1,0 +1,9 @@
+import io
+import math
+
+entity start
+	def start()
+		io.writeln("Cos(10)=", math.cos(10))
+		io.writeln("Mod(10,4)=", math.mod(10,4))
+	end
+end
