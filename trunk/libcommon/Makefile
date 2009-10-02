@@ -10,9 +10,9 @@
 
 TARGETS = libcommon
 
-SRCS = Tools.cpp
+SRCS = Tools.cpp TextFile.cpp
 
-OBJS = Tools.o
+OBJS = Tools.o TextFile.o
 
 #
 # include dependencies if present
@@ -30,7 +30,7 @@ INCLUDE_DIRS= -I.
 
 #COMPILE_FLAGS= -DHAVE_PATHS_H -DHAVE_MMAP
 
-CCFLAGS= $(COPTS) $(COMPILE_FLAGS) $(INCLUDE_DIRS)
+CCFLAGS= -rdynamic $(COPTS) $(COMPILE_FLAGS) $(INCLUDE_DIRS)
 
 LIB=libcommon.a
 

@@ -1,7 +1,12 @@
+#include <dlfcn.h>
+
+
 #include "RunBytecode.hpp"
 
 #include <sstream>
 #include <iostream>
+
+
 #include "Log.hpp"
 
 #include "Element.hpp"
@@ -269,6 +274,55 @@ void CRunBytecode::initOpcodePointer()
 }
 
 
+int CRunBytecode::load_providers()
+{
+	for(std::list<std::string>::iterator provider_name = _options->provider_list.begin(); provider_name != _options->provider_list.end(); provider_name++) {
+		std::cout << "Loading provider " << *provider_name << std::endl;
+		load_provider(*provider_name);
+	}
+	return 0;
+}
+
+
+int CRunBytecode::load_provider(std::string provider_name)
+{
+	std::string lib_name = "libuop_p_" + provider_name;
+
+	void *dlhandler = NULL;
+	char *error;
+
+	std::string libPath = std::string("../../ubiprovider/") + provider_name + "/" + lib_name + ".so";
+	dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
+	if (!dlhandler) {
+		fprintf (stderr, "dlopen(%s): %s\n", libPath.c_str(), dlerror());
+		exit(1);
+	}
+	dlerror();    // Clear any existing error
+
+	// run provider initialization
+	int (*func_init)(std::map<std::string, CLiteral>*);
+
+	func_init = (int (*)(std::map<std::string, CLiteral>*)) dlsym(dlhandler, "ubip_init");
+	if ((error = dlerror()) != NULL) {
+		fprintf (stderr, "dlsym(ubip_init): %s\n", error);
+		exit(1);
+	}
+	(*func_init)(&_contextsInfo);
+
+	// run provider main code
+	int (*func_run)();
+
+	func_run = (int (*)()) dlsym(dlhandler, "ubip_run");
+	if ((error = dlerror()) != NULL) {
+		fprintf (stderr, "dlsym(ubip_run): %s\n", error);
+		exit(1);
+	}
+	(*func_run)();
+
+	return 0;
+}
+
+
 int CRunBytecode::run()
 {
    //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
@@ -513,37 +567,54 @@ void CRunBytecode::procSleep()
 //}
 
 
-/*
-void CRunBytecode::callSyslib(const std::string &libname, const std::string &procname)
+void CRunBytecode::callSyslib(const std::string &libFunc)
 {
-   std::map<std::string, void*>::iterator ithandler;
-   void *dlhandler = NULL;
+	std::string libName = libFunc.substr(0, libFunc.find_first_of("."));
+	std::string procName = libFunc.substr(libFunc.find_first_of(".")+1);
 
-   ithandler = syslibHandlerList.find(libname);
+// std::cout << "libFunc=" << libFunc << " libName=" << libName << " procName=" << procName << std::endl;
 
-   if (ithandler == syslibHandlerList.end()) {
-      // TODO: path absoluto ??? nem pensar :-)
-      dlhandler = dlopen(("../../bindings/gptbind/test/lib" + libname + ".so").c_str(), RTLD_LAZY);
-      if (!dlhandler) {
-         fprintf (stderr, "%s\n", dlerror());
-         exit(1);
-      }
-      dlerror();    // Clear any existing error
-      syslibHandlerList[libname] = dlhandler;
-   } else {
-      dlhandler = ithandler->second;
-   }
+
+	std::map<std::string, void*>::iterator ithandler;
+	void *dlhandler = NULL;
+	char *error;
+
+	ithandler = syslibHandlerList.find(libName);
+
+	if (ithandler == syslibHandlerList.end()) {
+		// TODO: path absoluto ??? nem pensar :-)
+// 		std::string libPath = std::string("../../os_libs/") + libName + std::string("/libuvm_os_") + libName + ".so";
+		std::string libPath = std::string("../../ubibind/tests/") + std::string("/libuvm_os_") + libName + ".so";
+		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
+// 		dlhandler = dlopen(libPath.c_str(), RTLD_NOW|RTLD_GLOBAL);
+// 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
+// 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_LOCAL);
+		if (!dlhandler) {
+			fprintf (stderr, "dlopen(%s): %s\n", libPath.c_str(), dlerror());
+			exit(1);
+		}
+		dlerror();    // Clear any existing error
+		syslibHandlerList[libName] = dlhandler;
+// 		void (*initFunc)(void);
+// 		initFunc = (void (*)(void)) dlsym(dlhandler, ("uvm_os_lib"+libName+"_init").c_str());
+// 		if ((error = dlerror()) != NULL) {
+// 			fprintf (stderr, "dlsym: %s\n", error);
+// 			exit(1);
+// 		}
+// 		(*initFunc)();
+	} else {
+		dlhandler = ithandler->second;
+	}
 
    void (*func)(CDataStack&);
-   func = (void (*)(CDataStack&)) dlsym(dlhandler, ("gsl_"+procname).c_str());
-   char *error;
+   std::string funcToFind = "uvm_os_wrap_lib" + libName + "_" + procName;
+   func = (void (*)(CDataStack&)) dlsym(dlhandler, funcToFind.c_str());
    if ((error = dlerror()) != NULL) {
-      fprintf (stderr, "%s\n", error);
+      fprintf (stderr, "dlsym(%s): %s\n", funcToFind.c_str(), error);
       exit(1);
    }
    (*func)(_dataStack);
 }
-*/
 
 
 std::string CRunBytecode::getSymbolName(uint index)
@@ -598,14 +669,14 @@ void CRunBytecode::lcallOpcode()
 		procSleep();
 //      } else if (procname == "leia") {
 //         procLeia();
-      } else {
-		std::cout << "arg1 = " << _currentInstruction->getArg1() << std::endl;
-		std::cout << "procname=" << procname << std::endl;
-         error("lcall invocando subrotina desconhecida !!!");
-      }
-//   } else {
-//      callSyslib(libname, procname);
-//   }
+	} else {
+		callSyslib(procname);
+	}
+//       } else {
+// 		std::cout << "arg1 = " << _currentInstruction->getArg1() << std::endl;
+// 		std::cout << "procname=" << procname << std::endl;
+//          error("lcall invocando subrotina desconhecida !!!");
+//       }
 
 //   _dataStack.setBS(_executionStack.top());
 //   _executionStack.pop();
@@ -1206,7 +1277,7 @@ void CRunBytecode::ldtuplekOpcode()
 void CRunBytecode::ldtuplevOpcode()
 {
 	trace ("ldtuplev opcode");
-	
+
 	CLiteral index = _dataStack.pop();
 	CLiteral value;
 
@@ -2100,7 +2171,7 @@ void CRunBytecode::pushsvOpcode()
 //
 //   // Quando uma variavel local eh empilhada o endereco empilhado nao pode ser
 //   // o relativo, mas sim o absoluto (global). Caso contrario qdo a outra funcao
-//   // tentar acessar o endereco ela vai usar o seu BS e nao o BS de quando o 
+//   // tentar acessar o endereco ela vai usar o seu BS e nao o BS de quando o
 //   // endereco foi empilhado
 //
 //   if (IS_LOCAL_ADDRESS(address)) {

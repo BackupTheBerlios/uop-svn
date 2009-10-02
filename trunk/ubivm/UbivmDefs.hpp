@@ -1,6 +1,9 @@
 #ifndef UBIVM_DEFS_HPP
 #define UBIVM_DEFS_HPP
 
+#include <string>
+#include <list>
+
 #include "EntityDefinition.hpp"
 #include "MethodDefinition.hpp"
 #include "Element.hpp"
@@ -10,6 +13,7 @@ typedef struct SOptions {
 	std::string asmFilename;
 	uint bindPort;
 	uint sendPort;
+	std::list<std::string> provider_list;
 };
 
 struct SIp {

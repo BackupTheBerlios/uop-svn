@@ -74,6 +74,23 @@ enum LiteralType {
 	TupleType = 'T'
 };
 
+
+
+// TODO: o enum acima deveria ficar dentro da declaracao da classe literal... algo como:
+// class CLiteral
+// {
+// public:
+//    enum EScope {
+//       GLOBAL = 'G',
+//       LOCAL  = 'L'
+//    };
+//    enum ECategory {
+//       PROC  = 'P',
+//       CONST = 'C',
+//       VAR   = 'V',
+//       PARAM = 'P'
+//    };
+
 enum SymbolType {
 	stringttt,
 	integerttt,

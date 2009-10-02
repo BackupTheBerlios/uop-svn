@@ -35,10 +35,12 @@ public:
 //   bool readFromFile(std::ifstream &in);
 	std::string toTextAssembly();
    int run();
+	int load_providers();
 private:
    void trace(const std::string &message);
    void error(const std::string &message);
    void initOpcodePointer();
+   int load_provider(std::string provider_name);
    void step();
    void procWriteln();
    void procWrite();
@@ -51,7 +53,7 @@ private:
    void setStringData(const int &address, const std::string &value);
    std::string getStringData(const int &address);
    void popRA();
-   void callSyslib(const std::string &libname, const std::string &procname);
+   void callSyslib(const std::string &procname);
 	std::string getSymbolName(uint index);
 	CSymbol* getSymbol(uint index);
 
@@ -108,7 +110,7 @@ private:
    int             _returnCode;
    CDataStack      _dataStack;
 //   std::stack<int> _executionStack;
-//   std::map<std::string, void*> syslibHandlerList;
+   std::map<std::string, void*> syslibHandlerList;
    SIp _ip;
 	CAssemblyDefinition _asmDef;
 	CInstructionDefinition* _currentInstruction;

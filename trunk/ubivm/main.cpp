@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	options.bindPort = 45555;
 	options.sendPort = 45555;
 
-	while ((i = getopt(argc, argv, "a:hl:s:")) != -1) {
+	while ((i = getopt(argc, argv, "a:hl:s:p:")) != -1) {
 		switch (i) {
 		case 'a': // Make assembly text file
 			options.asmFilename = std::string(optarg);
@@ -32,6 +32,9 @@ int main(int argc, char *argv[])
 			break;
 		case 's': // Port to send
 			options.sendPort = atoi(optarg);
+			break;
+		case 'p': // Provider name
+			options.provider_list.push_back(optarg);
 			break;
 		default:
 			break;
@@ -69,5 +72,6 @@ void showSyntax() {
 			<< "         -h help"                                           << std::endl
 			<< "         -l port_to_listen"                                 << std::endl
 			<< "         -s port_to_send"                                   << std::endl
-			                                                                << std::endl;
+			<< "         -p provider_name"                                  << std::endl
+			<< std::endl;
 }
