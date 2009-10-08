@@ -171,7 +171,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
 @init{
 }
-   :  'entity' IDENTIFIER
+   :  'entity' IDENTIFIER (entity_options)?
       {
 //          entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
           entityDef = asmDef.addEntity(GETTEXT($IDENTIFIER));
@@ -180,6 +180,13 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       (property_definition|method_definition)*
       'end'
    ;
+
+///----------
+   entity_options
+///----------
+	:	'[' IDENTIFIER ( ',' IDENTIFIER )* ']'
+	;
+
 
 ///----------
    property_definition

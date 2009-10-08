@@ -1,6 +1,11 @@
 #ifndef UBIVM_ELEMENT_HPP
 #define UBIVM_ELEMENT_HPP
 
+#include <boost/thread/thread.hpp>
+#include <boost/thread/mutex.hpp>
+#include <boost/thread/condition.hpp>
+
+
 #include "EntityDefinition.hpp"
 
 /**
@@ -9,7 +14,7 @@
 class CElement
 {
 public:
-    CElement() : _entity(NULL) { }
+    CElement() : _entity(NULL), _thread(NULL) { }
     CElement(CEntityDefinition* entity);
     ~CElement();
 	CEntityDefinition* _entity;
@@ -25,6 +30,8 @@ public:
 	{
 		return _entity->getName();
 	}
+// private:
+	boost::thread* _thread;
 };
 
 #endif

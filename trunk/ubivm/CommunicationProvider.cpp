@@ -19,7 +19,7 @@ CCommunicationProvider::CCommunicationProvider(std::map<std::string, CGroup*>* g
 void CCommunicationProvider::run()
 {
 // 	boost::thread thr1( boost::bind( &CCommunicationProvider::run, this ) );
-	_thread = new boost::thread( boost::bind( &CCommunicationProvider::threadedCode, this ) );
+	_thread = new boost::thread( boost::bind( &CCommunicationProvider::threadedCode, this));
 }
 
 

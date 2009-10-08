@@ -20,7 +20,7 @@
 #include "Element.hpp"
 
 CElement::CElement(CEntityDefinition* entity)
-	: _entity(entity)
+	: _entity(entity), _thread(NULL)
 {
 }
 

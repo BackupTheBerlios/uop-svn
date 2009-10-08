@@ -6,13 +6,9 @@
 #include <fstream>
 #include <stack>
 
-//#include "CHeader.hpp"
 #include "SymbolTable.hpp"
 #include "LibuvmDefs.hpp"
 #include "UbivmDefs.hpp"
-//#include "CBinString.hpp"
-//#include "CBytecode.hpp"
-//#include "Common.hpp"
 #include "DataStack.hpp"
 #include "AssemblyDefinition.hpp"
 #include "MethodDefinition.hpp"
@@ -23,36 +19,34 @@
 
 class CRunBytecode;
 
-typedef void (CRunBytecode:: *OpcodePointer) ( );
+
+typedef void (CRunBytecode:: *OpcodePointer)();
 
 
 class CRunBytecode
 {
 public:
-	CRunBytecode(SOptions *options);
-   ~CRunBytecode();
-   bool readFromFile(std::string name);
-//   bool readFromFile(std::ifstream &in);
-	std::string toTextAssembly();
-   int run();
-	int load_providers();
+	CRunBytecode(SOptions *options, CAssemblyDefinition* asmDef, std::map<std::string, void*>* syslibHandlerList, std::vector<CElement*>* elementList, std::map<std::string, CGroup*>* groupList, std::map<std::string, CLiteral>* contextsInfo, CCommunicationProvider* cp);
+	~CRunBytecode();
+	int run();
+// 	int run(std::string entity_name, CElement* element);
 private:
-   void trace(const std::string &message);
+	void _initOpcodePointer();
+	void trace(const std::string &message);
    void error(const std::string &message);
-   void initOpcodePointer();
-   int load_provider(std::string provider_name);
    void step();
+	void run_bytecode();
    void procWriteln();
    void procWrite();
    void procReadln();
    void procSleep();
 //   void setIntData(const int &address, const int &value);
 //   int  getIntData(const int &address);
-   void setRealData(const int &address, const double &value);
-   double getRealData(const int &address);
-   void setStringData(const int &address, const std::string &value);
-   std::string getStringData(const int &address);
-   void popRA();
+//    void setRealData(const int &address, const double &value);
+//    double getRealData(const int &address);
+//    void setStringData(const int &address, const std::string &value);
+//    std::string getStringData(const int &address);
+//    void popRA();
    void callSyslib(const std::string &procname);
 	std::string getSymbolName(uint index);
 	CSymbol* getSymbol(uint index);
@@ -102,24 +96,23 @@ private:
 	void tabsizeOpcode();
 
 //   CHeader         _header;
-   CSymbolTable    _symbolTable;
+// 	CSymbolTable    _symbolTable; // TODO: preciso disso ???
 //   CBinString      _globalData;
 //   CBytecode       _code;
-   OpcodePointer   _opcodePointer[OPCODE_COUNT];
-   bool            _stop;
-   int             _returnCode;
-   CDataStack      _dataStack;
-//   std::stack<int> _executionStack;
-   std::map<std::string, void*> syslibHandlerList;
-   SIp _ip;
-	CAssemblyDefinition _asmDef;
+	OpcodePointer   _opcodePointer[OPCODE_COUNT];
+	bool            _stop;
+	int             _returnCode;
+	CDataStack      _dataStack;
+	SIp _ip;
 	CInstructionDefinition* _currentInstruction;
 	std::stack<CActivationRecord*> _controlStack;
-	std::map<std::string, CGroup*> _groupList;
-	std::map<std::string, CLiteral> _contextsInfo;
-	std::vector<CElement*> _elementList;
-	CCommunicationProvider* _cp;
 	SOptions* _options;
+	CAssemblyDefinition* _asmDef;
+	std::map<std::string, void*>* _syslibHandlerList;
+	std::vector<CElement*>* _elementList;
+	std::map<std::string, CGroup*>* _groupList;
+	std::map<std::string, CLiteral>* _contextsInfo;
+	CCommunicationProvider* _cp;
 };
 
 #endif

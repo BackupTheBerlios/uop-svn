@@ -29,15 +29,13 @@ public:
 	{
 		return _name;
 	}
+	bool isParallel() const;
 private:
 	std::vector<CPropertyDefinition*> _propertyList;
 	std::vector<CMethodDefinition*> _methodList;
 	std::string _name;
 	CSymbolTable _symbolTable;
 };
-
-// }
-
 
 #endif
 

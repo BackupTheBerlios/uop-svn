@@ -1,7 +1,7 @@
 # LIBUVM=../libuvm/
 # LIBCOMMON=../libcommon/
 
-# INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON)
+# INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON) -I/usr/local/include/boost-1_39/
 CC=g++
 CCFLAGS=-g -Wall -pedantic
 # CCFLAGS_ANTLR=-g -Wall

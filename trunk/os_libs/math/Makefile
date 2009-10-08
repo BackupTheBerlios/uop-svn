@@ -3,7 +3,7 @@ UBIVM=../../ubivm
 LIBCOMMON=../../libcommon/
 
 # INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON)
-INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../
+INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../ -I/usr/local/include/boost-1_39/
 CC=g++
 CCFLAGS=-g -Wall -pedantic
 

@@ -20,6 +20,12 @@ struct SIp {
 	CElement *element;
 	CMethodDefinition *method;
 	u_short ip;
+	SIp()
+	{
+		element = NULL;
+		method  = NULL;
+		ip      = 0;
+	}
 };
 
 enum PacketOperationType {

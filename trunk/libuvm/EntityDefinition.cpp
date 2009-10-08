@@ -152,3 +152,9 @@ CSymbol* CEntityDefinition::getSymbolByIndex(size_t index)
 	return _symbolTable.getSymbolByIndex(index);
 }
 
+
+bool CEntityDefinition::isParallel() const
+{
+	// TODO: corrigir depois...
+	return (_name == "concorrente");
+}
