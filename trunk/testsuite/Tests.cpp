@@ -17,7 +17,7 @@ void CTests::config()
 	compiler.addExecutionCommandLine("../ubic/ubic -o %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.uvm "
                                      "-a %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm "
                                      "%COMPILERARGS% "
-                                     "%INPUTPATH%/%TEST%.ubil "
+                                     "%INPUTPATH%/%TEST% "
                                      "> %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
 	compiler.addCopyingResultsCommandLine("cp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.uvm %EXPECTEDPATH%/");
 	compiler.addCopyingResultsCommandLine("cp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/");
@@ -321,6 +321,56 @@ void CTests::define()
 
 	test = compiler.addTest(PASS, "group_data_1");
 	test = vm.addTest(PASS, "group_data_1");
+
+	test = compiler.addTest(PASS, "lcall_1");
+//	test = vm.addTest(PASS, "lcall_1");
+
+	test = compiler.addTest(PASS, "ncurses_1");
+//	test = vm.addTest(PASS, "ncurses_1");
+
+	test = compiler.addTest(PASS, "ncurses_2");
+//	test = vm.addTest(PASS, "ncurses_2");
+
+	test = compiler.addTest(PASS, "ncurses_3");
+//	test = vm.addTest(PASS, "ncurses_3");
+
+	test = compiler.addTest(PASS, "ncurses_4");
+//	test = vm.addTest(PASS, "ncurses_4");
+
+	test = compiler.addTest(PASS, "ncurses_5");
+//	test = vm.addTest(PASS, "ncurses_5");
+
+	test = compiler.addTest(PASS, "concurrent_elements_1");
+	test = vm.addTest(PASS, "concurrent_elements_1");
+
+	test = compiler.addTest(PASS, "data_list_1");
+	test = vm.addTest(PASS, "data_list_1");
+
+	test = compiler.addTest(PASS, "tuple_1");
+	test = vm.addTest(PASS, "tuple_1");
+
+	test = compiler.addTest(PASS, "group_data_2_1");
+
+	test = compiler.addTest(PASS, "group_data_2_2");
+
+	test = compiler.addTest(PASS, "group_data_3_1");
+
+	test = compiler.addTest(PASS, "group_data_3_2");
+
+	test = compiler.addTest(PASS, "group_data_4");
+	test = vm.addTest(PASS, "group_data_4");
+
+	test = compiler.addTest(PASS, "group_data_5");
+	test = vm.addTest(PASS, "group_data_5");
+
+	test = compiler.addTest(PASS, "group_data_6");
+	test = vm.addTest(PASS, "group_data_6");
+
+	test = compiler.addTest(PASS, "group_data_7");
+	test = vm.addTest(PASS, "group_data_7");
+
+	test = compiler.addTest(PASS, "group_data_8");
+	test = vm.addTest(PASS, "group_data_8");
 
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real

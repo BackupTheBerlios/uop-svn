@@ -1,4 +1,5 @@
 Entity elemento
+	No options
 	Constants
 		0 S elemento
 		1 S y
@@ -16,6 +17,7 @@ Entity elemento
 	End
 End
 Entity start
+	No options
 	Constants
 		0 S start
 		1 S x

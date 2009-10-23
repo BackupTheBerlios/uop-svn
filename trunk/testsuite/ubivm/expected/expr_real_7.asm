@@ -1,4 +1,5 @@
 Entity start
+	No options
 	Constants
 		0 S start
 		1 S (2.0 * (8.0 - 18.0 / 9.0 * 6.0) * (49.0 / 7.0 - 3.0))=

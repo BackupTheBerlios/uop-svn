@@ -34,4 +34,31 @@ enum PacketOperationType {
 	REPLY_OPERATION
 };
 
+struct SVmId { // TODO: Tenho que colocar IP tb no ID...
+	pid_t _pid;
+	uint  _bce;
+	SVmId(pid_t pid, uint bce) : _pid(pid), _bce(bce)
+	{ }
+	SVmId() : _pid(-1), _bce(-1)
+	{ }
+};
+
+struct SPacketHeader {
+	SVmId               _srcVmId;
+	SVmId               _dstVmId;
+	uint                _packetNumber;
+	OpcodeType          _opcode;
+	PacketOperationType _operation;
+	SPacketHeader() :
+			_packetNumber(0), _opcode(INVALID_OPCODE), _operation(INVALID_OPERATION)
+			{
+			}
+	SPacketHeader(SVmId srcVmId, SVmId dstVmId, uint packetNumber, OpcodeType opcode, PacketOperationType operation) :
+			_srcVmId(srcVmId), _dstVmId(dstVmId), _packetNumber(packetNumber), _opcode(opcode), _operation(operation)
+			{
+			}
+};
+
+static const uint REQUEST_TIMEOUT = 1;
+
 #endif

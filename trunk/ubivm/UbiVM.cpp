@@ -2,11 +2,12 @@
 #include <dlfcn.h>
 
 #include "UbiVM.hpp"
+#include "GroupProvider.hpp"
 
 
-CUbiVM::CUbiVM(SOptions *options) : _options(options)
-{
-}
+// CUbiVM::CUbiVM(SOptions *options) : _options(options)
+// {
+// }
 
 
 int CUbiVM::run()
@@ -23,10 +24,12 @@ int CUbiVM::run()
 		out << _toTextAssembly();
 	}
 
-//	_cp = new CCommunicationProvider(&_groupList, &_dataStack, _options->bindPort, _options->sendPort); // TODO: dataStack de qual BCE ???
-//	_cp->run();
+	CGroupProvider::getInstance()->setConfig(&_groupList);
 
-	CRunBytecode bytecode(_options, &_asmDef, &_syslibHandlerList, &_elementList, &_groupList, &_contextsInfo, _cp);
+	CCommunicationProvider::getInstance()->setConfig(&_groupList, _options->bindPort, _options->sendPort);
+	CCommunicationProvider::getInstance()->run();
+
+	CRunBytecode bytecode;
 
 	return bytecode.run();
 // 	return bytecode.run("start", NULL);
@@ -120,4 +123,10 @@ int CUbiVM::_load_provider(std::string provider_name)
 	(*func_run)();
 
 	return 0;
+}
+
+
+void CUbiVM::setConfig(SOptions * options)
+{
+	_options = options;
 }

@@ -1,4 +1,5 @@
 Entity servico
+	No options
 	Constants
 		0 S servico
 		1 S soma
@@ -72,6 +73,7 @@ Entity servico
 	End
 End
 Entity start
+	No options
 	Constants
 		0 S start
 		1 S s
@@ -80,13 +82,14 @@ Entity start
 		4 S group
 		5 I 10
 		6 I 20
-		7 S soma
-		8 I 2
+		7 I 2
+		8 S soma
 		9 S io.writeln
 		10 S Diminui: 
 		11 S diminui
 		12 S Ola !!!
-		13 S imprime
+		13 I 1
+		14 S imprime
 	End
 	Def start
 		No parameters
@@ -101,20 +104,23 @@ Entity start
 		ldconst 3 --> [Soma  : ]
 		ldconst 5 --> [10]
 		ldconst 6 --> [20]
+		ldconst 7 --> [2]
 		ldconst 4 --> [group]
-		scall 7 --> [soma]
-		ldconst 8 --> [2]
+		scall 8 --> [soma]
+		ldconst 7 --> [2]
 		lcall 9 --> [io.writeln]
 		ldconst 10 --> [Diminui: ]
 		ldconst 5 --> [10]
 		ldconst 6 --> [20]
+		ldconst 7 --> [2]
 		ldconst 4 --> [group]
 		scall 11 --> [diminui]
-		ldconst 8 --> [2]
+		ldconst 7 --> [2]
 		lcall 9 --> [io.writeln]
 		ldconst 12 --> [Ola !!!]
+		ldconst 13 --> [1]
 		ldconst 4 --> [group]
-		scall 13 --> [imprime]
+		scall 14 --> [imprime]
 		stop
 	End
 End

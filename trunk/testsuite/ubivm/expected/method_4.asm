@@ -1,4 +1,5 @@
 Entity start
+	No options
 	Constants
 		0 S start
 		1 S oi

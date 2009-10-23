@@ -148,9 +148,11 @@ main	(int argc, char *argv[])
         showSyntax(EXIT_FAILURE);
     }
 
-    options.sourceFilename = std::string(argv[0]);
+    options.sourceFilename = std::string(argv[0]) + ".ubil";
+//     options.sourceFilename = std::string(argv[0]);
 	if (options.uvmFilename.empty()) {
-		options.uvmFilename = options.sourceFilename.substr(0, options.sourceFilename.size()-4) + "uvm";
+		options.uvmFilename = std::string(argv[0]) + ".uvm";
+//		options.uvmFilename = options.sourceFilename.substr(0, options.sourceFilename.size()-4) + "uvm";
 	}
 //         for (param = 1; param < argc; param++)
 //             options.parameters.push_back(Symbol(argv[param]));

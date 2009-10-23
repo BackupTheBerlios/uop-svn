@@ -1,10 +1,14 @@
 // Terceiro teste: Programa 1 insere num1 e mostra valor num2, Programa 2 insere num2 e mostra valor num1
 
+import datetime
+
 entity start
 	def start()
 		{"MeuGrupo"}.bind("prog2")
-		io.writeln("Programa 2 inserindo Numero 2")
-		{"MeuGrupo"}.data.af("Numero 2" => 200)
-		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuGrupo"}.data.qu("Numero 1"))
+		io.writeln("Programa 2 inserindo N2")
+		{"MeuGrupo"}.data.af("N2" => 200)
+//		datetime.sleep(5)
+		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuGrupo"}.data.qu("N1"))
+//		datetime.sleep(5)
 	end
 end

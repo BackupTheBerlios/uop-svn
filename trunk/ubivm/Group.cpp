@@ -25,6 +25,9 @@ void CGroup::addTuple(CTuple* tuple)
 
 void CGroup::remTuple(CTuple* tuple)
 {
+// 	std::cout << "Antes de remover: " << _dataList[tuple->getComposedKeys()] << std::endl;
+	_dataList.erase(tuple->getComposedKeys());
+// 	std::cout << "Depois de remover: " << _dataList[tuple->getComposedKeys()] << std::endl;
 }
 
 
@@ -51,4 +54,5 @@ std::string CGroup::findService(std::string serviceName)
 
 CTuple * CGroup::findTuple(CTuple * tuple)
 {
+	return NULL; // TODO
 }

@@ -171,20 +171,23 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
 @init{
 }
-   :  'entity' IDENTIFIER (entity_options)?
-      {
-//          entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
-          entityDef = asmDef.addEntity(GETTEXT($IDENTIFIER));
-//          entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
-      }
-      (property_definition|method_definition)*
-      'end'
-   ;
+	:  'entity' IDENTIFIER
+		{ entityDef = asmDef.addEntity(GETTEXT($IDENTIFIER)); }
+		(entity_options)?
+		{
+//			entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
+//			entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
+		 }
+		(property_definition|method_definition)*
+		'end'
+	;
 
 ///----------
    entity_options
 ///----------
-	:	'[' IDENTIFIER ( ',' IDENTIFIER )* ']'
+	:	'[' opt1=IDENTIFIER {entityDef->setOption(GETTEXT($opt1));}
+			( ',' opt2=IDENTIFIER {entityDef->setOption(GETTEXT($opt2));} )*
+		']'
 	;
 
 
@@ -352,8 +355,9 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    :  '{' expr '}' '.' 'bind' '(' argument ')'  { methodDef->addInstruction(BINDG_OPCODE);  }
    |  '{' expr '}' '.' 'leave' '(' argument ')' { methodDef->addInstruction(LEAVEG_OPCODE); }
    |  { methodDef->pushInstructions(); } '{' expr '}' '.' { methodDef->addInstructions(); } IDENTIFIER
-      ( '(' argument_list ')' )?
+      ( '(' args=argument_list ')' )?
       {
+         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($args.args), IntegerType));
          serviceName = GETTEXT($IDENTIFIER);
          methodDef->addPushedInstructions();
          methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
@@ -404,6 +408,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          } else if (GETTEXT($IDENTIFIER) == "qu") {
             methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
             methodDef->addInstruction(DATAQU_OPCODE);
+         } else if (GETTEXT($IDENTIFIER) == "nbqu") {
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            methodDef->addInstruction(DATANBQU_OPCODE);
+         } else if (GETTEXT($IDENTIFIER) == "nbdqu") {
+            methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
+            methodDef->addInstruction(DATANBDQU_OPCODE);
          } else if (GETTEXT($IDENTIFIER) == "list") {
             methodDef->addInstruction(DATALIST_OPCODE);
          }
@@ -419,8 +429,9 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    std::string serviceName;
 }
    :  { methodDef->pushInstructions(); } '{' expr '}' '.' { methodDef->addInstructions(); } IDENTIFIER
-      ( '(' argument_list ')' )?
+      ( '(' args=argument_list ')' )?
       {
+         methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($args.args), IntegerType));
          serviceName = GETTEXT($IDENTIFIER);
          methodDef->addPushedInstructions();
          methodDef->addInstruction(SCALL_OPCODE, entityDef->getSymbolIndex(serviceName, StringType));
@@ -603,7 +614,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          if (GETTEXT($methodId) == "new") {
             methodDef->addInstruction(NEWELEM_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId), StringType));
          } else if (asmDef.isLibrary(GETTEXT($elementId))) {
-            if (GETTEXT($methodId) == "writeln" || GETTEXT($methodId) == "write") { // To forcando essa condicao para write e writelnln... com as bibliotecas ok, o mapeamento ira informar que writeln tem numero de argumentos variaveis...
+            if (GETTEXT($methodId) == "writeln" || GETTEXT($methodId) == "write" || GETTEXT($methodId) == "mvwriteln" || GETTEXT($methodId) == "mvwrite" || GETTEXT($methodId) == "mvwwrite" || GETTEXT($methodId) == "mvwwriteln" || GETTEXT($methodId) == "wwriteln" || GETTEXT($methodId) == "wwrite") { // To forcando essa condicao para write e writelnln... com as bibliotecas ok, o mapeamento ira informar que writeln tem numero de argumentos variaveis...
                methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(itoa($argument_list.args), IntegerType));
             }
             methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId) + "." + GETTEXT($methodId), StringType));

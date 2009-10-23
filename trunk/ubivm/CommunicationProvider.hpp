@@ -30,30 +30,17 @@
 
 using boost::asio::ip::udp;
 
+class CCommunicationProvider;
+class CRunBytecode;
 
 #include "Tuple.hpp"
 #include "Group.hpp"
 #include "DataStack.hpp"
 #include "UbivmDefs.hpp"
 #include "Tools.hpp"
+#include "RunBytecode.hpp"
 
 
-struct SPacketHeader {
-	int                 _vmId;
-	uint                _packetNumber;
-	OpcodeType          _opcode;
-	PacketOperationType _operation;
-	SPacketHeader() :
-			_packetNumber(0), _opcode(INVALID_OPCODE), _operation(INVALID_OPERATION)
-	{
-		_vmId = getpid();
-	}
-	SPacketHeader(uint packetNumber, OpcodeType opcode, PacketOperationType operation) :
-			_packetNumber(packetNumber), _opcode(opcode), _operation(operation)
-	{
-		_vmId = getpid(); // TODO: Tenho que colocar IP tb no ID...
-	}
-};
 
 
 /**
@@ -61,33 +48,38 @@ struct SPacketHeader {
 */
 class CCommunicationProvider {
 public:
-	CCommunicationProvider(std::map<std::string, CGroup*>* groupList, CDataStack* dataStack, uint bindPort, uint sendPort);
+	static CCommunicationProvider* getInstance()
+	{
+		static CCommunicationProvider *instance = NULL;
+		return instance ? instance : (instance = new CCommunicationProvider());
+	}
+	void setConfig(std::map<std::string, CGroup*>* groupList, uint bindPort, uint sendPort);
 	void run();
-	void sendRequestDataquOpcode(std::string groupName, CTuple tuple);
-	void sendRequestDatalistOpcode(std::string groupName);
-
-private:
+	uint getNextPacketNumber()
+	{
+		return _packetNumber++;
+	}
 	void sendBroadcastPacket(const char* packet, size_t length);
+	void sendUnicastReply(const char* packet, size_t length, udp::endpoint& endpoint);
+private:
+	CCommunicationProvider() { };
 	void threadedCode();
 	void processReceivedPacket(const char* char_packet, size_t lenght, udp::socket& sock, udp::endpoint& sender_endpoint);
 	void processRequestOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-	void processDatalistRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+// 	void processDatalistRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	void processReplyOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-	void processDatalistReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+// 	void processDatalistReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	std::string dumpPacket(const char* packet, uint length);
 
 	boost::thread*   _thread;
 	uint             _packetNumber;
 // 	boost::mutex     _mutex;
 // 	boost::condition_variable _cond;
-	std::map<std::string, CGroup*>* _groupList;
-	CDataStack*      _dataStack;
-	bool _dataReadyInDataList;
-	bool _dataReadyInDataQu;
+// 	CDataStack*      _dataStack;
 	uint _bindPort;
 	uint _sendPort;
  	boost::asio::io_service _io_service;
-	CMultiIndex<CLiteral>* _dataListReplyTable;
+// 	boost::asio::ip::udp::socket* _socket;
 };
 
 #endif

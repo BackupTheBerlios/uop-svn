@@ -43,6 +43,7 @@ public:
 		return _data;
 	}
 	void load(std::string& data);
+	void save(const std::string& data);
 private:
 	std::string _data;
 };

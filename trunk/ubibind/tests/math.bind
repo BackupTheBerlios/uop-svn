@@ -4,6 +4,9 @@
 /* Put header files here or function declarations like below */
 #include <math.h>
 %}
+
+%typemap in long double = double; 
+
  
 // extern double My_variable;
 //int fact(int n);

@@ -55,3 +55,10 @@ void CBinString::load(std::string& data)
 	data = std::string(buffer, size);
 	delete []buffer;
 }
+
+void CBinString::save(const std::string& data)
+{
+	size_t size = data.length();
+	save(&size, sizeof(size));
+	save(data.c_str(), size);
+}

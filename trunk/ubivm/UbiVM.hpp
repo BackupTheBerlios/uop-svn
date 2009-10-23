@@ -9,9 +9,46 @@
 class CUbiVM
 {
 public:
-	CUbiVM(SOptions *options);
+	static CUbiVM* getInstance()
+	{
+		static CUbiVM *instance = NULL;
+		return instance ? instance : (instance = new CUbiVM());
+	}
+	void setConfig(SOptions *options);
 	int run();
+
+	SOptions* getOptions()
+	{
+		return _options;
+	}
+
+	CAssemblyDefinition* getAsmDef()
+	{
+		return &_asmDef;
+	}
+
+	std::map<std::string, void*>* getSyslibHandlerList()
+	{
+		return &_syslibHandlerList;
+	}
+
+	std::vector<CElement*>* getElementList()
+	{
+		return &_elementList;
+	}
+
+	std::map<std::string, CGroup*>* getGroupList()
+	{
+		return &_groupList;
+	}
+
+	std::map<std::string, CLiteral>* getContextsInfo()
+	{
+		return &_contextsInfo;
+	}
+
 private:
+	CUbiVM() { }
 	bool _readFromFile(std::string name);
 	std::string _toTextAssembly();
 	int _load_providers();
@@ -21,9 +58,9 @@ private:
 	std::map<std::string, void*> _syslibHandlerList;
 	CAssemblyDefinition _asmDef;
 	std::map<std::string, CGroup*> _groupList;
-	std::map<std::string, CLiteral> _contextsInfo;
 	std::vector<CElement*> _elementList;
-	CCommunicationProvider* _cp;
+	std::map<std::string, CLiteral> _contextsInfo;
+// 	CCommunicationProvider* _cp;
 };
 
 #endif

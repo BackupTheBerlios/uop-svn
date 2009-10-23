@@ -51,12 +51,19 @@ CBindSources::CBindSources()
    _mapPop["const long double*"] = "dataStack.pop().getInteger()";
 
    addTypeMapIn("char",        "char");
+   addTypeMapIn("char*",       "char*");
    addTypeMapIn("short",       "short");
+   addTypeMapIn("short*",      "short*");
    addTypeMapIn("int",         "int");
+   addTypeMapIn("int*",        "int*");
    addTypeMapIn("bool",        "bool");
+   addTypeMapIn("bool*",       "bool*");
    addTypeMapIn("long",        "long");
+   addTypeMapIn("long*",       "long*");
    addTypeMapIn("float",       "float");
+   addTypeMapIn("float*",      "float*");
    addTypeMapIn("double",      "double");
+   addTypeMapIn("double*",     "double*");
    addTypeMapIn("long double", "long double");
 }
 
@@ -90,7 +97,7 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln("LIBUVM=../../libuvm/");
 	makefileSource.writeln("UBIVM=../../ubivm");
 	makefileSource.writeln("LIBCOMMON=../../libcommon/");
-	makefileSource.writeln("INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../");
+	makefileSource.writeln("INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../ -I/usr/local/include/boost-1_39/");
 	makefileSource.writeln("CC=g++");
 	makefileSource.writeln("CCFLAGS=-g -Wall -pedantic");
 	makefileSource.write("LIBS=");
@@ -108,15 +115,19 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln();
 
 	makefileSource.writeln("all: $(OBJECTS)");
-	makefileSource.writeln("\tg++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS)");
+makefileSource.writeln("\tg++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS)");
 	makefileSource.writeln();
 
+	makefileSource.writeln("%.cpp:");
+	makefileSource.writeln("\t../ubibind " + _moduleName + ".bind");
+	makefileSource.writeln();
+	
 	makefileSource.writeln("%.o: %.cpp");
 	makefileSource.writeln("\t$(CC) $(CCFLAGS) -c $(INCLUDE_DIR) $< -o $@");
 	makefileSource.writeln();
 
 	makefileSource.writeln("clean:");
-	makefileSource.writeln("\trm -f *.o $(LIBNAME).so $(OBJECTS) core");
+	makefileSource.writeln("\trm -f *.o $(LIBNAME).so $(OBJECTS) core uvm_os_" + _moduleName + ".cpp");
 }
 
 
@@ -371,8 +382,8 @@ void CBindSources::addTypeMapIn(std::string mapFrom, std::string mapTo)
 	std::cout << "mapPush[" << mapFrom << "]=" << mapTo << std::endl;
    _mapPush[mapFrom] = mapTo;
    _mapPush["const " + mapFrom]       = "const " + mapTo;
-   _mapPush["const " + mapFrom + "*"] = "const " + mapTo + "*";
-   _mapPush[mapFrom + "*"]            = mapTo + "*";
+//    _mapPush["const " + mapFrom + "*"] = "const " + mapTo + "*";
+//    _mapPush[mapFrom + "*"]            = mapTo + "*";
    // TODO: tem problema em, para um tipo T, assumir tb as variacoes como "const T, const T* e T*" ???
 }
 

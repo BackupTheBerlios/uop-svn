@@ -1,10 +1,14 @@
 // Terceiro teste: Programa 1 insere num1 e mostra valor num2, Programa 2 insere num2 e mostra valor num1
 
+import datetime
+
 entity start
 	def start()
 		{"MeuGrupo"}.bind("prog1")
-		io.writeln("Programa 1 inserindo Numero 1")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		io.writeln("Informacoes inseridas pelo programa 2: ", {"MeuGrupo"}.data.qu("Numero 2"))
+		io.writeln("Programa 1 inserindo N1")
+		{"MeuGrupo"}.data.af("N1" => 100)
+//		datetime.sleep(5)
+		io.writeln("Informacoes inseridas pelo programa 2: ", {"MeuGrupo"}.data.qu("N2"))
+//		datetime.sleep(5) // TODO: necessario pq, se a VM termina, ela nao responde mais
 	end
 end

@@ -5,14 +5,24 @@
 #include "RunBytecode.hpp"
 #include "Log.hpp"
 #include "Element.hpp"
+#include "GroupProvider.hpp"
+#include "UbiVM.hpp"
 
+uint CRunBytecode::_bceCount = 0;
 
-CRunBytecode::CRunBytecode(SOptions *options, CAssemblyDefinition* asmDef, std::map<std::string, void*>* syslibHandlerList, std::vector<CElement*>* elementList, std::map<std::string, CGroup*>* groupList, std::map<std::string, CLiteral>* contextsInfo, 	CCommunicationProvider* cp)
-   : _returnCode(0), _options(options), _asmDef(asmDef), _syslibHandlerList(syslibHandlerList), _elementList(elementList), _groupList(groupList), _contextsInfo(contextsInfo), _cp(cp)
+CRunBytecode::CRunBytecode()
+	: _dataReady(false), _dataListReplyTable(NULL), _returnCode(0)
 {
-// 	memset(&_ip, 0, sizeof(_ip));
+	_options           = CUbiVM::getInstance()->getOptions();
+	_asmDef            = CUbiVM::getInstance()->getAsmDef();
+	_syslibHandlerList = CUbiVM::getInstance()->getSyslibHandlerList();
+	_elementList       = CUbiVM::getInstance()->getElementList();
+	_groupList         = CUbiVM::getInstance()->getGroupList();
+	_contextsInfo      = CUbiVM::getInstance()->getContextsInfo();
 
 	_initOpcodePointer();
+	CGroupProvider::getInstance()->register_bce(_bceCount, this);
+	_vmId = SVmId(getpid(), _bceCount++); // TODO: colocar pid e IP
 }
 
 
@@ -24,6 +34,7 @@ CRunBytecode::~CRunBytecode()
 
 int CRunBytecode::run()
 {
+// 	_cp->register_bce(1, this);
    //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
 //   std::cout << "Code size=" << _code.size() << std::endl;
 
@@ -83,7 +94,7 @@ int CRunBytecode::run()
 // {
 //    //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
 // //   std::cout << "Code size=" << _code.size() << std::endl;
-// 
+//
 //    // Empilha referencia para entidade start
 // //    uint startIndex = _symbolTable.getSymbolIndex("start", StringType);
 // //    _dataStack.push(CLiteral(IntegerType, &startIndex));
@@ -91,67 +102,69 @@ int CRunBytecode::run()
 // //    _dataStack.push(_asmDef.getEntity("start")->getMethod("start"));
 // //    mcallOpcode(); // mas mcall recebe como argumento, e nao na datastack :-/
 //    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
-// 
-// 
+//
+//
 //    //_code.setIP(0); // TODO: pegar o endereco de main
-// 
+//
 // 	if (element == NULL) {
 // 		element = new CElement(_asmDef->getEntity(entity_name));
 // 		_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
 // 		_dataStack.push(CLiteral(element));
 // 	}
-// 
+//
 //    _ip.element = element;
-// 
+//
 //    if (_ip.element == NULL) {
 // 	   std::cout << "Entidade " << entity_name << " nao encontrada !!!" << std::endl;
 //    }
-// 
+//
 // //   std::cout << "Entidade start encontrada !!!" << std::endl;
-// 
+//
 //    _ip.method  = _ip.element->getMethod(entity_name);
-// 
+//
 //    if (_ip.method == NULL) {
 // 	   std::cout << "Metodo " << entity_name << " nao encontrado !!!" << std::endl;
 //    }
-// 
+//
 // //   std::cout << "Metodo start encontrado !!!" << std::endl;
-// 
+//
 // 	// Define variaveis locais
 // 	// TODO: isso deve ficar definido no metodo...
 // //	_localVarList.clear();
 // //	_localVarList.reserve(_ip.method->_localVarList.size());
-// 
+//
 // //	std::cout << "Criando as variaveis locais do metodo..." << std::endl;
-// 
+//
 // 	CActivationRecord* ar = new CActivationRecord();
-// 
+//
 // 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
 // 		var != _ip.method->_localVarList.end(); var++) {
 // 		ar->_localVarList.push_back(CLiteral((*var)->_type));
 // 	}
-// 
+//
 // 	ar->_ip = _ip;
-// 
+//
 // 	_controlStack.push(ar);
-// 
+//
 // 	// TODO: fazer o mesmo para os parametros... resultados..
-// 
-// 
+//
+//
 //    _ip.ip      = 0;
-// 
+//
 // 	if (_asmDef->getEntity(entity_name)->isParallel()) {
 // 		element->_thread = new boost::thread( boost::bind( &CRunBytecode::run_bytecode, this));
 // 	} else {
 // 		run_bytecode();
 // 	}
-// 
+//
 //    return _returnCode;
 // }
 
 
 void CRunBytecode::run_bytecode()
 {
+// 	_cp->register_bce(_bceCount++, this);
+// 	_cp->register_bce(2, this);
    _stop = false;
 
    while (!_stop) {
@@ -198,6 +211,8 @@ void CRunBytecode::_initOpcodePointer()
 	_opcodePointer[DATAAF_OPCODE   ] = &CRunBytecode::dataafOpcode;
 	_opcodePointer[DATADQU_OPCODE  ] = &CRunBytecode::datadquOpcode;
 	_opcodePointer[DATAQU_OPCODE   ] = &CRunBytecode::dataquOpcode;
+	_opcodePointer[DATANBDQU_OPCODE  ] = &CRunBytecode::datanbdquOpcode;
+	_opcodePointer[DATANBQU_OPCODE   ] = &CRunBytecode::datanbquOpcode;
 	_opcodePointer[DATALIST_OPCODE ] = &CRunBytecode::datalistOpcode;
 	_opcodePointer[STCONTEXT_OPCODE] = &CRunBytecode::stcontextOpcode;
 	_opcodePointer[LDCONTEXT_OPCODE] = &CRunBytecode::ldcontextOpcode;
@@ -400,11 +415,14 @@ void CRunBytecode::callSyslib(const std::string &libFunc)
 	if (ithandler == _syslibHandlerList->end()) {
 		// TODO: path absoluto ??? nem pensar :-)
 // 		std::string libPath = std::string("../../os_libs/") + libName + std::string("/libuvm_os_") + libName + ".so";
-		std::string libPath = std::string("../../ubibind/tests/") + std::string("/libuvm_os_") + libName + ".so";
-		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
 // 		dlhandler = dlopen(libPath.c_str(), RTLD_NOW|RTLD_GLOBAL);
 // 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
 // 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_LOCAL);
+
+// 		std::string libPath = std::string("../../ubibind/tests/") + std::string("/libuvm_os_") + libName + ".so";
+		std::string libPath = std::string("../ubibind/") + libName + std::string("/libuvm_os_") + libName + ".so";
+// 		std::string libPath = libName + std::string("/libuvm_os_") + libName + ".so";
+		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
 		if (!dlhandler) {
 			fprintf (stderr, "dlopen(%s): %s\n", libPath.c_str(), dlerror());
 			exit(1);
@@ -555,6 +573,7 @@ void CRunBytecode::retOpcode()
 	delete ar;
 
 	if (_controlStack.size() == 0) {
+// 		std::cout << "_stop=true!!!" << std::endl;
 		_stop = true;
 	}
 }
@@ -577,12 +596,12 @@ void CRunBytecode::mcallOpcode()
 		CRunBytecode* rb = NULL;
 		bool runInParallel = (element->_entity->isParallel() == true && method == element->_entity->getName());
 		if (runInParallel) {
-			rb = new CRunBytecode(_options, _asmDef, _syslibHandlerList, _elementList, _groupList, _contextsInfo, _cp);
+			rb = new CRunBytecode();
 			// TODO: e qdo isso eh liberado ???
 		} else {
 			rb = this;
 		}
-		
+
 		CActivationRecord* ar = new CActivationRecord();
 		ar->_ip = _ip;
 
@@ -611,13 +630,95 @@ void CRunBytecode::mcallOpcode()
 		rb->_controlStack.push(ar);
 
 		rb->_ip.ip = 0;
-		
+
 		if (runInParallel) {
 			element->_thread = new boost::thread( boost::bind( &CRunBytecode::run_bytecode, rb));
 			//rb->_stop = true;
 		}
 	}
 }
+
+
+bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std::vector<CLiteral> arguments, std::vector<CLiteral>& results)
+{
+	trace ("scall internal code");
+
+	std::string elementName = (*_groupList)[groupName]->findService(serviceName);
+
+	if (elementName == "") {
+// 		std::cout << "Servico " << serviceName << " no grupo " << groupName << " nao encontrado !!!" << std::endl;
+		return false;
+	}
+
+	CElement* element = NULL;
+
+	for(std::vector<CElement*>::iterator elementIt = _elementList->begin();
+		elementIt != _elementList->end();
+		elementIt++) {
+		if ((*elementIt)->getName() == elementName) {
+			element = (*elementIt);
+			break;
+		}
+	}
+
+	if (element == NULL) {
+// 		std::cout << "Elemento " << elementName << " nao encontrado em elementList !!!" << std::endl;
+		return false;
+	}
+
+	CActivationRecord* ar = new CActivationRecord();
+
+	ar->_ip = _ip;
+
+	_ip.element = element;
+	_ip.method = _ip.element->getMethod(serviceName);
+
+	if (_ip.method == NULL) {
+// 		std::cout << "Metodo " << getSymbol(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
+		return false;
+	}
+
+	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
+		var != _ip.method->_localVarList.end(); var++) {
+		ar->_localVarList.push_back(CLiteral((*var)->_type));
+	}
+
+	for(std::vector<CLiteral>::iterator par = arguments.begin(); par != arguments.end(); par++) {
+// 		std::cout << "argumento: " << (*par).getText() << std::endl;
+		ar->_paramList.insert(ar->_paramList.begin(), *par);
+	}
+
+// 	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
+// 		par != _ip.method->_parameterList.end(); par++) {
+// 		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
+// 	}
+
+// 	std::cout << "Numero de resultados definidos no servico: " << _ip.method->_resultList.size() << std::endl;
+
+	for(std::vector<CResultDefinition*>::iterator ret = _ip.method->_resultList.begin();
+		ret != _ip.method->_resultList.end(); ret++) {
+		ar->_resultList.push_back(CLiteral((*ret)->_type));
+	}
+
+	_ip.ip = 0;
+
+	_controlStack.push(ar);
+
+	run_bytecode();
+
+	for(std::vector<CResultDefinition*>::iterator ret = element->getMethod(serviceName)->_resultList.begin();
+		ret != element->getMethod(serviceName)->_resultList.end(); ret++) {
+		results.push_back(_dataStack.pop());
+	}
+
+// 	std::cout << "resultados" << std::endl;
+
+// 	for(std::vector<CLiteral>::iterator res = results.begin(); res != results.end(); res++) {
+// 		std::cout << "\tresultado: " << (*res).getText() << std::endl;
+// 	}
+	return true;
+}
+
 
 void CRunBytecode::ldselfOpcode()
 {
@@ -860,7 +961,7 @@ void CRunBytecode::jmpOpcode()
 
 void CRunBytecode::newelemOpcode()
 {
-	trace ("new opcode");
+	trace ("newelem opcode");
 
 	std::string entity = getSymbolName(_currentInstruction->getArg1());
 
@@ -875,16 +976,16 @@ void CRunBytecode::newelemOpcode()
 // void CRunBytecode::newelemOpcode()
 // {
 // 	trace ("new opcode");
-// 
+//
 // //	std::string entity = _symbolTable.getSymbolByIndex(_currentInstruction->getArg1())->_name;
 // 	std::string entity_name = getSymbolName(_currentInstruction->getArg1());
-// 
+//
 // 	CEntityDefinition* entity = _asmDef->getEntity(entity_name);
 // 	CElement* element = new CElement(entity);
 // 	_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
-// 
+//
 // 	_dataStack.push(CLiteral(element));
-// 
+//
 // 	if (entity->isParallel()) {
 // 		CRunBytecode* runbytecode = new CRunBytecode(_options, _asmDef, _syslibHandlerList, _elementList, _groupList, _contextsInfo, _cp);
 // 		runbytecode->run(entity_name, element);
@@ -951,8 +1052,44 @@ void CRunBytecode::datadquOpcode()
 
 	std::string groupName = _dataStack.pop().getString();
 	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
-	_dataStack.push((*_groupList)[groupName]->getTuple(&tuple)->getComposedValues());
+	CGroupProvider::getInstance()->sendRequestDatadquOpcode(_vmId, groupName, tuple);
 }
+
+
+void CRunBytecode::datanbdquOpcode()
+{
+	trace("datanbdqu opcode");
+
+	uint tupleKeys = _dataStack.pop().getInteger();
+	CTuple tuple;
+
+	// Read tuple keys
+	for(uint key=0; key<tupleKeys;key++) {
+		tuple.addKeyAtBegin(_dataStack.pop().getString());
+	}
+
+	std::string groupName = _dataStack.pop().getString();
+	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
+	CGroupProvider::getInstance()->sendRequestDatanbdquOpcode(_vmId, groupName, tuple);
+}
+
+
+// void CRunBytecode::datadquOpcode()
+// {
+// 	trace("datadqu opcode");
+//
+// 	uint tupleKeys = _dataStack.pop().getInteger();
+// 	CTuple tuple;
+//
+// 	// Read tuple keys
+// 	for(uint key=0; key<tupleKeys;key++) {
+// 		tuple.addKeyAtBegin(_dataStack.pop().getString());
+// 	}
+//
+// 	std::string groupName = _dataStack.pop().getString();
+// 	// TODO: acho que o correto seria ou eu empilhar todos os values da tupla, ou empilhar a tupla em si
+// 	_dataStack.push((*_groupList)[groupName]->getTuple(&tuple)->getComposedValues());
+// }
 
 
 void CRunBytecode::dataquOpcode()
@@ -969,7 +1106,30 @@ void CRunBytecode::dataquOpcode()
 
 	std::string groupName = _dataStack.pop().getString();
 // 	try {
-		_cp->sendRequestDataquOpcode(groupName, tuple);
+		CGroupProvider::getInstance()->sendRequestDataquOpcode(_vmId, groupName, tuple);
+// 	}
+// 	catch (std::exception& e)
+// 	{
+// 		std::cerr << "Exception: " << e.what() << "\n";
+// 	}
+}
+
+
+void CRunBytecode::datanbquOpcode()
+{
+	trace("datanbqu opcode");
+
+	uint tupleKeys = _dataStack.pop().getInteger();
+	CTuple tuple;
+
+	// Getting tuple keys
+	for(uint key=0; key<tupleKeys;key++) {
+		tuple.addKeyAtBegin(_dataStack.pop().getString());
+	}
+
+	std::string groupName = _dataStack.pop().getString();
+// 	try {
+		CGroupProvider::getInstance()->sendRequestDatanbquOpcode(_vmId, groupName, tuple);
 // 	}
 // 	catch (std::exception& e)
 // 	{
@@ -983,7 +1143,7 @@ void CRunBytecode::datalistOpcode()
 	trace("datalist opcode");
 
 	std::string groupName = _dataStack.pop().getString();
-	_cp->sendRequestDatalistOpcode(groupName);
+	CGroupProvider::getInstance()->sendRequestDatalistOpcode(_vmId, groupName);
 }
 
 
@@ -1024,57 +1184,69 @@ void CRunBytecode::scallOpcode()
 
 	std::string groupName   = _dataStack.pop().getString();
 	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
-	std::string elementName = (*_groupList)[groupName]->findService(serviceName);
 
-	if (elementName == "") {
-		std::cout << "Servico " << serviceName << " no grupo " << groupName << " nao encontrado !!!" << std::endl;
-	}
-
-	CElement* element = NULL;
-
-	for(std::vector<CElement*>::iterator elementIt = _elementList->begin();
-		elementIt != _elementList->end();
-		elementIt++) {
-		if ((*elementIt)->getName() == elementName) {
-			element = (*elementIt);
-			break;
-		}
-	}
-
-	if (element == NULL) {
-		std::cout << "Elemento " << elementName << " nao encontrado em elementList !!!" << std::endl;
-	}
-
-	CActivationRecord* ar = new CActivationRecord();
-
-	ar->_ip = _ip;
-
-	_ip.element = element;
-	_ip.method = _ip.element->getMethod(serviceName);
-
-	if (_ip.method == NULL) {
-		std::cout << "Metodo " << getSymbol(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
-	}
-
- 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
- 		var != _ip.method->_localVarList.end(); var++) {
- 		ar->_localVarList.push_back(CLiteral((*var)->_type));
- 	}
-
-	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
-		par != _ip.method->_parameterList.end(); par++) {
-		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
-	}
-
- 	for(std::vector<CResultDefinition*>::iterator ret = _ip.method->_resultList.begin();
- 		ret != _ip.method->_resultList.end(); ret++) {
- 		ar->_resultList.push_back(CLiteral((*ret)->_type));
- 	}
-
-	_ip.ip = 0;
-
-	_controlStack.push(ar);
+	CGroupProvider::getInstance()->sendRequestScallOpcode(_vmId, groupName, serviceName);
 }
+
+
+// VERSAO NAO COMPARTILHADA
+// void CRunBytecode::scallOpcode()
+// {
+// 	trace ("scall opcode");
+//
+// 	std::string groupName   = _dataStack.pop().getString();
+// 	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+// 	std::string elementName = (*_groupList)[groupName]->findService(serviceName);
+//
+// 	if (elementName == "") {
+// 		std::cout << "Servico " << serviceName << " no grupo " << groupName << " nao encontrado !!!" << std::endl;
+// 	}
+//
+// 	CElement* element = NULL;
+//
+// 	for(std::vector<CElement*>::iterator elementIt = _elementList->begin();
+// 		elementIt != _elementList->end();
+// 		elementIt++) {
+// 		if ((*elementIt)->getName() == elementName) {
+// 			element = (*elementIt);
+// 			break;
+// 		}
+// 	}
+//
+// 	if (element == NULL) {
+// 		std::cout << "Elemento " << elementName << " nao encontrado em elementList !!!" << std::endl;
+// 	}
+//
+// 	CActivationRecord* ar = new CActivationRecord();
+//
+// 	ar->_ip = _ip;
+//
+// 	_ip.element = element;
+// 	_ip.method = _ip.element->getMethod(serviceName);
+//
+// 	if (_ip.method == NULL) {
+// 		std::cout << "Metodo " << getSymbol(_currentInstruction->getArg1()) << " nao encontrado !!!" << std::endl;
+// 	}
+//
+//  	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
+//  		var != _ip.method->_localVarList.end(); var++) {
+//  		ar->_localVarList.push_back(CLiteral((*var)->_type));
+//  	}
+//
+// 	for(std::vector<CParameterDefinition*>::iterator par = _ip.method->_parameterList.begin();
+// 		par != _ip.method->_parameterList.end(); par++) {
+// 		ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
+// 	}
+//
+//  	for(std::vector<CResultDefinition*>::iterator ret = _ip.method->_resultList.begin();
+//  		ret != _ip.method->_resultList.end(); ret++) {
+//  		ar->_resultList.push_back(CLiteral((*ret)->_type));
+//  	}
+//
+// 	_ip.ip = 0;
+//
+// 	_controlStack.push(ar);
+// }
 
 
 void CRunBytecode::ldtabOpcode()

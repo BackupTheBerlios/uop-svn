@@ -4,9 +4,9 @@ LIB_UVM_OS_LIBS=../os_libs/
 
 INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON) -I/usr/local/include/boost-1_39/
 CC=g++
-CCFLAGS=-rdynamic -g -Wall -pedantic
+CCFLAGS=-rdynamic -g -Wall #-pedantic
 
-objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o ActivationRecord.o Element.o Group.o Tuple.o CommunicationProvider.o
+objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o ActivationRecord.o Element.o Group.o Tuple.o CommunicationProvider.o GroupProvider.o
 
 all: $(objects)
 	g++ -rdynamic -o ubivm $(objects) -L$(LIBUVM) -L$(LIBCOMMON) -luvm -lcommon -ldl -lboost_thread-gcc42-mt -lpthread -lboost_system-gcc42-mt

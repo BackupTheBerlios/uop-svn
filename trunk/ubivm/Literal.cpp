@@ -26,7 +26,7 @@
 #include "Tools.hpp"
 
 //static size_t typeSizeList[] = {
-//{ 
+//{
 //};
 
 CLiteral::CLiteral()
@@ -165,7 +165,7 @@ std::string CLiteral::getText()
 		result += "]";
 		return result;
 	}
-	
+
 	// TODO: userdata
 	return "Invalid literal value !!!";
 }
@@ -204,4 +204,43 @@ CMultiIndex<CLiteral>* CLiteral::getTable()
 CTuple* CLiteral::getTuple()
 {
 	return _value.tupleValue;
+}
+
+// TODO: trocar nome da funcao para serialize ???
+void CLiteral::saveBytecode(CBinString& bytecode)
+{
+	bytecode.save(&_type, sizeof(_type));
+
+	if (_type == StringType) {
+		bytecode.save(*_value.stringValue);
+	} else if (_type == IntegerType) {
+		bytecode.save(&_value.integerValue, sizeof(_value.integerValue));
+	} else if (_type == RealType) {
+		bytecode.save(&_value.realValue, sizeof(_value.realValue));
+	} else if (_type == BooleanType) {
+		bytecode.save(&_value.booleanValue, sizeof(_value.booleanValue));
+	} else {
+		std::cout << "serializacao nao implementada para tipo " << _type << std::endl;
+	}
+}
+
+bool CLiteral::loadBytecode(CBinString& bytecode)
+{
+	bytecode.load(&_type, sizeof(_type));
+
+	if (_type == StringType) {
+		std::string value;
+		bytecode.load(value);
+		_value.stringValue = new std::string(value);
+	} else if (_type == IntegerType) {
+		bytecode.load(&_value.integerValue, sizeof(_value.integerValue));
+	} else if (_type == RealType) {
+		bytecode.load(&_value.realValue, sizeof(_value.realValue));
+	} else if (_type == BooleanType) {
+		bytecode.load(&_value.booleanValue, sizeof(_value.booleanValue));
+	} else {
+		std::cout << "serializacao nao implementada para tipo " << _type << std::endl;
+	}
+
+	return true;
 }

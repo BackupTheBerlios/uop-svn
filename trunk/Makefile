@@ -16,6 +16,7 @@ all:
 	make -C ubivm
 	make -C testsuite
 	make -C os_libs
+	make -C ubibind
 
 clean:
 	make -C libcommon clean
@@ -24,3 +25,4 @@ clean:
 	make -C ubivm clean
 	make -C testsuite clean
 	make -C os_libs clean
+	make -C ubibind clean

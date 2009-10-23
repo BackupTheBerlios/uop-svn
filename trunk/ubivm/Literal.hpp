@@ -57,6 +57,8 @@ public:
 	int getInteger();
 	double getReal();
 	bool getBoolean();
+	void saveBytecode(CBinString& bytecode);
+	bool loadBytecode(CBinString& bytecode);
 	CElement* getElement();
 	CMultiIndex<CLiteral>* getTable();  // TODO: deveria retornar o ponteiro ???
 	CTuple* getTuple();  // TODO: deveria retornar o ponteiro ???

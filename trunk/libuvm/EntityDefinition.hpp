@@ -29,12 +29,14 @@ public:
 	{
 		return _name;
 	}
-	bool isParallel() const;
+	bool isParallel(); // const;
+	void setOption(std::string option);
 private:
 	std::vector<CPropertyDefinition*> _propertyList;
 	std::vector<CMethodDefinition*> _methodList;
 	std::string _name;
 	CSymbolTable _symbolTable;
+	std::map<std::string,std::string> _optionList;
 };
 
 #endif

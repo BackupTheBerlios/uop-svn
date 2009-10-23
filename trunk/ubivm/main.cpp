@@ -53,9 +53,9 @@ int main(int argc, char *argv[])
 
 //   cout << "Running " << options.sourcefile << "..." << endl;
 
-   CUbiVM ubivm( &options );
+   CUbiVM::getInstance()->setConfig( &options );
 
-   int result = ubivm.run();
+   int result = CUbiVM::getInstance()->run();
 
    return result;
 }

@@ -18,6 +18,7 @@
 
 
 class CRunBytecode;
+struct SVmId;
 
 
 typedef void (CRunBytecode:: *OpcodePointer)();
@@ -26,10 +27,16 @@ typedef void (CRunBytecode:: *OpcodePointer)();
 class CRunBytecode
 {
 public:
-	CRunBytecode(SOptions *options, CAssemblyDefinition* asmDef, std::map<std::string, void*>* syslibHandlerList, std::vector<CElement*>* elementList, std::map<std::string, CGroup*>* groupList, std::map<std::string, CLiteral>* contextsInfo, CCommunicationProvider* cp);
+	CRunBytecode();
 	~CRunBytecode();
 	int run();
 // 	int run(std::string entity_name, CElement* element);
+	CDataStack      _dataStack;
+	bool                   _dataReady;
+	CMultiIndex<CLiteral>* _dataListReplyTable;
+	udp::endpoint _last_endpoint;
+	SVmId _lastSrcVmId;
+	bool scallCode(std::string groupName, std::string serviceName, std::vector<CLiteral> arguments, std::vector<CLiteral>& results);
 private:
 	void _initOpcodePointer();
 	void trace(const std::string &message);
@@ -82,6 +89,8 @@ private:
 	void dataafOpcode();
 	void datadquOpcode();
 	void dataquOpcode();
+	void datanbdquOpcode();
+	void datanbquOpcode();
 	void datalistOpcode();
 	void stcontextOpcode();
 	void ldcontextOpcode();
@@ -95,14 +104,9 @@ private:
 	void sttuplevOpcode();
 	void tabsizeOpcode();
 
-//   CHeader         _header;
-// 	CSymbolTable    _symbolTable; // TODO: preciso disso ???
-//   CBinString      _globalData;
-//   CBytecode       _code;
 	OpcodePointer   _opcodePointer[OPCODE_COUNT];
 	bool            _stop;
 	int             _returnCode;
-	CDataStack      _dataStack;
 	SIp _ip;
 	CInstructionDefinition* _currentInstruction;
 	std::stack<CActivationRecord*> _controlStack;
@@ -112,7 +116,10 @@ private:
 	std::vector<CElement*>* _elementList;
 	std::map<std::string, CGroup*>* _groupList;
 	std::map<std::string, CLiteral>* _contextsInfo;
-	CCommunicationProvider* _cp;
+// 	CCommunicationProvider* _cp;
+// 	CDataProvider* _dp;
+	static uint _bceCount;
+	SVmId _vmId;
 };
 
 #endif

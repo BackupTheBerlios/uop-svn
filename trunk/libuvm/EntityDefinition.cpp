@@ -19,10 +19,13 @@
  ***************************************************************************/
 #include "EntityDefinition.hpp"
 
+#include <iostream>
+
 #pragma pack(1)
 
 typedef struct SEntityHeader {
-	u_int indexName; // Indice na constant pool que contem o nome do metodo
+	u_int indexName;       // Indice na constant pool que contem o nome da entidade
+	u_int optionsCount;    // Numero de opcoes
 	u_int propertiesCount; // Numero de propriedades
 	u_int methodsCount;    // Numero de metodos
 };
@@ -60,6 +63,18 @@ std::string CEntityDefinition::toTextAssembly()
 	std::string result;
 	result += "Entity " + _name + '\n';
 
+	if (_optionList.size() == 0) {
+		result += "\tNo options\n";
+	} else {
+		result += "\tOptions\n";
+
+		for(std::map<std::string, std::string>::iterator option = _optionList.begin(); option != _optionList.end(); option++) {
+			result += std::string("\t\t") + option->first + "\n";
+		}
+
+		result += "\tEnd\n";
+	}
+
 	result += _symbolTable.toTextAssembly();
 
 	for(std::vector<CMethodDefinition*>::iterator method = _methodList.begin(); method != _methodList.end(); method++) {
@@ -80,11 +95,18 @@ void CEntityDefinition::saveBytecode(CBinString& bytecode)
 	memset(&header, 0, sizeof(header));
 
 	header.indexName       = _symbolTable.getSymbolIndex(_name, StringType);
+	header.optionsCount    = _optionList.size();
 	header.propertiesCount = _propertyList.size();
 	header.methodsCount    = _methodList.size();
 
 	// Salva o header da entidade
 	bytecode.save(&header, sizeof(header));
+
+	// Salva as opcoes
+	for(std::map<std::string, std::string>::iterator option = _optionList.begin(); option != _optionList.end(); option++) {
+		bytecode.save(option->first);
+//  		std::cout << "salvando a opcao " << option->first << std::endl;
+	}
 
 	// Salva as propriedades
 	for(std::vector<CPropertyDefinition*>::iterator property = _propertyList.begin(); property != _propertyList.end(); property++) {
@@ -107,6 +129,14 @@ bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 	bytecode.load(&header, sizeof(header));
 
 	_name = _symbolTable.getSymbolByIndex(header.indexName)->_name;
+
+	// Carrega as opcoes
+	for(u_int count = 0; count < header.optionsCount; count++) {
+		std::string option;
+		bytecode.load(option);
+//  		std::cout << this << ": carregando a opcao " << option << std::endl;
+		_optionList[option] = "true";
+	}
 
 	// Carrega as propriedades
 	for(u_int count = 0; count < header.propertiesCount; count++) {
@@ -153,8 +183,17 @@ CSymbol* CEntityDefinition::getSymbolByIndex(size_t index)
 }
 
 
-bool CEntityDefinition::isParallel() const
+bool CEntityDefinition::isParallel()
 {
 	// TODO: corrigir depois...
-	return (_name == "concorrente");
+// 	std::cout << _name << ":" << this << ": parallel=" << _optionList["parallel"] << std::endl;
+	return (_optionList["parallel"] == "true");
+//	return (_name == "concorrente");
+}
+
+
+void CEntityDefinition::setOption(std::string option)
+{
+// 	std::cout << "setando opcao " << option << " para true" << std::endl;
+	_optionList[option]="true";
 }

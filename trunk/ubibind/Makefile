@@ -10,6 +10,8 @@ objects = ubibindLexer.o ubibindParser.o main.o BindSources.o
 
 all: $(objects)
 	g++ -o ubibind $(objects) -static -lantlr3c -L$(LIBCOMMON) -lcommon
+	make -C tests
+	make -C ncurses
 
 ubibindLexer.o ubibindParser.o: ubibind.g
 	java -jar ~/downloads/apps/antlr-3.1.3.jar ubibind.g
@@ -28,3 +30,6 @@ ubibindLexer.o ubibindParser.o: ubibind.g
 
 clean:
 	rm -f *.o ubibind ubibindLexer.h ubibindLexer.c ubibindParser.h ubibindParser.c ubibind.tokens core
+	make -C tests clean
+	make -C ncurses clean
+
