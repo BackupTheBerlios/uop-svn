@@ -47,45 +47,21 @@ int CRunBytecode::run()
    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
 
 
-   CElement* element = new CElement(_asmDef->getEntity("start"));
-
-   _ip.element = element;
-
-   if (_ip.element == NULL) {
-	   std::cout << "Entidade start nao encontrada !!!" << std::endl;
-   }
-
-   _ip.method  = _ip.element->getMethod("start");
-
-   if (_ip.method == NULL) {
-	   std::cout << "Metodo start nao encontrado !!!" << std::endl;
-   }
-
-	// Define variaveis locais
-
-	CActivationRecord* ar = new CActivationRecord();
-
-	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
-		var != _ip.method->_localVarList.end(); var++) {
-		ar->_localVarList.push_back(CLiteral((*var)->_type));
-	}
-
-	ar->_ip = _ip;
+	CActivationRecord* ar = new CActivationRecord(this, "start", "start", _ip, _dataStack);
 
 	_controlStack.push(ar);
 
-	// TODO: fazer o mesmo para os parametros... resultados..
+	_stop = false;
 
+	while (!_stop) {
+		step();
+	}
 
-   _ip.ip      = 0;
+	ar->restore_state(_dataStack, _ip);
 
-   _stop = false;
+	delete ar;
 
-   while (!_stop) {
-      step();
-   }
-
-   return _returnCode;
+	return _returnCode;
 }
 
 
@@ -562,13 +538,7 @@ void CRunBytecode::retOpcode()
 
 	CActivationRecord* ar = _controlStack.top();
 	_controlStack.pop();
-
- 	for(std::vector<CLiteral>::reverse_iterator ret = ar->_resultList.rbegin();
- 		ret != ar->_resultList.rend(); ret++) {
- 		_dataStack.push(*ret);
- 	}
-
-	_ip = ar->_ip;
+	ar->restore_state(_dataStack, _ip);
 
 	delete ar;
 
@@ -602,44 +572,102 @@ void CRunBytecode::mcallOpcode()
 			rb = this;
 		}
 
-		CActivationRecord* ar = new CActivationRecord();
-		ar->_ip = _ip;
+		CActivationRecord* ar = new CActivationRecord(rb, element->_entity->getName(), method, rb->_ip, _dataStack); // TODO: rb ou this ?????
+//  		ar->_lastIp = _ip;
 
-		rb->_ip.element = element;
-		rb->_ip.method  = element->getMethod(method);
+// 		rb->_ip.element = element;
+// 		rb->_ip.method  = element->getMethod(method);
 
-		if (rb->_ip.method == NULL) {
-			std::cout << "Metodo " << method << " nao encontrado !!!" << std::endl;
-		}
+// 		if (rb->_ip.method == NULL) {
+// 			std::cout << "Metodo " << method << " nao encontrado !!!" << std::endl;
+// 		}
 
- 		for(std::vector<CLocalVarDefinition*>::iterator var = rb->_ip.method->_localVarList.begin();
-		 		var != rb->_ip.method->_localVarList.end(); var++) {
-	 		ar->_localVarList.push_back(CLiteral((*var)->_type));
-	 	}
+//  		for(std::vector<CLocalVarDefinition*>::iterator var = rb->_ip.method->_localVarList.begin();
+// 		 		var != rb->_ip.method->_localVarList.end(); var++) {
+// 	 		ar->_localVarList.push_back(CLiteral((*var)->_type));
+// 	 	}
 
-		for(std::vector<CParameterDefinition*>::iterator par = rb->_ip.method->_parameterList.begin();
-				par != rb->_ip.method->_parameterList.end(); par++) {
-			ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
-		}
+// 		for(std::vector<CParameterDefinition*>::iterator par = rb->_ip.method->_parameterList.begin();
+// 				par != rb->_ip.method->_parameterList.end(); par++) {
+// 			ar->_paramList.insert(ar->_paramList.begin(), _dataStack.pop());
+// 		}
 
- 		for(std::vector<CResultDefinition*>::iterator ret = rb->_ip.method->_resultList.begin();
-		 		ret != rb->_ip.method->_resultList.end(); ret++) {
-	 		ar->_resultList.push_back(CLiteral((*ret)->_type));
-	 	}
+//  		for(std::vector<CResultDefinition*>::iterator ret = rb->_ip.method->_resultList.begin();
+// 		 		ret != rb->_ip.method->_resultList.end(); ret++) {
+// 	 		ar->_resultList.push_back(CLiteral((*ret)->_type));
+// 	 	}
 
 		rb->_controlStack.push(ar);
 
-		rb->_ip.ip = 0;
+// 		rb->_ip.ip = 0;
 
 		if (runInParallel) {
 			element->_thread = new boost::thread( boost::bind( &CRunBytecode::run_bytecode, rb));
 			//rb->_stop = true;
 		}
+
+// 		ar->restore_state(rb->_dataStack, rb->_ip);
+
+// 		delete ar;
 	}
 }
 
 
 bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std::vector<CLiteral> arguments, std::vector<CLiteral>& results)
+{
+	trace ("scall internal code");
+
+	std::string elementName = (*_groupList)[groupName]->findService(serviceName);
+
+	if (elementName == "") {
+		return false;
+	}
+
+	CElement* element = NULL;
+
+	for(std::vector<CElement*>::iterator elementIt = _elementList->begin();
+		elementIt != _elementList->end();
+		elementIt++) {
+		if ((*elementIt)->getName() == elementName) {
+			element = (*elementIt);
+			break;
+		}
+	}
+
+	if (element == NULL) {
+		return false;
+	}
+
+	for(std::vector<CLiteral>::reverse_iterator par = arguments.rbegin(); par != arguments.rend(); par++) {
+// 		std::cout << "argumento: " << (*par).getText() << std::endl;
+		_dataStack.push(*par);
+	}
+	
+	CActivationRecord* ar = new CActivationRecord(this, element->_entity->getName(), serviceName, _ip, _dataStack);
+
+	_controlStack.push(ar);
+
+	run_bytecode();
+
+// 	ar->restore_state(_dataStack, _ip);
+
+// 	std::cout << "dataStack.size()=" << _dataStack.size() << std::endl;
+	for(std::vector<CResultDefinition*>::iterator ret = element->getMethod(serviceName)->_resultList.begin();
+		ret != element->getMethod(serviceName)->_resultList.end(); ret++) {
+		results.push_back(_dataStack.pop());
+	}
+
+// 	std::cout << "resultados" << std::endl;
+// 
+// 	for(std::vector<CLiteral>::iterator res = results.begin(); res != results.end(); res++) {
+// 		std::cout << "\tresultado: " << (*res).getText() << std::endl;
+// 	}
+
+	return true;
+}
+
+
+/*bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std::vector<CLiteral> arguments, std::vector<CLiteral>& results)
 {
 	trace ("scall internal code");
 
@@ -668,7 +696,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 
 	CActivationRecord* ar = new CActivationRecord();
 
-	ar->_ip = _ip;
+	ar->_lastIp = _ip;
 
 	_ip.element = element;
 	_ip.method = _ip.element->getMethod(serviceName);
@@ -719,7 +747,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 	return true;
 }
 
-
+*/
 void CRunBytecode::ldselfOpcode()
 {
 	trace ("ldself opcode");

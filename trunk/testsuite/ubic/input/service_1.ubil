@@ -1,5 +1,6 @@
 entity servico
 	def soma(int x, int y) [int]
+//		io.writeln("x=", x, " y=", y)
 		return x+y
 	end
 	def servico()

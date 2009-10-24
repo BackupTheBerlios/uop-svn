@@ -6,6 +6,10 @@
 #include <fstream>
 #include <stack>
 
+class CRunBytecode;
+struct SVmId;
+
+
 #include "SymbolTable.hpp"
 #include "LibuvmDefs.hpp"
 #include "UbivmDefs.hpp"
@@ -17,8 +21,6 @@
 #include "CommunicationProvider.hpp"
 
 
-class CRunBytecode;
-struct SVmId;
 
 
 typedef void (CRunBytecode:: *OpcodePointer)();
