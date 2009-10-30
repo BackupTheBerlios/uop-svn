@@ -1,3 +1,34 @@
+Entity start
+	No options
+	Constants
+		0 S start
+		1 S e
+		2 S elemento
+		3 I 1
+		4 S um
+		5 I 2
+		6 S dois
+		7 S x
+	End
+	Valid context (always)
+	No properties
+	Def start
+		No parameters
+		Local variables
+			0 element e
+		End
+		No results
+		newelem 2 --> [elemento]
+		stvar 0 --> [e]
+		ldconst 3 --> [1]
+		ldconst 4 --> [um]
+		ldconst 5 --> [2]
+		ldconst 6 --> [dois]
+		ldvar 0 --> [e]
+		mcall 7 --> [x]
+		stop
+	End
+End
 Entity elemento
 	No options
 	Constants
@@ -14,6 +45,7 @@ Entity elemento
 		10 S number2=
 		11 S  msg2=
 	End
+	Valid context (always)
 	No properties
 	Def x
 		Parameters
@@ -37,35 +69,5 @@ Entity elemento
 		ldconst 8 --> [4]
 		lcall 9 --> [io.writeln]
 		ret
-	End
-End
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S e
-		2 S elemento
-		3 I 1
-		4 S um
-		5 I 2
-		6 S dois
-		7 S x
-	End
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 element e
-		End
-		No results
-		newelem 2 --> [elemento]
-		stvar 0 --> [e]
-		ldconst 3 --> [1]
-		ldconst 4 --> [um]
-		ldconst 5 --> [2]
-		ldconst 6 --> [dois]
-		ldvar 0 --> [e]
-		mcall 7 --> [x]
-		stop
 	End
 End

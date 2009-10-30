@@ -32,7 +32,7 @@ public:
 	void addResult(CResultDefinition* result);
 	CInstructionDefinition *addInstruction(OpcodeType opcode);
 	CInstructionDefinition *addInstruction(OpcodeType opcode, ArgType arg1);
-	std::string toTextAssembly();
+	std::string toTextAssembly(bool onlyCode=false);
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
 	void addIfStatement();

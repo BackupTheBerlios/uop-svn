@@ -12,6 +12,7 @@ Entity start
 		8 S Informacoes inseridas: 
 		9 I 2
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

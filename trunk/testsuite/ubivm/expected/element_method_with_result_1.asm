@@ -1,22 +1,3 @@
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S x
-		2 S oi
-	End
-	No properties
-	Def x
-		No parameters
-		No local variables
-		Result
-			0 string
-		End
-		ldconst 2 --> [oi]
-		stresult 0
-		ret
-	End
-End
 Entity start
 	No options
 	Constants
@@ -29,6 +10,7 @@ Entity start
 		6 I 2
 		7 S io.writeln
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters
@@ -47,5 +29,25 @@ Entity start
 		ldconst 6 --> [2]
 		lcall 7 --> [io.writeln]
 		stop
+	End
+End
+Entity elemento
+	No options
+	Constants
+		0 S elemento
+		1 S x
+		2 S oi
+	End
+	Valid context (always)
+	No properties
+	Def x
+		No parameters
+		No local variables
+		Result
+			0 string
+		End
+		ldconst 2 --> [oi]
+		stresult 0
+		ret
 	End
 End

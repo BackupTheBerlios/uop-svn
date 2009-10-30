@@ -2,6 +2,10 @@
 #include <iostream>
 #include <dlfcn.h>
 
+#include <boost/foreach.hpp>
+#include <boost/tuple/tuple.hpp>
+#define foreach BOOST_FOREACH
+
 #include "RunBytecode.hpp"
 #include "Log.hpp"
 #include "Element.hpp"
@@ -563,6 +567,8 @@ void CRunBytecode::mcallOpcode()
 
 	CElement* element = _dataStack.pop().getElement();
 
+// 	std::cout << "element desempilhado: " << element << std::endl;
+
 	std::string method = getSymbolName(_currentInstruction->getArg1());
 
 	if (method == "wait") {
@@ -1000,13 +1006,69 @@ void CRunBytecode::newelemOpcode()
 {
 	trace ("newelem opcode");
 
-	std::string entity = getSymbolName(_currentInstruction->getArg1());
+	std::string entityName = getSymbolName(_currentInstruction->getArg1());
+	CElement* element = NULL;
 
-	CElement* element = new CElement(_asmDef->getEntity(entity));
-	_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
+	foreach(CEntityDefinition* entity, _asmDef->getEntityList()) {
+		if (entity->getName() == entityName) {
+			element = new CElement(entity);
 
-	_dataStack.push(CLiteral(element));
+			if (element->getMethod("__when") == NULL) {
+				break;
+			}
+
+			// Copy & Paste from mcallOpcode
+			CActivationRecord* ar = new CActivationRecord(this, element, "__when", _ip, _dataStack);
+			_controlStack.push(ar);
+			
+// 			std::cout << "antes run_bce..." << std::endl;
+
+			run_bytecode();
+			
+// 			std::cout << "depois run_bce..." << std::endl;
+
+			_stop = false;
+			
+// 			delete ar;
+			
+			_controlStack.pop();
+ 			ar->restore_state(_dataStack, _ip);
+
+			delete ar;
+
+			bool whenResult = _dataStack.pop().getBoolean();
+
+			if (whenResult == true) {
+				break;
+			}
+// 			delete element;
+			element = NULL;
+		}
+	}
+
+	if (element != NULL) {
+// 		std::cout << "element empilhado: " << element << std::endl;
+		_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
+		_dataStack.push(CLiteral(element));
+	} else {
+		std::cout << "Nenhuma entidade " << entityName << " valida para o contexto atual." << std::endl;
+		exit(1);
+	}
 }
+
+
+// SEM SUPORTE A CLAUSULA WHEN
+// void CRunBytecode::newelemOpcode()
+// {
+// 	trace ("newelem opcode");
+// 
+// 	std::string entity = getSymbolName(_currentInstruction->getArg1());
+// 
+// 	CElement* element = new CElement(_asmDef->getEntity(entity));
+// 	_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
+// 
+// 	_dataStack.push(CLiteral(element));
+// }
 
 
 

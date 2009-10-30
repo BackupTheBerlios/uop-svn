@@ -14,6 +14,7 @@ Entity servico
 		10 S group
 		11 S Alex
 	End
+	Valid context (always)
 	No properties
 	Def soma
 		Parameters
@@ -92,6 +93,7 @@ Entity start
 		13 I 1
 		14 S imprime
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

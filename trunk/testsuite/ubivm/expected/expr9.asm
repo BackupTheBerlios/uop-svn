@@ -21,6 +21,7 @@ Entity start
 		17 I 49
 		18 I 3
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

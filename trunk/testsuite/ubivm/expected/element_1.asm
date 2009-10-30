@@ -1,23 +1,3 @@
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S imprime
-		2 S Oi !!!!
-		3 I 1
-		4 S io.writeln
-	End
-	No properties
-	Def imprime
-		No parameters
-		No local variables
-		No results
-		ldconst 2 --> [Oi !!!!]
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
-		ret
-	End
-End
 Entity start
 	No options
 	Constants
@@ -26,6 +6,7 @@ Entity start
 		2 S elemento
 		3 S imprime
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters
@@ -38,5 +19,26 @@ Entity start
 		ldvar 0 --> [e]
 		mcall 3 --> [imprime]
 		stop
+	End
+End
+Entity elemento
+	No options
+	Constants
+		0 S elemento
+		1 S imprime
+		2 S Oi !!!!
+		3 I 1
+		4 S io.writeln
+	End
+	Valid context (always)
+	No properties
+	Def imprime
+		No parameters
+		No local variables
+		No results
+		ldconst 2 --> [Oi !!!!]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
+		ret
 	End
 End

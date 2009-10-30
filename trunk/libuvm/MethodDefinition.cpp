@@ -120,7 +120,7 @@ void CMethodDefinition::addForStatement()
 {
 }
 
-std::string CMethodDefinition::toTextAssembly()
+std::string CMethodDefinition::toTextAssembly(bool onlyCode)
 {
 	std::string result;
 
@@ -157,11 +157,17 @@ std::string CMethodDefinition::toTextAssembly()
 		result += "\t\tEnd\n";
 	}
 
+	if (onlyCode == true) {
+		result = "";
+	}
+	
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
 		result += (*instruction)->toTextAssembly(_entity->_propertyList, _localVarList, _parameterList);
 	}
 
-	result += "\tEnd\n";
+	if (onlyCode == false) {
+		result += "\tEnd\n";
+	}
 
 	return result;
 }

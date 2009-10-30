@@ -10,6 +10,7 @@ Entity start
 		6 S io.writeln
 		7 S oi
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

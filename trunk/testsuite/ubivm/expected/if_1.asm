@@ -9,6 +9,7 @@ Entity start
 		5 S io.writeln
 		6 S x not > 10
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -11,6 +11,7 @@ Entity start
 		7 S io.writeln
 		8 S tab[2]=
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

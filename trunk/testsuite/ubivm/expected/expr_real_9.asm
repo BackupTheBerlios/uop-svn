@@ -23,6 +23,7 @@ Entity start
 		19 R 49.000000
 		20 R 3.000000
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

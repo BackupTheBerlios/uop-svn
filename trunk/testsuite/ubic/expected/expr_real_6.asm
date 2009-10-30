@@ -12,6 +12,7 @@ Entity start
 		8 I 2
 		9 S io.writeln
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -5,6 +5,7 @@ Entity start
 		1 S var1
 		2 R 10.990000
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

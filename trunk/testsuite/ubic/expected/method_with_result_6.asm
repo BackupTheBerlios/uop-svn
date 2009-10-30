@@ -11,6 +11,7 @@ Entity start
 		7 S result2: 
 		8 S So um resultado...
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

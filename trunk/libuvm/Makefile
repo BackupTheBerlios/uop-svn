@@ -30,7 +30,7 @@ CC = g++
 COPTS = -pipe -Wall -ggdb -pedantic
 LIBS = -lcommon
 
-INCLUDE_DIRS= -I. -I../libcommon/
+INCLUDE_DIRS= -I. -I../libcommon/  -I/usr/local/include/boost-1_39/
 
 #COMPILE_FLAGS= -DHAVE_PATHS_H -DHAVE_MMAP
 

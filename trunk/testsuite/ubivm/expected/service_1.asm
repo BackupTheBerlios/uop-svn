@@ -8,6 +8,7 @@ Entity servico
 		4 S group
 		5 S Alex
 	End
+	Valid context (always)
 	No properties
 	Def soma
 		Parameters
@@ -50,6 +51,7 @@ Entity start
 		8 S soma
 		9 S io.writeln
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

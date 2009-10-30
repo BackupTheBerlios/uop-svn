@@ -1,55 +1,24 @@
-entity test when identity.device.images == true
+entity test when (identity.name == "alex")
 	def run()
-		io.writeln( "Exibe imagens !!!" )
+		io.writeln( "Eu sou o Alex !!!" )
 	end
 end
 
-entity test when identity.device.images == false
+entity test when (identity.name <> "alex")
 	def run()
-		io.writeln( "Nao exibe imagens !!!" )
+		io.writeln( "Ops, nao sou o Alex :-/" )
 	end
 end
 
 entity start
 	def start()
-		def element t = test.new()
-		t.run()
-	end
-end
-
-///////////////////// equivalente em ubia /////////////////////
-
-entity test
-	def __when() [bool]
-		ldcontext identity.device.images
- 		ldbool true
-		cmp
-		ret
-	end
-	def run()
-		... Exibe imagens !!!
-	end
-end
-
-entity test
-	def __when() [bool]
-		ldcontext identity.device.images
- 		ldbool false
-		cmp
-		ret
-	end
-	def run()
-		... Nao exibe imagens !!!
-	end
-end
-
-entity start
-	def start
-		def element t
- 		newelem test
-		stvar t
-		ldvar t
-		mcall run
-		stop
+		def element t1
+		def element t2
+		identity.name = "alex"
+		t1 = test.new()
+		t1.run()
+		identity.name = "gracy"
+		t2 = test.new()
+		t2.run()
 	end
 end

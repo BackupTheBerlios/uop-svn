@@ -7,6 +7,7 @@ Entity start
 		3 S var3
 		4 S var4
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -21,6 +21,10 @@
 #include <fstream>
 #include <sstream>
 
+#include <boost/foreach.hpp>
+#include <boost/tuple/tuple.hpp>
+#define foreach BOOST_FOREACH
+
 #include "AssemblyDefinition.hpp"
 #include "BinString.hpp"
 #include "Log.hpp"
@@ -43,7 +47,7 @@ CAssemblyDefinition::~CAssemblyDefinition()
 CEntityDefinition *CAssemblyDefinition::addEntity(std::string name)
 {
 	CEntityDefinition* entity = new CEntityDefinition(name);
-	_entityList["S::" + name] = entity;
+	_entityList.push_back(entity);
 
 	entity->getSymbolIndex(name, StringType);
 
@@ -65,8 +69,8 @@ std::string CAssemblyDefinition::toTextAssembly()
 {
 	std::string result;
 
-	for(std::map<std::string, CEntityDefinition*>::iterator entity = _entityList.begin(); entity != _entityList.end(); entity++) {
-		result += entity->second->toTextAssembly();
+	foreach(CEntityDefinition* entity, _entityList) {
+		result += entity->toTextAssembly();
 	}
 
 	return result;
@@ -79,8 +83,8 @@ int CAssemblyDefinition::saveBytecode(std::string name)
 	_header->setEntitiesCount(_entityList.size());
 	_header->saveBytecode(bytecode);
 	//bytecode.insert(bytecode.end(), bytecode.begin(), bytecode.end());
-	for(std::map<std::string, CEntityDefinition*>::iterator entity = _entityList.begin(); entity != _entityList.end(); entity++) {
-		entity->second->saveBytecode(bytecode);
+	foreach(CEntityDefinition* entity, _entityList) {
+		entity->saveBytecode(bytecode);
 	}
 
 //	std::cout << "Formato binario com " << bytecode.size() << " bytes:" << std::endl;
@@ -135,7 +139,7 @@ bool CAssemblyDefinition::loadBytecode(std::string name)
 	for(uint count = 0; count < _header->getEntitiesCount(); count++) {
 		CEntityDefinition* entity = new CEntityDefinition();
 		entity->loadBytecode(bytecode);
-		_entityList["S::" + entity->getName()] = entity;
+		_entityList.push_back(entity);
 	}
 
 	return true;
@@ -143,22 +147,13 @@ bool CAssemblyDefinition::loadBytecode(std::string name)
 
 CEntityDefinition* CAssemblyDefinition::getEntity(std::string name)
 {
-	std::map<std::string, CEntityDefinition*>::iterator entity;
-
-	std::string key = "S::" + name;
-//	std::cout << "chave de busca: " << key << std::endl;
-
-	for(entity = _entityList.begin(); entity != _entityList.end(); entity++) {
-//		std::cout << "entidade: " << entity->second->getName() << std::endl;
+	foreach(CEntityDefinition* entity, _entityList) {
+		if (entity->getName() == name) {
+			return entity;
+		}
 	}
 
-	entity = _entityList.find("S::" + name);
-
-	if (entity == _entityList.end()) {
-		return NULL;
-	} else {
-		return entity->second;
-	}
+	return NULL;
 }
 
 

@@ -11,6 +11,7 @@ Entity start
 		7 I 2
 		8 S Informacoes inseridas: 
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -1,23 +1,3 @@
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S imprime
-		2 S Metodo elemento.imprime()
-		3 I 1
-		4 S io.writeln
-	End
-	No properties
-	Def imprime
-		No parameters
-		No local variables
-		No results
-		ldconst 2 --> [Metodo elemento.imprime()]
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
-		ret
-	End
-End
 Entity start
 	No options
 	Constants
@@ -30,6 +10,7 @@ Entity start
 		6 S imprime
 		7 S Depois de chamar imprime
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters
@@ -48,5 +29,26 @@ Entity start
 		ldconst 4 --> [1]
 		lcall 5 --> [io.writeln]
 		stop
+	End
+End
+Entity elemento
+	No options
+	Constants
+		0 S elemento
+		1 S imprime
+		2 S Metodo elemento.imprime()
+		3 I 1
+		4 S io.writeln
+	End
+	Valid context (always)
+	No properties
+	Def imprime
+		No parameters
+		No local variables
+		No results
+		ldconst 2 --> [Metodo elemento.imprime()]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
+		ret
 	End
 End

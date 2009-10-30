@@ -12,6 +12,7 @@ Entity start
 		8 S x entre 11 e 20
 		9 S x > 20
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

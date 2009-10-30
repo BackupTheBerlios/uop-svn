@@ -14,6 +14,7 @@ Entity start
 		10 S Onde estou: 
 		11 S Horario   : 
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

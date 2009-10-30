@@ -174,6 +174,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 	:  'entity' IDENTIFIER
 		{ entityDef = asmDef.addEntity(GETTEXT($IDENTIFIER)); }
 		(entity_options)?
+		(valid_context)?
 		{
 //			entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
 //			entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
@@ -191,6 +192,11 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 		']'
 	;
 
+///----------
+   valid_context
+///----------
+	:	'when' { methodDef = entityDef->addMethod(PrivateVisibility, "__when"); } '(' expr ')' { methodDef->addInstruction(STOP_OPCODE); }
+	;
 
 ///----------
    property_definition

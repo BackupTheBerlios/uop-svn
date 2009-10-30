@@ -15,6 +15,7 @@ Entity start
 		11 S Gracy  =
 		12 S Gabriel=
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -77,6 +77,15 @@ std::string CEntityDefinition::toTextAssembly()
 
 	result += _symbolTable.toTextAssembly();
 
+	CMethodDefinition* method = getMethod("__when");
+	if (method == NULL) {
+		result += "\tValid context (always)\n";
+	} else {
+		result += "\tValid context when\n";
+		result += method->toTextAssembly(true);
+		result += "\tValid context end\n";
+	}
+
 	if (_propertyList.size() == 0) {
 		result += "\tNo properties\n";
 	} else {
@@ -88,7 +97,9 @@ std::string CEntityDefinition::toTextAssembly()
 	}
 
 	for(std::vector<CMethodDefinition*>::iterator method = _methodList.begin(); method != _methodList.end(); method++) {
-		result += (*method)->toTextAssembly();
+		if ((*method)->getName() != "__when" ) {
+			result += (*method)->toTextAssembly();
+		}
 	}
 
 	result += "End\n";

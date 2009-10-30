@@ -12,6 +12,7 @@ Entity start
 		8 S depois da chamada a y
 		9 S no metodo y
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

@@ -12,6 +12,7 @@ Entity start
 		8 R 10.000000
 		9 R 20.987600
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters

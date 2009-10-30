@@ -5,6 +5,7 @@ Entity start
 		1 S var1
 		2 I 10
 	End
+	Valid context (always)
 	No properties
 	Def start
 		No parameters
