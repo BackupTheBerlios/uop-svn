@@ -14,6 +14,7 @@ Entity servico
 		10 S group
 		11 S Alex
 	End
+	No properties
 	Def soma
 		Parameters
 			0 int x
@@ -91,6 +92,7 @@ Entity start
 		13 I 1
 		14 S imprime
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

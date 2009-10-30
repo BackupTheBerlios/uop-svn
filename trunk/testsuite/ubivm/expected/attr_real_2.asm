@@ -7,6 +7,7 @@ Entity start
 		3 I 1
 		4 S io.writeln
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

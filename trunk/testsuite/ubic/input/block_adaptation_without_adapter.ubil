@@ -1,0 +1,7 @@
+Entity Start:
+  def start:
+    writeln( "Verificando:" )
+    if (identity.device.images == true):
+      writeln( "Exibe imagens !!!" )
+    else if (identity.device.images == false):
+      writeln( "Nao exibe imagens !!!" )

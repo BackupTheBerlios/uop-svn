@@ -13,6 +13,7 @@ Entity start
 		9 I 2
 		10 S Informacoes inseridas: 
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

@@ -1,0 +1,9 @@
+entity start
+	def string txt
+	def start()
+		txt = "Mensagem"
+		io.writeln(txt)
+	end
+end
+
+

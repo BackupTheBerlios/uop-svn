@@ -5,6 +5,7 @@ Entity elemento
 		1 S x
 		2 S So um resultado...
 	End
+	No properties
 	Def x
 		No parameters
 		No local variables
@@ -31,6 +32,7 @@ Entity start
 		8 S io.writeln
 		9 S result2: 
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

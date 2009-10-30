@@ -1,0 +1,15 @@
+entity test
+	def string p
+	def m()
+		p = "Oi"   // Ok
+	end
+end
+
+entity start
+	def start()
+		element t = test.new()
+		t.m()      // Ok
+		t.p = "Oi" // Erro
+	end
+end
+

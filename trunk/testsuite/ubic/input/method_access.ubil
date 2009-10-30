@@ -1,0 +1,17 @@
+entity test
+	def public m1()
+		io.writeln("m1")
+	end
+	def private m2()
+		io.writeln("m2")
+	end
+end
+
+entity start
+	def start()
+		element t = Test.new()
+		t.m1() // Ok
+		t.m2() // Erro
+	end
+end
+

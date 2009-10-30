@@ -1,0 +1,20 @@
+entity start
+	def start()
+		def table tab
+		def int linha
+		def int coluna
+
+		for(linha=1; linha<=10; linha=linha+1)
+			for(coluna=1; coluna<=5; coluna=coluna+1)
+				tab[linha,coluna] = linha*coluna
+			end
+		end
+
+		for(linha=1; linha<=10; linha=linha+1)
+			for(coluna=1; coluna<=5; coluna=coluna+1)
+				io.writeln("tab[", linha, ", ", coluna, "]=", tab[linha, coluna])
+			end
+		end
+	end
+end
+

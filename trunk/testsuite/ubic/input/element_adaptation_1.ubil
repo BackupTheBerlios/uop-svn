@@ -1,0 +1,55 @@
+entity test when identity.device.images == true
+	def run()
+		io.writeln( "Exibe imagens !!!" )
+	end
+end
+
+entity test when identity.device.images == false
+	def run()
+		io.writeln( "Nao exibe imagens !!!" )
+	end
+end
+
+entity start
+	def start()
+		def element t = test.new()
+		t.run()
+	end
+end
+
+///////////////////// equivalente em ubia /////////////////////
+
+entity test
+	def __when() [bool]
+		ldcontext identity.device.images
+ 		ldbool true
+		cmp
+		ret
+	end
+	def run()
+		... Exibe imagens !!!
+	end
+end
+
+entity test
+	def __when() [bool]
+		ldcontext identity.device.images
+ 		ldbool false
+		cmp
+		ret
+	end
+	def run()
+		... Nao exibe imagens !!!
+	end
+end
+
+entity start
+	def start
+		def element t
+ 		newelem test
+		stvar t
+		ldvar t
+		mcall run
+		stop
+	end
+end

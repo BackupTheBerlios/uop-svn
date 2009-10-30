@@ -178,7 +178,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //			entityDef = asmDef.addEntity((const char*)$IDENTIFIER.text->chars);
 //			entityDef->getSymbolIndex(GETTEXT($IDENTIFIER), StringType);
 		 }
-		(property_definition|method_definition)*
+		(property_definition)*
+		(method_definition)* // TODO: nao deveria ser + ???
 		'end'
 	;
 
@@ -194,11 +195,18 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    property_definition
 ///----------
-   :  'def' type IDENTIFIER
-      {
-         entityDef->addProperty(PublicVisibility, $type.iret, (const char*)$IDENTIFIER.text->chars);
-      }
-   ;
+	:	'def' type IDENTIFIER
+		{
+			entityDef->addProperty(PublicVisibility, $type.iret, (const char*)$IDENTIFIER.text->chars);
+		}
+//		(
+//			'=' expr
+//			{
+//				methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER)));
+//			}
+//		)?
+	;
+
 
 ///----------
    type returns [LiteralType iret, std::string sret] :
@@ -315,7 +323,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
       '=' expr
       {
          for(std::vector<std::string>::iterator id = idList.begin(); id != idList.end(); id++) {
-            methodDef->addInstruction(STVAR_OPCODE, methodDef->getVarIndex((*id)));
+            methodDef->addStoreInstruction(*id, false);
          }
       }
    ;
@@ -443,8 +451,8 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 //--------------------------------------
 		IDENTIFIER '.' 'size' '(' ')'
 		{ methodDef->addInstruction(TABSIZE_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
-	|	IDENTIFIER '[' expr { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); } ',' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
-	|	IDENTIFIER '[' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
+//	|	IDENTIFIER '[' expr { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); } ',' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER)); }
+	|	IDENTIFIER '[' expr ']' { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER), true); }
 	;
 
 //--------------------------------------
@@ -624,7 +632,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
             }
             methodDef->addInstruction(LCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($elementId) + "." + GETTEXT($methodId), StringType));
          } else {
-            methodDef->addLoadInstruction(GETTEXT($elementId));
+            methodDef->addLoadInstruction(GETTEXT($elementId), false);
             methodDef->addInstruction(MCALL_OPCODE, entityDef->getSymbolIndex(GETTEXT($methodId), StringType));
          }
       }
@@ -648,7 +656,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    literal
 ///----------
-   :  IDENTIFIER     { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER));  }
+   :  IDENTIFIER     { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER), false);  }
 //   :  IDENTIFIER     { methodDef->addInstruction(LDVAR_OPCODE  , methodDef->getVarIndex(GETTEXT($IDENTIFIER)));  }
    |  INTEGER_LITERAL { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($INTEGER_LITERAL), IntegerType)); }
    |  REAL_LITERAL    { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($REAL_LITERAL),    RealType));    }
@@ -780,7 +788,7 @@ op_unario
 
 expr_elemento
   : method_invocation
-  | IDENTIFIER     { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER));  }
+  | IDENTIFIER     { methodDef->addLoadInstruction(GETTEXT($IDENTIFIER), false);  }
 //  | IDENTIFIER { methodDef->addInstruction(LDVAR_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
   | literal
   | context_property

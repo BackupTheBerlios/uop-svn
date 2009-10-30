@@ -1,0 +1,7 @@
+def Start:
+  def start():
+    writeln("Host atual : " + identity.host)
+    writeln("Dispositivo: " + identity.device)
+    writeln("Tempo      : " + time)
+    writeln("Atividade  : " + activity.what)
+    writeln("Onde estou : " + location.symbolic)

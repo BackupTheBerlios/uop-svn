@@ -1,0 +1,9 @@
+entity start
+	def start()
+		{"MeuGrupo"}.bind("prog2")
+		io.writeln("Programa 2 inserindo informacao")
+		{"MeuGrupo"}.data.af("Nro 1" => 1000)
+		while(true)
+		end
+	end
+end

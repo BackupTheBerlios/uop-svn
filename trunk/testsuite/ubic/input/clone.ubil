@@ -1,0 +1,11 @@
+Entity Test:
+  def int x get set
+Entity Start:
+  def Start():
+    Test t1 = Test.new
+    t1.x = 10
+    Test t2 = t1.clone()
+    writeln("t1.x=" + t1.x + " t2.x=" + t2.x)
+    t1.x = 1
+    t2.x = 2
+    writeln("t1.x=" + t1.x + " t2.x=" + t2.x)

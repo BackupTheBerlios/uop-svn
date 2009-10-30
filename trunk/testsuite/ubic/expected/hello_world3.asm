@@ -8,6 +8,7 @@ Entity start
 		4 S Mais teste !!!
 		5 I 2
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

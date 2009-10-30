@@ -9,6 +9,7 @@ Entity start
 		5 I 30
 		6 I 5
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

@@ -58,6 +58,9 @@ enum OpcodeType {
 	LDACTIVITY_OPCODE,*/
 	DATANBQU_OPCODE,
 	DATANBDQU_OPCODE,
+	STPARAM_OPCODE,
+	LDPROP_OPCODE,
+	STPROP_OPCODE,
 	INVALID_OPCODE,
 	OPCODE_COUNT
 };
@@ -100,7 +103,7 @@ enum SymbolType {
 };
 
 enum VisibilityType {
-	PublicVisibility = '+',
+	PublicVisibility  = '+',
 	PrivateVisibility = '-'
 };
 

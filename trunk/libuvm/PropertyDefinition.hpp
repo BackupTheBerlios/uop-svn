@@ -24,21 +24,25 @@
 
 #include "LibuvmDefs.hpp"
 #include "BinString.hpp"
+#include "SymbolTable.hpp"
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
 class CPropertyDefinition{
 public:
-    CPropertyDefinition();
-    CPropertyDefinition(VisibilityType visibility, LiteralType type, std::string name);
-    ~CPropertyDefinition();
+	CPropertyDefinition(CSymbolTable *symbolTable, size_t index);
+	CPropertyDefinition(CSymbolTable *symbolTable, size_t index, VisibilityType visibility, LiteralType type, std::string name);
+	~CPropertyDefinition();
+	std::string toTextAssembly();
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
 
+	CSymbolTable*  _symbolTable;
+	size_t         _index;
     VisibilityType _visibility;
-	LiteralType _type;
-	std::string _name;
+	LiteralType    _type;
+	std::string    _name;
 };
 
 #endif

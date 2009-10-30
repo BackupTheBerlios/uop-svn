@@ -12,6 +12,7 @@ Entity start
 		8 S io.writeln
 		9 S msg2=
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

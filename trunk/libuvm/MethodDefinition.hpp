@@ -9,6 +9,8 @@
 #include <map>
 #include <vector>
 
+class CMethodDefinition;
+
 #include "SymbolTable.hpp"
 #include "LibuvmDefs.hpp"
 #include "ParameterDefinition.hpp"
@@ -16,12 +18,13 @@
 #include "ResultDefinition.hpp"
 #include "InstructionDefinition.hpp"
 #include "BinString.hpp"
+#include "EntityDefinition.hpp"
 
 class CMethodDefinition
 {
 public:
-	CMethodDefinition(CSymbolTable* symbolTable);
-	CMethodDefinition(CSymbolTable *symbolTable, VisibilityType visibility, std::string name);
+	CMethodDefinition(CEntityDefinition* entity, CSymbolTable* symbolTable);
+	CMethodDefinition(CEntityDefinition* entity, CSymbolTable *symbolTable, VisibilityType visibility, std::string name);
 	CParameterDefinition *addParameter(LiteralType type, std::string name);
 	void addParameter(CParameterDefinition* parameter);
 	CLocalVarDefinition *addLocalVar(LiteralType type, std::string name);
@@ -44,7 +47,8 @@ public:
 	}
 	int setNextInstructionLabel(int label);
 	void resolveLabels();
-	void addLoadInstruction(std::string identifier);
+	void addLoadInstruction(std::string identifier, bool tableInstruction);
+	void addStoreInstruction(std::string identifier, bool tableInstruction);
 	void pushInstructions();
 	void addInstructions();
 	void addPushedInstructions();
@@ -63,6 +67,7 @@ private:
 //	std::map<std::string, CLocalVarDefinition*>  _localVarList;
 	std::vector<CInstructionDefinition*>         _instructionList;
 	std::vector<CInstructionDefinition*>         _pushedInstructions;
+	CEntityDefinition* _entity;
 	CSymbolTable *_symbolTable;
 	VisibilityType _visibility;
 	std::string    _name;

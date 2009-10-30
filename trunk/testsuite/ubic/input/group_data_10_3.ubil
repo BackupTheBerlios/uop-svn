@@ -1,0 +1,7 @@
+entity start
+	def start()
+		{"MeuGrupo"}.bind("prog3")
+		io.writeln("Primeira informacao inserida: ", {"MeuGrupo"}.data.dqu("Nro 1"))
+		io.writeln("Segunda informacao inserida: ", {"MeuGrupo"}.data.dqu("Nro 2"))
+	end
+end

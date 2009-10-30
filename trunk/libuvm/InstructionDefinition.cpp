@@ -33,7 +33,8 @@ enum OpcodeArgumentType {
 	ConstantOpcodeArgumentType = 2,
 	LabelOpcodeArgumentType    = 3,
 	ParameterOpcodeArgumentType = 4, // TODO: se unificar a tabela de simbolos, talvez esse tipo nao seja mais necessario...
-	NumberOpcodeArgumentType = 5
+	NumberOpcodeArgumentType = 5,
+ 	PropertyOpcodeArgumentType = 6
 };
 
 typedef struct Mnemonic_t {
@@ -80,6 +81,7 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ STVAR_OPCODE, "stvar", VariableOpcodeArgumentType },
 	{ STRESULT_OPCODE, "stresult", NumberOpcodeArgumentType },
 	{ LDPARAM_OPCODE, "ldpar", ParameterOpcodeArgumentType },
+	{ STPARAM_OPCODE, "stpar", ParameterOpcodeArgumentType },
 	{ IFNOT_OPCODE, "ifnot", LabelOpcodeArgumentType },
 	{ IF_OPCODE, "if", LabelOpcodeArgumentType },
 	{ JMP_OPCODE, "jmp", LabelOpcodeArgumentType },
@@ -106,6 +108,8 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ STTUPLEK_OPCODE,  "sttuplek",  VariableOpcodeArgumentType },
 	{ STTUPLEV_OPCODE,  "sttuplev",  VariableOpcodeArgumentType },
 	{ TABSIZE_OPCODE,   "tabsize",   VariableOpcodeArgumentType },
+	{ LDPROP_OPCODE,    "ldprop",    PropertyOpcodeArgumentType },
+	{ STPROP_OPCODE,    "stprop",    PropertyOpcodeArgumentType },
 /*	{ LDIDENTITY_OPCODE, "ldidentity", ConstantOpcodeArgumentType },
 	{ LDLOCATION_OPCODE, "ldlocation", ConstantOpcodeArgumentType },
 	{ LDTIME_OPCODE, "ldtime", ConstantOpcodeArgumentType },
@@ -152,7 +156,7 @@ std::string CInstructionDefinition::getTextOpcode()
 }
 
 
-std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList)
+std::string CInstructionDefinition::toTextAssembly(const std::vector<CPropertyDefinition*> &propertyList, const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList)
 {
 	std::stringstream result;
 
@@ -175,6 +179,8 @@ std::string CInstructionDefinition::toTextAssembly(const std::vector<CLocalVarDe
 // 				std::cout << "arg1=" << _arg1 << " localVarList.size()=" << localVarList.size() << std::endl;
 				result << " " << _arg1 << " --> [" << localVarList[_arg1]->_name << "]";
 //				result << " LocalVar[" << _arg1 << "]";
+			} else if (opcodeListDesc[pos]._argType == PropertyOpcodeArgumentType) {
+				result << " " << _arg1 << " --> [" << propertyList[_arg1]->_name << "]";
 			} else if (opcodeListDesc[pos]._argType == ParameterOpcodeArgumentType) {
 // 				std::cout << "arg1=" << _arg1 << " paramList.size()=" << paramList.size() << std::endl;
 				result << " " << _arg1 << " --> [" << paramList[_arg1]->_name << "]";

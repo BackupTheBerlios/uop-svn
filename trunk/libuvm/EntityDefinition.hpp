@@ -5,6 +5,8 @@
 
 #include <vector>
 
+class CEntityDefinition;
+
 #include "SymbolTable.hpp"
 #include "PropertyDefinition.hpp"
 #include "MethodDefinition.hpp"
@@ -31,8 +33,9 @@ public:
 	}
 	bool isParallel(); // const;
 	void setOption(std::string option);
-private:
+	CPropertyDefinition* findProperty(std::string identifier);
 	std::vector<CPropertyDefinition*> _propertyList;
+private:
 	std::vector<CMethodDefinition*> _methodList;
 	std::string _name;
 	CSymbolTable _symbolTable;

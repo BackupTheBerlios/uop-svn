@@ -1,0 +1,13 @@
+entity start
+	def start()
+		def element p = process.new()
+		io.writeln("Resultado: " + {"group"}.data.dqu("Resultado"))
+	end
+end
+
+entity process [parallel]
+	def process()
+		{"group"}.data.af("Resultado", 10 * 2)
+	end
+end
+

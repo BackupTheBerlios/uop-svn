@@ -1,0 +1,36 @@
+import ncurses
+
+entity start
+	def start()
+		def int main_win
+		def int perfil_win
+
+		ncurses.initscr()
+		ncurses.refresh()
+		ncurses.wrefresh(main_win)
+
+		perfil_win = ncurses.newwin(17, 120, 0, 0)
+		ncurses.box(perfil_win, 0, 0)
+		ncurses.mvwwrite(perfil_win, 1, 1, "Nome: ")
+		identity.name = ncurses.wread(perfil_win)
+		ncurses.mvwwrite(perfil_win, 2, 1, "Interesse geral: ")
+		identity.general_interest = ncurses.wread(perfil_win)
+		ncurses.mvwwrite(perfil_win, 3, 1, "Interesse especifico: ")
+		identity.specific_interest = ncurses.wread(perfil_win)
+		ncurses.mvwwrite(perfil_win, 4, 1, "Localização: ")
+		location.symbolic = ncurses.wread(perfil_win)
+		ncurses.mvwwrite(perfil_win, 10, 1, "Dados lidos")
+		ncurses.mvwwrite(perfil_win, 11, 1, "Nome: ")
+		ncurses.wwrite(perfil_win, identity.name)
+		ncurses.wwrite(perfil_win, " Interesse geral: ")
+		ncurses.wwrite(perfil_win, identity.general_interest)
+		ncurses.wwrite(perfil_win, " Interesse específico: ")
+		ncurses.wwrite(perfil_win, identity.specific_interest)
+		ncurses.wwrite(perfil_win, " Localização: ")
+		ncurses.wwrite(perfil_win, location.symbolic)
+		ncurses.wrefresh(perfil_win)
+		ncurses.refresh()
+		ncurses.getch()
+		ncurses.endwin()
+	end
+end

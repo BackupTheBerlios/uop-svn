@@ -1,0 +1,5 @@
+def Start:
+  def start():
+    writeln("Host atual : " + identity.host)
+    writeln("Onde estou : " + 
+        location.symbolic)

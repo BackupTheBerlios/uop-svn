@@ -7,6 +7,7 @@ Entity start
 		3 S io.writeln
 		4 S Mais um olá mundo !!!
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

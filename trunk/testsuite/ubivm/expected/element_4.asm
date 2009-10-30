@@ -10,6 +10,7 @@ Entity elemento
 		6 S depois da chamada a elemento::y
 		7 S no metodo elemento::y
 	End
+	No properties
 	Def x
 		No parameters
 		No local variables
@@ -51,6 +52,7 @@ Entity start
 		11 S elemento
 		12 S depois da chamada a elemento::x
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

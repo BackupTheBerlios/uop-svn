@@ -1,0 +1,12 @@
+import io
+
+entity start
+	def start()
+		{"MeuGrupo"}.bind("prog1")
+		io.writeln("Inserindo informacoes")
+		{"MeuGrupo"}.data.af("Numero 1" => 100)
+		io.writeln("nbqu em informacao inexistente: ", {"MeuGrupo"}.data.nbqu("Numero X"))
+		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.qu("Numero 1"))
+		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.qu("Numero 1"))
+	end
+end

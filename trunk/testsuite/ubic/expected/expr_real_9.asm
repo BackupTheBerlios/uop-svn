@@ -23,6 +23,7 @@ Entity start
 		19 R 49.000000
 		20 R 3.000000
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

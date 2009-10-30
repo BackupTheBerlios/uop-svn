@@ -1,0 +1,8 @@
+entity start
+	def start()
+		for(int i = 0; i <= 10; i++)
+			io.writeln(i)
+		end
+	end
+end
+

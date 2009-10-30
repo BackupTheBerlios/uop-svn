@@ -1,0 +1,21 @@
+entity start
+	def start()
+		def element elemento1 = concorrente(1).new()
+		def element elemento2 = concorrente(2).new()
+		for(int x = 1; x <= 5; x++)
+			io.writeln( "Elemento 'start' esta na iteracao ", x )
+		end
+		io.writeln("Elemento ", {"group1"}.data.dqu("terminei"), " terminou...")
+		io.writeln("Elemento ", {"group1"}.data.dqu("terminei"), " terminou...")
+	end
+end
+
+entity concorrente [parallel]
+	def concorrente(int id)
+		for(int x = 1; x <= 20; x++)
+			io.writeln("Entidade ", id, " esta na iteracao ", x)
+		end
+		{"group1"}.data.af("terminei" => id)
+	end
+end
+

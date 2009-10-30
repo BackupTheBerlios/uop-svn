@@ -1,0 +1,7 @@
+entity start
+	def start()
+		io.writeln("Resultado do servico 1: " + {"group"}.service1())
+		io.writeln("Resultado do servico 2: " + {"group"}.service2())
+	end
+end
+

@@ -22,6 +22,11 @@
 CElement::CElement(CEntityDefinition* entity)
 	: _entity(entity), _thread(NULL)
 {
+	// Define as propriedades
+	for(std::vector<CPropertyDefinition*>::iterator prop = _entity->_propertyList.begin();
+		prop != _entity->_propertyList.end(); prop++) {
+		_propertyList.push_back(CLiteral((*prop)->_type));
+	}
 }
 
 CElement::~CElement()

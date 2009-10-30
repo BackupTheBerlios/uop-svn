@@ -1,0 +1,5 @@
+Entity Start:
+  def Start():
+    identity.cpf     = 12345678901
+    identity.rg      = 1234567890
+    identity.celular = 99999999

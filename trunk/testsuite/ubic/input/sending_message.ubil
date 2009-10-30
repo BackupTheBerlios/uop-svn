@@ -1,0 +1,9 @@
+entity start
+	def m1()
+		io.writeln "m1"
+	end
+	def Start()
+		io.m1()
+	end
+end
+

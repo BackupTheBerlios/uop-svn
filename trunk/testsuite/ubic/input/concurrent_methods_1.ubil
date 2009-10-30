@@ -1,0 +1,22 @@
+entity start
+	def start()
+		int m1 = method1().fork()
+		int m2 = method2().fork()
+		for(int x = 1; x <= 5; x++)
+			writeln( "Elemento Start esta na iteracao ", x )
+		end
+		m1.wait()
+		m2.wait()
+	end
+	def method1()
+		for(int i = 1; x <= 10; x++)
+			writeln("Running method1...")
+		end
+	end
+	def method2()
+		for(int i = 1; x <= 10; x++)
+			writeln("Running method2...")
+		end
+	end
+end
+

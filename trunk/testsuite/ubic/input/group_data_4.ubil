@@ -1,0 +1,21 @@
+import io
+import datetime
+
+entity start
+	def start()
+		def element insere = insert_data.new()
+		{"MeuGrupo"}.bind("start")
+		insere.insert_data()
+		io.writeln("Informacao inserida: ", {"MeuGrupo"}.data.qu("Numero 1"))
+	end
+end
+
+entity insert_data [parallel]
+	def insert_data()
+		{"MeuGrupo"}.bind("insert")
+		datetime.sleep(5)
+		io.writeln("Inserindo informacao")
+		{"MeuGrupo"}.data.af("Numero 1" => 100)
+	end
+end
+

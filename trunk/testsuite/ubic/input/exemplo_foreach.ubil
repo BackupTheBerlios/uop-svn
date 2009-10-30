@@ -1,0 +1,8 @@
+entity start
+	def start()
+		foreach(int i in [1..10])
+			io.writeln(i)
+		end
+	end
+end
+

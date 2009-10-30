@@ -1,0 +1,11 @@
+entity start
+	def start()
+		io.writeln("Verificando:")
+		when identity.device.images == true
+			writeln( "Exibe imagens !!!" )
+		end
+		when identity.device.images == false
+			writeln( "Nao exibe imagens !!!" )
+		end
+	end
+end

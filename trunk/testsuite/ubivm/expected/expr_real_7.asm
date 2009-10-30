@@ -14,6 +14,7 @@ Entity start
 		10 I 2
 		11 S io.writeln
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

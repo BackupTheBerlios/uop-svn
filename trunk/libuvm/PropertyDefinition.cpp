@@ -18,14 +18,20 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 #include "PropertyDefinition.hpp"
+#include "LibUvmCommon.hpp"
+#include "Tools.hpp"
 
-CPropertyDefinition::CPropertyDefinition()
+
+CPropertyDefinition::CPropertyDefinition(CSymbolTable *symbolTable, size_t index)
+	: _symbolTable(symbolTable), _index(index)
 {
 }
 
-CPropertyDefinition::CPropertyDefinition(VisibilityType visibility, LiteralType type, std::string name)
-	: _visibility(visibility), _type(type), _name(name)
+
+CPropertyDefinition::CPropertyDefinition(CSymbolTable *symbolTable, size_t index, VisibilityType visibility, LiteralType type, std::string name)
+	: _symbolTable(symbolTable), _index(index), _visibility(visibility), _type(type), _name(name)
 {
+	_symbolTable->getSymbolIndex(_name, StringType);
 }
 
 
@@ -34,11 +40,43 @@ CPropertyDefinition::~CPropertyDefinition()
 }
 
 
+std::string CPropertyDefinition::toTextAssembly()
+{
+	std::string result;
+
+	result += "\t\t";
+	result += itoa(_index);
+	result += " ";
+	result += _visibility == PublicVisibility ? "public" : "private";
+	result += " ";
+	result += typeToText(_type);
+	result += " ";
+	result += _name;
+	result += "\n";
+
+	return result;
+}
+
+
 void CPropertyDefinition::saveBytecode(CBinString& bytecode)
 {
+	u_int indexName = _symbolTable->getSymbolIndex(_name, StringType);
+
+	bytecode.save(&_visibility, sizeof(_visibility));
+	bytecode.save(&_type, sizeof(_type));
+	bytecode.save(&indexName, sizeof(indexName));
 }
+
 
 bool CPropertyDefinition::loadBytecode(CBinString& bytecode)
 {
+	u_int indexName;
+
+	bytecode.load(&_visibility, sizeof(_visibility));
+	bytecode.load(&_type, sizeof(_type));
+	bytecode.load(&indexName, sizeof(indexName));
+
+	_name = _symbolTable->getSymbolByIndex(indexName)->_name;
+
 	return true;
 }

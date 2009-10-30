@@ -10,6 +10,7 @@ Entity elemento
 		6 S io.writeln
 		7 S msg2=
 	End
+	No properties
 	Def x
 		Parameters
 			0 string msg1
@@ -38,6 +39,7 @@ Entity start
 		4 S oi de novo !!!
 		5 S x
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

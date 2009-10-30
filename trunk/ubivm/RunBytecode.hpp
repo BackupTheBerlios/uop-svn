@@ -105,6 +105,8 @@ private:
 	void sttuplekOpcode();
 	void sttuplevOpcode();
 	void tabsizeOpcode();
+	void ldpropOpcode();
+	void stpropOpcode();
 
 	OpcodePointer   _opcodePointer[OPCODE_COUNT];
 	bool            _stop;

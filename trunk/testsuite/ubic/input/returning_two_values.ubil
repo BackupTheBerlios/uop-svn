@@ -1,0 +1,12 @@
+entity start
+	def calcula(int x, int y) [int, int]
+		return(x + y, x - y)
+	end
+	def start()
+		int a, s
+		a, s = calcula(10,20)
+		io.writeln("Adicao dos valores    : ", a)
+		io.writeln("Subtracao dos valores : ", s)
+	end
+end
+

@@ -1,0 +1,16 @@
+entity start
+	def start()
+		def table tab
+
+		tab["Alex",  "Antes" ] = 162
+		tab["Alex",  "Depois"] = 102
+		tab["Gracy", "Antes" ] = 97
+		tab["Gracy", "Depois"] = 85
+
+		io.writeln("Alex  antes  =", tab["Alex",  "Antes" ])
+		io.writeln("Alex  depois =", tab["Alex",  "Depois"])
+		io.writeln("Gracy antes  =", tab["Gracy", "Antes" ])
+		io.writeln("Gracy depois =", tab["Gracy", "Depois"])
+	end
+end
+

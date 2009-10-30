@@ -15,13 +15,13 @@ class CActivationRecord;
 */
 class CActivationRecord{
 public:
-	CActivationRecord(CRunBytecode* bce, std::string entityName, std::string methodName, SIp& currentIp, CDataStack& dataStack);
+	CActivationRecord(CRunBytecode* bce, CElement* element, std::string methodName, SIp& currentIp, CDataStack& dataStack);
 	CActivationRecord() { } // TODO: retirar isso
 	~CActivationRecord();
 	void restore_state(CDataStack& dataStack, SIp& currentIp);
 
 	CRunBytecode* _bce;
-	std::string _entityName;
+// 	std::string _entityName;
 	std::string _methodName;
 	SIp _lastIp;
 	std::vector<CLiteral> _localVarList;

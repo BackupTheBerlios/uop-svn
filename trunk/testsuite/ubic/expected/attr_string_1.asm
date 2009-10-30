@@ -5,6 +5,7 @@ Entity start
 		1 S var1
 		2 S aaa
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

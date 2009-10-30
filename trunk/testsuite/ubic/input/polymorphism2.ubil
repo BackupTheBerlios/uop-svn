@@ -1,0 +1,33 @@
+entity A
+	def x()
+		io.writeln("Executando x na entidade A")
+	end
+	def y()
+		io.writeln("Executando y na entidade A")
+	end
+end
+
+entity B extends A
+	def override y()
+		super()
+		io.writeln("Executando y na entidade B")
+	end
+	def z()
+		io.writeln("Executando z na entidade B")
+	end
+end
+
+entity Start
+	def start()
+		def element a
+		a = A.new()
+		a.x()
+		a.y()
+
+		a = B.new()
+		a.x()
+		a.y()
+		a.z()
+	end
+end
+

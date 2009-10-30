@@ -11,6 +11,7 @@
 #include "BinString.hpp"
 #include "LocalVarDefinition.hpp"
 #include "ParameterDefinition.hpp"
+#include "PropertyDefinition.hpp"
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
@@ -22,7 +23,7 @@ public:
     CInstructionDefinition(CSymbolTable *symbolTable, LabelType label, OpcodeType opcode, ArgType arg1);
     ~CInstructionDefinition();
 
-    std::string toTextAssembly(const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList);
+    std::string toTextAssembly(const std::vector<CPropertyDefinition*> &propertyList, const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList);
 //    std::string toTextAssembly();
     void saveBytecode(CBinString& bytecode);
     bool loadBytecode(CBinString& bytecode);

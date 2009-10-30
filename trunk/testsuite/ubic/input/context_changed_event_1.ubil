@@ -1,0 +1,7 @@
+entity start
+	event location.symbolic.changed += altLoc
+	def altLoc(string old, string new)
+		writeln("Localizacao " + old + " mudou para " + new)
+	end
+end
+

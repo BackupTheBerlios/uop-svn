@@ -19,6 +19,7 @@ Entity start
 		15 S  eh par !!!
 		16 S  ???
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

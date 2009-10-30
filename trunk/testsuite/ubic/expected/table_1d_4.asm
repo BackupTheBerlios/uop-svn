@@ -15,6 +15,7 @@ Entity start
 		11 S Sexo =
 		12 S Idade=
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

@@ -1,0 +1,8 @@
+entity start
+	def start()
+		identity.name = "Alex"
+		string message = {"MeuGrupo"}.data.dqu(identity.myname)
+		io.writeln("Mensagem recebida: " + message)
+	end
+end
+

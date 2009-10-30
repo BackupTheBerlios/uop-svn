@@ -15,6 +15,7 @@ Entity start
 		11 S x entre 11 e 20
 		12 S x > 20
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

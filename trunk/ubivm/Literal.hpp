@@ -22,11 +22,12 @@
 
 #include <string>
 
+class CLiteral;
+
 #include "LibuvmDefs.hpp"
 #include "Element.hpp"
 #include "MultiIndex.hpp"
 
-class CLiteral;
 
 //typedef CTable CMultiIndex<CLiteral>;
 

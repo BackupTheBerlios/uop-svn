@@ -4,9 +4,13 @@
 #include <boost/thread/thread.hpp>
 #include <boost/thread/mutex.hpp>
 #include <boost/thread/condition.hpp>
+#include <vector>
 
+class CElement;
 
 #include "EntityDefinition.hpp"
+#include "Literal.hpp"
+
 
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
@@ -32,6 +36,7 @@ public:
 	}
 // private:
 	boost::thread* _thread;
+	std::vector<CLiteral> _propertyList;
 };
 
 #endif

@@ -298,6 +298,9 @@ void CTests::define()
 	test = compiler.addTest(PASS, "service_2");
 	test = vm.addTest(PASS, "service_2");
 
+	test = compiler.addTest(PASS, "service_4");
+	test = vm.addTest(PASS, "service_4");
+
 	test = compiler.addTest(PASS, "context_1");
 	test = vm.addTest(PASS, "context_1");
 
@@ -371,6 +374,12 @@ void CTests::define()
 
 	test = compiler.addTest(PASS, "group_data_8");
 	test = vm.addTest(PASS, "group_data_8");
+
+	test = compiler.addTest(PASS, "property_1");
+	test = vm.addTest(PASS, "property_1");
+
+	test = compiler.addTest(PASS, "property_2");
+	test = vm.addTest(PASS, "property_2");
 
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real

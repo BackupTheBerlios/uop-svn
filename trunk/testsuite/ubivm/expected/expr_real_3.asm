@@ -9,6 +9,7 @@ Entity start
 		5 R 30.000000
 		6 R 5.000000
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

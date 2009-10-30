@@ -47,7 +47,14 @@ int CRunBytecode::run()
    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
 
 
-	CActivationRecord* ar = new CActivationRecord(this, "start", "start", _ip, _dataStack);
+	CElement* element = new CElement(CUbiVM::getInstance()->getAsmDef()->getEntity("start"));
+	
+	if (element == NULL) {
+		std::cout << "Entidade " << "start" << " nao encontrada !!!" << std::endl;
+		return 1;
+	}
+
+	CActivationRecord* ar = new CActivationRecord(this, element, "start", _ip, _dataStack);
 
 	_controlStack.push(ar);
 
@@ -199,6 +206,8 @@ void CRunBytecode::_initOpcodePointer()
 	_opcodePointer[LDTUPLEK_OPCODE ] = &CRunBytecode::ldtuplekOpcode;
 	_opcodePointer[LDTUPLEV_OPCODE ] = &CRunBytecode::ldtuplevOpcode;
 	_opcodePointer[TABSIZE_OPCODE  ] = &CRunBytecode::tabsizeOpcode;
+	_opcodePointer[LDPROP_OPCODE   ] = &CRunBytecode::ldpropOpcode;
+	_opcodePointer[STPROP_OPCODE   ] = &CRunBytecode::stpropOpcode;
 }
 
 
@@ -572,7 +581,7 @@ void CRunBytecode::mcallOpcode()
 			rb = this;
 		}
 
-		CActivationRecord* ar = new CActivationRecord(rb, element->_entity->getName(), method, rb->_ip, _dataStack); // TODO: rb ou this ?????
+		CActivationRecord* ar = new CActivationRecord(rb, element, method, rb->_ip, _dataStack); // TODO: rb ou this ?????
 //  		ar->_lastIp = _ip;
 
 // 		rb->_ip.element = element;
@@ -643,7 +652,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 		_dataStack.push(*par);
 	}
 	
-	CActivationRecord* ar = new CActivationRecord(this, element->_entity->getName(), serviceName, _ip, _dataStack);
+	CActivationRecord* ar = new CActivationRecord(this, element, serviceName, _ip, _dataStack);
 
 	_controlStack.push(ar);
 
@@ -654,7 +663,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 // 	std::cout << "dataStack.size()=" << _dataStack.size() << std::endl;
 	for(std::vector<CResultDefinition*>::iterator ret = element->getMethod(serviceName)->_resultList.begin();
 		ret != element->getMethod(serviceName)->_resultList.end(); ret++) {
-		results.push_back(_dataStack.pop());
+		results.insert(results.begin(), _dataStack.pop());
 	}
 
 // 	std::cout << "resultados" << std::endl;
@@ -1340,4 +1349,23 @@ void CRunBytecode::tabsizeOpcode()
 	trace ("tabsize opcode");
 
 	_dataStack.push(CLiteral((int)_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->size()));
+}
+
+
+void CRunBytecode::ldpropOpcode()
+{
+	trace ("ldprop opcode");
+
+	CLiteral literal = _ip.element->_propertyList[_currentInstruction->getArg1()];
+
+	_dataStack.push(literal);
+}
+
+void CRunBytecode::stpropOpcode()
+{
+	trace ("stprop opcode");
+
+// 	std::cout << __FUNCTION__ << _ip.element << std::endl;
+	
+	_ip.element->_propertyList[_currentInstruction->getArg1()] = _dataStack.pop();
 }

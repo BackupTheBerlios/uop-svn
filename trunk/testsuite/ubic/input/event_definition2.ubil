@@ -1,0 +1,32 @@
+entity reservatorio
+	def event cheio
+	def event vazio
+	def int litros
+		get return litros
+		set litros = value
+			if (litros == 0)
+				raise vazio
+			else if (litros >= 1000)
+				raise cheio
+			endif
+		end
+	end
+end
+
+entity start
+	def start()
+		def element agua = reservatorio.new()
+		agua.vazio += reservatorio_vazio
+		agua.cheio += reservatorio_cheio
+		agua.litros = 0
+		agua.litros = 100
+		agua.litros = 1000
+	end
+	def reservatorio_vazio()
+		io.writeln("O reservatorio esta vazio")
+	end
+	def reservatorio_cheio()
+		io.writeln("O reservatorio esta cheio")
+	end
+end
+

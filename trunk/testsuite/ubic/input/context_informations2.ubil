@@ -1,0 +1,8 @@
+def Start:
+  def start():
+    writeln("Localizacao: "      + location)
+    writeln("Identidade: "       + identity)
+    writeln("Tempo: "            + time)
+    writeln("Atividade: "        + activity)
+    writeln("Dispositivo: "      + identity.device)
+    writeln("   Exibe imagens: " + identity.device.showimages)

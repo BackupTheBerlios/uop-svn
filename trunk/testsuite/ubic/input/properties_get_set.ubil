@@ -1,0 +1,37 @@
+entity start
+	def start()
+		element s = sample.new()
+		io.writeln("x = " + s.x1)
+		io.writeln("x = " + s.x2)
+		s.x2 = 20 // Error
+		s.x3 = 30
+		s.x4 = 40
+		s.x5 = 50
+	end
+end
+
+entity sample
+	def int x1 get set
+	def int x2 get
+	def int x3
+		get return x3
+		set x3 = value
+	end
+	def int x4
+		get
+			return x4
+		set
+			x4 = value
+	end
+	def int x5
+		get
+			return x5
+		set
+			if (value <= 15)
+				x5 = value
+			else
+				x5 = 0
+			end
+	end
+end
+

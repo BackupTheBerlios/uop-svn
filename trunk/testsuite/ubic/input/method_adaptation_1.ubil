@@ -1,0 +1,16 @@
+entity start
+	def start()
+		element k = kernel.new()
+		k.run()
+	end
+end
+
+entity kernel
+	def run() when identity.device.images == true
+		io.writeln( "Exibe imagens !!!" )
+	end
+	def run() when identity.device.images == false
+		io.writeln( "Nao exibe imagens !!!" )
+	end
+end
+

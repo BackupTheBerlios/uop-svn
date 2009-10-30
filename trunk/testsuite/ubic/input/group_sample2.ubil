@@ -1,0 +1,8 @@
+entity start
+	def start()
+		{"MeuGrupo"}.join("Alex")
+		{"MeuGrupo"}.data.af("Numero 1" => 54321)
+		io.writeln("Informacao inserida no grupo: " + {"MeuGrupo"}.data.dqu("Numero 1"))
+	end
+end
+

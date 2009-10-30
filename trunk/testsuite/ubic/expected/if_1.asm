@@ -9,6 +9,7 @@ Entity start
 		5 S io.writeln
 		6 S x not > 10
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

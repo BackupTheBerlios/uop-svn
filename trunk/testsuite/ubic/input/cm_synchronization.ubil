@@ -1,0 +1,7 @@
+Entity Start:
+  def start():
+    def Process p = Process.new().fork()
+    writeln("Resultado: " + ["group"].data.dqu("Resultado"))
+Entity Process:
+  def process():
+    ["group"].data.af("Resultado", 10 * 2)

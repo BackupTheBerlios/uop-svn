@@ -5,6 +5,7 @@ Entity elemento
 		1 S x
 		2 S oi
 	End
+	No properties
 	Def x
 		No parameters
 		No local variables
@@ -28,6 +29,7 @@ Entity start
 		6 I 2
 		7 S io.writeln
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

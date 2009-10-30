@@ -20,6 +20,7 @@ Entity start
 		16 I 6
 		17 S n
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

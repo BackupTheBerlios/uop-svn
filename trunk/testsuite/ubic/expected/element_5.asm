@@ -8,6 +8,7 @@ Entity elemento
 		4 I 2
 		5 S io.writeln
 	End
+	No properties
 	Def x
 		Parameters
 			0 string msg
@@ -30,6 +31,7 @@ Entity start
 		3 S oi
 		4 S x
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

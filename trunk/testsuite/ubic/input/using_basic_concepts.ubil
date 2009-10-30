@@ -1,0 +1,15 @@
+entity soma
+	def soma()
+		return 10 + 20
+	end
+end
+
+entity start
+	def start()
+		def int result
+		element soma = soma.new()
+		result = soma.calcula()
+		io.writeln("Resultado: ", result)
+	end
+end
+

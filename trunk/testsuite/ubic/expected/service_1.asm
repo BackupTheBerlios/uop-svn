@@ -8,6 +8,7 @@ Entity servico
 		4 S group
 		5 S Alex
 	End
+	No properties
 	Def soma
 		Parameters
 			0 int x
@@ -49,6 +50,7 @@ Entity start
 		8 S soma
 		9 S io.writeln
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

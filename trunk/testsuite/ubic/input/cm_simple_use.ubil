@@ -1,0 +1,7 @@
+Entity Start:
+  def start():
+    writeln("Vou inserir informacoes no grupo...")
+    ["group"].data.af({"Numero 1",12345})
+    ["group"].data += {"Numero 2",54321}
+    writeln("Informacao inserida no grupo: " + ["group"].data.dqu({"Numero 1"}))
+    writeln("Informacao inserida no grupo: " + ["group"].data -= {"Numero 2"})

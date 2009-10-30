@@ -1,0 +1,14 @@
+entity start
+	def start()
+		def int soma
+		def int subtracao
+		soma,subtracao = operations(2, 10)
+		io.writeln("soma     : ", soma)
+		io.writeln("subtracao: ", subtracao)
+	end
+	def operations(int par1, int par2) [int,int]
+		io.writeln("par1=", par1, " par2=", par2)
+		return par1+par2, par1-par2
+	end
+end
+

@@ -1,0 +1,18 @@
+entity a
+	def int X
+	def setX(int value)
+		X = value
+	end
+end
+
+entity start
+	def start()
+		def element a = A.new()
+		a.on_changed += alterado
+		a.setX(12)
+	end
+	def alterado(string prop, string old, string new)
+		io.writeln("A propriedade " + prop + " foi alterada de " + old + " para " + new)
+	end
+end
+

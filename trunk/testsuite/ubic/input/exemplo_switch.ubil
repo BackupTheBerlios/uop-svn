@@ -1,0 +1,15 @@
+entity start
+	def start()
+		int value = 1
+		switch(value)
+		case 1:
+			value = 100
+		case 2:
+			value = 200
+		otherwize:
+			value = 999
+		end
+		io.writeln("value=", value)
+	end
+end
+

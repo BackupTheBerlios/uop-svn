@@ -31,7 +31,7 @@ typedef struct SMethodHeader {
 };
 
 
-CParameterDefinition * CMethodDefinition::addParameter(LiteralType type, std::string name)
+CParameterDefinition* CMethodDefinition::addParameter(LiteralType type, std::string name)
 {
 	CParameterDefinition* parameter = new CParameterDefinition(_symbolTable, _parameterList.size(), type, name);
 
@@ -47,7 +47,7 @@ void CMethodDefinition::addParameter(CParameterDefinition* parameter)
 	_parameterList.push_back(parameter);
 }
 
-CLocalVarDefinition * CMethodDefinition::addLocalVar(LiteralType type, std::string name)
+CLocalVarDefinition* CMethodDefinition::addLocalVar(LiteralType type, std::string name)
 {
 	CLocalVarDefinition* var = new CLocalVarDefinition(_symbolTable, _localVarList.size(), type, name);
 
@@ -56,7 +56,7 @@ CLocalVarDefinition * CMethodDefinition::addLocalVar(LiteralType type, std::stri
 	return var;
 }
 
-CResultDefinition * CMethodDefinition::addResult(LiteralType type)
+CResultDefinition* CMethodDefinition::addResult(LiteralType type)
 {
 // 	std::cout << __FUNCTION__ << ": Tipo=" << type << std::endl;
 
@@ -158,7 +158,7 @@ std::string CMethodDefinition::toTextAssembly()
 	}
 
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
-		result += (*instruction)->toTextAssembly(_localVarList, _parameterList);
+		result += (*instruction)->toTextAssembly(_entity->_propertyList, _localVarList, _parameterList);
 	}
 
 	result += "\tEnd\n";
@@ -243,13 +243,13 @@ bool CMethodDefinition::loadBytecode(CBinString& bytecode)
 	return true;
 }
 
-CMethodDefinition::CMethodDefinition(CSymbolTable* symbolTable)
-	: _symbolTable(symbolTable), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
+CMethodDefinition::CMethodDefinition(CEntityDefinition* entity, CSymbolTable* symbolTable)
+	: _entity(entity), _symbolTable(symbolTable), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
 {
 }
 
-CMethodDefinition::CMethodDefinition(CSymbolTable *symbolTable, VisibilityType visibility, std::string name)
-	: _symbolTable(symbolTable), _visibility(visibility), _name(name), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
+CMethodDefinition::CMethodDefinition(CEntityDefinition* entity, CSymbolTable *symbolTable, VisibilityType visibility, std::string name)
+	: _entity(entity), _symbolTable(symbolTable), _visibility(visibility), _name(name), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
 {
 	// Forca que o simbolo seja criado na tabela de simbolos... 
 	// TODO: ta meio estranho o codigo, melhorar...
@@ -355,17 +355,42 @@ void CMethodDefinition::adjustInstructionsLabels()
 	}
 }
 
-void CMethodDefinition::addLoadInstruction(std::string identifier)
+void CMethodDefinition::addLoadInstruction(std::string identifier, bool tableInstruction)
 {
 	// TODO: improve this...
 	CLocalVarDefinition* var = _findLocalVarDefinition(identifier);
-	if (var == NULL) {
-		addInstruction(LDPARAM_OPCODE, getParamIndex(identifier));
-	} else {
-		if (var->_type == TableType) {
+	if (var != NULL) {
+		if (tableInstruction == true) {
 			addInstruction(LDTAB_OPCODE, var->_index);
 		} else {
 			addInstruction(LDVAR_OPCODE, var->_index);
+		}
+	} else {
+		CPropertyDefinition* property = _entity->findProperty(identifier);
+		if (property != NULL) {
+			addInstruction(LDPROP_OPCODE, property->_index);
+		} else {
+			addInstruction(LDPARAM_OPCODE, getParamIndex(identifier));
+		}
+	}
+}
+
+void CMethodDefinition::addStoreInstruction(std::string identifier, bool tableInstruction)
+{
+	// TODO: improve this...
+	CLocalVarDefinition* var = _findLocalVarDefinition(identifier);
+	if (var != NULL) {
+		if (tableInstruction == true) {
+ 			addInstruction(STTAB_OPCODE, var->_index);
+ 		} else {
+			addInstruction(STVAR_OPCODE, var->_index);
+ 		}
+	} else {
+		CPropertyDefinition* property = _entity->findProperty(identifier);
+		if (property != NULL) {
+			addInstruction(STPROP_OPCODE, property->_index);
+		} else {
+			addInstruction(STPARAM_OPCODE, getParamIndex(identifier));
 		}
 	}
 }

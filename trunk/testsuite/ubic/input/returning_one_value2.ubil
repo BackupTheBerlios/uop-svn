@@ -1,0 +1,10 @@
+entity start
+	def adicao(int x, int y) [int]
+		return(x + y)
+	end
+	def start()
+		int a = adicao(10,20)
+		io.writeln("Adicao dos valores    : ", a)
+	end
+end
+

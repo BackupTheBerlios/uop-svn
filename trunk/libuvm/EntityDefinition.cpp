@@ -42,17 +42,17 @@ CEntityDefinition::CEntityDefinition(std::string name)
 {
 }
 
-CPropertyDefinition * CEntityDefinition::addProperty(VisibilityType visibility, LiteralType type, std::string name)
+CPropertyDefinition* CEntityDefinition::addProperty(VisibilityType visibility, LiteralType type, std::string name)
 {
-	CPropertyDefinition* property = new CPropertyDefinition(visibility, type, name);
+	CPropertyDefinition* property = new CPropertyDefinition(&_symbolTable, _propertyList.size(), visibility, type, name);
 	_propertyList.push_back(property);
 
 	return property;
 }
 
-CMethodDefinition * CEntityDefinition::addMethod(VisibilityType visibility, std::string name)
+CMethodDefinition* CEntityDefinition::addMethod(VisibilityType visibility, std::string name)
 {
-	CMethodDefinition* method = new CMethodDefinition(&_symbolTable, visibility, name);
+	CMethodDefinition* method = new CMethodDefinition(this, &_symbolTable, visibility, name);
 	_methodList.push_back(method);
 
 	return method;
@@ -76,6 +76,16 @@ std::string CEntityDefinition::toTextAssembly()
 	}
 
 	result += _symbolTable.toTextAssembly();
+
+	if (_propertyList.size() == 0) {
+		result += "\tNo properties\n";
+	} else {
+		result += "\tProperties\n";
+		for(std::vector<CPropertyDefinition*>::iterator prop = _propertyList.begin(); prop != _propertyList.end(); prop++) {
+			result += (*prop)->toTextAssembly();
+		}
+		result += "\tEnd\n";
+	}
 
 	for(std::vector<CMethodDefinition*>::iterator method = _methodList.begin(); method != _methodList.end(); method++) {
 		result += (*method)->toTextAssembly();
@@ -140,14 +150,14 @@ bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 
 	// Carrega as propriedades
 	for(u_int count = 0; count < header.propertiesCount; count++) {
-		CPropertyDefinition* property = new CPropertyDefinition();
+		CPropertyDefinition* property = new CPropertyDefinition(&_symbolTable, count);
 		property->loadBytecode(bytecode);
 		_propertyList.push_back(property);
 	}
 
 	// Carrega os metodos
 	for(u_int count = 0; count < header.methodsCount; count++) {
-		CMethodDefinition* method = new CMethodDefinition(&_symbolTable);
+		CMethodDefinition* method = new CMethodDefinition(this, &_symbolTable);
 		method->loadBytecode(bytecode);
 		_methodList.push_back(method);
 	}
@@ -196,4 +206,15 @@ void CEntityDefinition::setOption(std::string option)
 {
 // 	std::cout << "setando opcao " << option << " para true" << std::endl;
 	_optionList[option]="true";
+}
+
+CPropertyDefinition * CEntityDefinition::findProperty(std::string identifier)
+{
+	for(std::vector<CPropertyDefinition*>::iterator prop = _propertyList.begin(); prop != _propertyList.end(); prop++) {
+		if ((*prop)->_name == identifier) {
+			return (*prop);
+		}
+	}
+
+	return NULL;
 }

@@ -18,6 +18,7 @@ Entity start
 		14 S number2=
 		15 S  msg2=
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

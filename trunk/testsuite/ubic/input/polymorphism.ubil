@@ -1,0 +1,46 @@
+entity A
+	def x()
+		io.writeln("Executando x da entidade A")
+	end
+	def virtual y()
+		io.writeln("Executando y da entidade A")
+	end
+end
+
+entity B1 extends A
+	def override y()
+		io.writeln("Executando y da entidade B1")
+	end
+	def z()
+		io.writeln("Executando z da entidade B1")
+	end
+end
+
+entity B2 extends A
+	def override y()
+		io.writeln("Executando y da entidade B2")
+	end
+	def z()
+		io.writeln("Executando z da entidade B2")
+	end
+end
+
+entity start
+	def start()
+		Element a
+		a = A.new()
+		a.x()
+		a.y()
+
+		a = B1.new()
+		a.x()
+		a.y()
+		a.z()
+
+		a = B2.new()
+		a.x()
+		a.y()
+		a.z()
+	end
+end
+

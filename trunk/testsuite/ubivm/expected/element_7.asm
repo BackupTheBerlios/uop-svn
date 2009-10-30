@@ -14,6 +14,7 @@ Entity elemento
 		10 S number2=
 		11 S  msg2=
 	End
+	No properties
 	Def x
 		Parameters
 			0 int number1
@@ -50,6 +51,7 @@ Entity start
 		6 S dois
 		7 S x
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

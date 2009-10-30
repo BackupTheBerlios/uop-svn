@@ -1,0 +1,20 @@
+entity start
+	def int prop
+//	def int prop = 10
+	def set_prop(int value)
+		prop = value
+	end
+	def start()
+		prop = 10
+		io.writeln("Prop deve ser 10: ", prop)
+		prop = 20
+		io.writeln("Prop deve ser 20: ", prop)
+		set_prop(30)
+		io.writeln("Prop deve ser 30: ", prop)
+		set_prop(40)
+		io.writeln("Prop deve ser 40: ", prop)
+		prop = 50
+		io.writeln("Prop deve ser 50: ", prop)
+	end
+end
+

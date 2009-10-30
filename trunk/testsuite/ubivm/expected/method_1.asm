@@ -9,6 +9,7 @@ Entity start
 		5 S depois da chamada a x
 		6 S no metodo x
 	End
+	No properties
 	Def start
 		No parameters
 		No local variables

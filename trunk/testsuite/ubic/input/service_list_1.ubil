@@ -1,0 +1,10 @@
+entity start
+	def start()
+		foreach(service service in ["group"].servicelist)
+			writeln("Nome : ", service.name)
+			writeln("Descricao: ", service.description)
+			writeln("TBF : ", service.tbf)
+		end
+	end
+end
+

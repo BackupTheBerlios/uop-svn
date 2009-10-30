@@ -12,6 +12,7 @@ Entity start
 		8 S oi 1
 		9 S oi 2
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

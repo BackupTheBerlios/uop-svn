@@ -13,24 +13,17 @@
 
 #include "UbiVM.hpp"
 
-CActivationRecord::CActivationRecord(CRunBytecode* bce, std::string entityName, std::string methodName, SIp& currentIp, CDataStack& dataStack)
-	: _bce(bce), _entityName(entityName), _methodName(methodName), _lastIp(currentIp)
+CActivationRecord::CActivationRecord(CRunBytecode* bce, CElement* element, std::string methodName, SIp& currentIp, CDataStack& dataStack)
+	: _bce(bce), _methodName(methodName), _lastIp(currentIp)
 {
-	_element = new CElement(CUbiVM::getInstance()->getAsmDef()->getEntity(entityName));
-	
-	if (_element == NULL) {
-		std::cout << "Entidade " << entityName << " nao encontrada !!!" << std::endl;
-		return;
-	}
-
-	_method  = _element->getMethod(methodName);
+	_method  = element->getMethod(methodName);
 
 	if (_method == NULL) {
 		std::cout << "Metodo " << _methodName << " nao encontrado !!!" << std::endl;
 		return;
 	}
 
-	currentIp.element = _element;
+	currentIp.element = element;
 	currentIp.method  = _method;
 
 	// Define variaveis locais

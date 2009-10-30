@@ -7,6 +7,7 @@ Entity elemento
 		3 I 1
 		4 S io.writeln
 	End
+	No properties
 	Def imprime
 		No parameters
 		No local variables
@@ -25,6 +26,7 @@ Entity start
 		2 S elemento
 		3 S imprime
 	End
+	No properties
 	Def start
 		No parameters
 		Local variables

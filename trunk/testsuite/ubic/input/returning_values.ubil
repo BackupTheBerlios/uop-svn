@@ -1,0 +1,17 @@
+entity start
+	def multiplica(int x, int y) [int]
+		return(x * y)
+	end
+	def calcula(int x, int y) [int, int]
+		return(x + y, x - y)
+	end
+	def start()
+		int m, a, s
+		m = multiplica(10,20)
+		a, s = calcula(10,20)
+		io.writeln("Multiplicacao dos valores: ", m)
+		io.writeln("Adicao dos valores       : ", a)
+		io.writeln("Subtracao dos valores    : ", s)
+	end
+end
+
