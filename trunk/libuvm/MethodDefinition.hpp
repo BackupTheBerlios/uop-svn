@@ -52,6 +52,7 @@ public:
 	void pushInstructions();
 	void addInstructions();
 	void addPushedInstructions();
+	CLocalVarDefinition* findLocalVarDefinition(std::string identifier);
 
 	std::vector<CLocalVarDefinition*>            _localVarList;
 	std::vector<CParameterDefinition*>           _parameterList;
@@ -59,7 +60,6 @@ public:
 
 private:
 	void adjustInstructionsLabels();
-	CLocalVarDefinition* _findLocalVarDefinition(std::string identifier);
 
 //	std::map<const char *, CParamDefinition*> _test;
 //	std::vector<CParameterDefinition*>           _parameterVector;

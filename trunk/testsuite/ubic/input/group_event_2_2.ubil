@@ -1,0 +1,10 @@
+import datetime
+
+entity start
+	def start()
+		{"group"}.bind("xxx")
+		{"group"}.data.af("xxx" => "yyy", "zzz")
+		{"group"}.data.af("xxx2" => "yyy2", "zzz2")
+	end
+end
+

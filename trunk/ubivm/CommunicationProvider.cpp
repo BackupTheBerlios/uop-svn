@@ -6,15 +6,11 @@
 enum { max_length = 1024 };
 
 
-
-
 void CCommunicationProvider::setConfig(std::map<std::string, CGroup*>* groupList, uint bindPort, uint sendPort)
 {
 	_packetNumber = 0;
 	_bindPort = bindPort;
 	_sendPort = sendPort;
-
-
 }
 
 
@@ -186,7 +182,9 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 
 	requestHeader._dstVmId._pid = getpid();
 
-	if (requestHeader._opcode == DATAQU_OPCODE) {
+	if (requestHeader._opcode == DATAAF_OPCODE) {
+		CGroupProvider::getInstance()->processDataafRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == DATAQU_OPCODE) {
 		CGroupProvider::getInstance()->processDataquRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == DATADQU_OPCODE) {
 		CGroupProvider::getInstance()->processDatadquRequest(requestPacket, requestHeader, replyPacket);
@@ -196,6 +194,8 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 		CGroupProvider::getInstance()->processDatanbdquRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == DATALIST_OPCODE) {
 		CGroupProvider::getInstance()->processDatalistRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == PUBLISHS_OPCODE) {
+		CGroupProvider::getInstance()->processPublishsRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == SCALL_OPCODE) {
 		CGroupProvider::getInstance()->processScallRequest(requestPacket, requestHeader, replyPacket);
 	} else {

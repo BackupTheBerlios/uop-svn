@@ -34,9 +34,14 @@ public:
 	{
 		return _entity->getName();
 	}
+	void bind_event(std::string event_name, CElement* element, CMethodDefinition* method);
+	void run_event(std::string event_name);
+	std::pair<CElement*, CMethodDefinition*> get_event(std::string event_name);
+
 // private:
 	boost::thread* _thread;
 	std::vector<CLiteral> _propertyList;
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> > _events;
 };
 
 #endif

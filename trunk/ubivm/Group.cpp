@@ -1,5 +1,7 @@
 #include "Group.hpp"
 
+#include "RunBytecode.hpp"
+
 CGroup::CGroup(std::string name) : _name(name)
 {
 }
@@ -52,7 +54,42 @@ std::string CGroup::findService(std::string serviceName)
 }
 
 
-CTuple * CGroup::findTuple(CTuple * tuple)
+CTuple * CGroup::findTuple(CTuple* tuple)
 {
 	return NULL; // TODO
+}
+
+void CGroup::run_insert_data_event(std::string keys, std::string values)
+{
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event = _events.find("on_insert_data");
+
+	if (event != _events.end()) {
+		CRunBytecode* rb = new CRunBytecode();
+
+		rb->_dataStack.push(keys);
+		rb->_dataStack.push(values);
+
+		CActivationRecord* ar = new CActivationRecord(rb, (*event).second.first, (*event).second.second->getName(), rb->_ip, rb->_dataStack);
+		rb->_controlStack.push(ar);
+		rb->run_bytecode_until(RET_OPCODE);
+
+		delete rb;
+	}
+}
+
+void CGroup::run_insert_service_event(std::string service_name)
+{
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event = _events.find("on_insert_service");
+
+	if (event != _events.end()) {
+		CRunBytecode* rb = new CRunBytecode();
+
+		rb->_dataStack.push(service_name);
+
+		CActivationRecord* ar = new CActivationRecord(rb, (*event).second.first, (*event).second.second->getName(), rb->_ip, rb->_dataStack);
+		rb->_controlStack.push(ar);
+		rb->run_bytecode_until(RET_OPCODE);
+
+		delete rb;
+	}
 }

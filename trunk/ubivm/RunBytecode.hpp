@@ -38,14 +38,18 @@ public:
 	CMultiIndex<CLiteral>* _dataListReplyTable;
 	udp::endpoint _last_endpoint;
 	SVmId _lastSrcVmId;
+	SIp _ip;
+	std::stack<CActivationRecord*> _controlStack;
+
 	bool scallCode(std::string groupName, std::string serviceName, std::vector<CLiteral> arguments, std::vector<CLiteral>& results);
+	void run_bytecode();
+	void run_bytecode_until(unsigned char return_after_opcode=INVALID_OPCODE);
 private:
 	void _initOpcodePointer();
 	void trace(const std::string &message);
    void error(const std::string &message);
-   void step();
-	void run_bytecode();
-   void procWriteln();
+	unsigned char step();
+	void procWriteln();
    void procWrite();
    void procReadln();
    void procSleep();
@@ -107,23 +111,31 @@ private:
 	void tabsizeOpcode();
 	void ldpropOpcode();
 	void stpropOpcode();
+	void belementevOpcode();
+	void bcontextevOpcode();
+	void bgroupevOpcode();
 
 	OpcodePointer   _opcodePointer[OPCODE_COUNT];
 	bool            _stop;
 	int             _returnCode;
-	SIp _ip;
 	CInstructionDefinition* _currentInstruction;
-	std::stack<CActivationRecord*> _controlStack;
 	SOptions* _options;
 	CAssemblyDefinition* _asmDef;
 	std::map<std::string, void*>* _syslibHandlerList;
 	std::vector<CElement*>* _elementList;
 	std::map<std::string, CGroup*>* _groupList;
 	std::map<std::string, CLiteral>* _contextsInfo;
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> > _context_events; // TODO: isso deveria ficar dentro de uma classe CContextInfo
+
+	void bind_context_event(std::string context_name, std::string event_name, CElement* element, CMethodDefinition* method);
+	void bind_group_event(std::string group_name, std::string event_name, CElement* element, CMethodDefinition* method);
+
 // 	CCommunicationProvider* _cp;
 // 	CDataProvider* _dp;
 	static uint _bceCount;
 	SVmId _vmId;
+	void run_property_event(CElement* element, CMethodDefinition* method, std::string name, CLiteral old_value, CLiteral new_value);
+	void run_group_event_insert_data(std::string keys, std::string values);
 };
 
 #endif

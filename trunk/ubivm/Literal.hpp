@@ -63,6 +63,7 @@ public:
 	CElement* getElement();
 	CMultiIndex<CLiteral>* getTable();  // TODO: deveria retornar o ponteiro ???
 	CTuple* getTuple();  // TODO: deveria retornar o ponteiro ???
+	void bind_event(std::string event_name, CMethodDefinition* method);
 //private:
     LiteralType _type;
 //	size_t size;
@@ -75,6 +76,7 @@ public:
 		CMultiIndex<CLiteral>* tableValue;
 		CTuple* tupleValue;
 	} _value;
+	std::map<std::string, CMethodDefinition*> _events;
 };
 
 #endif

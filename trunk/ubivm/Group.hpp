@@ -42,11 +42,14 @@ public:
 	CTuple* findTuple(CTuple* tuple);
 	void addService(std::string serviceName, std::string element);
 	std::string findService(std::string serviceName);
+	void run_insert_data_event(std::string keys, std::string values);
+	void run_insert_service_event(std::string service_name);
 
 	std::string _name;
 	std::set<std::string> _objectList;
 	std::map<std::string, CTuple*> _dataList;
 	std::map<std::string, std::string> _serviceList;
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> > _events;
 };
 
 #endif

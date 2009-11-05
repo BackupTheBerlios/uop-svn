@@ -1,0 +1,19 @@
+import datetime
+
+entity servico
+	def soma(int x, int y) [int]
+		return x+y
+	end
+	def servico()
+		{"group"}.bind("group")
+		{"group"}.service += soma(int,int)
+	end
+end
+
+entity start
+	def start()
+		def element s = servico.new()
+		s.servico()
+	end
+end
+

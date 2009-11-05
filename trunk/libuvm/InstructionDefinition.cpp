@@ -25,7 +25,7 @@
 
 //namespace ASSEMBLY_DEFINITION {
 
-const int MAX_MNEMONIC_SIZE = 10;
+const int MAX_MNEMONIC_SIZE = 12;
 
 enum OpcodeArgumentType {
 	NoOpcodeArgumentType = 0,
@@ -110,6 +110,9 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ TABSIZE_OPCODE,   "tabsize",   VariableOpcodeArgumentType },
 	{ LDPROP_OPCODE,    "ldprop",    PropertyOpcodeArgumentType },
 	{ STPROP_OPCODE,    "stprop",    PropertyOpcodeArgumentType },
+	{ BELEMENTEV_OPCODE, "belementev", VariableOpcodeArgumentType },
+	{ BCONTEXTEV_OPCODE, "bcontextev", ConstantOpcodeArgumentType },
+	{ BGROUPEV_OPCODE,   "bgroupev",   NoOpcodeArgumentType },
 /*	{ LDIDENTITY_OPCODE, "ldidentity", ConstantOpcodeArgumentType },
 	{ LDLOCATION_OPCODE, "ldlocation", ConstantOpcodeArgumentType },
 	{ LDTIME_OPCODE, "ldtime", ConstantOpcodeArgumentType },

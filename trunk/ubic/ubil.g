@@ -75,10 +75,10 @@ grammar ubil;
 
 options
 {
-//    k		= 4;
-    backtrack	= true;
-    memoize	= true;
-    language	= C;
+	k         = 8; // TODO: corrigir as regras para eliminar esta opcao
+	backtrack = true;
+	memoize   = true;
+	language  = C;
 }
 
 @lexer::preinclude
@@ -105,9 +105,9 @@ options
 @lexer::header
 {
 #define	ANTLR3_INLINE_INPUT_ASCII
-//    extern "C++" {
-//	#include <string>
-//    }
+	extern "C++" {
+		#include <string>
+	}
 }
 
 @lexer::members
@@ -195,7 +195,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    valid_context
 ///----------
-	:	'when' { methodDef = entityDef->addMethod(PrivateVisibility, "__when"); } '(' expr ')' { methodDef->addInstruction(STOP_OPCODE); }
+	:	'when' { methodDef = entityDef->addMethod(PrivateVisibility, "__when"); } '(' expr ')' { methodDef->addInstruction(RET_OPCODE); }
 	;
 
 ///----------
@@ -312,7 +312,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 ///----------
    assignment_statement
 ///----------
-   :  var_assignment_statement | context_assignment_statement | table_assignment_statement
+   :  var_assignment_statement | context_assignment_statement | table_assignment_statement | event_assignment_statement
    ;
 
 ///----------
@@ -351,10 +351,41 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 	;
 
 ///----------
+   event_assignment_statement
+///----------
+	:	context_bind_event
+	|	element_event_assignment_statement
+	;
+
+///----------
+   element_event_assignment_statement
+///----------
+	:	element=IDENTIFIER '.' event=IDENTIFIER '+=' method=IDENTIFIER
+		{
+//			methodDef->addLoadInstruction(GETTEXT($element), false);
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($event), StringType));
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($method), StringType));
+			methodDef->addInstruction(BELEMENTEV_OPCODE, methodDef->findLocalVarDefinition(GETTEXT($element))->_index);
+		}
+	;
+
+///----------
+   context_bind_event
+///----------
+	:	context '.' data=IDENTIFIER '.' event=IDENTIFIER '+=' method=IDENTIFIER
+		{
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($event), StringType));
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($method), StringType));
+			methodDef->addInstruction(BCONTEXTEV_OPCODE, entityDef->getSymbolIndex($context.value + "." + GETTEXT($data), StringType));
+		}
+	;
+
+///----------
    group_interation
 ///----------
    :  group_invocation
    |  data_group_interation
+   |  data_group_event
    |  service_group_interation
 //   |  service_invocation
    ;
@@ -391,6 +422,19 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
          }
       }
    ;
+
+///----------
+   data_group_event
+///----------
+	:	'{' expr '}' '.' event=IDENTIFIER '+=' method=IDENTIFIER
+		{
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($event), StringType));
+			methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($method), StringType));
+			methodDef->addInstruction(BGROUPEV_OPCODE); // ou passar evento como um argumento do opcode ???
+		}
+	;
+
+
 
 ///----------
    service_group_interation
@@ -667,7 +711,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
    |  INTEGER_LITERAL { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($INTEGER_LITERAL), IntegerType)); }
    |  REAL_LITERAL    { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($REAL_LITERAL),    RealType));    }
 //   |  STRING_LITERAL  { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex($STRING_LITERAL,  StringType));  }
-   |  STRING_LITERAL  { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(removeQuotes(GETTEXT($STRING_LITERAL)),  StringType));  }
+   |  STRING_LITERAL  { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($STRING_LITERAL),  StringType));  }
    |  BOOLEAN_LITERAL { methodDef->addInstruction(LDCONST_OPCODE, entityDef->getSymbolIndex(GETTEXT($BOOLEAN_LITERAL),  BooleanType));  }
    ;
 
@@ -838,23 +882,22 @@ CHARACTER_LITERAL
     :   '\'' ( ESCAPE_SEQUENCE | ~('\''|'\\') ) '\''
     ;
 
-STRING_LITERAL returns [const char* ret] // ou pANTLR3_STRING ???
-//@after{
-////	setText(getText().substring(1, getText().length()-1));
-//}
-    :  '"' ( ESCAPE_SEQUENCE | ~('\\'|'"') )* '"'
-//	  {
-//	  	// Strip the surrounding quotes
-//	  	std::string txt = (const char*) (GETTEXT()->chars);
-//	  	$ret = txt.substr(1, txt.length() -1).c_str();
-//	  }
 
-//	  {
-//	  	// Strip the surrounding quotes
-//	  	String txt = getText();
-//	  	setText(txt.substring(1, txt.length() -1));
-//	  }
+STRING_LITERAL
+@after{
+	// TODO: improve this
+	std::string id = (const char*)GETTEXT()->chars;
+	id = id.substr(1, id.length()-2);
+	pANTLR3_STRING antlr_id = GETTEXT();
+	antlr_id->set(antlr_id, id.c_str());
+	SETTEXT(antlr_id);
+}
+	:  '"' ( ESCAPE_SEQUENCE | ~('\\'|'"') )* '"'
     ;
+
+//STRING_LITERAL returns [const char* ret]
+//    :  '"' ( ESCAPE_SEQUENCE | ~('\\'|'"') )* '"'
+//    ;
 
 BOOLEAN_LITERAL
    : 'true' | 'false'

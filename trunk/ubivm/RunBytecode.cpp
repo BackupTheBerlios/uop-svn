@@ -52,7 +52,7 @@ int CRunBytecode::run()
 
 
 	CElement* element = new CElement(CUbiVM::getInstance()->getAsmDef()->getEntity("start"));
-	
+
 	if (element == NULL) {
 		std::cout << "Entidade " << "start" << " nao encontrada !!!" << std::endl;
 		return 1;
@@ -150,12 +150,22 @@ int CRunBytecode::run()
 
 void CRunBytecode::run_bytecode()
 {
-// 	_cp->register_bce(_bceCount++, this);
-// 	_cp->register_bce(2, this);
-   _stop = false;
+	_stop = false;
 
-   while (!_stop) {
+	while (!_stop) {
 		step();
+	}
+}
+
+
+void CRunBytecode::run_bytecode_until(unsigned char return_after_opcode)
+{
+	_stop = false;
+
+	while (!_stop) {
+		if (step() == return_after_opcode) {
+			break;
+		}
 	}
 }
 
@@ -212,10 +222,13 @@ void CRunBytecode::_initOpcodePointer()
 	_opcodePointer[TABSIZE_OPCODE  ] = &CRunBytecode::tabsizeOpcode;
 	_opcodePointer[LDPROP_OPCODE   ] = &CRunBytecode::ldpropOpcode;
 	_opcodePointer[STPROP_OPCODE   ] = &CRunBytecode::stpropOpcode;
+	_opcodePointer[BELEMENTEV_OPCODE] = &CRunBytecode::belementevOpcode;
+	_opcodePointer[BCONTEXTEV_OPCODE] = &CRunBytecode::bcontextevOpcode;
+	_opcodePointer[BGROUPEV_OPCODE]   = &CRunBytecode::bgroupevOpcode;
 }
 
 
-void CRunBytecode::step()
+unsigned char CRunBytecode::step()
 {
 	_currentInstruction = _ip.method->getInstruction(_ip.ip);
 
@@ -224,6 +237,7 @@ void CRunBytecode::step()
 
    if (opcode >= OPCODE_COUNT) {
       error( "Invalid opcode !!!" );
+	  return INVALID_OPCODE;
    }
 
    if (_opcodePointer[opcode] == NULL) {
@@ -232,6 +246,8 @@ void CRunBytecode::step()
    }
 
     (this->*_opcodePointer[(int)opcode])();
+
+	return opcode;
 }
 
 void CRunBytecode::trace(const std::string &message)
@@ -657,7 +673,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 // 		std::cout << "argumento: " << (*par).getText() << std::endl;
 		_dataStack.push(*par);
 	}
-	
+
 	CActivationRecord* ar = new CActivationRecord(this, element, serviceName, _ip, _dataStack);
 
 	_controlStack.push(ar);
@@ -673,7 +689,7 @@ bool CRunBytecode::scallCode(std::string groupName, std::string serviceName, std
 	}
 
 // 	std::cout << "resultados" << std::endl;
-// 
+//
 // 	for(std::vector<CLiteral>::iterator res = results.begin(); res != results.end(); res++) {
 // 		std::cout << "\tresultado: " << (*res).getText() << std::endl;
 // 	}
@@ -776,6 +792,8 @@ void CRunBytecode::addOpcode()
 
    CLiteral arg2 = _dataStack.pop();
    CLiteral arg1 = _dataStack.pop();
+
+//    std::cout << "arg1=" << arg1.getText() << " arg2=" << arg2.getText() << std::endl;
 
    if (arg1._type == IntegerType && arg2._type == IntegerType) {
 	   _dataStack.push(CLiteral(arg1.getInteger()+arg2.getInteger()));
@@ -1020,21 +1038,21 @@ void CRunBytecode::newelemOpcode()
 			// Copy & Paste from mcallOpcode
 			CActivationRecord* ar = new CActivationRecord(this, element, "__when", _ip, _dataStack);
 			_controlStack.push(ar);
-			
+
 // 			std::cout << "antes run_bce..." << std::endl;
 
-			run_bytecode();
-			
+			run_bytecode_until(RET_OPCODE);
+
 // 			std::cout << "depois run_bce..." << std::endl;
 
-			_stop = false;
-			
-// 			delete ar;
-			
-			_controlStack.pop();
- 			ar->restore_state(_dataStack, _ip);
+// 			_stop = false;
 
-			delete ar;
+// 			delete ar;
+
+// 			_controlStack.pop();
+//  			ar->restore_state(_dataStack, _ip);
+
+// 			delete ar;
 
 			bool whenResult = _dataStack.pop().getBoolean();
 
@@ -1061,12 +1079,12 @@ void CRunBytecode::newelemOpcode()
 // void CRunBytecode::newelemOpcode()
 // {
 // 	trace ("newelem opcode");
-// 
+//
 // 	std::string entity = getSymbolName(_currentInstruction->getArg1());
-// 
+//
 // 	CElement* element = new CElement(_asmDef->getEntity(entity));
 // 	_elementList->push_back(element); // uso no scall para encontrar a entidade que executa um servico... nao ta bem certo :-/
-// 
+//
 // 	_dataStack.push(CLiteral(element));
 // }
 
@@ -1133,7 +1151,9 @@ void CRunBytecode::dataafOpcode()
 	}
 
 	std::string groupName = _dataStack.pop().getString();
-	(*_groupList)[groupName]->addTuple(tuple);
+	(*_groupList)[groupName]->addTuple(tuple); // TODO: addTuple deveria chamar sendRequestDataafOpcode de GroupProvider ????
+
+	CGroupProvider::getInstance()->sendRequestDataafOpcode(_vmId, groupName, *tuple);
 }
 
 
@@ -1251,8 +1271,38 @@ void CRunBytecode::stcontextOpcode()
 	trace("stcontext opcode");
 
 	std::string context = getSymbolName(_currentInstruction->getArg1());
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event;
+
+	// TODO: otimizar isso...
+
+	bool run_new_value_event = (_contextsInfo->find(context) == _contextsInfo->end());
+
+	CLiteral old_value = (*_contextsInfo)[context];
 
 	(*_contextsInfo)[context] = _dataStack.pop();
+
+	CLiteral new_value = (*_contextsInfo)[context];
+
+	event = _context_events.find(context + "." + "on_changed");
+	if (event != _context_events.end()) {
+		_dataStack.push(old_value);
+		_dataStack.push(new_value);
+
+		CActivationRecord* ar = new CActivationRecord(this, (*event).second.first, (*event).second.second->getName(), _ip, _dataStack);
+		_controlStack.push(ar);
+	}
+
+	if (run_new_value_event) {
+		// new value
+		event = _context_events.find(context + "." + "on_new_value");
+		if (event != _context_events.end()) {
+			_dataStack.push(context);
+			_dataStack.push(new_value);
+
+			CActivationRecord* ar = new CActivationRecord(this, (*event).second.first, (*event).second.second->getName(), _ip, _dataStack);
+			_controlStack.push(ar);
+		}
+	}
 }
 
 
@@ -1274,6 +1324,8 @@ void CRunBytecode::publishsOpcode()
 	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
 
 	(*_groupList)[groupName]->addService(serviceName, _ip.element->getName());
+
+	CGroupProvider::getInstance()->sendRequestPublishsOpcode(_vmId, groupName, serviceName);
 }
 
 
@@ -1427,7 +1479,103 @@ void CRunBytecode::stpropOpcode()
 {
 	trace ("stprop opcode");
 
+	CLiteral old = _ip.element->_propertyList[_currentInstruction->getArg1()];
+
 // 	std::cout << __FUNCTION__ << _ip.element << std::endl;
-	
+
 	_ip.element->_propertyList[_currentInstruction->getArg1()] = _dataStack.pop();
+	std::pair<CElement*, CMethodDefinition*> event = _ip.element->get_event("on_property_changed");
+	run_property_event(event.first, event.second, _ip.element->_entity->_propertyList[_currentInstruction->getArg1()]->_name, old.getText(), _ip.element->_propertyList[_currentInstruction->getArg1()].getText());
 }
+
+void CRunBytecode::belementevOpcode()
+{
+	trace ("belementev opcode");
+
+	std::string method_name = _dataStack.pop().getString();
+	std::string event_name  = _dataStack.pop().getString();
+	std::string element_name = getSymbolName(_currentInstruction->getArg1());
+	CElement* element = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getElement();
+// 	_controlStack.top()->_localVarList[_currentInstruction->getArg1()].bind_event(event_name, _ip.element->getMethod(method_name));;
+
+// 	std::cout << "event_name=" << event_name << " element=" << element->getName() << " method_name=" << method_name << std::endl;
+	element->bind_event(event_name, _ip.element, _ip.element->getMethod(method_name));
+// 	CLiteral literal = _controlStack.top()->_localVarList[_currentInstruction->getArg1()];
+}
+
+
+void CRunBytecode::bcontextevOpcode()
+{
+	trace ("bcontextev opcode");
+
+	std::string method_name = _dataStack.pop().getString();
+	std::string event_name  = _dataStack.pop().getString();
+	std::string context_name = getSymbolName(_currentInstruction->getArg1());
+
+	bind_context_event(context_name, event_name, _ip.element, _ip.element->getMethod(method_name));
+}
+
+
+void CRunBytecode::bgroupevOpcode()
+{
+	trace ("bgroupev opcode");
+
+	std::string method_name = _dataStack.pop().getString();
+	std::string event_name  = _dataStack.pop().getString();
+	std::string group_name  = _dataStack.pop().getString();
+
+	bind_group_event(group_name, event_name, _ip.element, _ip.element->getMethod(method_name));
+}
+
+
+
+void CRunBytecode::run_property_event(CElement* element, CMethodDefinition* method, std::string name, CLiteral old_value, CLiteral new_value)
+{
+// 	CElement* element = _dataStack.pop().getElement();
+
+// 	std::cout << "element desempilhado: " << element << std::endl;
+
+// 	std::string method = getSymbolName(_currentInstruction->getArg1());
+
+	if (element == NULL || method == NULL) {
+		return;
+	}
+
+ 	_dataStack.push(CLiteral(name));
+//	_dataStack.push(CLiteral(std::string("MyProp")));
+
+//	_dataStack.push(old_value);
+	_dataStack.push(CLiteral(std::string("0")));
+
+	_dataStack.push(new_value);
+//	_dataStack.push(CLiteral(std::string("1")));
+
+	CActivationRecord* ar = new CActivationRecord(this, element, method->getName(), _ip, _dataStack);
+	_controlStack.push(ar);
+}
+
+
+void CRunBytecode::bind_context_event(std::string context_name, std::string event_name, CElement* element, CMethodDefinition* method)
+{
+	_context_events[context_name + "." + event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
+}
+
+
+void CRunBytecode::bind_group_event(std::string group_name, std::string event_name, CElement* element, CMethodDefinition* method)
+{
+	(*_groupList)[group_name]->_events[event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
+}
+
+
+// void CRunBytecode::run_group_event_insert_data(std::string keys, std::string values)
+// {
+// 	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event = _events.find("on_insert_data");
+// 
+// 	if (event != _events.end()) {
+// 		_dataStack.push(keys);
+// 		_dataStack.push(values);
+// 
+// 		CActivationRecord* ar = new CActivationRecord(this, (*event).second.first, (*event).second.second->getName(), _ip, _dataStack); // TODO: referencia da referencia funciona ???
+// 		_controlStack.push(ar);
+// 	}
+// }

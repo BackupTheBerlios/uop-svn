@@ -384,6 +384,21 @@ void CTests::define()
 	test = compiler.addTest(PASS, "element_adaptation_1");
 	test = vm.addTest(PASS, "element_adaptation_1");
 
+	test = compiler.addTest(PASS, "element_property_changed_event_1");
+	test = vm.addTest(PASS, "element_property_changed_event_1");
+
+	test = compiler.addTest(PASS, "context_changed_event_1");
+	test = vm.addTest(PASS, "context_changed_event_1");
+
+	test = compiler.addTest(PASS, "context_changed_event_2");
+	test = vm.addTest(PASS, "context_changed_event_2");
+
+	test = compiler.addTest(PASS, "group_event_1");
+	test = vm.addTest(PASS, "group_event_1");
+
+	test = compiler.addTest(PASS, "group_event_3");
+	test = vm.addTest(PASS, "group_event_3");
+
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real
 }

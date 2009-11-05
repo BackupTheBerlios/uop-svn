@@ -49,6 +49,7 @@ CLiteral::CLiteral(const CLiteral& literal)
 		_value.tupleValue = new CTuple();
 		*_value.tupleValue = *literal._value.tupleValue;
 	}
+	_events = literal._events;
 }
 
 CLiteral::CLiteral(LiteralType type, const void* value)
@@ -133,6 +134,12 @@ void CLiteral::setValue(LiteralType type, const void* value)
 		memcpy(&_value, value, typeSizeMap[type]);
 	}
 	// TODO: userdata
+
+// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
+// 	std::map<std::string, CMethodDefinition*>::iterator event = _events.find("on_changed");
+// 	if (event != _events.end()) {
+// 		std::cout << "Tem evento para ser executado !!!" << std::endl;
+// 	}
 }
 
 std::string CLiteral::getText()
@@ -243,4 +250,11 @@ bool CLiteral::loadBytecode(CBinString& bytecode)
 	}
 
 	return true;
+}
+
+
+void CLiteral::bind_event(std::string event_name, CMethodDefinition* method)
+{
+	_events[event_name] = method;
+// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
 }

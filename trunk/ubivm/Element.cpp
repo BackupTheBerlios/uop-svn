@@ -32,3 +32,30 @@ CElement::CElement(CEntityDefinition* entity)
 CElement::~CElement()
 {
 }
+
+void CElement::bind_event(std::string event_name, CElement* element, CMethodDefinition* method)
+{
+	_events[event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
+// 	std::cout << __FUNCTION__ << ": element= " << element->getName() << " event_name=" << event_name << " method=" << method->getName() << std::endl;
+// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
+}
+
+void CElement::run_event(std::string event_name)
+{
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event = _events.find(event_name);
+	if (event != _events.end()) {
+		std::cout << "Tem evento " << event_name << " para ser executado !!!" << std::endl;
+	}
+}
+
+std::pair<CElement*, CMethodDefinition*> CElement::get_event(std::string event_name)
+{
+	std::map<std::string, std::pair<CElement*, CMethodDefinition*> >::iterator event = _events.find(event_name);
+	if (event != _events.end()) {
+		return event->second;
+	} else {
+		return std::pair<CElement*, CMethodDefinition*>(NULL, NULL);
+	}
+}
+
+

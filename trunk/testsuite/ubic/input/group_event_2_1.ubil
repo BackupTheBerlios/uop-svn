@@ -1,0 +1,14 @@
+import datetime
+
+entity start
+	def start()
+		{"group"}.bind("xxx")
+		{"group"}.on_insert_data += ev_dado_inserido
+		datetime.sleep(10)
+		io.writeln("Terminei de monitorar o evento on_insert_data.")
+	end
+	def ev_dado_inserido(string chave, string valor)
+		io.writeln("Alguem inseriu a chave ", chave, " com valor ", valor)
+	end
+end
+

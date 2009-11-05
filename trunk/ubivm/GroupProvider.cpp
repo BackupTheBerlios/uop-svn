@@ -25,6 +25,28 @@ CGroupProvider::~CGroupProvider()
 }
 
 
+// TODO: seria um request ou notice ???
+void CGroupProvider::sendRequestDataafOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+{
+	CBinString    packet;
+	SPacketHeader header;
+	SVmId         dstVmId(0,0);
+
+	header._srcVmId      = vmId;
+	header._dstVmId      = dstVmId;
+	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
+	header._opcode       = DATAAF_OPCODE;
+	header._operation    = REQUEST_OPERATION;
+
+	packet.save(&header, sizeof(header));
+	packet.save(groupName);
+	packet.save(tuple.getComposedKeys());
+	packet.save(tuple.getComposedValues());
+
+	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
+}
+
+
 void CGroupProvider::sendRequestDataquOpcode(SVmId vmId, std::string groupName, CTuple tuple)
 {
 	CBinString    packet;
@@ -256,6 +278,26 @@ void CGroupProvider::sendRequestDatalistOpcode(SVmId vmId, std::string groupName
 }
 
 
+void CGroupProvider::sendRequestPublishsOpcode(SVmId vmId, std::string groupName, std::string serviceName)
+{
+	CBinString    packet;
+	SPacketHeader header;
+	SVmId         dstVmId(0,0);
+
+	header._srcVmId      = vmId;
+	header._dstVmId      = dstVmId;
+	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
+	header._opcode       = PUBLISHS_OPCODE;
+	header._operation    = REQUEST_OPERATION;
+
+	packet.save(&header, sizeof(header));
+	packet.save(groupName);
+	packet.save(serviceName);
+
+	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
+}
+
+
 void CGroupProvider::sendRequestScallOpcode(SVmId vmId, std::string groupName, std::string serviceName)
 {
 	CBinString    packet;
@@ -293,6 +335,26 @@ void CGroupProvider::sendRequestScallOpcode(SVmId vmId, std::string groupName, s
 	while( _bce_list[vmId._bce]->_dataReady == false) {
 		CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 		sleep(REQUEST_TIMEOUT);
+	}
+}
+
+
+void CGroupProvider::processDataafRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+{
+// 	SPacketHeader replyHeader;
+// 	CTuple*       tuple;
+
+	std::string groupName;
+	requestPacket.load(groupName);
+
+	std::string tupleKeys;
+	requestPacket.load(tupleKeys);
+
+	std::string tupleValues;
+	requestPacket.load(tupleValues);
+
+	if (_groupList->find(groupName) != _groupList->end()) {
+		(*_groupList)[groupName]->run_insert_data_event(tupleKeys, tupleValues);
 	}
 }
 
@@ -441,6 +503,20 @@ void CGroupProvider::processDatalistRequest(CBinString& requestPacket, SPacketHe
 // 	std::cout << "Enviando datalist reply packet" << std::endl;
 // 	sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
 // 	std::cout << getpid() << ": Enviando datalist reply" << std::endl;
+}
+
+
+void CGroupProvider::processPublishsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+{
+	std::string groupName;
+	requestPacket.load(groupName);
+
+	std::string serviceName;
+	requestPacket.load(serviceName);
+
+	if (_groupList->find(groupName) != _groupList->end()) {
+		(*_groupList)[groupName]->run_insert_service_event(serviceName);
+	}
 }
 
 

@@ -1,0 +1,14 @@
+import datetime
+
+entity start
+	def start()
+		{"group"}.bind("group")
+		{"group"}.on_insert_service += ev_servico_inserido
+		datetime.sleep(10)
+		io.writeln("Terminei de monitorar a insercao de servicos")
+	end
+	def ev_servico_inserido(string nome)
+		io.writeln("Inserido servico ", nome)
+	end
+end
+

@@ -22,17 +22,21 @@ public:
 	}
 	void setConfig(std::map<std::string, CGroup*>* groupList);
 	~CGroupProvider();
+	void sendRequestDataafOpcode(SVmId vmId, std::string groupName, CTuple tuple);
 	void sendRequestDataquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
 	void sendRequestDatadquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
 	void sendRequestDatanbquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
 	void sendRequestDatanbdquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
 	void sendRequestDatalistOpcode(SVmId vmId, std::string groupName);
+	void sendRequestPublishsOpcode(SVmId vmId, std::string groupName, std::string serviceName);
 	void sendRequestScallOpcode(SVmId vmId, std::string groupName, std::string serviceName);
+	void processDataafRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDataquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDatanbquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDatadquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDatanbdquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDatalistRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processPublishsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processScallRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processDataquReply(CBinString& replyPacket, SPacketHeader& replyHeader); //, udp::endpoint& sender_endpoint);
 	void processDatanbquReply(CBinString& replyPacket, SPacketHeader& replyHeader);

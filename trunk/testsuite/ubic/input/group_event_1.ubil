@@ -1,0 +1,16 @@
+import datetime
+
+entity start
+	def start()
+		{"group"}.bind("xxx")
+		{"group"}.on_insert_data += ev_dado_inserido
+		{"group"}.data.af("xxx" => "yyy", "zzz")
+		{"group"}.data.af("xxx2" => "yyy2", "zzz2")
+		datetime.sleep(2)
+		io.writeln("Terminando a execucao...")
+	end
+	def ev_dado_inserido(string chave, string valor)
+		io.writeln("Inserido chave ", chave, " com valor ", valor)
+	end
+end
+

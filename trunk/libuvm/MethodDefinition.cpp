@@ -279,7 +279,7 @@ CInstructionDefinition* CMethodDefinition::getInstruction(ushort number)
 
 size_t CMethodDefinition::getVarIndex(std::string name)
 {
-	CLocalVarDefinition* var = _findLocalVarDefinition(name);
+	CLocalVarDefinition* var = findLocalVarDefinition(name);
 	if (var == NULL) {
 		std::cout << "Forgot to define " << name << std::endl;
 	}
@@ -364,7 +364,7 @@ void CMethodDefinition::adjustInstructionsLabels()
 void CMethodDefinition::addLoadInstruction(std::string identifier, bool tableInstruction)
 {
 	// TODO: improve this...
-	CLocalVarDefinition* var = _findLocalVarDefinition(identifier);
+	CLocalVarDefinition* var = findLocalVarDefinition(identifier);
 	if (var != NULL) {
 		if (tableInstruction == true) {
 			addInstruction(LDTAB_OPCODE, var->_index);
@@ -384,7 +384,7 @@ void CMethodDefinition::addLoadInstruction(std::string identifier, bool tableIns
 void CMethodDefinition::addStoreInstruction(std::string identifier, bool tableInstruction)
 {
 	// TODO: improve this...
-	CLocalVarDefinition* var = _findLocalVarDefinition(identifier);
+	CLocalVarDefinition* var = findLocalVarDefinition(identifier);
 	if (var != NULL) {
 		if (tableInstruction == true) {
  			addInstruction(STTAB_OPCODE, var->_index);
@@ -418,7 +418,7 @@ void CMethodDefinition::addPushedInstructions()
 	_pushedInstructions.clear();
 }
 
-CLocalVarDefinition * CMethodDefinition::_findLocalVarDefinition(std::string identifier)
+CLocalVarDefinition * CMethodDefinition::findLocalVarDefinition(std::string identifier)
 {
 	for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
 		if ((*var)->_name == identifier) {
