@@ -1,8 +1,8 @@
 entity start
-	def string txt
-	def start()
-		txt = "Mensagem"
-		io.writeln(txt)
+	prop string txt;
+	method constructor()
+		txt = "Mensagem";
+		io.writeln(txt);
 	end
 end
 

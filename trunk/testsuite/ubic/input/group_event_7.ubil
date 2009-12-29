@@ -1,0 +1,35 @@
+import datetime;
+
+entity servico
+	service soma(int x, int y) [int]
+		return x+y;
+	end
+	method constructor()
+		{"context"}.bind("context");
+		{"context"}.service.publish(soma(int,int));
+	end
+	method destructor()
+		{"context"}.service.rem(soma(int,int));
+	end
+end
+
+entity start
+	method constructor()
+		var element s;
+		{"context"}.bind("context");
+		{"context"}.on_insert_service += ev_servico_inserido;
+		{"context"}.on_remove_service += ev_servico_removido;
+ 		s = servico.new();
+		io.writeln("Resultado do servico soma(10,20): ",  {"context"}.soma(10,20));
+		s.destructor();
+		datetime.sleep(2);
+		io.writeln("Terminando a execucao...");
+	end
+	method ev_servico_inserido(string nome)
+		io.writeln("Inserido servico ", nome);
+	end
+	method ev_servico_removido(string nome)
+		io.writeln("Removido servico ", nome);
+	end
+end
+

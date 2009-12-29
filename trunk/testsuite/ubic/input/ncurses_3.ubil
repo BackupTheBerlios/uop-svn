@@ -1,23 +1,23 @@
-import ncurses
+import ncurses;
 
 entity start
-	def start()
-		ncurses.initscr()
-		ncurses.mvwrite(1, 0, "Nome: ")
-		identity.name = ncurses.read()
-		ncurses.mvwrite(2, 0, "Interesse geral: ")
-		identity.general_interest = ncurses.read()
-		ncurses.mvwrite(3, 0, "Interesse especifico: ")
-		identity.specific_interest = ncurses.read()
-		ncurses.mvwrite(4, 0, "Localização: ")
-		location.symbolic = ncurses.read()
-		ncurses.mvwriteln(10, 0, "Dados lidos")
-		ncurses.writeln(identity.name)
-		ncurses.writeln(identity.general_interest)
-		ncurses.writeln(identity.specific_interest)
-		ncurses.writeln(location.symbolic)
-		ncurses.refresh()
-		ncurses.getch()
-		ncurses.endwin()
+	method constructor()
+		ncurses.initscr();
+		ncurses.mvwrite(1, 0, "Nome: ");
+		identity.name = ncurses.read();
+		ncurses.mvwrite(2, 0, "Interesse geral: ");
+		identity.general_interest = ncurses.read();
+		ncurses.mvwrite(3, 0, "Interesse especifico: ");
+		identity.specific_interest = ncurses.read();
+		ncurses.mvwrite(4, 0, "Localização: ");
+		location.symbolic = ncurses.read();
+		ncurses.mvwriteln(10, 0, "Dados lidos");
+		ncurses.writeln(identity.name);
+		ncurses.writeln(identity.general_interest);
+		ncurses.writeln(identity.specific_interest);
+		ncurses.writeln(location.symbolic);
+		ncurses.refresh();
+		ncurses.getch();
+		ncurses.endwin();
 	end
 end

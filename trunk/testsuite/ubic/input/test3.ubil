@@ -1,8 +1,9 @@
-Entity start
-	def start()
-		string V1 = "Hello world !!!"
-		io.writeln(V1)
-		string V2 = V1
-		io.writeln(V2)
+entity start
+	method constructor()
+		var string v1 = "Hello world !!!";
+		var string v2;
+		io.writeln(v1);
+		v2 = v1;
+		io.writeln(v2);
 	end
 end

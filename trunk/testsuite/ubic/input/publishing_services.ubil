@@ -1,13 +1,13 @@
 entity start
-	def service1() [int]
-		return 10
+	service service1() [int]
+		return 10;
 	end
-	def service2() [string]
-		return "xxx"
+	service service2() [string]
+		return "xxx";
 	end
-	def start()
-		{"group"}.services += service1
-		{"group"}.services += service2
+	method constructor()
+		{"context"}.services += service1;
+		{"context"}.services += service2;
 	end
 end
 

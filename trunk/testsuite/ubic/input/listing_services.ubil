@@ -1,9 +1,9 @@
 entity start
-	def start()
-		foreach(Tuple service in {"group"}.servicelist)
-			io.writeln("Nome     : ", service.name) // service.name == service["name"], como no lua ???
-			io.writeln("Descricao: ", service.description)
-			io.writeln("TBF      : ", service.tbf)
+	method constructor()
+		foreach(Tuple service in {"context"}.servicelist)
+			io.writeln("Nome     : ", service.name); // service.name == service["name"], como no lua ???
+			io.writeln("Descricao: ", service.description);
+			io.writeln("TBF      : ", service.tbf);
 		end
 	end
 end

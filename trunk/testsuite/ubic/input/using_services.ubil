@@ -1,7 +1,7 @@
 entity start
-	def start()
-		io.writeln("Resultado do servico 1: " + {"group"}.service1())
-		io.writeln("Resultado do servico 2: " + {"group"}.service2())
+	method constructor()
+		io.writeln("Resultado do servico 1: " + {"context"}.service1());
+		io.writeln("Resultado do servico 2: " + {"context"}.service2());
 	end
 end
 

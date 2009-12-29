@@ -1,11 +1,11 @@
 entity start
-	def start()
-		int V1 = 0
-		io.writeln("V1 em start/0: ", V1)
-		metodo1("Nome")
-		io.writeln("V1 em start/0: ", V1)
+	method constructor()
+		var int v1 = 0;
+		io.writeln("v1 em start/0: ", v1);
+		metodo1("Nome");
+		io.writeln("v1 em start/0: ", v1);
 	end
-	def metodo1(string V1)
-		io.writeln("V1 em metodo1/1: ", V1)
+	method metodo1(string v1)
+		io.writeln("v1 em metodo1/1: ", v1);
 	end
 end

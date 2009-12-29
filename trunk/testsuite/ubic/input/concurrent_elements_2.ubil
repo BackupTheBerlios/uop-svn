@@ -1,0 +1,25 @@
+import datetime;
+
+entity start
+	method constructor()
+		var int x;
+		var element elemento1;
+		elemento1 = concorrente.new(1);
+		for(x = 1; x <= 5; x=x+1)
+			io.writeln( "Elemento start esta na iteracao ", x );
+			datetime.sleep(1);
+		end
+		elemento1.wait();
+		io.writeln("Elemento 1 terminou...");
+	end
+end
+
+entity concorrente [parallel]
+	method constructor(int id)
+		var int y;
+		for(y = 1; y <= 10; y=y+1)
+			io.writeln("Elemento ", id, " esta na iteracao ", y);
+			datetime.sleep(1*id);
+		end
+	end
+end

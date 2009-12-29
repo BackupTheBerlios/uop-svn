@@ -1,8 +1,8 @@
 entity start
-  def start()
-    io.writeln( 10.0 * 20.0 )
-	io.writeln( 10.0 * 20.0 / 30.0 )
-	io.writeln( 10.0 * 20.0 / 5.0 )
-  end
+	method constructor()
+		io.writeln( 10.0 * 20.0 );
+		io.writeln( 10.0 * 20.0 / 30.0 );
+		io.writeln( 10.0 * 20.0 / 5.0 );
+	end
 end
 

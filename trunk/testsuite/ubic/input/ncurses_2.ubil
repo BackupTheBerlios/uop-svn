@@ -1,14 +1,14 @@
-import ncurses
+import ncurses;
 
 entity start
-	def start()
-		ncurses.initscr()
-		ncurses.mvwriteln(1, 5, "Nome: ")
-		ncurses.mvwriteln(2, 5, "Interesse geral: ")
-		ncurses.mvwriteln(3, 5, "Interesse especifico")
-		ncurses.mvwriteln(4, 5, "Localização: ")
-		ncurses.refresh()
-		ncurses.getch()
-		ncurses.endwin()
+	method constructor()
+		ncurses.initscr();
+		ncurses.mvwriteln(1, 5, "Nome: ");
+		ncurses.mvwriteln(2, 5, "Interesse geral: ");
+		ncurses.mvwriteln(3, 5, "Interesse especifico");
+		ncurses.mvwriteln(4, 5, "Localização: ");
+		ncurses.refresh();
+		ncurses.getch();
+		ncurses.endwin();
 	end
 end

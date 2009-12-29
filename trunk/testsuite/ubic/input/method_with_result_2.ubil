@@ -1,14 +1,14 @@
 entity start
-	def start()
-		x()
+	method constructor()
+		x();
 	end
-	def x()
-		def string result
-		result = y()
-		io.writeln("result: ", result)
+	method x()
+		var string result;
+		result = y();
+		io.writeln("result: ", result);
 	end
-	def y() [string]
-		return "oi"
+	method y() [string]
+		return "oi";
 	end
 end
 

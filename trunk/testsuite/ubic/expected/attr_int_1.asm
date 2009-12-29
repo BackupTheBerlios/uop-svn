@@ -1,20 +1,15 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S var1
-		2 I 10
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 int var1
-		End
-		No results
-		ldconst 2 --> [10]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S var1
+	3   I 10
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 int var1
+		ldconst 3 --> [10]
 		stvar 0 --> [var1]
 		stop
-	End
-End
+	.end
+.end

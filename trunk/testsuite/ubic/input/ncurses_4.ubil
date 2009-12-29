@@ -1,22 +1,22 @@
-import ncurses
+import ncurses;
 
 entity start
-	def start()
-//		def userdata perfil_win
-		def int main_win
-		def int perfil_win
-		ncurses.initscr()
-		ncurses.refresh()
-//		ncurses.wrefresh(main_win)
-		perfil_win = ncurses.newwin(17, 80, 0, 0)
-		ncurses.box(perfil_win, 0, 0)
-		ncurses.mvwwrite(perfil_win, 1, 5, "Nome: ")
-		ncurses.mvwwrite(perfil_win, 2, 5, "Interesse geral: ")
-		ncurses.mvwwrite(perfil_win, 3, 5, "Interesse especifico")
-		ncurses.mvwwrite(perfil_win, 4, 5, "Localização: ")
-		ncurses.wrefresh(perfil_win)
-		ncurses.refresh()
-		ncurses.getch()
-		ncurses.endwin()
+	method constructor()
+//		var userdata perfil_win;
+		var int main_win;
+		var int perfil_win;
+		ncurses.initscr();
+		ncurses.refresh();
+//		ncurses.wrefresh(main_win);
+		perfil_win = ncurses.newwin(17, 80, 0, 0);
+		ncurses.box(perfil_win, 0, 0);
+		ncurses.mvwwrite(perfil_win, 1, 5, "Nome: ");
+		ncurses.mvwwrite(perfil_win, 2, 5, "Interesse geral: ");
+		ncurses.mvwwrite(perfil_win, 3, 5, "Interesse especifico");
+		ncurses.mvwwrite(perfil_win, 4, 5, "Localização: ");
+		ncurses.wrefresh(perfil_win);
+		ncurses.refresh();
+		ncurses.getch();
+		ncurses.endwin();
 	end
 end

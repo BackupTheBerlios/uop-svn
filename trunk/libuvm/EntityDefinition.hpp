@@ -16,8 +16,8 @@ class CEntityDefinition;
 class CEntityDefinition
 {
 public:
-	CEntityDefinition();
-	CEntityDefinition(std::string name);
+	CEntityDefinition(CSymbolTable *symbolTable);
+	CEntityDefinition(CSymbolTable *_symbolTable, std::string name);
 	CPropertyDefinition *addProperty(VisibilityType visibility, LiteralType type, std::string name);
 	CMethodDefinition *addMethod(VisibilityType visibility, std::string name);
 	size_t getSymbolIndex(std::string name, LiteralType type);
@@ -37,8 +37,8 @@ public:
 	std::vector<CPropertyDefinition*> _propertyList;
 private:
 	std::vector<CMethodDefinition*> _methodList;
+	CSymbolTable *_symbolTable;
 	std::string _name;
-	CSymbolTable _symbolTable;
 	std::map<std::string,std::string> _optionList;
 };
 

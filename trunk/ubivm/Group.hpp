@@ -18,8 +18,8 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#ifndef UBIVM_GROUP_HPP
-#define UBIVM_GROUP_HPP
+#ifndef UBIVM_CONTEXT_HPP
+#define UBIVM_CONTEXT_HPP
 
 #include <string>
 #include <set>
@@ -31,9 +31,9 @@
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
-class CGroup{
+class CContext{
 public:
-	CGroup(std::string name);
+	CContext(std::string name);
 	void addObject(std::string name);
 	void remObject(std::string name);
 	void addTuple(CTuple* tuple);
@@ -41,13 +41,16 @@ public:
 	CTuple* getTuple(CTuple* tuple);
 	CTuple* findTuple(CTuple* tuple);
 	void addService(std::string serviceName, std::string element);
+	void remService(std::string serviceName);
 	std::string findService(std::string serviceName);
 	void run_insert_data_event(std::string keys, std::string values);
+	void run_remove_data_event(std::string keys, std::string values);
 	void run_insert_service_event(std::string service_name);
+	void run_remove_service_event(std::string service_name);
 
 	std::string _name;
 	std::set<std::string> _objectList;
-	std::map<std::string, CTuple*> _dataList;
+	std::map<std::string, CTuple*> _listd;
 	std::map<std::string, std::string> _serviceList;
 	std::map<std::string, std::pair<CElement*, CMethodDefinition*> > _events;
 };

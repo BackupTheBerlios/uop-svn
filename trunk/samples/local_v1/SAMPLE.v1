@@ -124,12 +124,15 @@ DUVIDAS
 * Learning objects serao armazenados nos grupos do UOP ?
 * LOCAL eh contexto, UOP eh grupo... LOCAL eh profile, UOP eh contexto... qual o correto ???
 * Se a mobilidade eh do aplicativo, os elementos (ou os aplicativos) estao nos grupos ??? Acho q confundi, sao os elementos sim, de qq forma...
-* acho que vou precisar de elementos concorrentes para implementar tutor... teria como evitar isso ? talvez ate tem como, mas talvez complicaria (e muito) o codigo... ver com o barbosa se o codigo vai ser tao "importante" para o SBIE...
-* as notificacoes serao enviadas ou o usuario (aplicativo) verifica no grupo se tem algo q lhe interessa ???
+* as notificacoes serao enviadas ou o usuario (aplicativo) verifica no grupo se tem algo q lhe interessa ??? acho q as duas coisas, ou pelo menos, o aplicativo deve verificar (periodicamente) se tem algo q lhe interessa
 * As notificacoes enviadas sao as msgs enviadas para grupos. Onde elas seriam armazenadas ? nos grupos (acho)...
+  - talvez estas notificaoes nao devam ser armazenadas... sao recebidas e processadas... mas e quem nao tava online e nao recebeu ???
 * Grupo do UOP seria communication system ??? Se bem q eu tenho suporte a msgs tb... na teoria eu poderia implementar esse communication system com msgs ou com os grupos, mas acho q com msgs fica mais facil...
 * "pode ser controlado automaticamente ou atraves de interface administrativa..." o que eh isso ???
 
+
+
+* Talvez eu possa tirar e-mail e midia preferencial da tela abaixo, ate pq nao tem arquivos compartilhados...
 
 
 TELA UNICA

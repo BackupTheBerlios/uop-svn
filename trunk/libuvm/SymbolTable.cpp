@@ -97,12 +97,11 @@ std::string CSymbolTable::toTextAssembly()
 {
 	std::string result;
 
-	result += "\tConstants\n";
+	result += ".constant_pool\n";
 
 	for(std::vector<CSymbol*>::iterator symbol = _symbolListByIndex.begin();
 		symbol != _symbolListByIndex.end(); symbol++) {
-		result += "\t";
-		result += (*symbol)->toTextAssembly();
+		result += "\t" + (*symbol)->toTextAssembly() + "\n";
 	}
 
 // 	for(std::map<std::string, CSymbol*>::iterator symbol = _symbolList.begin();
@@ -111,7 +110,7 @@ std::string CSymbolTable::toTextAssembly()
 // 		result += symbol->second->toTextAssembly();
 // 	}
 
-	result += "\tEnd\n";
+	result += ".end\n";
 
 	return result;
 }

@@ -1,8 +1,8 @@
 entity start
-	def start()
-		def real var1
-		var1 = 10.99
-		io.writeln(var1)
+	method constructor()
+		var real var1;
+		var1 = 10.99;
+		io.writeln(var1);
 	end
 end
 

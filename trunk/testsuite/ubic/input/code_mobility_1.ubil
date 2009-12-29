@@ -1,8 +1,8 @@
 entity start
-	def start()
-		writeln("Executando em " + identity.host + ". Vou ir para outro host...")
-		move("desktop.casa")
-		writeln("Executando em " + identity.host)
+	method constructor()
+		writeln("Executando em " + identity.host + ". Vou ir para outro host...");
+		move("desktop.casa");
+		writeln("Executando em " + identity.host);
 	end
 end
 

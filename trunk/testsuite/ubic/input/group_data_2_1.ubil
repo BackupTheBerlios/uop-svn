@@ -1,10 +1,10 @@
 // Segundo teste: Programa 1 insere informação que o programa 2 irá remover
 
 entity start
-	def start()
-		{"MeuGrupo"}.bind("prog1")
-		io.writeln("Programa 1 inserindo informacoes")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
+	method constructor()
+		{"MeuContexto"}.bind("prog1");
+		io.writeln("Programa 1 inserindo informacoes");
+		{"MeuContexto"}.data.publish("Numero 1" => 100);
 		while(true)
 		end
 	end

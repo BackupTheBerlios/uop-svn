@@ -1,43 +1,39 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S Meu Host
-		2 S identity.host
-		3 S Mobilab - sala 1
-		4 S location.symbolic
-		5 I 101010
-		6 S time.now
-		7 S Host atual: 
-		8 I 2
-		9 S io.writeln
-		10 S Onde estou: 
-		11 S Horario   : 
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [Meu Host]
-		stcontext 2 --> [identity.host]
-		ldconst 3 --> [Mobilab - sala 1]
-		stcontext 4 --> [location.symbolic]
-		ldconst 5 --> [101010]
-		stcontext 6 --> [time.now]
-		ldconst 7 --> [Host atual: ]
-		ldcontext 2 --> [identity.host]
-		ldconst 8 --> [2]
-		lcall 9 --> [io.writeln]
-		ldconst 10 --> [Onde estou: ]
-		ldcontext 4 --> [location.symbolic]
-		ldconst 8 --> [2]
-		lcall 9 --> [io.writeln]
-		ldconst 11 --> [Horario   : ]
-		ldcontext 6 --> [time.now]
-		ldconst 8 --> [2]
-		lcall 9 --> [io.writeln]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S Meu Host
+	3   S identity.host
+	4   S Mobilab - sala 1
+	5   S location.symbolic
+	6   I 101010
+	7   S time.now
+	8   S Host atual: 
+	9   I 2
+	10  S io.writeln
+	11  S Onde estou: 
+	12  S Horario   : 
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [Meu Host]
+		stcontexti 3 --> [identity.host]
+		ldconst 4 --> [Mobilab - sala 1]
+		stcontexti 5 --> [location.symbolic]
+		ldconst 6 --> [101010]
+		stcontexti 7 --> [time.now]
+		ldconst 8 --> [Host atual: ]
+		ldcontexti 3 --> [identity.host]
+		ldconst 9 --> [2]
+		lcall 10 --> [io.writeln]
+		ldconst 11 --> [Onde estou: ]
+		ldcontexti 5 --> [location.symbolic]
+		ldconst 9 --> [2]
+		lcall 10 --> [io.writeln]
+		ldconst 12 --> [Horario   : ]
+		ldcontexti 7 --> [time.now]
+		ldconst 9 --> [2]
+		lcall 10 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

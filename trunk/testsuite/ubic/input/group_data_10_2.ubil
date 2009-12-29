@@ -1,8 +1,8 @@
 entity start
-	def start()
-		{"MeuGrupo"}.bind("prog2")
-		io.writeln("Programa 2 inserindo informacao")
-		{"MeuGrupo"}.data.af("Nro 2" => 1000)
+	method constructor()
+		{"MeuContexto"}.bind("prog2");
+		io.writeln("Programa 2 inserindo informacao");
+		{"MeuContexto"}.data.publish("Nro 2" => 1000);
 		while(true)
 		end
 	end

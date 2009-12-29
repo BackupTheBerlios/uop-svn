@@ -1,50 +1,27 @@
-import io
-import datetime
+import datetime;
 
 entity start
-	def start()
-		def int x
-//		def element elemento1 = concorrente.new(1)
-//		def element elemento2 = concorrente.new(2)
-		def element elemento1 = concorrente.new()
-		def element elemento2 = concorrente.new()
-//		elemento1.teste1()
-//		elemento1.teste2()
-		elemento1.concorrente(1)
-		elemento2.concorrente(2)
-//		def element elemento2 = concorrente.new()
+	method constructor()
+		var int x;
+		var element elemento1 = concorrente.new(1);
+		var element elemento2 = concorrente.new(2);
 		for(x = 1; x <= 5; x=x+1)
-			io.writeln( "Elemento start esta na iteracao ", x )
-			datetime.sleep(1)
+			io.writeln( "Elemento start esta na iteracao ", x );
+			datetime.sleep(1);
 		end
-//		datetime.sleep(5)
-		elemento1.wait()
-		io.writeln("Elemento 1 terminou...")
-		elemento2.wait()
-		io.writeln("Elemento 2 terminou...")
-//		datetime.sleep(5)
-//    element_1.wait() // com essa abordagem perde-se a ordem em que os elementos terminaram
-//    element_2.wait() // e se eu quisesse recuperar valores ? construtor poderia rertornar valores ou
-                     // Concorrent disponibilizaria resultados de alguma outra forma que nao fosse pelo CM ?
-
+		elemento1.wait();
+		io.writeln("Elemento 1 terminou...");
+		elemento2.wait();
+		io.writeln("Elemento 2 terminou...");
 	end
 end
 
 entity concorrente [parallel]
-	def concorrente(int id)
-//	def concorrente()
-//		def int id = 1
-		def int y
+	method constructor(int id)
+		var int y;
 		for(y = 1; y <= 10; y=y+1)
-			io.writeln("Elemento ", id, " esta na iteracao ", y)
-			datetime.sleep(1*id)
+			io.writeln("Elemento ", id, " esta na iteracao ", y);
+			datetime.sleep(1*id);
 		end
-//		datetime.sleep(10)
 	end
-//	def teste1()
-//		io.writeln("Teste 1")
-//	end
-//	def teste2()
-//		io.writeln("Teste 2")
-//	end
 end

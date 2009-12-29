@@ -1,5 +1,5 @@
 entity start
-	def start()
-		io.writeln( "2.0 * (49.0 / 7.0 - 3.0)=", 2.0 * (49.0 / 7.0 - 3.0) )
+	method constructor()
+		io.writeln( "2.0 * (49.0 / 7.0 - 3.0)=", 2.0 * (49.0 / 7.0 - 3.0) );
 	end
 end

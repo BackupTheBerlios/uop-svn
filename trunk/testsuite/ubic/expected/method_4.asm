@@ -1,44 +1,36 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S oi
-		2 S oi de novo !!!
-		3 S x
-		4 S msg1
-		5 S msg2
-		6 S msg1=
-		7 I 2
-		8 S io.writeln
-		9 S msg2=
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [oi]
-		ldconst 2 --> [oi de novo !!!]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S oi
+	3   S oi de novo !!!
+	4   S x
+	5   S msg1
+	6   S msg2
+	7   S msg1=
+	8   I 2
+	9   S io.writeln
+	10  S msg2=
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [oi]
+		ldconst 3 --> [oi de novo !!!]
 		ldself
-		mcall 3 --> [x]
+		mcall 4 --> [x]
 		stop
-	End
-	Def x
-		Parameters
-			0 string msg1
-			1 string msg2
-		End
-		No local variables
-		No results
-		ldconst 6 --> [msg1=]
+	.end
+	.method x
+		.param 0 string msg1
+		.param 1 string msg2
+		ldconst 7 --> [msg1=]
 		ldpar 0 --> [msg1]
-		ldconst 7 --> [2]
-		lcall 8 --> [io.writeln]
-		ldconst 9 --> [msg2=]
+		ldconst 8 --> [2]
+		lcall 9 --> [io.writeln]
+		ldconst 10 --> [msg2=]
 		ldpar 1 --> [msg2]
-		ldconst 7 --> [2]
-		lcall 8 --> [io.writeln]
+		ldconst 8 --> [2]
+		lcall 9 --> [io.writeln]
 		ret
-	End
-End
+	.end
+.end

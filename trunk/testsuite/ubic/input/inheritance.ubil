@@ -1,22 +1,22 @@
 entity A
-	def x()
-		io.writeln("Executando A::x")
+	method x()
+		io.writeln("Executando A::x");
 	end
 end
 
 entity B extends A
-	def y()
-		io.writeln("Executando B::y")
+	method y()
+		io.writeln("Executando B::y");
 	end
 end
 
 entity start
-	def start()
-		def element a = A.new()
-		def element b = B.new()
-		a.x()
-		b.x()
-		b.y()
+	method constructor()
+		var element a = A.new();
+		var element b = B.new();
+		a.x();
+		b.x();
+		b.y();
 	end
 end
 

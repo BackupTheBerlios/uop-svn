@@ -2,9 +2,9 @@ Entity Start:
   def start():
     Process p = Process.new()
     writeln("Resultado: " +
-      ["group"].data -= {"Resultado"})
+      ["context"].data -= {"Resultado"})
 
 Entity Process:
   def process():
-    ["group"].data += {"Resultado", 10 * 2}
+    ["context"].data += {"Resultado", 10 * 2}
 

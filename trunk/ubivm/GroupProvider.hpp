@@ -1,5 +1,5 @@
-#ifndef GROUPPROVIDER_HPP
-#define GROUPPROVIDER_HPP
+#ifndef CONTEXTPROVIDER_HPP
+#define CONTEXTPROVIDER_HPP
 
 #include <string>
 
@@ -13,45 +13,47 @@
 /**
 	@author Alex Sandro Garzão <alexgarzao@gmail.com>
 */
-class CGroupProvider {
+class CContextProvider {
 public:
-	static CGroupProvider* getInstance()
+	static CContextProvider* getInstance()
 	{
-		static CGroupProvider *instance = NULL;
-		return instance ? instance : (instance = new CGroupProvider());
+		static CContextProvider *instance = NULL;
+		return instance ? instance : (instance = new CContextProvider());
 	}
-	void setConfig(std::map<std::string, CGroup*>* groupList);
-	~CGroupProvider();
-	void sendRequestDataafOpcode(SVmId vmId, std::string groupName, CTuple tuple);
-	void sendRequestDataquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
-	void sendRequestDatadquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
-	void sendRequestDatanbquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
-	void sendRequestDatanbdquOpcode(SVmId vmId, std::string groupName, CTuple tuple);
-	void sendRequestDatalistOpcode(SVmId vmId, std::string groupName);
-	void sendRequestPublishsOpcode(SVmId vmId, std::string groupName, std::string serviceName);
-	void sendRequestScallOpcode(SVmId vmId, std::string groupName, std::string serviceName);
-	void processDataafRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDataquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDatanbquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDatadquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDatanbdquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDatalistRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void setConfig(std::map<std::string, CContext*>* contextList);
+	~CContextProvider();
+	void sendRequestPublishdOpcode(SVmId vmId, std::string contextName, CTuple tuple);
+	void sendRequestFinddOpcode(SVmId vmId, std::string contextName, CTuple tuple);
+	void sendRequestGetdOpcode(SVmId vmId, std::string contextName, CTuple tuple);
+	void sendRequestFinddnbOpcode(SVmId vmId, std::string contextName, CTuple tuple);
+	void sendRequestGetdnbOpcode(SVmId vmId, std::string contextName, CTuple tuple);
+	void sendRequestListdOpcode(SVmId vmId, std::string contextName);
+	void sendRequestPublishsOpcode(SVmId vmId, std::string contextName, std::string serviceName);
+	void sendRequestRemovesOpcode(SVmId vmId, std::string contextName, std::string serviceName);
+	void sendRequestRunsOpcode(SVmId vmId, std::string contextName, std::string serviceName);
+	void processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processFinddRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processFinddnbRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processGetdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processGetdnbRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processListdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
 	void processPublishsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processScallRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
-	void processDataquReply(CBinString& replyPacket, SPacketHeader& replyHeader); //, udp::endpoint& sender_endpoint);
-	void processDatanbquReply(CBinString& replyPacket, SPacketHeader& replyHeader);
-	void processDatadquReply(CBinString& replyPacket, SPacketHeader& replyHeader);
-	void processDatanbdquReply(CBinString& replyPacket, SPacketHeader& replyHeader);
-	void processDatalistReply(CBinString& replyPacket, SPacketHeader& replyHeader);
-	void processScallReply(CBinString& replyPacket, SPacketHeader& replyHeader);
+	void processRemovesRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processRunsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket);
+	void processFinddReply(CBinString& replyPacket, SPacketHeader& replyHeader); //, udp::endpoint& sender_endpoint);
+	void processFinddnbReply(CBinString& replyPacket, SPacketHeader& replyHeader);
+	void processGetdReply(CBinString& replyPacket, SPacketHeader& replyHeader);
+	void processGetdnbReply(CBinString& replyPacket, SPacketHeader& replyHeader);
+	void processListdReply(CBinString& replyPacket, SPacketHeader& replyHeader);
+	void processRunsReply(CBinString& replyPacket, SPacketHeader& replyHeader);
 	void register_bce(uint id, CRunBytecode* bce);
 	std::map<uint, CRunBytecode*> _bce_list;
 private:
-	CGroupProvider()
+	CContextProvider()
 	{
-		_groupList          = NULL;
+		_contextList = NULL;
 	}
-	std::map<std::string, CGroup*>* _groupList;
+	std::map<std::string, CContext*>* _contextList;
 };
 
 #endif

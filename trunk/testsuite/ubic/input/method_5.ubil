@@ -1,10 +1,10 @@
 entity start
-	def start()
-		x(1, "um", 2, "dois")
+	method constructor()
+		x(1, "um", 2, "dois");
 	end
-	def x(int number1, string msg1, int number2, string msg2)
-		io.writeln("number1=", number1, " msg1=", msg1)
-		io.writeln("number2=", number2, " msg2=", msg2)
+	method x(int number1, string msg1, int number2, string msg2)
+		io.writeln("number1=", number1, " msg1=", msg1);
+		io.writeln("number2=", number2, " msg2=", msg2);
 	end
 end
 

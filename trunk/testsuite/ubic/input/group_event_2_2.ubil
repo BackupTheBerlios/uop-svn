@@ -1,10 +1,10 @@
 import datetime
 
 entity start
-	def start()
-		{"group"}.bind("xxx")
-		{"group"}.data.af("xxx" => "yyy", "zzz")
-		{"group"}.data.af("xxx2" => "yyy2", "zzz2")
+	method constructor()
+		{"context"}.bind("xxx");
+		{"context"}.data.publish("xxx" => "yyy", "zzz");
+		{"context"}.data.publish("xxx2" => "yyy2", "zzz2");
 	end
 end
 

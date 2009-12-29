@@ -1,30 +1,26 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S (2 * (49 / 7 - 3))=
-		2 I 2
-		3 I 49
-		4 I 7
-		5 I 3
-		6 S io.writeln
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [(2 * (49 / 7 - 3))=]
-		ldconst 2 --> [2]
-		ldconst 3 --> [49]
-		ldconst 4 --> [7]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S (2 * (49 / 7 - 3))=
+	3   I 2
+	4   I 49
+	5   I 7
+	6   I 3
+	7   S io.writeln
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [(2 * (49 / 7 - 3))=]
+		ldconst 3 --> [2]
+		ldconst 4 --> [49]
+		ldconst 5 --> [7]
 		div
-		ldconst 5 --> [3]
+		ldconst 6 --> [3]
 		sub
 		mul
-		ldconst 2 --> [2]
-		lcall 6 --> [io.writeln]
+		ldconst 3 --> [2]
+		lcall 7 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

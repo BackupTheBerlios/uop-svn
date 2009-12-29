@@ -1,7 +1,7 @@
 entity start
-	def start()
-		def string var1
-		var1 = "aaa"
+	method constructor()
+		var string var1;
+		var1 = "aaa";
 	end
 end
 

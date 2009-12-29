@@ -1,54 +1,50 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S (2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=
-		2 I 2
-		3 I 8
-		4 I 18
-		5 I 9
-		6 I 7
-		7 I 4
-		8 I 5
-		9 I 6
-		10 I 49
-		11 I 3
-		12 S io.writeln
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=]
-		ldconst 2 --> [2]
-		ldconst 3 --> [8]
-		ldconst 4 --> [18]
-		ldconst 5 --> [9]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S (2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=
+	3   I 2
+	4   I 8
+	5   I 18
+	6   I 9
+	7   I 7
+	8   I 4
+	9   I 5
+	10  I 6
+	11  I 49
+	12  I 3
+	13  S io.writeln
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=]
+		ldconst 3 --> [2]
+		ldconst 4 --> [8]
+		ldconst 5 --> [18]
+		ldconst 6 --> [9]
 		div
-		ldconst 6 --> [7]
-		ldconst 3 --> [8]
+		ldconst 7 --> [7]
+		ldconst 4 --> [8]
 		mul
-		ldconst 7 --> [4]
+		ldconst 8 --> [4]
 		sub
-		ldconst 8 --> [5]
-		ldconst 6 --> [7]
+		ldconst 9 --> [5]
+		ldconst 7 --> [7]
 		mul
 		add
 		mul
 		sub
-		ldconst 9 --> [6]
+		ldconst 10 --> [6]
 		sub
 		mul
-		ldconst 10 --> [49]
-		ldconst 6 --> [7]
+		ldconst 11 --> [49]
+		ldconst 7 --> [7]
 		div
-		ldconst 11 --> [3]
+		ldconst 12 --> [3]
 		sub
 		mul
-		ldconst 2 --> [2]
-		lcall 12 --> [io.writeln]
+		ldconst 3 --> [2]
+		lcall 13 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

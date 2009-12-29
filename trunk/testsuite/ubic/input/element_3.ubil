@@ -1,21 +1,21 @@
 entity start
-	def start()
-		def element e
-		io.writeln("antes da chamada a elemento::x")
-		e = elemento.new()
-		e.x()
-		io.writeln("depois da chamada a elemento::x")
+	method constructor()
+		var element e;
+		io.writeln("antes da chamada a elemento::x");
+		e = elemento.new();
+		e.x();
+		io.writeln("depois da chamada a elemento::x");
 	end
 end
 
 entity elemento
-	def x()
-		io.writeln("antes da chamada a elemento::y")
-		y()
-		io.writeln("depois da chamada a elemento::y")
+	method x()
+		io.writeln("antes da chamada a elemento::y");
+		y();
+		io.writeln("depois da chamada a elemento::y");
 	end
-	def y()
-		io.writeln("no metodo elemento::y")
+	method y()
+		io.writeln("no metodo elemento::y");
 	end
 end
 

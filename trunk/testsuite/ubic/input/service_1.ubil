@@ -1,19 +1,18 @@
 entity servico
-	def soma(int x, int y) [int]
-//		io.writeln("x=", x, " y=", y)
-		return x+y
+	service soma(int x, int y) [int]
+//		io.writeln("x=", x, " y=", y);
+		return x+y;
 	end
-	def servico()
-		{"group"}.bind("Alex")
-		{"group"}.service += soma(int,int)
+	method constructor()
+		{"context"}.bind("Alex");
+		{"context"}.service.publish(soma(int,int));
 	end
 end
 
 entity start
-	def start()
-		def element s = servico.new()
-		s.servico()
-		io.writeln("Soma: ",  {"group"}.soma(10,20))
+	method constructor()
+		var element s = servico.new();
+		io.writeln("Soma: ",  {"context"}.soma(10,20));
 	end
 end
 

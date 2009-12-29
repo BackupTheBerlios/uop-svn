@@ -1,48 +1,36 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S x
-		2 S result
-		3 S y
-		4 S result: 
-		5 I 2
-		6 S io.writeln
-		7 S oi
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S x
+	3   S result
+	4   S y
+	5   S result: 
+	6   I 2
+	7   S io.writeln
+	8   S oi
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
 		ldself
-		mcall 1 --> [x]
+		mcall 2 --> [x]
 		stop
-	End
-	Def x
-		No parameters
-		Local variables
-			0 string result
-		End
-		No results
+	.end
+	.method x
+		.var 0 string result
 		ldself
-		mcall 3 --> [y]
+		mcall 4 --> [y]
 		stvar 0 --> [result]
-		ldconst 4 --> [result: ]
+		ldconst 5 --> [result: ]
 		ldvar 0 --> [result]
-		ldconst 5 --> [2]
-		lcall 6 --> [io.writeln]
+		ldconst 6 --> [2]
+		lcall 7 --> [io.writeln]
 		ret
-	End
-	Def y
-		No parameters
-		No local variables
-		Result
-			0 string
-		End
-		ldconst 7 --> [oi]
+	.end
+	.method y
+		.result 0 string
+		ldconst 8 --> [oi]
 		stresult 0
 		ret
-	End
-End
+	.end
+.end

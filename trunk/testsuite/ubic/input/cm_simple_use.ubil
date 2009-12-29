@@ -1,7 +1,7 @@
 Entity Start:
   def start():
-    writeln("Vou inserir informacoes no grupo...")
-    ["group"].data.af({"Numero 1",12345})
-    ["group"].data += {"Numero 2",54321}
-    writeln("Informacao inserida no grupo: " + ["group"].data.dqu({"Numero 1"}))
-    writeln("Informacao inserida no grupo: " + ["group"].data -= {"Numero 2"})
+    writeln("Vou inserir informacoes no contexto...")
+    ["context"].data.publish({"Numero 1",12345})
+    ["context"].data += {"Numero 2",54321}
+    writeln("Informacao inserida no contexto: " + ["context"].data.get({"Numero 1"}))
+    writeln("Informacao inserida no contexto: " + ["context"].data -= {"Numero 2"})

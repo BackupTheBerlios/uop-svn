@@ -1,39 +1,34 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S x
-		2 I 1
-		3 I 10
-		4 S x=
-		5 I 2
-		6 S io.writeln
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 int x
-		End
-		No results
-		ldconst 2 --> [1]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S x
+	3   I 1
+	4   I 10
+	5   S x=
+	6   I 2
+	7   S io.writeln
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 int x
+		ldconst 3 --> [1]
 		stvar 0 --> [x]
-	2:	ldvar 0 --> [x]
-		ldconst 3 --> [10]
+	:2    	ldvar 0 --> [x]
+		ldconst 4 --> [10]
 		le
 		ifnot 17 --> [17]
 		jmp 12 --> [12]
-	7:	ldvar 0 --> [x]
-		ldconst 2 --> [1]
+	:7    	ldvar 0 --> [x]
+		ldconst 3 --> [1]
 		add
 		stvar 0 --> [x]
 		jmp 2 --> [2]
-	12:	ldconst 4 --> [x=]
+	:12   	ldconst 5 --> [x=]
 		ldvar 0 --> [x]
-		ldconst 5 --> [2]
-		lcall 6 --> [io.writeln]
+		ldconst 6 --> [2]
+		lcall 7 --> [io.writeln]
 		jmp 7 --> [7]
-	17:	stop
-	End
-End
+	:17   	stop
+	.end
+.end

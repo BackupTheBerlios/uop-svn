@@ -1,0 +1,15 @@
+entity start
+	method constructor()
+		io.writeln("Hello world in start/0 !!!");
+		start("Hello world in start/1");
+		io.writeln("Depois de start/1");
+		start("Hello world in ", "start/2 !!!");
+		io.writeln("Depois de start/2");
+	end
+	method constructor(string Msg)
+		io.writeln(Msg);
+	end
+	method constructor(string Msg, string ActionName)
+		io.writeln(Msg, ActionName);
+	end
+end

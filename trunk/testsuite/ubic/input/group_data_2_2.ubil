@@ -1,8 +1,8 @@
 // Segundo teste: Programa 1 insere informação que o programa 2 irá remover
 
 entity start
-	def start()
-		{"MeuGrupo"}.bind("prog2")
-		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuGrupo"}.data.qu("Numero 1"))
+	method constructor()
+		{"MeuContexto"}.bind("prog2");
+		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuContexto"}.data.find("Numero 1"));
 	end
 end

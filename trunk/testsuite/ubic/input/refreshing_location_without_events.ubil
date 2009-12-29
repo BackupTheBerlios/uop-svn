@@ -1,10 +1,10 @@
 entity start
-	def start()
-		def string oldloc = location.symbolic
+	method constructor()
+		var string oldloc = location.symbolic;
 		while (true)
 			if (oldloc <> location.symbolic)
-				io.writeln("Localizacao " + oldloc + " mudou para " + location.symbolic)
-				oldloc = location.symbolic
+				io.writeln("Localizacao " + oldloc + " mudou para " + location.symbolic);
+				oldloc = location.symbolic;
 			end
 		end
 	end

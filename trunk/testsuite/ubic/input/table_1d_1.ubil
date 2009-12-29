@@ -1,9 +1,9 @@
 entity start
-	def start()
-		def table tab
-		tab[1] = 100
-		tab[2] = 200
-		io.writeln("tab[1]=", tab[1])
-		io.writeln("tab[2]=", tab[2])
+	method constructor()
+		var table tab;
+		tab[1] = 100;
+		tab[2] = 200;
+		io.writeln("tab[1]=", tab[1]);
+		io.writeln("tab[2]=", tab[2]);
 	end
 end

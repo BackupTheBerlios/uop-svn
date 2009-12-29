@@ -1,24 +1,24 @@
 entity test when (identity.name == "alex")
-	def run()
-		io.writeln( "Eu sou o Alex !!!" )
+	method run()
+		io.writeln( "Eu sou o Alex !!!" );
 	end
 end
 
 entity test when (identity.name <> "alex")
-	def run()
-		io.writeln( "Ops, nao sou o Alex :-/" )
+	method run()
+		io.writeln( "Ops, nao sou o Alex :-/" );
 	end
 end
 
 entity start
-	def start()
-		def element t1
-		def element t2
-		identity.name = "alex"
-		t1 = test.new()
-		t1.run()
-		identity.name = "gracy"
-		t2 = test.new()
-		t2.run()
+	method constructor()
+		var element t1;
+		var element t2;
+		identity.name = "alex";
+		t1 = test.new();
+		t1.run();
+		identity.name = "gracy";
+		t2 = test.new();
+		t2.run();
 	end
 end

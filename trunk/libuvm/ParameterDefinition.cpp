@@ -28,7 +28,7 @@ CParameterDefinition::CParameterDefinition(CSymbolTable* symbolTable, size_t ind
 {
 	_symbolTable->getSymbolIndex(_name, StringType); // forca o simbolo a ser criado na tabela de simbolos
 }
-	
+
 CParameterDefinition::CParameterDefinition(CSymbolTable*symbolTable, size_t index)
 	: _symbolTable(symbolTable), _index(index)
 {
@@ -66,13 +66,11 @@ std::string CParameterDefinition::toTextAssembly()
 {
 	std::string result;
 
-	result += "\t\t\t";
 	result += itoa(_index);
 	result += " ";
 	result += typeToText(_type);
 	result += " ";
 	result += _name;
-	result += "\n";
 
 	return result;
 }

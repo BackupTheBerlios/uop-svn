@@ -1,17 +1,17 @@
 entity start
-	def start()
-		def table number_list
-		def tuple number
-		def int   count
-		{"MeuGrupo"}.bind("teste")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		{"MeuGrupo"}.data.af("Numero 2" => 200)
-		{"MeuGrupo"}.data.af("Numero 3" => 300)
-		{"MeuGrupo"}.data.af("Numero 4" => 400)
-		number_list = {"MeuGrupo"}.data.list()
+	method constructor()
+		var table number_list;
+		var tuple number;
+		var int   count;
+		{"MeuContexto"}.bind("teste");
+		{"MeuContexto"}.data.publish("Numero 1" => 100);
+		{"MeuContexto"}.data.publish("Numero 2" => 200);
+		{"MeuContexto"}.data.publish("Numero 3" => 300);
+		{"MeuContexto"}.data.publish("Numero 4" => 400);
+		number_list = {"MeuContexto"}.data.list();
 		for(count=1; count<=number_list.size(); count=count+1)
-			number = number_list[count]
-			io.writeln("key=", number.keys[1], " value=", number.values[1])
+			number = number_list[count];
+			io.writeln("key=", number.keys[1], " value=", number.values[1]);
 		end
 	end
 end

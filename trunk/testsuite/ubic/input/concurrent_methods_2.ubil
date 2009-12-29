@@ -1,16 +1,16 @@
 entity start
-	def start()
-		int m1 = method(1).fork()
-		int m2 = method(2).fork()
+	method constructor()
+		int m1 = method(1).fork();
+		int m2 = method(2).fork();
 		for(int x = 1; x <= 5; x++)
-			writeln( "Elemento Start esta na iteracao ", x )
+			writeln( "Elemento Start esta na iteracao ", x );
 		end
-		m1.wait()
-		m2.wait()
+		m1.wait();
+		m2.wait();
 	end
-	def method(int id)
+	method method(int id)
 		for(int i = 1; x <= 10; x++)
-			writeln("Running method", id, "...")
+			writeln("Running method", id, "...");
 		end
 	end
 end

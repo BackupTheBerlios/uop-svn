@@ -1,12 +1,12 @@
 entity a
-	def print()
-		io.writeln("Executando print...")
+	method print()
+		io.writeln("Executando print...");
 	end
 end
 
 entity start
-	def start()
-		a.new().print()
+	method constructor()
+		a.new().print();
 	end
 end
 

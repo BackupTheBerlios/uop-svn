@@ -1,104 +1,78 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S antes da chamada a start::x
-		2 I 1
-		3 S io.writeln
-		4 S x
-		5 S depois da chamada a start::x
-		6 S antes da chamada a start::y
-		7 S y
-		8 S depois da chamada a start::y
-		9 S e
-		10 S antes da chamada a elemento::x
-		11 S elemento
-		12 S depois da chamada a elemento::x
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [antes da chamada a start::x]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S antes da chamada a start::x
+	3   I 1
+	4   S io.writeln
+	5   S x
+	6   S depois da chamada a start::x
+	7   S antes da chamada a start::y
+	8   S y
+	9   S depois da chamada a start::y
+	10  S e
+	11  S antes da chamada a elemento::x
+	12  S elemento
+	13  S depois da chamada a elemento::x
+	14  S antes da chamada a elemento::y
+	15  S depois da chamada a elemento::y
+	16  S no metodo elemento::y
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [antes da chamada a start::x]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
 		ldself
-		mcall 4 --> [x]
-		ldconst 5 --> [depois da chamada a start::x]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
+		mcall 5 --> [x]
+		ldconst 6 --> [depois da chamada a start::x]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
 		stop
-	End
-	Def x
-		No parameters
-		No local variables
-		No results
-		ldconst 6 --> [antes da chamada a start::y]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
+	.end
+	.method x
+		ldconst 7 --> [antes da chamada a start::y]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
 		ldself
-		mcall 7 --> [y]
-		ldconst 8 --> [depois da chamada a start::y]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
+		mcall 8 --> [y]
+		ldconst 9 --> [depois da chamada a start::y]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
 		ret
-	End
-	Def y
-		No parameters
-		Local variables
-			0 element e
-		End
-		No results
-		ldconst 10 --> [antes da chamada a elemento::x]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
-		newelem 11 --> [elemento]
+	.end
+	.method y
+		.var 0 element e
+		ldconst 11 --> [antes da chamada a elemento::x]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
+		newelem 12 --> [elemento]
 		stvar 0 --> [e]
 		ldvar 0 --> [e]
-		mcall 4 --> [x]
-		ldconst 12 --> [depois da chamada a elemento::x]
-		ldconst 2 --> [1]
-		lcall 3 --> [io.writeln]
+		mcall 5 --> [x]
+		ldconst 13 --> [depois da chamada a elemento::x]
+		ldconst 3 --> [1]
+		lcall 4 --> [io.writeln]
 		ret
-	End
-End
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S x
-		2 S antes da chamada a elemento::y
-		3 I 1
-		4 S io.writeln
-		5 S y
-		6 S depois da chamada a elemento::y
-		7 S no metodo elemento::y
-	End
-	Valid context (always)
-	No properties
-	Def x
-		No parameters
-		No local variables
-		No results
-		ldconst 2 --> [antes da chamada a elemento::y]
+	.end
+.end
+.entity elemento
+	.valid_context_when (always)
+	.method x
+		ldconst 14 --> [antes da chamada a elemento::y]
 		ldconst 3 --> [1]
 		lcall 4 --> [io.writeln]
 		ldself
-		mcall 5 --> [y]
-		ldconst 6 --> [depois da chamada a elemento::y]
+		mcall 8 --> [y]
+		ldconst 15 --> [depois da chamada a elemento::y]
 		ldconst 3 --> [1]
 		lcall 4 --> [io.writeln]
 		ret
-	End
-	Def y
-		No parameters
-		No local variables
-		No results
-		ldconst 7 --> [no metodo elemento::y]
+	.end
+	.method y
+		ldconst 16 --> [no metodo elemento::y]
 		ldconst 3 --> [1]
 		lcall 4 --> [io.writeln]
 		ret
-	End
-End
+	.end
+.end

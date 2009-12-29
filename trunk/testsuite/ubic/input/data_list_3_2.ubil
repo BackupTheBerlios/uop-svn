@@ -1,0 +1,23 @@
+import datetime;
+
+entity start
+	method constructor()
+		var tuple offer;
+		var table offer_list;
+		var int offer_number;
+		var tuple lixo;
+		identity.name    = "alex";
+		{"shopping.praca_alimentacao"}.bind(identity.name);
+		while(true)
+			datetime.sleep(5);
+			offer_list = {"shopping.praca_alimentacao"}.data.list();
+			for(offer_number=1; offer_number<=offer_list.size(); offer_number=offer_number+1)
+				offer = offer_list[offer_number];
+				io.writeln("PRODUTO: ", offer.keys[4], " PRECO: ", offer.values[1], " NEGOCIANTE: ", offer.keys[3], " LOCAL: ", offer.values[2]);
+				io.writeln("tuple=", " offer.keys[1]=", offer.keys[1], " offer.keys[2]=", offer.keys[2], " offer.keys[3]=", offer.keys[3], " offer.keys[4]=", offer.keys[4]);
+				lixo = {"shopping.praca_alimentacao"}.data.get(offer.keys[1], offer.keys[2], offer.keys[3], offer.keys[4]);//TODO:pq get nao funciona aqui ???
+				//io.writeln("tuple=", {"shopping.praca_alimentacao"}.data.get(offer.keys[1], offer.keys[2], offer.keys[3], offer.keys[4]));//TODO:pq get nao funciona aqui ???
+			end
+		end
+	end
+end

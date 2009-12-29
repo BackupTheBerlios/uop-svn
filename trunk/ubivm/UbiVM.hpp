@@ -37,9 +37,9 @@ public:
 		return &_elementList;
 	}
 
-	std::map<std::string, CGroup*>* getGroupList()
+	std::map<std::string, CContext*>* getContextList()
 	{
-		return &_groupList;
+		return &_contextList;
 	}
 
 	std::map<std::string, CLiteral>* getContextsInfo()
@@ -57,7 +57,7 @@ private:
 	SOptions *_options;
 	std::map<std::string, void*> _syslibHandlerList;
 	CAssemblyDefinition _asmDef;
-	std::map<std::string, CGroup*> _groupList;
+	std::map<std::string, CContext*> _contextList;
 	std::vector<CElement*> _elementList;
 	std::map<std::string, CLiteral> _contextsInfo;
 // 	CCommunicationProvider* _cp;

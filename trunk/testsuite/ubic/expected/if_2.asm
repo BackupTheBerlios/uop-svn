@@ -1,54 +1,49 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S x
-		2 I 20
-		3 I 1
-		4 I 10
-		5 S x entre 1 e 10
-		6 S io.writeln
-		7 I 11
-		8 S x entre 11 e 20
-		9 S x > 20
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 int x
-		End
-		No results
-		ldconst 2 --> [20]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S x
+	3   I 20
+	4   I 1
+	5   I 10
+	6   S x entre 1 e 10
+	7   S io.writeln
+	8   I 11
+	9   S x entre 11 e 20
+	10  S x > 20
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 int x
+		ldconst 3 --> [20]
 		stvar 0 --> [x]
 		ldvar 0 --> [x]
-		ldconst 3 --> [1]
+		ldconst 4 --> [1]
 		ge
 		ldvar 0 --> [x]
-		ldconst 4 --> [10]
+		ldconst 5 --> [10]
 		le
 		and
 		ifnot 14 --> [14]
-		ldconst 5 --> [x entre 1 e 10]
-		ldconst 3 --> [1]
-		lcall 6 --> [io.writeln]
+		ldconst 6 --> [x entre 1 e 10]
+		ldconst 4 --> [1]
+		lcall 7 --> [io.writeln]
 		jmp 29 --> [29]
-	14:	ldvar 0 --> [x]
-		ldconst 7 --> [11]
+	:14   	ldvar 0 --> [x]
+		ldconst 8 --> [11]
 		ge
 		ldvar 0 --> [x]
-		ldconst 2 --> [20]
+		ldconst 3 --> [20]
 		le
 		and
 		ifnot 26 --> [26]
-		ldconst 8 --> [x entre 11 e 20]
-		ldconst 3 --> [1]
-		lcall 6 --> [io.writeln]
+		ldconst 9 --> [x entre 11 e 20]
+		ldconst 4 --> [1]
+		lcall 7 --> [io.writeln]
 		jmp 29 --> [29]
-	26:	ldconst 9 --> [x > 20]
-		ldconst 3 --> [1]
-		lcall 6 --> [io.writeln]
-	29:	stop
-	End
-End
+	:26   	ldconst 10 --> [x > 20]
+		ldconst 4 --> [1]
+		lcall 7 --> [io.writeln]
+	:29   	stop
+	.end
+.end

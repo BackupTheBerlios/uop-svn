@@ -56,11 +56,9 @@ std::string CResultDefinition::toTextAssembly()
 {
 	std::string result;
 
-	result += "\t\t\t";
 	result += itoa(_index);
 	result += " ";
 	result += typeToText(_type);
-	result += "\n";
 
 	return result;
 }

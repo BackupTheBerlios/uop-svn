@@ -6,7 +6,7 @@
 enum { max_length = 1024 };
 
 
-void CCommunicationProvider::setConfig(std::map<std::string, CGroup*>* groupList, uint bindPort, uint sendPort)
+void CCommunicationProvider::setConfig(std::map<std::string, CContext*>* contextList, uint bindPort, uint sendPort)
 {
 	_packetNumber = 0;
 	_bindPort = bindPort;
@@ -135,7 +135,7 @@ void CCommunicationProvider::sendUnicastReply(const char* packet, size_t length,
 // 	s.send_to(boost::asio::buffer(packet, length), *iterator);
 
 // 	udp::socket sock(_io_service, udp::endpoint(udp::v4(), _sendPort));
-	
+
 
 
 // 	udp::socket sock(_io_service, udp::endpoint(udp::v4(), 0)); // deveria ser especificada a porta.. alias, o mesmo socket aberto no bind deveria ser compartilhado ???
@@ -157,7 +157,7 @@ void CCommunicationProvider::processReceivedPacket(const char* char_packet, size
 	}
 
 // 	std::cout << getpid() << ": RX [" << dumpPacket(char_packet, length) << "]" << std::endl;
-	
+
 
 	if (header._operation == REQUEST_OPERATION) {
 		processRequestOperation(packet, sock, sender_endpoint, header);
@@ -182,22 +182,24 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 
 	requestHeader._dstVmId._pid = getpid();
 
-	if (requestHeader._opcode == DATAAF_OPCODE) {
-		CGroupProvider::getInstance()->processDataafRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == DATAQU_OPCODE) {
-		CGroupProvider::getInstance()->processDataquRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == DATADQU_OPCODE) {
-		CGroupProvider::getInstance()->processDatadquRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == DATANBQU_OPCODE) {
-		CGroupProvider::getInstance()->processDatanbquRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == DATANBDQU_OPCODE) {
-		CGroupProvider::getInstance()->processDatanbdquRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == DATALIST_OPCODE) {
-		CGroupProvider::getInstance()->processDatalistRequest(requestPacket, requestHeader, replyPacket);
+	if (requestHeader._opcode == PUBLISHD_OPCODE) {
+		CContextProvider::getInstance()->processPublishdRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == FINDD_OPCODE) {
+		CContextProvider::getInstance()->processFinddRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == GETD_OPCODE) {
+		CContextProvider::getInstance()->processGetdRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == FINDDNB_OPCODE) {
+		CContextProvider::getInstance()->processFinddnbRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == GETDNB_OPCODE) {
+		CContextProvider::getInstance()->processGetdnbRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == LISTD_OPCODE) {
+		CContextProvider::getInstance()->processListdRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == PUBLISHS_OPCODE) {
-		CGroupProvider::getInstance()->processPublishsRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == SCALL_OPCODE) {
-		CGroupProvider::getInstance()->processScallRequest(requestPacket, requestHeader, replyPacket);
+		CContextProvider::getInstance()->processPublishsRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == REMOVES_OPCODE) {
+		CContextProvider::getInstance()->processRemovesRequest(requestPacket, requestHeader, replyPacket);
+	} else if (requestHeader._opcode == RUNS_OPCODE) {
+		CContextProvider::getInstance()->processRunsRequest(requestPacket, requestHeader, replyPacket);
 	} else {
 		std::cout << "Error in processPacket !!!" << std::endl;
 	}
@@ -214,29 +216,29 @@ void CCommunicationProvider::processReplyOperation(CBinString& replyPacket, udp:
 		return;
 	}
 
-	if (CGroupProvider::getInstance()->_bce_list.find(replyHeader._dstVmId._bce) == CGroupProvider::getInstance()->_bce_list.end()) {
+	if (CContextProvider::getInstance()->_bce_list.find(replyHeader._dstVmId._bce) == CContextProvider::getInstance()->_bce_list.end()) {
 		return;
 	}
 
-	if (CGroupProvider::getInstance()->_bce_list[replyHeader._dstVmId._bce]->_dataReady == true && replyHeader._opcode != DATALIST_OPCODE) {
+	if (CContextProvider::getInstance()->_bce_list[replyHeader._dstVmId._bce]->_dataReady == true && replyHeader._opcode != LISTD_OPCODE) {
 		return;
 	}
 
-	if (replyHeader._opcode == DATAQU_OPCODE) {
-		CGroupProvider::getInstance()->processDataquReply(replyPacket, replyHeader); //, sender_endpoint);
-	} else if (replyHeader._opcode == DATANBQU_OPCODE) {
-		CGroupProvider::getInstance()->processDataquReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CGroupProvider::getInstance()->processDatanbquReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == DATADQU_OPCODE) {
-		CGroupProvider::getInstance()->processDataquReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CGroupProvider::getInstance()->processDatadquReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == DATANBDQU_OPCODE) {
-		CGroupProvider::getInstance()->processDataquReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CGroupProvider::getInstance()->processDatanbdquReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == DATALIST_OPCODE) {
-		CGroupProvider::getInstance()->processDatalistReply(replyPacket, replyHeader);
-	} else if (replyHeader._opcode == SCALL_OPCODE) {
-		CGroupProvider::getInstance()->processScallReply(replyPacket, replyHeader);
+	if (replyHeader._opcode == FINDD_OPCODE) {
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
+	} else if (replyHeader._opcode == FINDDNB_OPCODE) {
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
+// 		CContextProvider::getInstance()->processFinddnbReply(replyPacket, requestHeader);
+	} else if (replyHeader._opcode == GETD_OPCODE) {
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
+// 		CContextProvider::getInstance()->processGetdReply(replyPacket, requestHeader);
+	} else if (replyHeader._opcode == GETDNB_OPCODE) {
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
+// 		CContextProvider::getInstance()->processGetdnbReply(replyPacket, requestHeader);
+	} else if (replyHeader._opcode == LISTD_OPCODE) {
+		CContextProvider::getInstance()->processListdReply(replyPacket, replyHeader);
+	} else if (replyHeader._opcode == RUNS_OPCODE) {
+		CContextProvider::getInstance()->processRunsReply(replyPacket, replyHeader);
 	} else {
 		std::cout << "Error in processPacket !!!" << std::endl;
 	}

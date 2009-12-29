@@ -1,15 +1,14 @@
-import io
-import datetime
+import datetime;
 
 entity start
-	def start()
-		{"MeuGrupo"}.bind("prog1")
-		io.writeln("Inserindo informacao")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		io.writeln("nbqu em informacao inexistente: ", {"MeuGrupo"}.data.nbqu("Numero X"))
-		io.writeln("Informacao inserida: ", {"MeuGrupo"}.data.qu("Numero 1"))
-		io.writeln("Removendo informacao inserida: ", {"MeuGrupo"}.data.dqu("Numero 1"))
-		io.writeln("Numero 1 nao existe mais: ", {"MeuGrupo"}.data.nbqu("Numero 1"))
-		io.writeln("Numero 1 nao existe mais: ", {"MeuGrupo"}.data.nbdqu("Numero 1"))
+	method constructor()
+		{"MeuContexto"}.bind("prog1");
+		io.writeln("Inserindo informacao");
+		{"MeuContexto"}.data.publish("Numero 1" => 100);
+		io.writeln("findnb em informacao inexistente: ", {"MeuContexto"}.data.findnb("Numero X"));
+		io.writeln("Informacao inserida: ", {"MeuContexto"}.data.find("Numero 1"));
+		io.writeln("Removendo informacao inserida: ", {"MeuContexto"}.data.get("Numero 1"));
+		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.data.findnb("Numero 1"));
+		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.data.getnb("Numero 1"));
 	end
 end

@@ -1,11 +1,11 @@
 entity start
-	def start()
-		identity.host = "Meu Host"
-		location.symbolic = "Mobilab - sala 1"
-		time.now = 101010
-		io.writeln("Host atual: ", identity.host)
-		io.writeln("Onde estou: ", location.symbolic)
-		io.writeln("Horario   : ", time.now)
+	method constructor()
+		identity.host = "Meu Host";
+		location.symbolic = "Mobilab - sala 1";
+		time.now = 101010;
+		io.writeln("Host atual: ", identity.host);
+		io.writeln("Onde estou: ", location.symbolic);
+		io.writeln("Horario   : ", time.now);
 	end
 end
 

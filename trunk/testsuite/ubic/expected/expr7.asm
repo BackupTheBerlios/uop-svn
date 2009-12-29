@@ -1,42 +1,38 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S (2 * (8 - 18 / 9 * 6) * (49 / 7 - 3))=
-		2 I 2
-		3 I 8
-		4 I 18
-		5 I 9
-		6 I 6
-		7 I 49
-		8 I 7
-		9 I 3
-		10 S io.writeln
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [(2 * (8 - 18 / 9 * 6) * (49 / 7 - 3))=]
-		ldconst 2 --> [2]
-		ldconst 3 --> [8]
-		ldconst 4 --> [18]
-		ldconst 5 --> [9]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S (2 * (8 - 18 / 9 * 6) * (49 / 7 - 3))=
+	3   I 2
+	4   I 8
+	5   I 18
+	6   I 9
+	7   I 6
+	8   I 49
+	9   I 7
+	10  I 3
+	11  S io.writeln
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [(2 * (8 - 18 / 9 * 6) * (49 / 7 - 3))=]
+		ldconst 3 --> [2]
+		ldconst 4 --> [8]
+		ldconst 5 --> [18]
+		ldconst 6 --> [9]
 		div
-		ldconst 6 --> [6]
+		ldconst 7 --> [6]
 		mul
 		sub
 		mul
-		ldconst 7 --> [49]
-		ldconst 8 --> [7]
+		ldconst 8 --> [49]
+		ldconst 9 --> [7]
 		div
-		ldconst 9 --> [3]
+		ldconst 10 --> [3]
 		sub
 		mul
-		ldconst 2 --> [2]
-		lcall 10 --> [io.writeln]
+		ldconst 3 --> [2]
+		lcall 11 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

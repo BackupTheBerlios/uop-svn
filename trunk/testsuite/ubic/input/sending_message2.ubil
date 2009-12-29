@@ -1,9 +1,9 @@
 entity start
-	def soma(int x, int y) [int]
-		return x+y
+	method soma(int x, int y) [int]
+		return x+y;
 	end
-	def start()
-		io.writeln(soma(10,20))
+	method constructor()
+		io.writeln(soma(10,20));
 	end
 end
 

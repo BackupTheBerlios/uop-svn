@@ -1,6 +1,6 @@
 entity start
-  def start()
-    io.writeln( "Olá mundo !!!" )
-  end
+	method constructor()
+		io.writeln( "Olá mundo !!!" );
+	end
 end
 

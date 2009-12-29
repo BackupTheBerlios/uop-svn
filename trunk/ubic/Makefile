@@ -6,7 +6,7 @@ CC=g++
 CCFLAGS=-g -Wall -pedantic
 CCFLAGS_ANTLR=-g -Wall
 
-objects = ubilLexer.o ubilParser.o UbiC.o main.o 
+objects = ubilLexer.o ubilParser.o UbiC.o main.o
 
 all: $(objects)
 	g++ -o ubic $(objects) -static -lantlr3c -L$(LIBUVM) -luvm -L$(LIBCOMMON) -lcommon

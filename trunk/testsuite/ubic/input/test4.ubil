@@ -1,8 +1,9 @@
-Entity start
-	def start()
-		int Quantos = 10
-		for(int X = 1; X <= Quantos; X++)
-			io.writeln(X)
+entity start
+	method constructor()
+		var int quantos = 10;
+		var int x;
+		for(x = 1; x <= quantos; x=x+1)
+			io.writeln(x);
 		end
 	end
 end

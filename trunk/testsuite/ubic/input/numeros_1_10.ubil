@@ -1,8 +1,8 @@
 Entity Start
-	def Start()
-		def int I
+	method Start()
+		var int I;
 		for( I:=1; I<=10; I++)
-			io.writeln( I )
+			io.writeln( I );
 		end
 	end
 end

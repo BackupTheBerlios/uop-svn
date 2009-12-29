@@ -1,10 +1,10 @@
 entity start
-	def start()
-		x("oi","oi de novo !!!")
+	method constructor()
+		x("oi","oi de novo !!!");
 	end
-	def x(string msg1, string msg2)
-		io.writeln("msg1=", msg1)
-		io.writeln("msg2=", msg2)
+	method x(string msg1, string msg2)
+		io.writeln("msg1=", msg1);
+		io.writeln("msg2=", msg2);
 	end
 end
 

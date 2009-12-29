@@ -40,6 +40,8 @@ public:
 	void addValueAtEnd(CLiteral name);
 	std::string getComposedKeys();
 	std::string getComposedValues();
+	void saveBytecode(CBinString& bytecode);
+	bool loadBytecode(CBinString& bytecode);
 
 	std::vector<CLiteral> _keyList;
 	std::vector<CLiteral> _valueList;

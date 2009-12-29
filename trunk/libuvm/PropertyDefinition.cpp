@@ -44,7 +44,6 @@ std::string CPropertyDefinition::toTextAssembly()
 {
 	std::string result;
 
-	result += "\t\t";
 	result += itoa(_index);
 	result += " ";
 	result += _visibility == PublicVisibility ? "public" : "private";
@@ -52,7 +51,6 @@ std::string CPropertyDefinition::toTextAssembly()
 	result += typeToText(_type);
 	result += " ";
 	result += _name;
-	result += "\n";
 
 	return result;
 }

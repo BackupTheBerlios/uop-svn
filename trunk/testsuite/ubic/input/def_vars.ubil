@@ -1,9 +1,9 @@
 entity start
-	def start()
-		def int var1
-		def string var2
-		def real var3
-		def bool var4
+	method constructor()
+		var int var1;
+		var string var2;
+		var real var3;
+		var bool var4;
 	end
 end
 

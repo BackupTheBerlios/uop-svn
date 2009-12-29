@@ -1,73 +1,58 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S e
-		2 S elemento
-		3 I 1
-		4 S um
-		5 I 2
-		6 S dois
-		7 S x
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 element e
-		End
-		No results
-		newelem 2 --> [elemento]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S e
+	3   S elemento
+	4   I 1
+	5   S um
+	6   I 2
+	7   S dois
+	8   S x
+	9   S number1
+	10  S msg1
+	11  S number2
+	12  S msg2
+	13  S number1=
+	14  S  msg1=
+	15  I 4
+	16  S io.writeln
+	17  S number2=
+	18  S  msg2=
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 element e
+		newelem 3 --> [elemento]
 		stvar 0 --> [e]
-		ldconst 3 --> [1]
-		ldconst 4 --> [um]
-		ldconst 5 --> [2]
-		ldconst 6 --> [dois]
+		ldconst 4 --> [1]
+		ldconst 5 --> [um]
+		ldconst 6 --> [2]
+		ldconst 7 --> [dois]
 		ldvar 0 --> [e]
-		mcall 7 --> [x]
+		mcall 8 --> [x]
 		stop
-	End
-End
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S x
-		2 S number1
-		3 S msg1
-		4 S number2
-		5 S msg2
-		6 S number1=
-		7 S  msg1=
-		8 I 4
-		9 S io.writeln
-		10 S number2=
-		11 S  msg2=
-	End
-	Valid context (always)
-	No properties
-	Def x
-		Parameters
-			0 int number1
-			1 string msg1
-			2 int number2
-			3 string msg2
-		End
-		No local variables
-		No results
-		ldconst 6 --> [number1=]
+	.end
+.end
+.entity elemento
+	.valid_context_when (always)
+	.method x
+		.param 0 int number1
+		.param 1 string msg1
+		.param 2 int number2
+		.param 3 string msg2
+		ldconst 13 --> [number1=]
 		ldpar 0 --> [number1]
-		ldconst 7 --> [ msg1=]
+		ldconst 14 --> [ msg1=]
 		ldpar 1 --> [msg1]
-		ldconst 8 --> [4]
-		lcall 9 --> [io.writeln]
-		ldconst 10 --> [number2=]
+		ldconst 15 --> [4]
+		lcall 16 --> [io.writeln]
+		ldconst 17 --> [number2=]
 		ldpar 2 --> [number2]
-		ldconst 11 --> [ msg2=]
+		ldconst 18 --> [ msg2=]
 		ldpar 3 --> [msg2]
-		ldconst 8 --> [4]
-		lcall 9 --> [io.writeln]
+		ldconst 15 --> [4]
+		lcall 16 --> [io.writeln]
 		ret
-	End
-End
+	.end
+.end

@@ -1,11 +1,11 @@
 entity start
-	def start()
-		def string result
-		result = x()
-		io.writeln("result: ", result)
+	method constructor()
+		var string result;
+		result = x();
+		io.writeln("result: ", result);
 	end
-	def x() [string]
-		return "oi"
+	method x() [string]
+		return "oi";
 	end
 end
 

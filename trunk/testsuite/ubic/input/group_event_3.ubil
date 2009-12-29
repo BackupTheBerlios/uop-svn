@@ -1,27 +1,27 @@
-import datetime
+import datetime;
 
 entity servico
-	def soma(int x, int y) [int]
-		return x+y
+	service soma(int x, int y) [int]
+		return x+y;
 	end
-	def servico()
-		{"group"}.bind("group")
-		{"group"}.service += soma(int,int)
+	method constructor()
+		{"context"}.bind("context");
+		{"context"}.service.publish(soma(int,int));
 	end
 end
 
 entity start
-	def start()
-		def element s = servico.new()
-		{"group"}.bind("group")
-		{"group"}.on_insert_service += ev_servico_inserido
-		s.servico()
-//		io.writeln("Soma: ",  {"group"}.soma(10,20))
-		datetime.sleep(2)
-		io.writeln("Terminando a execucao...")
+	method constructor()
+		var element s;
+		{"context"}.bind("context");
+		{"context"}.on_insert_service += ev_servico_inserido;
+ 		s = servico.new();
+//		io.writeln("Soma: ",  {"context"}.soma(10,20));
+		datetime.sleep(2);
+		io.writeln("Terminando a execucao...");
 	end
-	def ev_servico_inserido(string nome)
-		io.writeln("Inserido servico ", nome)
+	method ev_servico_inserido(string nome)
+		io.writeln("Inserido servico ", nome);
 	end
 end
 

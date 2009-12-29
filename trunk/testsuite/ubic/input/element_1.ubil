@@ -1,13 +1,13 @@
 entity start
-	def start()
-		def element e
-		e = elemento.new()
-		e.imprime()
+	method constructor()
+		var element e;
+		e = elemento.new();
+		e.imprime();
 	end
 end
 
 entity elemento
-	def imprime()
-		io.writeln("Oi !!!!")
+	method imprime()
+		io.writeln("Oi !!!!");
 	end
 end

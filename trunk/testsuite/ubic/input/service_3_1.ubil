@@ -1,20 +1,20 @@
-import datetime
+import datetime;
 
 entity servico
-	def soma(int x, int y) [int]
-		return x+y
+	service soma(int x, int y) [int]
+		return x+y;
 	end
-	def servico()
-		{"service"}.bind("Provider")
-		{"service"}.service += soma(int,int)
+	method constructor()
+		{"service"}.bind("Provider");
+		{"service"}.service += soma(int,int);
 	end
 end
 
 entity start
-	def start()
-		def element s = servico.new()
-		s.servico()
-		datetime.sleep(100)
+	method constructor()
+		var element s = servico.new();
+		s.servico();
+		datetime.sleep(100);
 	end
 end
 

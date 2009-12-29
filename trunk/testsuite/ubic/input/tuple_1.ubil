@@ -1,9 +1,9 @@
 entity start
-	def start()
-		def tuple number
-		{"MeuGrupo"}.bind("teste")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		number = {"MeuGrupo"}.data.qu("Numero 1")
-		io.writeln("Informacoes inseridas: key=", number.keys[1], " value=", number.values[1])
+	method constructor()
+		var tuple number;
+		{"MeuContexto"}.bind("teste");
+		{"MeuContexto"}.data.publish("Numero 1" => 100);
+		number = {"MeuContexto"}.data.find("Numero 1");
+		io.writeln("Informacoes inseridas: key=", number.keys[1], " value=", number.values[1]);
 	end
 end

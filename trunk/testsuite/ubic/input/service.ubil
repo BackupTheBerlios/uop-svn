@@ -1,15 +1,15 @@
 entity servico
-	def soma(int x, int y) [int]
-		return x+y
+	service soma(int x, int y) [int]
+		return x+y;
 	end
-	def servico()
-		{"group"}.services += soma(int,int)
+	method constructor()
+		{"context"}.services += soma(int,int);
 	end
 end
 
 entity start
-	def start():
-		io.writeln("Soma: ", ["group"].soma(10,20))
+	method constructor():
+		io.writeln("Soma: ", ["context"].soma(10,20));
 	end
 end
 

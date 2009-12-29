@@ -1,24 +1,22 @@
 entity servico
-	def operations(int par1, int par2) [int,int]
-		io.writeln("par1=", par1, " par2=", par2)
-		return par1+par2, par1-par2
+	service operations(int par1, int par2) [int,int]
+		io.writeln("par1=", par1, " par2=", par2);
+		return par1+par2, par1-par2;
 	end
-	def servico()
-		{"group"}.bind("Alex")
-		{"group"}.service += operations(int,int)
+	method constructor()
+		{"context"}.bind("Alex");
+		{"context"}.service.publish(operations(int,int));
 	end
 end
 
 entity start
-	def start()
-		def int soma
-		def int subtracao
-		def element s = servico.new()
-		s.servico()
-		soma,subtracao = {"group"}.operations(2, 10)
-		io.writeln("soma     : ", soma)
-		io.writeln("subtracao: ", subtracao)
+	method constructor()
+		var int soma;
+		var int subtracao;
+		var element s = servico.new();
+		soma,subtracao = {"context"}.operations(2, 10);
+		io.writeln("soma     : ", soma);
+		io.writeln("subtracao: ", subtracao);
 	end
-
 end
 

@@ -1,15 +1,15 @@
 entity start
-	def start()
-		int value = 1
+	method constructor()
+		int value = 1;
 		switch(value)
 		case 1:
-			value = 100
+			value = 100;
 		case 2:
-			value = 200
+			value = 200;
 		otherwize:
-			value = 999
+			value = 999;
 		end
-		io.writeln("value=", value)
+		io.writeln("value=", value);
 	end
 end
 

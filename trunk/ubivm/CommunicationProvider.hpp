@@ -53,7 +53,7 @@ public:
 		static CCommunicationProvider *instance = NULL;
 		return instance ? instance : (instance = new CCommunicationProvider());
 	}
-	void setConfig(std::map<std::string, CGroup*>* groupList, uint bindPort, uint sendPort);
+	void setConfig(std::map<std::string, CContext*>* contextList, uint bindPort, uint sendPort);
 	void run();
 	uint getNextPacketNumber()
 	{
@@ -66,9 +66,9 @@ private:
 	void threadedCode();
 	void processReceivedPacket(const char* char_packet, size_t lenght, udp::socket& sock, udp::endpoint& sender_endpoint);
 	void processRequestOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-// 	void processDatalistRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+// 	void processListdRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	void processReplyOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-// 	void processDatalistReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
+// 	void processListdReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	std::string dumpPacket(const char* packet, uint length);
 
 	boost::thread*   _thread;

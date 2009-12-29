@@ -1,9 +1,9 @@
 entity start
-	def start()
-		x("oi")
+	method constructor()
+		x("oi");
 	end
-	def x(string msg)
-		io.writeln("msg=", msg)
+	method x(string msg)
+		io.writeln("msg=", msg);
 	end
 end
 

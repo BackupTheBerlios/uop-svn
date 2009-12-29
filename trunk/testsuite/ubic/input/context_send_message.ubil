@@ -1,9 +1,9 @@
 entity start
-	def start()
-		io.writeln("Entidades existentes em MeuGrupo")
-		foreach(element e in {"MeuGrupo"}.entitieslist)
-			io.writeln("  Nome: " + e.name)
-			{"MeuGrupo"}.data.af(e.name => "Bom dia " + e.name + " !!!")
+	method constructor()
+		io.writeln("Entidades existentes em MeuContexto");
+		foreach(element e in {"MeuContexto"}.entitieslist)
+			io.writeln("  Nome: " + e.name);
+			{"MeuContexto"}.data.publish(e.name => "Bom dia " + e.name + " !!!");
 		end
 	end
 end

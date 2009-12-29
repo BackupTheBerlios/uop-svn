@@ -43,13 +43,11 @@ std::string CLocalVarDefinition::toTextAssembly()
 {
 	std::string result;
 
-	result += "\t\t\t";
 	result += itoa(_index);
 	result += " ";
 	result += typeToText(_type);
 	result += " ";
 	result += _name;
-	result += "\n";
 
 	return result;
 }

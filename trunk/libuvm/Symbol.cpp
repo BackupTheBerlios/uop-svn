@@ -20,6 +20,7 @@
 #include <sstream>
 #include <map>
 #include <iostream>
+#include <iomanip>
 
 #include "Symbol.hpp"
 // #include "MultiIndex.hpp"
@@ -45,7 +46,7 @@ std::string CSymbol::toTextAssembly()
 {
 	std::stringstream result;
 
-	result << "\t" << _index << " " << (char)_type << " " << _name << std::endl;
+	result << std::setw(3) << std::left << _index << " " << (char)_type << " " << _name;
 
 	return result.str();
 }
@@ -104,7 +105,7 @@ bool CSymbol::loadBytecode(CBinString& bytecode)
 void CSymbol::setValue(LiteralType type, const void* value)
 {
 	_type = type;
-	
+
 	if (_type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = *((std::string*) value);
@@ -126,7 +127,7 @@ void CSymbol::setValue(LiteralType type, const void* value)
 void CSymbol::setValue(LiteralType type, std::string value)
 {
 	_type = type;
-	
+
 	if ( _type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = value;

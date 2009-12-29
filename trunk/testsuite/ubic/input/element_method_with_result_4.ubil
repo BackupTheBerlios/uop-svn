@@ -1,18 +1,18 @@
 entity start
-	def start()
-		def int result1
-		def int result2
-		def element e
-		e = elemento.new()
-		result1,result2 = e.x()
-		io.writeln("result1: ", result1)
-		io.writeln("result2: ", result2)
+	method constructor()
+		var int result1;
+		var int result2;
+		var element e;
+		e = elemento.new();
+		result1,result2 = e.x();
+		io.writeln("result1: ", result1);
+		io.writeln("result2: ", result2);
 	end
 end
 
 entity elemento
-	def x() [int,int]
-		return
+	method x() [int,int]
+		return;
 	end
 end
 

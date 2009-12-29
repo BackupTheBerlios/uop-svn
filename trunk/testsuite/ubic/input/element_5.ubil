@@ -1,14 +1,14 @@
 entity start
-	def start()
-		def element e
-		e = elemento.new()
-		e.x("oi")
+	method constructor()
+		var element e;
+		e = elemento.new();
+		e.x("oi");
 	end
 end
 
 entity elemento
-	def x(string msg)
-		io.writeln("msg=", msg)
+	method x(string msg)
+		io.writeln("msg=", msg);
 	end
 end
 

@@ -1,0 +1,8 @@
+UbiVM - Release 0.1.0 (development release)
+Inserido chave xxx com valor yyy::zzz
+Inserido chave xxx2 com valor yyy2::zzz2
+Removido chave xxx com valor yyy::zzz
+Valor removido: Keys: [xxx] Values: [yyy::zzz]
+Removido chave xxx2 com valor yyy2::zzz2
+Valor removido: Keys: [xxx2] Values: [yyy2::zzz2]
+Terminando a execucao...

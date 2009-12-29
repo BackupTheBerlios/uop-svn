@@ -46,7 +46,7 @@ CAssemblyDefinition::~CAssemblyDefinition()
 
 CEntityDefinition *CAssemblyDefinition::addEntity(std::string name)
 {
-	CEntityDefinition* entity = new CEntityDefinition(name);
+	CEntityDefinition* entity = new CEntityDefinition(&_symbolTable, name);
 	_entityList.push_back(entity);
 
 	entity->getSymbolIndex(name, StringType);
@@ -69,6 +69,8 @@ std::string CAssemblyDefinition::toTextAssembly()
 {
 	std::string result;
 
+	result += _symbolTable.toTextAssembly();
+
 	foreach(CEntityDefinition* entity, _entityList) {
 		result += entity->toTextAssembly();
 	}
@@ -83,6 +85,9 @@ int CAssemblyDefinition::saveBytecode(std::string name)
 	_header->setEntitiesCount(_entityList.size());
 	_header->saveBytecode(bytecode);
 	//bytecode.insert(bytecode.end(), bytecode.begin(), bytecode.end());
+
+	_symbolTable.saveBytecode(bytecode);
+
 	foreach(CEntityDefinition* entity, _entityList) {
 		entity->saveBytecode(bytecode);
 	}
@@ -136,8 +141,10 @@ bool CAssemblyDefinition::loadBytecode(std::string name)
 		return false;
 	}
 
+	_symbolTable.loadBytecode(bytecode);
+
 	for(uint count = 0; count < _header->getEntitiesCount(); count++) {
-		CEntityDefinition* entity = new CEntityDefinition();
+		CEntityDefinition* entity = new CEntityDefinition(&_symbolTable);
 		entity->loadBytecode(bytecode);
 		_entityList.push_back(entity);
 	}

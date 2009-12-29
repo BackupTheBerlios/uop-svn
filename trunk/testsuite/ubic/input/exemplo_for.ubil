@@ -1,7 +1,9 @@
 entity start
-	def start()
-		for(int i = 0; i <= 10; i++)
-			io.writeln(i)
+	method constructor()
+		var int i;
+		//for(int i = 0; i <= 10; i++)
+		for(i = 0; i <= 10; i=i+1)
+			io.writeln(i);
 		end
 	end
 end

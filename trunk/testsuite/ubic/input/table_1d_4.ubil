@@ -1,14 +1,14 @@
 entity start
-	def start()
-		def table tab
+	method constructor()
+		var table tab;
 
-		tab["Nome" ] = "Alex"
-		tab["Sexo" ] = "M"
-		tab["Idade"] = 34
+		tab["Nome" ] = "Alex";
+		tab["Sexo" ] = "M";
+		tab["Idade"] = 34;
 
-		io.writeln("Nome =", tab["Nome" ])
-		io.writeln("Sexo =", tab["Sexo" ])
-		io.writeln("Idade=", tab["Idade"])
+		io.writeln("Nome =", tab["Nome" ]);
+		io.writeln("Sexo =", tab["Sexo" ]);
+		io.writeln("Idade=", tab["Idade"]);
 	end
 end
 

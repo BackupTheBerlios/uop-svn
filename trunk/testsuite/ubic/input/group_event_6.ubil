@@ -1,0 +1,22 @@
+import datetime;
+
+entity start
+	method constructor()
+		{"context"}.bind("xxx");
+		{"context"}.on_insert_data += ev_dado_inserido;
+		{"context"}.on_remove_data += ev_dado_removido;
+		{"context"}.data.publish("xxx" => "yyy", "zzz");
+		{"context"}.data.publish("xxx2" => "yyy2", "zzz2");
+		datetime.sleep(2);
+		io.writeln("Valor removido: ", {"context"}.data.get("xxx"));
+		io.writeln("Valor removido: ", {"context"}.data.get("xxx2"));
+		io.writeln("Terminando a execucao...");
+	end
+	method ev_dado_inserido(string chave, string valor)
+		io.writeln("Inserido chave ", chave, " com valor ", valor);
+	end
+	method ev_dado_removido(string chave, string valor)
+		io.writeln("Removido chave ", chave, " com valor ", valor);
+	end
+end
+

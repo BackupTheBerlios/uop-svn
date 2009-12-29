@@ -5,6 +5,7 @@
 #include <vector>
 // #include <list>
 
+#include "SymbolTable.hpp"
 #include "EntityDefinition.hpp"
 #include "UvmHeader.hpp"
 
@@ -32,6 +33,7 @@ private:
 	std::vector<CEntityDefinition*> _entityList;
 	CUvmHeader* _header;
 	std::map<std::string,std::string> _importList;
+	CSymbolTable _symbolTable;
 };
 
 //}

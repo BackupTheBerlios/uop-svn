@@ -20,6 +20,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 #include "InstructionDefinition.hpp"
 
@@ -87,20 +88,23 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ JMP_OPCODE, "jmp", LabelOpcodeArgumentType },
 	{ NEWELEM_OPCODE, "newelem", ConstantOpcodeArgumentType },
 	{ LDSELF_OPCODE, "ldself", NoOpcodeArgumentType },
-	{ BINDG_OPCODE, "bindg", NoOpcodeArgumentType },
-	{ LEAVEG_OPCODE, "leaveg", NoOpcodeArgumentType },
-	{ DATAAF_OPCODE, "dataaf", NoOpcodeArgumentType },
-	{ DATADQU_OPCODE, "datadqu", NoOpcodeArgumentType },
-	{ DATAQU_OPCODE,    "dataqu",    NoOpcodeArgumentType },
-	{ DATANBQU_OPCODE,    "datanbqu",    NoOpcodeArgumentType },
-	{ DATANBDQU_OPCODE,    "datanbdqu",    NoOpcodeArgumentType },
-	{ DATALIST_OPCODE,  "datalist",  NoOpcodeArgumentType },
+	{ JOINC_OPCODE, "joinc", NoOpcodeArgumentType },
+	{ LEAVEC_OPCODE, "leavec", NoOpcodeArgumentType },
+	{ PUBLISHD_OPCODE, "publishd", NoOpcodeArgumentType },
+	{ GETD_OPCODE, "getd", NoOpcodeArgumentType },
+	{ FINDD_OPCODE,    "findd",    NoOpcodeArgumentType },
+	{ FINDDNB_OPCODE,    "finddnb",    NoOpcodeArgumentType },
+	{ GETDNB_OPCODE,    "getdnb",    NoOpcodeArgumentType },
+	{ LISTD_OPCODE,  "listd",  NoOpcodeArgumentType },
+	{ ELEMENTLIST_OPCODE, "elementlist",  NoOpcodeArgumentType },
+	{ SERVICELIST_OPCODE, "servicelist",  NoOpcodeArgumentType },
 	{ PUBLISHS_OPCODE, "publishs", ConstantOpcodeArgumentType },
-	{ SCALL_OPCODE, "scall", ConstantOpcodeArgumentType },
+	{ REMOVES_OPCODE, "removes", ConstantOpcodeArgumentType },
+	{ RUNS_OPCODE, "runs", ConstantOpcodeArgumentType },
 	{ FINDS_OPCODE, "finds", NoOpcodeArgumentType },
 	{ BINDS_OPCODE,     "binds",     NoOpcodeArgumentType },
-	{ LDCONTEXT_OPCODE, "ldcontext", ConstantOpcodeArgumentType },
-	{ STCONTEXT_OPCODE, "stcontext", ConstantOpcodeArgumentType },
+	{ LDCONTEXTI_OPCODE, "ldcontexti", ConstantOpcodeArgumentType },
+	{ STCONTEXTI_OPCODE, "stcontexti", ConstantOpcodeArgumentType },
 	{ STTAB_OPCODE,     "sttab",     VariableOpcodeArgumentType },
 	{ LDTAB_OPCODE,     "ldtab",     VariableOpcodeArgumentType },
 	{ LDTUPLEK_OPCODE,  "ldtuplek",  VariableOpcodeArgumentType },
@@ -111,8 +115,8 @@ static Mnemonic_t opcodeListDesc [ ] = {
 	{ LDPROP_OPCODE,    "ldprop",    PropertyOpcodeArgumentType },
 	{ STPROP_OPCODE,    "stprop",    PropertyOpcodeArgumentType },
 	{ BELEMENTEV_OPCODE, "belementev", VariableOpcodeArgumentType },
-	{ BCONTEXTEV_OPCODE, "bcontextev", ConstantOpcodeArgumentType },
-	{ BGROUPEV_OPCODE,   "bgroupev",   NoOpcodeArgumentType },
+	{ BCONTEXTIEV_OPCODE, "bcontextiev", ConstantOpcodeArgumentType },
+	{ BCONTEXTEV_OPCODE, "bcontextev",   NoOpcodeArgumentType },
 /*	{ LDIDENTITY_OPCODE, "ldidentity", ConstantOpcodeArgumentType },
 	{ LDLOCATION_OPCODE, "ldlocation", ConstantOpcodeArgumentType },
 	{ LDTIME_OPCODE, "ldtime", ConstantOpcodeArgumentType },
@@ -165,8 +169,8 @@ std::string CInstructionDefinition::toTextAssembly(const std::vector<CPropertyDe
 
 	result << "\t";
 	if (_label != -1) {
-		result << _label;
-		result << ":\t";
+		result << ":" << std::setw(5) << std::left << _label;
+		result << "\t";
 	} else {
 		result << "\t";
 	}

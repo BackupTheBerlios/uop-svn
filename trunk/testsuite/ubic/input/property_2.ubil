@@ -1,20 +1,20 @@
 entity start
-	def int prop
-//	def int prop = 10
-	def set_prop(int value)
-		prop = value
+	prop int p1;
+//	prop int p1 = 10;
+	method set_p1(int value)
+		p1 = value;
 	end
-	def start()
-		prop = 10
-		io.writeln("Prop deve ser 10: ", prop)
-		prop = 20
-		io.writeln("Prop deve ser 20: ", prop)
-		set_prop(30)
-		io.writeln("Prop deve ser 30: ", prop)
-		set_prop(40)
-		io.writeln("Prop deve ser 40: ", prop)
-		prop = 50
-		io.writeln("Prop deve ser 50: ", prop)
+	method constructor()
+		p1 = 10;
+		io.writeln("Prop deve ser 10: ", p1);
+		p1 = 20;
+		io.writeln("Prop deve ser 20: ", p1);
+		set_p1(30);
+		io.writeln("Prop deve ser 30: ", p1);
+		set_p1(40);
+		io.writeln("Prop deve ser 40: ", p1);
+		p1 = 50;
+		io.writeln("Prop deve ser 50: ", p1);
 	end
 end
 

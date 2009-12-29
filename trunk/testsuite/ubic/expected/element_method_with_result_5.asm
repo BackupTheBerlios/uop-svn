@@ -1,59 +1,44 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S result1
-		2 S result2
-		3 S e
-		4 S elemento
-		5 S x
-		6 S result1: 
-		7 I 2
-		8 S io.writeln
-		9 S result2: 
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 string result1
-			1 string result2
-			2 element e
-		End
-		No results
-		newelem 4 --> [elemento]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S result1
+	3   S result2
+	4   S e
+	5   S elemento
+	6   S x
+	7   S result1: 
+	8   I 2
+	9   S io.writeln
+	10  S result2: 
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 string result1
+		.var 1 string result2
+		.var 2 element e
+		newelem 5 --> [elemento]
 		stvar 2 --> [e]
 		ldvar 2 --> [e]
-		mcall 5 --> [x]
+		mcall 6 --> [x]
 		stvar 0 --> [result1]
 		stvar 1 --> [result2]
-		ldconst 6 --> [result1: ]
+		ldconst 7 --> [result1: ]
 		ldvar 0 --> [result1]
-		ldconst 7 --> [2]
-		lcall 8 --> [io.writeln]
-		ldconst 9 --> [result2: ]
+		ldconst 8 --> [2]
+		lcall 9 --> [io.writeln]
+		ldconst 10 --> [result2: ]
 		ldvar 1 --> [result2]
-		ldconst 7 --> [2]
-		lcall 8 --> [io.writeln]
+		ldconst 8 --> [2]
+		lcall 9 --> [io.writeln]
 		stop
-	End
-End
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S x
-	End
-	Valid context (always)
-	No properties
-	Def x
-		No parameters
-		No local variables
-		Result
-			0 string
-			1 string
-		End
+	.end
+.end
+.entity elemento
+	.valid_context_when (always)
+	.method x
+		.result 0 string
+		.result 1 string
 		ret
-	End
-End
+	.end
+.end

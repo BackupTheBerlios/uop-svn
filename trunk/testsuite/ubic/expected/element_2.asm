@@ -1,54 +1,38 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S e
-		2 S elemento
-		3 S Antes de chamar imprime
-		4 I 1
-		5 S io.writeln
-		6 S imprime
-		7 S Depois de chamar imprime
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		Local variables
-			0 element e
-		End
-		No results
-		newelem 2 --> [elemento]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S e
+	3   S elemento
+	4   S Antes de chamar imprime
+	5   I 1
+	6   S io.writeln
+	7   S imprime
+	8   S Depois de chamar imprime
+	9   S Metodo elemento.imprime()
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		.var 0 element e
+		newelem 3 --> [elemento]
 		stvar 0 --> [e]
-		ldconst 3 --> [Antes de chamar imprime]
-		ldconst 4 --> [1]
-		lcall 5 --> [io.writeln]
+		ldconst 4 --> [Antes de chamar imprime]
+		ldconst 5 --> [1]
+		lcall 6 --> [io.writeln]
 		ldvar 0 --> [e]
-		mcall 6 --> [imprime]
-		ldconst 7 --> [Depois de chamar imprime]
-		ldconst 4 --> [1]
-		lcall 5 --> [io.writeln]
+		mcall 7 --> [imprime]
+		ldconst 8 --> [Depois de chamar imprime]
+		ldconst 5 --> [1]
+		lcall 6 --> [io.writeln]
 		stop
-	End
-End
-Entity elemento
-	No options
-	Constants
-		0 S elemento
-		1 S imprime
-		2 S Metodo elemento.imprime()
-		3 I 1
-		4 S io.writeln
-	End
-	Valid context (always)
-	No properties
-	Def imprime
-		No parameters
-		No local variables
-		No results
-		ldconst 2 --> [Metodo elemento.imprime()]
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
+	.end
+.end
+.entity elemento
+	.valid_context_when (always)
+	.method imprime
+		ldconst 9 --> [Metodo elemento.imprime()]
+		ldconst 5 --> [1]
+		lcall 6 --> [io.writeln]
 		ret
-	End
-End
+	.end
+.end

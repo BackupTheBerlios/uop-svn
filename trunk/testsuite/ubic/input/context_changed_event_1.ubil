@@ -1,12 +1,12 @@
 entity start
-	def start()
-		location.symbolic = "1"
-		location.symbolic.on_changed += alt_loc
-		location.symbolic = "2"
-		location.symbolic = "3"
+	method constructor()
+		location.symbolic = "1";
+		location.symbolic.on_changed += alt_loc;
+		location.symbolic = "2";
+		location.symbolic = "3";
 	end
-	def alt_loc(string old, string new)
-		io.writeln("Localizacao " + old + " mudou para " + new)
+	method alt_loc(string old, string new)
+		io.writeln("Localizacao " + old + " mudou para " + new);
 	end
 end
 

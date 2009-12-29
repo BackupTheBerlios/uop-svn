@@ -1,7 +1,7 @@
 entity start
-	event location.symbolic.changed += altLoc
-	def altLoc(string old, string new)
-		io.writeln("Localizacao " + old + " mudou para " + new)
+	event location.symbolic.changed += altLoc;
+	method altLoc(string old, string new)
+		io.writeln("Localizacao " + old + " mudou para " + new);
 	end
 end
 

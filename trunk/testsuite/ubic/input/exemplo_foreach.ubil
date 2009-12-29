@@ -1,7 +1,7 @@
 entity start
-	def start()
+	method constructor()
 		foreach(int i in [1..10])
-			io.writeln(i)
+			io.writeln(i);
 		end
 	end
 end

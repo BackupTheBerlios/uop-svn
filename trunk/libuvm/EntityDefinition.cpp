@@ -33,18 +33,19 @@ typedef struct SEntityHeader {
 #pragma pack()
 
 
-CEntityDefinition::CEntityDefinition()
+CEntityDefinition::CEntityDefinition(CSymbolTable* symbolTable)
+	: _symbolTable(symbolTable)
 {
 }
 
-CEntityDefinition::CEntityDefinition(std::string name)
-	: _name(name)
+CEntityDefinition::CEntityDefinition(CSymbolTable* symbolTable, std::string name)
+	: _symbolTable(symbolTable), _name(name)
 {
 }
 
 CPropertyDefinition* CEntityDefinition::addProperty(VisibilityType visibility, LiteralType type, std::string name)
 {
-	CPropertyDefinition* property = new CPropertyDefinition(&_symbolTable, _propertyList.size(), visibility, type, name);
+	CPropertyDefinition* property = new CPropertyDefinition(_symbolTable, _propertyList.size(), visibility, type, name);
 	_propertyList.push_back(property);
 
 	return property;
@@ -52,7 +53,7 @@ CPropertyDefinition* CEntityDefinition::addProperty(VisibilityType visibility, L
 
 CMethodDefinition* CEntityDefinition::addMethod(VisibilityType visibility, std::string name)
 {
-	CMethodDefinition* method = new CMethodDefinition(this, &_symbolTable, visibility, name);
+	CMethodDefinition* method = new CMethodDefinition(this, _symbolTable, visibility, name);
 	_methodList.push_back(method);
 
 	return method;
@@ -61,39 +62,21 @@ CMethodDefinition* CEntityDefinition::addMethod(VisibilityType visibility, std::
 std::string CEntityDefinition::toTextAssembly()
 {
 	std::string result;
-	result += "Entity " + _name + '\n';
+	result += ".entity " + _name + '\n';
 
-	if (_optionList.size() == 0) {
-		result += "\tNo options\n";
-	} else {
-		result += "\tOptions\n";
-
-		for(std::map<std::string, std::string>::iterator option = _optionList.begin(); option != _optionList.end(); option++) {
-			result += std::string("\t\t") + option->first + "\n";
-		}
-
-		result += "\tEnd\n";
+	for(std::map<std::string, std::string>::iterator option = _optionList.begin(); option != _optionList.end(); option++) {
+		result += std::string("\t.option ") + option->first + "\n";
 	}
-
-	result += _symbolTable.toTextAssembly();
 
 	CMethodDefinition* method = getMethod("__when");
 	if (method == NULL) {
-		result += "\tValid context (always)\n";
+		result += "\t.valid_context_when (always)\n";
 	} else {
-		result += "\tValid context when\n";
-		result += method->toTextAssembly(true);
-		result += "\tValid context end\n";
+		result += "\t.valid_context_when " + method->toTextAssembly(true);
 	}
 
-	if (_propertyList.size() == 0) {
-		result += "\tNo properties\n";
-	} else {
-		result += "\tProperties\n";
-		for(std::vector<CPropertyDefinition*>::iterator prop = _propertyList.begin(); prop != _propertyList.end(); prop++) {
-			result += (*prop)->toTextAssembly();
-		}
-		result += "\tEnd\n";
+	for(std::vector<CPropertyDefinition*>::iterator prop = _propertyList.begin(); prop != _propertyList.end(); prop++) {
+		result += "\t.prop " + (*prop)->toTextAssembly() + "\n";
 	}
 
 	for(std::vector<CMethodDefinition*>::iterator method = _methodList.begin(); method != _methodList.end(); method++) {
@@ -102,20 +85,18 @@ std::string CEntityDefinition::toTextAssembly()
 		}
 	}
 
-	result += "End\n";
+	result += ".end\n";
 
 	return result;
 }
 
 void CEntityDefinition::saveBytecode(CBinString& bytecode)
 {
-	_symbolTable.saveBytecode(bytecode);
-
 	SEntityHeader header;
 
 	memset(&header, 0, sizeof(header));
 
-	header.indexName       = _symbolTable.getSymbolIndex(_name, StringType);
+	header.indexName       = _symbolTable->getSymbolIndex(_name, StringType);
 	header.optionsCount    = _optionList.size();
 	header.propertiesCount = _propertyList.size();
 	header.methodsCount    = _methodList.size();
@@ -142,14 +123,12 @@ void CEntityDefinition::saveBytecode(CBinString& bytecode)
 
 bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 {
-	_symbolTable.loadBytecode(bytecode);
-
 	SEntityHeader header;
 
 	// Carrega o header da entidade
 	bytecode.load(&header, sizeof(header));
 
-	_name = _symbolTable.getSymbolByIndex(header.indexName)->_name;
+	_name = _symbolTable->getSymbolByIndex(header.indexName)->_name;
 
 	// Carrega as opcoes
 	for(u_int count = 0; count < header.optionsCount; count++) {
@@ -161,14 +140,14 @@ bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 
 	// Carrega as propriedades
 	for(u_int count = 0; count < header.propertiesCount; count++) {
-		CPropertyDefinition* property = new CPropertyDefinition(&_symbolTable, count);
+		CPropertyDefinition* property = new CPropertyDefinition(_symbolTable, count);
 		property->loadBytecode(bytecode);
 		_propertyList.push_back(property);
 	}
 
 	// Carrega os metodos
 	for(u_int count = 0; count < header.methodsCount; count++) {
-		CMethodDefinition* method = new CMethodDefinition(this, &_symbolTable);
+		CMethodDefinition* method = new CMethodDefinition(this, _symbolTable);
 		method->loadBytecode(bytecode);
 		_methodList.push_back(method);
 	}
@@ -178,7 +157,7 @@ bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 
 size_t CEntityDefinition::getSymbolIndex(std::string name, LiteralType type)
 {
-	return _symbolTable.getSymbolIndex(name, type);
+	return _symbolTable->getSymbolIndex(name, type);
 }
 
 SymbolType CEntityDefinition::getSymbolType(std::string name)
@@ -200,7 +179,7 @@ CMethodDefinition* CEntityDefinition::getMethod(std::string name)
 
 CSymbol* CEntityDefinition::getSymbolByIndex(size_t index)
 {
-	return _symbolTable.getSymbolByIndex(index);
+	return _symbolTable->getSymbolByIndex(index);
 }
 
 

@@ -1,0 +1,21 @@
+import datetime;
+
+entity start
+	method constructor()
+		{""}.bind("Alex");
+		{""}.on_new_context += ev_contexto_inserido;
+		{"context"}.bind("Alex");
+		{"context.1"}.bind("Alex");
+		{"context.1"}.on_new_context += ev_contexto_inserido2;
+		{"context.1.1"}.bind("Alex");
+		datetime.sleep(2);
+		io.writeln("Terminando a execucao...");
+	end
+	method ev_contexto_inserido(string nome)
+		io.writeln("Inserido contexto ", nome);
+	end
+	method ev_contexto_inserido2(string nome)
+		io.writeln("Inserido contexto em context.1: ", nome);
+	end
+end
+

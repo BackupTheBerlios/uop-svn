@@ -30,6 +30,7 @@ void CTests::config()
 	compiler.addShowOutputCommandLine("cat %INPUTPATH%/%TEST%.ubil");
 	compiler.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	compiler.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
+	compiler.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.uvm");
 	compiler.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	compiler.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
 
@@ -42,23 +43,24 @@ void CTests::config()
                                "%INPUTPATH%/%TEST%%SUBTESTNUMBER%"
                                "%TESTARGS% "
                                "> %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
-	vm.addCopyingResultsCommandLine("cp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%");
+//	vm.addCopyingResultsCommandLine("cp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%");
 	vm.addCopyingResultsCommandLine("cp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%");
-	vm.addTestingResultsCommandLine("cmp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm -s",
-			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm");
+//	vm.addTestingResultsCommandLine("cmp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm -s",
+//			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	vm.addTestingResultsCommandLine("cmp %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out -s",
 			"vimdiff %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out %EXPECTEDPATH%/%TEST%%SUBTESTNUMBER%.out");
 	// TODO: nao ficou legal a abordagem abaixo :-/
 	vm.addTestingResultsCommandLine("cmp ./ubic/output/%TEST%%SUBTESTNUMBER%.asm %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm -s",
 			"vimdiff ./ubic/output/%TEST%%SUBTESTNUMBER%.asm %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
-	vm.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+//	vm.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	vm.addShowOutputCommandLine("cat %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
-	vm.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
+//	vm.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.asm");
 	vm.addClearOutputCommandLine("rm -f %OUTPUTPATH%/%TEST%%SUBTESTNUMBER%.out");
 }
 
 void CTests::define()
 {
+	std::string test_name;
 	CTest* test = compiler.addTest(PASS, "hello_world");
 //	test->addSubtest(PASS, CArgs("COMPILERARGS", ""));
 	test = vm.addTest(PASS, "hello_world");
@@ -196,11 +198,20 @@ void CTests::define()
 	test = compiler.addTest(PASS, "if_4");
 	test = vm.addTest(PASS, "if_4");
 
+	test = compiler.addTest(PASS, "exemplo_if");
+	test = vm.addTest(PASS, "exemplo_if");
+
 	test = compiler.addTest(PASS, "for_1");
 	test = vm.addTest(PASS, "for_1");
 
+	test = compiler.addTest(PASS, "exemplo_for");
+	test = vm.addTest(PASS, "exemplo_for");
+
 	test = compiler.addTest(PASS, "while_1");
 	test = vm.addTest(PASS, "while_1");
+
+	test = compiler.addTest(PASS, "exemplo_while");
+	test = vm.addTest(PASS, "exemplo_while");
 
 	test = compiler.addTest(PASS, "repeat_until_1");
 	test = vm.addTest(PASS, "repeat_until_1");
@@ -237,6 +248,9 @@ void CTests::define()
 
 	test = compiler.addTest(PASS, "method_with_result_6");
 	test = vm.addTest(PASS, "method_with_result_6");
+
+	test = compiler.addTest(PASS, "method_with_result_7");
+	test = vm.addTest(PASS, "method_with_result_7");
 
 	test = compiler.addTest(PASS, "fatorial");
 	test = vm.addTest(PASS, "fatorial");
@@ -322,6 +336,9 @@ void CTests::define()
 	test = compiler.addTest(PASS, "table_1d_6");
 	test = vm.addTest(PASS, "table_1d_6");
 
+	test = compiler.addTest(PASS, "table_1d_7");
+	test = vm.addTest(PASS, "table_1d_7");
+
 	test = compiler.addTest(PASS, "group_data_1");
 	test = vm.addTest(PASS, "group_data_1");
 
@@ -346,8 +363,14 @@ void CTests::define()
 	test = compiler.addTest(PASS, "concurrent_elements_1");
 	test = vm.addTest(PASS, "concurrent_elements_1");
 
+	test = compiler.addTest(PASS, "concurrent_elements_2");
+	test = vm.addTest(PASS, "concurrent_elements_2");
+
 	test = compiler.addTest(PASS, "data_list_1");
 	test = vm.addTest(PASS, "data_list_1");
+
+	test = compiler.addTest(PASS, "data_list_2");
+	test = vm.addTest(PASS, "data_list_2");
 
 	test = compiler.addTest(PASS, "tuple_1");
 	test = vm.addTest(PASS, "tuple_1");
@@ -398,6 +421,75 @@ void CTests::define()
 
 	test = compiler.addTest(PASS, "group_event_3");
 	test = vm.addTest(PASS, "group_event_3");
+
+	test = compiler.addTest(PASS, "group_event_5");
+	test = vm.addTest(PASS, "group_event_5");
+
+	test = compiler.addTest(PASS, "group_event_6");
+	test = vm.addTest(PASS, "group_event_6");
+
+	test = compiler.addTest(PASS, "group_event_7");
+	test = vm.addTest(PASS, "group_event_7");
+
+	test = compiler.addTest(PASS, "group_synchronization_1");
+	test = vm.addTest(PASS, "group_synchronization_1");
+
+	test_name = "returning_one_value";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "returning_one_value2";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "returning_two_values";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "returning_values";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test2";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test3";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test4";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test5";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test5_3";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test6";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "test7";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "using_basic_concepts";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "element_list_1";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "service_list_1";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
 
 	// proximos testes...
 	// testes com expressoes matematicas "complexas" tb para o tipo real

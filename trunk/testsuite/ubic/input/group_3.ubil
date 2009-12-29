@@ -1,8 +1,8 @@
 entity start
-	def start()
-		{"MeuGrupo"}.bind("Alex")
-		io.writeln("Inserindo informacoes")
-		{"MeuGrupo"}.data.af("Numero 1" => 54321)
-		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.dqu("Numero 1"))
+	method constructor()
+		{"MeuContexto"}.bind("Alex");
+		io.writeln("Inserindo informacoes");
+		{"MeuContexto"}.data.publish("Numero 1" => 54321);
+		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.data.get("Numero 1"));
 	end
 end

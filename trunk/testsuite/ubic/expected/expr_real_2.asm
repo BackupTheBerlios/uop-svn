@@ -1,39 +1,35 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 R 10.000000
-		2 R 20.000000
-		3 I 1
-		4 S io.writeln
-		5 R 30.000000
-		6 R 5.000000
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [10.000000]
-		ldconst 2 --> [20.000000]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   R 10.000000
+	3   R 20.000000
+	4   I 1
+	5   S io.writeln
+	6   R 30.000000
+	7   R 5.000000
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [10.000000]
+		ldconst 3 --> [20.000000]
 		add
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
-		ldconst 1 --> [10.000000]
-		ldconst 2 --> [20.000000]
+		ldconst 4 --> [1]
+		lcall 5 --> [io.writeln]
+		ldconst 2 --> [10.000000]
+		ldconst 3 --> [20.000000]
 		add
-		ldconst 5 --> [30.000000]
+		ldconst 6 --> [30.000000]
 		add
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
-		ldconst 1 --> [10.000000]
-		ldconst 2 --> [20.000000]
+		ldconst 4 --> [1]
+		lcall 5 --> [io.writeln]
+		ldconst 2 --> [10.000000]
+		ldconst 3 --> [20.000000]
 		add
-		ldconst 6 --> [5.000000]
+		ldconst 7 --> [5.000000]
 		sub
-		ldconst 3 --> [1]
-		lcall 4 --> [io.writeln]
+		ldconst 4 --> [1]
+		lcall 5 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

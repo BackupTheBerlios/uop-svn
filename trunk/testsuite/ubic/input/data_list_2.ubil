@@ -1,0 +1,22 @@
+entity start
+	method constructor()
+		var table data_list;
+		var tuple datat; // deveria ser data, mas conflita com o token data
+		var int   data_number;
+		data_list = {"users"}.data.list();
+//		foreach(data in {"users"}.data.list())
+		for(data_number=1; data_number<=data_list.size(); data_number=data_number+1)
+			datat = data_list[data_number];
+			io.writeln("Nome : ", datat.keys[1]);
+			io.writeln("Valor: ", datat.values[1]);
+			io.writeln("TTL  : ", datat.values[2]); // ??? TTL aqui ???
+		end
+
+//		foreach(service service in {"context"}.service.list())
+//			io.writeln("Nome : ", service.name);
+//			io.writeln("Descricao: ", service.description);
+//			io.writeln("TBF : ", service.tbf);
+//		end
+	end
+end
+

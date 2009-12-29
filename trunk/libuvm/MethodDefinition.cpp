@@ -52,7 +52,7 @@ CLocalVarDefinition* CMethodDefinition::addLocalVar(LiteralType type, std::strin
 	CLocalVarDefinition* var = new CLocalVarDefinition(_symbolTable, _localVarList.size(), type, name);
 
 	_localVarList.push_back(var);
-	
+
 	return var;
 }
 
@@ -98,7 +98,7 @@ CInstructionDefinition * CMethodDefinition::addInstruction(OpcodeType opcode, Ar
 		}
 		instruction = new CInstructionDefinition(_symbolTable, label, opcode, arg1);
 		_instructionList.push_back(instruction);
-	
+
 		_nextInstructionLabelList.clear();
 	} else {
 		instruction = new CInstructionDefinition(_symbolTable, label, opcode, arg1);
@@ -124,49 +124,32 @@ std::string CMethodDefinition::toTextAssembly(bool onlyCode)
 {
 	std::string result;
 
-	result += "\tDef " + _name + '\n';
+	result += "\t.method " + _name + '\n';
 	// TODO: listar parametros
 
-	if (_parameterList.size() == 0) {
-		result += "\t\tNo parameters\n";
-	} else {
-		result += "\t\tParameters\n";
-		for(std::vector<CParameterDefinition*>::iterator par = _parameterList.begin(); par != _parameterList.end(); par++) {
-			result += (*par)->toTextAssembly();
-		}
-		result += "\t\tEnd\n";
+	for(std::vector<CParameterDefinition*>::iterator par = _parameterList.begin(); par != _parameterList.end(); par++) {
+		result += "\t\t.param " + (*par)->toTextAssembly() + "\n";
 	}
 
-	if (_localVarList.size() == 0) {
-		result += "\t\tNo local variables\n";
-	} else {
-		result += "\t\tLocal variables\n";
-		for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
-			result += (*var)->toTextAssembly();
-		}
-		result += "\t\tEnd\n";
+	for(std::vector<CLocalVarDefinition*>::iterator var = _localVarList.begin(); var != _localVarList.end(); var++) {
+		result += "\t\t.var " + (*var)->toTextAssembly() + "\n";
 	}
 
-	if (_resultList.size() == 0) {
-		result += "\t\tNo results\n";
-	} else {
-		result += "\t\tResult\n";
-		for(std::vector<CResultDefinition*>::iterator res = _resultList.begin(); res != _resultList.end(); res++) {
-			result += (*res)->toTextAssembly();
-		}
-		result += "\t\tEnd\n";
+	for(std::vector<CResultDefinition*>::iterator res = _resultList.begin(); res != _resultList.end(); res++) {
+		result += "\t\t.result " + (*res)->toTextAssembly() + "\n";
 	}
 
+	// TODO: nao daria para testar essa flag no inicio deste metodo ???
 	if (onlyCode == true) {
 		result = "";
 	}
-	
+
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
 		result += (*instruction)->toTextAssembly(_entity->_propertyList, _localVarList, _parameterList);
 	}
 
 	if (onlyCode == false) {
-		result += "\tEnd\n";
+		result += "\t.end\n";
 	}
 
 	return result;
@@ -257,7 +240,7 @@ CMethodDefinition::CMethodDefinition(CEntityDefinition* entity, CSymbolTable* sy
 CMethodDefinition::CMethodDefinition(CEntityDefinition* entity, CSymbolTable *symbolTable, VisibilityType visibility, std::string name)
 	: _entity(entity), _symbolTable(symbolTable), _visibility(visibility), _name(name), _nextLabel(0), _pushInstructions(false)//, _nextInstructionLabel(-1)
 {
-	// Forca que o simbolo seja criado na tabela de simbolos... 
+	// Forca que o simbolo seja criado na tabela de simbolos...
 	// TODO: ta meio estranho o codigo, melhorar...
 	_symbolTable->getSymbol(name, StringType); // TODO: deveria ser MethodType...
 }
@@ -330,7 +313,7 @@ void CMethodDefinition::resolveLabels()
 // 				(*instruction)->_arg1 = _labelAddress[(*instruction)->_arg1];
 // 			}
 // 		}
-// 
+//
 // 		// Troca label da instrucao pelo numero da instrucao
 // 		if ((*instruction)->_label != -1) {
 // 			(*instruction)->_label = instruction - _instructionList.begin();

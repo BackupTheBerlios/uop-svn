@@ -1,9 +1,9 @@
 entity start
-	def m1()
-		io.writeln "m1"
+	method m1()
+		io.writeln "m1";
 	end
-	def Start()
-		io.m1()
+	method Start()
+		io.m1();
 	end
 end
 

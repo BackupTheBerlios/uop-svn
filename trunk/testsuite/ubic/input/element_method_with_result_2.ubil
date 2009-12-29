@@ -1,19 +1,19 @@
 entity start
-	def start()
-		x()
+	method constructor()
+		x();
 	end
-	def x()
-		def string result
-		def element e
-		e = elemento.new()
-		result = e.y()
-		io.writeln("result: ", result)
+	method x()
+		var string result;
+		var element e;
+		e = elemento.new();
+		result = e.y();
+		io.writeln("result: ", result);
 	end
 end
 
 entity elemento
-	def y() [string]
-		return "oi"
+	method y() [string]
+		return "oi";
 	end
 end
 

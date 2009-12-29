@@ -1,5 +1,5 @@
 //
-// C++ Implementation: GroupProvider
+// C++ Implementation: ContextProvider
 //
 // Description:
 //
@@ -14,19 +14,19 @@
 #include "UbiVM.hpp"
 
 
-void CGroupProvider::setConfig(std::map<std::string, CGroup*>* groupList)
+void CContextProvider::setConfig(std::map<std::string, CContext*>* contextList)
 {
-	_groupList = groupList;
+	_contextList = contextList;
 }
 
 
-CGroupProvider::~CGroupProvider()
+CContextProvider::~CContextProvider()
 {
 }
 
 
 // TODO: seria um request ou notice ???
-void CGroupProvider::sendRequestDataafOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+void CContextProvider::sendRequestPublishdOpcode(SVmId vmId, std::string contextName, CTuple tuple)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -35,11 +35,11 @@ void CGroupProvider::sendRequestDataafOpcode(SVmId vmId, std::string groupName, 
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATAAF_OPCODE;
+	header._opcode       = PUBLISHD_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
-	packet.save(groupName);
+	packet.save(contextName);
 	packet.save(tuple.getComposedKeys());
 	packet.save(tuple.getComposedValues());
 
@@ -47,7 +47,7 @@ void CGroupProvider::sendRequestDataafOpcode(SVmId vmId, std::string groupName, 
 }
 
 
-void CGroupProvider::sendRequestDataquOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+void CContextProvider::sendRequestFinddOpcode(SVmId vmId, std::string contextName, CTuple tuple)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -56,24 +56,24 @@ void CGroupProvider::sendRequestDataquOpcode(SVmId vmId, std::string groupName, 
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATAQU_OPCODE;
+	header._opcode       = FINDD_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
-	packet.save(groupName);
+	packet.save(contextName);
 	packet.save(tuple.getComposedKeys());
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestDataqu" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
+// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
 // 	boost::unique_lock<boost::mutex> lock(_mutex);
-// 	std::cout << getpid() << ": Enviando dataqu request" << std::endl;
+// 	std::cout << getpid() << ": Enviando findd request" << std::endl;
 	_bce_list[vmId._bce]->_dataReady = false;
 // 	sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestDataqu" << std::endl;
-// 	while(!_dataReadyInDataQu) {
-// 		std::cout << "antes cond.wait em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request foi enviado em sendRequestFindd" << std::endl;
+// 	while(!_dataReadyInFindd) {
+// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
 // 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestDataqu" << std::endl;
+// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
 // 		sleep(1);
 // 		std::cout << "DataReady=" << _dataReady << std::endl;
 //  	}
@@ -88,7 +88,7 @@ void CGroupProvider::sendRequestDataquOpcode(SVmId vmId, std::string groupName, 
 }
 
 
-void CGroupProvider::sendRequestDatadquOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+void CContextProvider::sendRequestGetdOpcode(SVmId vmId, std::string contextName, CTuple tuple)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -97,12 +97,12 @@ void CGroupProvider::sendRequestDatadquOpcode(SVmId vmId, std::string groupName,
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATAQU_OPCODE;
+	header._opcode       = FINDD_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
-	// Group name
-	packet.save(groupName);
+	// Context name
+	packet.save(contextName);
 
 	// Tuple key
 	packet.save(tuple.getComposedKeys());
@@ -117,9 +117,9 @@ void CGroupProvider::sendRequestDatadquOpcode(SVmId vmId, std::string groupName,
 	// Envia um DQU unicast
 	CBinString dqu_packet;
 	header._dstVmId = _bce_list[vmId._bce]->_lastSrcVmId; // TODO: como descobrir a VM correta ???;
-	header._opcode = DATADQU_OPCODE;
+	header._opcode = GETD_OPCODE;
 	dqu_packet.save(&header, sizeof(header));
-	dqu_packet.save(groupName);
+	dqu_packet.save(contextName);
 	dqu_packet.save(tuple.getComposedKeys());
 
 	_bce_list[vmId._bce]->_dataReady = false;
@@ -137,7 +137,7 @@ void CGroupProvider::sendRequestDatadquOpcode(SVmId vmId, std::string groupName,
 }
 
 
-void CGroupProvider::sendRequestDatanbquOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+void CContextProvider::sendRequestFinddnbOpcode(SVmId vmId, std::string contextName, CTuple tuple)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -146,27 +146,27 @@ void CGroupProvider::sendRequestDatanbquOpcode(SVmId vmId, std::string groupName
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATANBQU_OPCODE;
+	header._opcode       = FINDDNB_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
-	// Group name
-	packet.save(groupName);
+	// Context name
+	packet.save(contextName);
 
 	// Tuple key
 	packet.save(tuple.getComposedKeys());
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestDataqu" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
+// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
 // 	boost::unique_lock<boost::mutex> lock(_mutex);
-// 	std::cout << getpid() << ": Enviando dataqu request" << std::endl;
+// 	std::cout << getpid() << ": Enviando findd request" << std::endl;
 	_bce_list[vmId._bce]->_dataReady = false;
 // 	sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestDataqu" << std::endl;
-// 	while(!_dataReadyInDataQu) {
-// 		std::cout << "antes cond.wait em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request foi enviado em sendRequestFindd" << std::endl;
+// 	while(!_dataReadyInFindd) {
+// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
 // 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestDataqu" << std::endl;
+// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
 // 		sleep(1);
 // 		std::cout << "DataReady=" << _dataReady << std::endl;
 //  	}
@@ -184,7 +184,7 @@ void CGroupProvider::sendRequestDatanbquOpcode(SVmId vmId, std::string groupName
 }
 
 
-void CGroupProvider::sendRequestDatanbdquOpcode(SVmId vmId, std::string groupName, CTuple tuple)
+void CContextProvider::sendRequestGetdnbOpcode(SVmId vmId, std::string contextName, CTuple tuple)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -193,11 +193,11 @@ void CGroupProvider::sendRequestDatanbdquOpcode(SVmId vmId, std::string groupNam
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATAQU_OPCODE;
+	header._opcode       = FINDD_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
-	packet.save(groupName);
+	packet.save(contextName);
 	packet.save(tuple.getComposedKeys());
 
 	_bce_list[vmId._bce]->_dataReady = false;
@@ -215,9 +215,9 @@ void CGroupProvider::sendRequestDatanbdquOpcode(SVmId vmId, std::string groupNam
 	// Envia um DQU unicast
 	CBinString dqu_packet;
 	header._dstVmId = _bce_list[vmId._bce]->_lastSrcVmId; // TODO: como descobrir a VM correta ???;
-	header._opcode = DATADQU_OPCODE;
+	header._opcode = GETD_OPCODE;
 	dqu_packet.save(&header, sizeof(header));
-	dqu_packet.save(groupName);
+	dqu_packet.save(contextName);
 	dqu_packet.save(tuple.getComposedKeys());
 
 	_bce_list[vmId._bce]->_dataReady = false;
@@ -233,7 +233,7 @@ void CGroupProvider::sendRequestDatanbdquOpcode(SVmId vmId, std::string groupNam
 	_bce_list[header._srcVmId._bce]->_dataStack.pop();
 }
 
-void CGroupProvider::sendRequestDatalistOpcode(SVmId vmId, std::string groupName)
+void CContextProvider::sendRequestListdOpcode(SVmId vmId, std::string contextName)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -242,35 +242,35 @@ void CGroupProvider::sendRequestDatalistOpcode(SVmId vmId, std::string groupName
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = DATALIST_OPCODE;
+	header._opcode       = LISTD_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
-	packet.save(groupName.c_str());
+	packet.save(contextName.c_str());
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestDatalist" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request ainda nao foi enviado em sendRequestListd" << std::endl;
+// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
 // 	boost::unique_lock<boost::mutex> lock(_mutex);
-//  	std::cout << getpid() << ": Enviando datalist request" << std::endl;
+//  	std::cout << getpid() << ": Enviando listd request" << std::endl;
 
-	_bce_list[vmId._bce]->_dataListReplyTable = new CMultiIndex<CLiteral>();
+	_bce_list[vmId._bce]->_listdReplyTable = new CMultiIndex<CLiteral>();
 
 	_bce_list[vmId._bce]->_dataReady = false;
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestDatalist" << std::endl;
-// 	while(!_dataReadyInDataList) {
-// 		std::cout << "antes cond.wait em sendRequestDataqu" << std::endl;
+// 	std::cout << "Request foi enviado em sendRequestListd" << std::endl;
+// 	while(!_dataReadyInListd) {
+// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
 // 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestDataqu" << std::endl;
+// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
 // 		sleep(1);
 // 		std::cout << "DataReady=" << _dataReady << std::endl;
-// 		std::cout << "Aguardando dados depois do sendBroadcast em sendRequestDatalist" << std::endl;
+// 		std::cout << "Aguardando dados depois do sendBroadcast em sendRequestListd" << std::endl;
 //  	}
 	sleep(REQUEST_TIMEOUT);
 
-// 	std::cout << "_dataListReplyTable" << _dataListReplyTable->size() << std::endl;
-// 	_dataStack->push(CLiteral(_dataListReplyTable));
-	_bce_list[vmId._bce]->_dataStack.push(CLiteral(_bce_list[vmId._bce]->_dataListReplyTable));
+// 	std::cout << "_listdReplyTable" << _listdReplyTable->size() << std::endl;
+// 	_dataStack->push(CLiteral(_listdReplyTable));
+	_bce_list[vmId._bce]->_dataStack.push(CLiteral(_bce_list[vmId._bce]->_listdReplyTable));
 
 
 // 	boost::mutex::scoped_lock lk(_mutex);
@@ -278,7 +278,7 @@ void CGroupProvider::sendRequestDatalistOpcode(SVmId vmId, std::string groupName
 }
 
 
-void CGroupProvider::sendRequestPublishsOpcode(SVmId vmId, std::string groupName, std::string serviceName)
+void CContextProvider::sendRequestPublishsOpcode(SVmId vmId, std::string contextName, std::string serviceName)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -291,14 +291,14 @@ void CGroupProvider::sendRequestPublishsOpcode(SVmId vmId, std::string groupName
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
-	packet.save(groupName);
+	packet.save(contextName);
 	packet.save(serviceName);
 
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 }
 
 
-void CGroupProvider::sendRequestScallOpcode(SVmId vmId, std::string groupName, std::string serviceName)
+void CContextProvider::sendRequestRemovesOpcode(SVmId vmId, std::string contextName, std::string serviceName)
 {
 	CBinString    packet;
 	SPacketHeader header;
@@ -307,11 +307,31 @@ void CGroupProvider::sendRequestScallOpcode(SVmId vmId, std::string groupName, s
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = SCALL_OPCODE;
+	header._opcode       = REMOVES_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
-	packet.save(groupName);
+	packet.save(contextName);
+	packet.save(serviceName);
+
+	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
+}
+
+
+void CContextProvider::sendRequestRunsOpcode(SVmId vmId, std::string contextName, std::string serviceName)
+{
+	CBinString    packet;
+	SPacketHeader header;
+	SVmId         dstVmId(0,0);
+
+	header._srcVmId      = vmId;
+	header._dstVmId      = dstVmId;
+	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
+	header._opcode       = RUNS_OPCODE;
+	header._operation    = REQUEST_OPERATION;
+
+	packet.save(&header, sizeof(header));
+	packet.save(contextName);
 	packet.save(serviceName);
 
 	uint argsNumber = _bce_list[vmId._bce]->_dataStack.pop().getInteger();
@@ -339,13 +359,13 @@ void CGroupProvider::sendRequestScallOpcode(SVmId vmId, std::string groupName, s
 }
 
 
-void CGroupProvider::processDataafRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 // 	SPacketHeader replyHeader;
 // 	CTuple*       tuple;
 
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
 	std::string tupleKeys;
 	requestPacket.load(tupleKeys);
@@ -353,26 +373,26 @@ void CGroupProvider::processDataafRequest(CBinString& requestPacket, SPacketHead
 	std::string tupleValues;
 	requestPacket.load(tupleValues);
 
-	if (_groupList->find(groupName) != _groupList->end()) {
-		(*_groupList)[groupName]->run_insert_data_event(tupleKeys, tupleValues);
+	if (_contextList->find(contextName) != _contextList->end()) {
+		(*_contextList)[contextName]->run_insert_data_event(tupleKeys, tupleValues);
 	}
 }
 
 
-void CGroupProvider::processDataquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 	SPacketHeader replyHeader;
 	CTuple*       tuple;
 
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
 	std::string tupleKey;
 	requestPacket.load(tupleKey);
 
 	CTuple tupleToFind;
 	tupleToFind.addKeyAtEnd(tupleKey);
-	tuple = (*_groupList)[groupName]->getTuple(&tupleToFind);
+	tuple = (*_contextList)[contextName]->getTuple(&tupleToFind);
 
 	if (tuple == NULL) {
 		return;
@@ -385,35 +405,36 @@ void CGroupProvider::processDataquRequest(CBinString& requestPacket, SPacketHead
 	replyHeader._opcode       = requestHeader._opcode;
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
+	// asdfg
 	replyPacket.save(tuple->getComposedKeys());
 	replyPacket.save(tuple->getComposedValues());
 
 // 		std::cout << "Enviando reply packet" << std::endl;
 // 		sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
-// 		std::cout << getpid() << ": Enviando dataqu reply" << std::endl;
+// 		std::cout << getpid() << ": Enviando Findd reply" << std::endl;
 }
 
 
-void CGroupProvider::processDatanbquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processFinddnbRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
-	processDataquRequest(requestPacket, requestHeader, replyPacket);
+	processFinddRequest(requestPacket, requestHeader, replyPacket);
 }
 
 
-void CGroupProvider::processDatadquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 	SPacketHeader replyHeader;
 	CTuple*       tuple;
 
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
 	std::string tupleKey;
 	requestPacket.load(tupleKey);
 
 	CTuple tupleToFind;
 	tupleToFind.addKeyAtEnd(tupleKey);
-	tuple = (*_groupList)[groupName]->getTuple(&tupleToFind);
+	tuple = (*_contextList)[contextName]->getTuple(&tupleToFind);
 
 	if (tuple == NULL) {
 // 		std::cout << __FUNCTION__ << ": tupla " << tupleKey << " nao encontrada !!!" << std::endl;
@@ -430,34 +451,39 @@ void CGroupProvider::processDatadquRequest(CBinString& requestPacket, SPacketHea
 	replyPacket.save(tuple->getComposedKeys());
 	replyPacket.save(tuple->getComposedValues());
 
-	(*_groupList)[groupName]->remTuple(&tupleToFind);
-// 	std::cout << __FUNCTION__ << ": tupla " << tupleKey << " removida !!!" << std::endl;
+	(*_contextList)[contextName]->remTuple(&tupleToFind);
+//  	std::cout << __FUNCTION__ << ": tupla " << tupleKey << " removida !!!" << std::endl;
+
+	if (_contextList->find(contextName) != _contextList->end()) {
+		(*_contextList)[contextName]->run_remove_data_event(tuple->getComposedKeys(), tuple->getComposedValues());
+	}
+
 }
 
 
-void CGroupProvider::processDatanbdquRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processGetdnbRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
-	processDatadquRequest(requestPacket, requestHeader, replyPacket);
+	processGetdRequest(requestPacket, requestHeader, replyPacket);
 }
 
 
-void CGroupProvider::processDatalistRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processListdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 	size_t size;
 	SPacketHeader replyHeader;
 // 	CTuple* tuple;
 
-// 	std::cout << "Processando Datalist Request" << std::endl;
+// 	std::cout << "Processando Listd Request" << std::endl;
 
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
-	// Verify if group exist...
-	if (_groupList->find(groupName) == _groupList->end()) {
+	// Verify if context exist...
+	if (_contextList->find(contextName) == _contextList->end()) {
 		return;
 	}
 
-	if ((*_groupList)[groupName]->_dataList.size() == 0) {
+	if ((*_contextList)[contextName]->_listd.size() == 0) {
 		return;
 	}
 
@@ -468,20 +494,21 @@ void CGroupProvider::processDatalistRequest(CBinString& requestPacket, SPacketHe
 	replyHeader._srcVmId      = requestHeader._dstVmId;
 	replyHeader._packetNumber = requestHeader._packetNumber;
 	replyHeader._operation    = REPLY_OPERATION;
-	replyHeader._opcode       = DATALIST_OPCODE;
+	replyHeader._opcode       = LISTD_OPCODE;
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
 	// Packing tuple count
-	size = (*_groupList)[groupName]->_dataList.size();
+	size = (*_contextList)[contextName]->_listd.size();
 	replyPacket.save(&size, sizeof(size));
 
 	// Packing tuples
-	for(std::map<std::string, CTuple*>::iterator data = (*_groupList)[groupName]->_dataList.begin();
-			data != (*_groupList)[groupName]->_dataList.end(); data++) {
+	for(std::map<std::string, CTuple*>::iterator data = (*_contextList)[contextName]->_listd.begin();
+			data != (*_contextList)[contextName]->_listd.end(); data++) {
 
 		CTuple* tuple = (*data).second;
+		tuple->saveBytecode(replyPacket);
 
-		// Packing keys count
+/*		// Packing keys count
 		size = tuple->_keyList.size();
 		replyPacket.save(&size, sizeof(size));
 
@@ -497,35 +524,49 @@ void CGroupProvider::processDatalistRequest(CBinString& requestPacket, SPacketHe
 		// Packing values
 		for(size_t value = 0; value < tuple->_valueList.size(); value++) {
 			replyPacket.save(tuple->_valueList[value].getText());
-		}
+		}*/
 	}
 
-// 	std::cout << "Enviando datalist reply packet" << std::endl;
+// 	std::cout << "Enviando listd reply packet" << std::endl;
 // 	sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
-// 	std::cout << getpid() << ": Enviando datalist reply" << std::endl;
+// 	std::cout << getpid() << ": Enviando listd reply" << std::endl;
 }
 
 
-void CGroupProvider::processPublishsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processPublishsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
 	std::string serviceName;
 	requestPacket.load(serviceName);
 
-	if (_groupList->find(groupName) != _groupList->end()) {
-		(*_groupList)[groupName]->run_insert_service_event(serviceName);
+	if (_contextList->find(contextName) != _contextList->end()) {
+		(*_contextList)[contextName]->run_insert_service_event(serviceName);
 	}
 }
 
 
-void CGroupProvider::processScallRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+void CContextProvider::processRemovesRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+{
+	std::string contextName;
+	requestPacket.load(contextName);
+
+	std::string serviceName;
+	requestPacket.load(serviceName);
+
+	if (_contextList->find(contextName) != _contextList->end()) {
+		(*_contextList)[contextName]->run_remove_service_event(serviceName);
+	}
+}
+
+
+void CContextProvider::processRunsRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 	SPacketHeader replyHeader;
 
-	std::string groupName;
-	requestPacket.load(groupName);
+	std::string contextName;
+	requestPacket.load(contextName);
 
 	std::string serviceName;
 	requestPacket.load(serviceName);
@@ -546,7 +587,7 @@ void CGroupProvider::processScallRequest(CBinString& requestPacket, SPacketHeade
 
 	std::vector<CLiteral> results;
 
-	if (bce->scallCode(groupName, serviceName, arguments, results) == false) {
+	if (bce->runsCode(contextName, serviceName, arguments, results) == false) {
 		delete bce;
 		return;
 	}
@@ -571,7 +612,7 @@ void CGroupProvider::processScallRequest(CBinString& requestPacket, SPacketHeade
 }
 
 
-void CGroupProvider::processDataquReply(CBinString& replyPacket, SPacketHeader& replyHeader)//, udp::endpoint& sender_endpoint)
+void CContextProvider::processFinddReply(CBinString& replyPacket, SPacketHeader& replyHeader)//, udp::endpoint& sender_endpoint)
 {
  	CTuple* tuple = new CTuple();
 
@@ -581,12 +622,13 @@ void CGroupProvider::processDataquReply(CBinString& replyPacket, SPacketHeader& 
 	replyPacket.load(tupleKey);
 	replyPacket.load(tupleValue);
 
+	// asdfg
 	tuple->addKeyAtEnd(tupleKey);
 	tuple->addValueAtEnd(tupleValue);
 
 // 		std::cout << "Current VMID: " << getpid() << std::endl;
 
-// 		std::cout << __FUNCTION__ << ": VMID: " << requestHeader._vmId << " DATAQU reply recebido: tuplekey=" << tupleKey << " tupleValue=" << tupleValue << std::endl;
+// 		std::cout << __FUNCTION__ << ": VMID: " << requestHeader._vmId << " FINDD reply recebido: tuplekey=" << tupleKey << " tupleValue=" << tupleValue << std::endl;
 
 // 		_bce_list[1]->_dataStack.push(CLiteral(tuple));
 	_bce_list[replyHeader._dstVmId._bce]->_dataStack.push(CLiteral(tuple));
@@ -609,11 +651,11 @@ void CGroupProvider::processDataquReply(CBinString& replyPacket, SPacketHeader& 
 }
 
 
-void CGroupProvider::processDatalistReply(CBinString& replyPacket, SPacketHeader& replyHeader)
+void CContextProvider::processListdReply(CBinString& replyPacket, SPacketHeader& replyHeader)
 {
 	size_t tuplesCount;
 
-// 	std::cout << "Processando DataList Reply" << std::endl;
+// 	std::cout << "Processando Listd Reply" << std::endl;
 
 	// Unpacking tuple count
 	replyPacket.load(&tuplesCount, sizeof(tuplesCount));
@@ -621,41 +663,42 @@ void CGroupProvider::processDatalistReply(CBinString& replyPacket, SPacketHeader
 	// Unpacking tuples
 	for(size_t tupleNumber = 0; tupleNumber < tuplesCount; tupleNumber++) {
 		CTuple* tuple = new CTuple();
-		size_t keysCount;
-		size_t valuesCount;
+		tuple->loadBytecode(replyPacket);
+// 		size_t keysCount;
+// 		size_t valuesCount;
+//
+// 		// Unpacking keys count
+// 		replyPacket.load(&keysCount, sizeof(keysCount));
+//
+// 		// Unpacking keys
+// 		for(size_t keyNumber = 0; keyNumber < keysCount; keyNumber++) {
+// 			std::string key;
+// 			replyPacket.load(key);
+// 			tuple->addKeyAtEnd(key);
+// 		}
+//
+// 		// Unpacking values count
+// 		replyPacket.load(&valuesCount, sizeof(valuesCount));
+//
+// 		// Unpacking values
+// 		for(size_t valueNumber = 0; valueNumber < valuesCount; valueNumber++) {
+// 			std::string value;
+// 			replyPacket.load(value);
+// 			tuple->addValueAtEnd(value);
+// 		}
 
-		// Unpacking keys count
-		replyPacket.load(&keysCount, sizeof(keysCount));
-
-		// Unpacking keys
-		for(size_t keyNumber = 0; keyNumber < keysCount; keyNumber++) {
-			std::string key;
-			replyPacket.load(key);
-			tuple->addKeyAtEnd(key);
-		}
-
-		// Unpacking values count
-		replyPacket.load(&valuesCount, sizeof(valuesCount));
-
-		// Unpacking values
-		for(size_t valueNumber = 0; valueNumber < valuesCount; valueNumber++) {
-			std::string value;
-			replyPacket.load(value);
-			tuple->addValueAtEnd(value);
-		}
-
-		_bce_list[replyHeader._dstVmId._bce]->_dataListReplyTable->add(itoa(_bce_list[replyHeader._dstVmId._bce]->_dataListReplyTable->size()), CLiteral(tuple));
+		_bce_list[replyHeader._dstVmId._bce]->_listdReplyTable->add(itoa(_bce_list[replyHeader._dstVmId._bce]->_listdReplyTable->size()), CLiteral(tuple));
 	}
 
 	_bce_list[replyHeader._dstVmId._bce]->_dataReady     = true;
 // 	_bce_list[replyHeader._dstVmId._bce]->_last_endpoint = sender_endpoint;
 	_bce_list[replyHeader._dstVmId._bce]->_lastSrcVmId   = replyHeader._srcVmId;
 
-// 	std::cout << "DataReady setado para true em DataList reply" << std::endl;
+// 	std::cout << "DataReady setado para true em Listd reply" << std::endl;
 }
 
 
-void CGroupProvider::processScallReply(CBinString& replyPacket, SPacketHeader& replyHeader)
+void CContextProvider::processRunsReply(CBinString& replyPacket, SPacketHeader& replyHeader)
 {
 	uint resultCount;
 	replyPacket.load(&resultCount, sizeof(resultCount));
@@ -673,7 +716,7 @@ void CGroupProvider::processScallReply(CBinString& replyPacket, SPacketHeader& r
 }
 
 
-void CGroupProvider::register_bce(uint bceId, CRunBytecode* bce)
+void CContextProvider::register_bce(uint bceId, CRunBytecode* bce)
 {
 	_bce_list[bceId] = bce;
 // 	std::cout << "Registrado BCE com id " << bceId << std::endl;

@@ -1,0 +1,7 @@
+UbiVM - Release 0.1.0 (development release)
+Inserindo informacao
+findnb em informacao inexistente: Keys: [] Values: []
+Informacao inserida: Keys: [Numero 1] Values: [100]
+Removendo informacao inserida: Keys: [Numero 1] Values: [100]
+Numero 1 nao existe mais: Keys: [] Values: []
+Numero 1 nao existe mais: Keys: [] Values: []

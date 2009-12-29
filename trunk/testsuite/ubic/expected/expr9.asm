@@ -1,96 +1,92 @@
-Entity start
-	No options
-	Constants
-		0 S start
-		1 S 2 - 1=
-		2 I 2
-		3 I 1
-		4 S io.writeln
-		5 S 2 * 7=
-		6 I 7
-		7 S 2 * 8 - 5=
-		8 I 8
-		9 I 5
-		10 S 2 - 8 * 5=
-		11 S (2 - 8) * 5=
-		12 S (2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=
-		13 I 18
-		14 I 9
-		15 I 4
-		16 I 6
-		17 I 49
-		18 I 3
-	End
-	Valid context (always)
-	No properties
-	Def start
-		No parameters
-		No local variables
-		No results
-		ldconst 1 --> [2 - 1=]
-		ldconst 2 --> [2]
-		ldconst 3 --> [1]
+.constant_pool
+	0   S start
+	1   S constructor
+	2   S 2 - 1=
+	3   I 2
+	4   I 1
+	5   S io.writeln
+	6   S 2 * 7=
+	7   I 7
+	8   S 2 * 8 - 5=
+	9   I 8
+	10  I 5
+	11  S 2 - 8 * 5=
+	12  S (2 - 8) * 5=
+	13  S (2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=
+	14  I 18
+	15  I 9
+	16  I 4
+	17  I 6
+	18  I 49
+	19  I 3
+.end
+.entity start
+	.valid_context_when (always)
+	.method constructor
+		ldconst 2 --> [2 - 1=]
+		ldconst 3 --> [2]
+		ldconst 4 --> [1]
 		sub
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
-		ldconst 5 --> [2 * 7=]
-		ldconst 2 --> [2]
-		ldconst 6 --> [7]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
+		ldconst 6 --> [2 * 7=]
+		ldconst 3 --> [2]
+		ldconst 7 --> [7]
 		mul
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
-		ldconst 7 --> [2 * 8 - 5=]
-		ldconst 2 --> [2]
-		ldconst 8 --> [8]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
+		ldconst 8 --> [2 * 8 - 5=]
+		ldconst 3 --> [2]
+		ldconst 9 --> [8]
 		mul
-		ldconst 9 --> [5]
+		ldconst 10 --> [5]
 		sub
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
-		ldconst 10 --> [2 - 8 * 5=]
-		ldconst 2 --> [2]
-		ldconst 8 --> [8]
-		ldconst 9 --> [5]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
+		ldconst 11 --> [2 - 8 * 5=]
+		ldconst 3 --> [2]
+		ldconst 9 --> [8]
+		ldconst 10 --> [5]
 		mul
 		sub
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
-		ldconst 11 --> [(2 - 8) * 5=]
-		ldconst 2 --> [2]
-		ldconst 8 --> [8]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
+		ldconst 12 --> [(2 - 8) * 5=]
+		ldconst 3 --> [2]
+		ldconst 9 --> [8]
 		sub
-		ldconst 9 --> [5]
+		ldconst 10 --> [5]
 		mul
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
-		ldconst 12 --> [(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=]
-		ldconst 2 --> [2]
-		ldconst 8 --> [8]
-		ldconst 13 --> [18]
-		ldconst 14 --> [9]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
+		ldconst 13 --> [(2 * (8 - 18 / 9 * (7 * 8 - 4 + 5 * 7) - 6) * (49 / 7 - 3))=]
+		ldconst 3 --> [2]
+		ldconst 9 --> [8]
+		ldconst 14 --> [18]
+		ldconst 15 --> [9]
 		div
-		ldconst 6 --> [7]
-		ldconst 8 --> [8]
+		ldconst 7 --> [7]
+		ldconst 9 --> [8]
 		mul
-		ldconst 15 --> [4]
+		ldconst 16 --> [4]
 		sub
-		ldconst 9 --> [5]
-		ldconst 6 --> [7]
+		ldconst 10 --> [5]
+		ldconst 7 --> [7]
 		mul
 		add
 		mul
 		sub
-		ldconst 16 --> [6]
+		ldconst 17 --> [6]
 		sub
 		mul
-		ldconst 17 --> [49]
-		ldconst 6 --> [7]
+		ldconst 18 --> [49]
+		ldconst 7 --> [7]
 		div
-		ldconst 18 --> [3]
+		ldconst 19 --> [3]
 		sub
 		mul
-		ldconst 2 --> [2]
-		lcall 4 --> [io.writeln]
+		ldconst 3 --> [2]
+		lcall 5 --> [io.writeln]
 		stop
-	End
-End
+	.end
+.end

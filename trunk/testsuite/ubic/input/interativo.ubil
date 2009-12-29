@@ -11,10 +11,10 @@
 //////////////////////////////////////////////////////////////////////
 
 Entity start
-	def start(int final)
-		io.writeln("Contando de 1 ate ", Final, ". Aguarde !!!")
+	method constructor(int final)
+		io.writeln("Contando de 1 ate ", Final, ". Aguarde !!!");
 		for(int x=1; x<=final; x++)
-			io.writeln("Iteracao: ", x)
+			io.writeln("Iteracao: ", x);
 		end
 	end
 end

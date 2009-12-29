@@ -24,9 +24,9 @@ int CUbiVM::run()
 		out << _toTextAssembly();
 	}
 
-	CGroupProvider::getInstance()->setConfig(&_groupList);
+	CContextProvider::getInstance()->setConfig(&_contextList);
 
-	CCommunicationProvider::getInstance()->setConfig(&_groupList, _options->bindPort, _options->sendPort);
+	CCommunicationProvider::getInstance()->setConfig(&_contextList, _options->bindPort, _options->sendPort);
 	CCommunicationProvider::getInstance()->run();
 
 	CRunBytecode bytecode;

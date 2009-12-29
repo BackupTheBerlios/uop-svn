@@ -1,20 +1,20 @@
 entity start
-	def start()
-		element k = kernel.new()
+	method constructor()
+		element k = kernel.new();
 		if (identity.device.images == true)
-			k.run_show_images()
+			k.run_show_images();
 		else if (identity.device.images == false)
-			k.run_no_images()
+			k.run_no_images();
 		end
 	end
 end
 
 entity Kernel
-	def run_show_images()
-		io.writeln( "Exibe imagens !!!" )
+	method run_show_images()
+		io.writeln( "Exibe imagens !!!" );
 	end
-	def runNoImages()
-		io.writeln( "Nao exibe imagens !!!" )
+	method runNoImages()
+		io.writeln( "Nao exibe imagens !!!" );
 	end
 end
 

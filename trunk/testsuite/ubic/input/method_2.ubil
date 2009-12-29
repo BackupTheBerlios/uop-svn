@@ -1,16 +1,16 @@
 entity start
-	def start()
-		io.writeln("antes da chamada a x")
-		x()
-		io.writeln("depois da chamada a x")
+	method constructor()
+		io.writeln("antes da chamada a x");
+		x();
+		io.writeln("depois da chamada a x");
 	end
-	def x()
-		io.writeln("antes da chamada a y")
-		y()
-		io.writeln("depois da chamada a y")
+	method x()
+		io.writeln("antes da chamada a y");
+		y();
+		io.writeln("depois da chamada a y");
 	end
-	def y()
-		io.writeln("no metodo y")
+	method y()
+		io.writeln("no metodo y");
 	end
 end
 

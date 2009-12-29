@@ -1,6 +1,6 @@
 entity start
-	def start()
-		io.writeln( "Soma: ", {"group"}.soma(10,20) )
+	method constructor()
+		io.writeln( "Soma: ", {"context"}.soma(10,20) );
 	end
 end
 

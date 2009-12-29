@@ -4,12 +4,12 @@
 // Outros testes: ao inves de .qu, usar dqu e nbdqu
 
 entity start
-	def start()
+	method constructor()
 //		while(true)
 //		end
-		{"MeuGrupo"}.bind("prog1")
-		io.writeln("Inserindo informacoes")
-		{"MeuGrupo"}.data.af("Numero 1" => 100)
-		io.writeln("Informacoes inseridas: ", {"MeuGrupo"}.data.qu("Numero 1"))
+		{"MeuContexto"}.bind("prog1");
+		io.writeln("Inserindo informacoes");
+		{"MeuContexto"}.data.publish("Numero 1" => 100);
+		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.data.find("Numero 1"));
 	end
 end

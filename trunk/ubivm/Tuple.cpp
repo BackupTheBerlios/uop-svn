@@ -60,3 +60,54 @@ std::string CTuple::getComposedValues()
 
 	return result;
 }
+
+void CTuple::saveBytecode(CBinString& bytecode)
+{
+	size_t size;
+
+	// Packing keys count
+	size = _keyList.size();
+	bytecode.save(&size, sizeof(size));
+
+	// Packing keys
+	for(size_t key = 0; key < _keyList.size(); key++) {
+		_keyList[key].saveBytecode(bytecode);
+	}
+
+	// Packing values count
+	size = _valueList.size();
+	bytecode.save(&size, sizeof(size));
+
+	// Packing values
+	for(size_t value = 0; value < _valueList.size(); value++) {
+		_valueList[value].saveBytecode(bytecode);
+	}
+}
+
+
+bool CTuple::loadBytecode(CBinString& bytecode)
+{
+	size_t size;
+
+	// Unpacking keys count
+	bytecode.load(&size, sizeof(size));
+
+	// Unpacking keys
+	for(size_t key = 0; key < size; key++) {
+		CLiteral key;
+		key.loadBytecode(bytecode);
+		_keyList.push_back(key);
+	}
+
+	// Unpacking values count
+	bytecode.load(&size, sizeof(size));
+
+	// Unpacking values
+	for(size_t value = 0; value < size; value++) {
+		CLiteral value;
+		value.loadBytecode(bytecode);
+		_valueList.push_back(value);
+	}
+
+	return true;
+}

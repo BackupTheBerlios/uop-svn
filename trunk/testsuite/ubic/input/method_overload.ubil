@@ -1,13 +1,13 @@
 entity start
-	def print(string x)
-		io.writeln("Caracter: " + x)
+	method print(string x)
+		io.writeln("Caracter: " + x);
 	end
-	def print(int x)
-		io.writeln("Numero: " + x)
+	method print(int x)
+		io.writeln("Numero: " + x);
 	end
-	def start()
-		io.print("Oi")
-		io.print(10)
+	method constructor()
+		io.print("Oi");
+		io.print(10);
 	end
 end
 

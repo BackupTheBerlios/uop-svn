@@ -1,23 +1,23 @@
 entity TestShowImages
-	def run()
-		io.writeln( "Exibe imagens !!!" )
+	method run()
+		io.writeln( "Exibe imagens !!!" );
 	end
 end
 
 entity TestNoImages
-	def run()
-		io.writeln( "Nao exibe imagens !!!" )
+	method run()
+		io.writeln( "Nao exibe imagens !!!" );
 	end
 end
 
 entity start
-	def start()
+	method constructor()
 		if (identity.device.images == true)
-			def element test = TestShowImages.new()
-			test.run()
+			var element test = TestShowImages.new();
+			test.run();
 		else if (identity.device.images == false)
-			def element test = TestNoImages.new()
-			test.run()
+			var element test = TestNoImages.new();
+			test.run();
 		end
 	end
 end
