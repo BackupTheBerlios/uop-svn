@@ -6,7 +6,7 @@ INCLUDE_DIR=-I/usr/local/include/ -I$(LIBUVM) -I$(LIBCOMMON) -I/usr/local/includ
 CC=g++
 CCFLAGS=-rdynamic -g -Wall #-pedantic
 
-objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o ActivationRecord.o Element.o Group.o Tuple.o CommunicationProvider.o GroupProvider.o
+objects = UbiVM.o main.o RunBytecode.o DataStack.o Literal.o ActivationRecord.o Element.o Context.o Tuple.o CommunicationProvider.o ContextProvider.o
 
 all: $(objects)
 	g++ -rdynamic -o ubivm $(objects) -L$(LIBUVM) -L$(LIBCOMMON) -luvm -lcommon -ldl -lboost_thread-gcc42-mt -lpthread -lboost_system-gcc42-mt

@@ -17,7 +17,7 @@ struct SVmId;
 #include "AssemblyDefinition.hpp"
 #include "MethodDefinition.hpp"
 #include "ActivationRecord.hpp"
-#include "Group.hpp"
+#include "Context.hpp"
 #include "CommunicationProvider.hpp"
 
 

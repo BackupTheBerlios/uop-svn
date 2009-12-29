@@ -9,7 +9,7 @@
 #include "RunBytecode.hpp"
 #include "Log.hpp"
 #include "Element.hpp"
-#include "GroupProvider.hpp"
+#include "ContextProvider.hpp"
 #include "UbiVM.hpp"
 
 uint CRunBytecode::_bceCount = 0;

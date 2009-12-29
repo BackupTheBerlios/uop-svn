@@ -1,5 +1,5 @@
 #include "CommunicationProvider.hpp"
-#include "GroupProvider.hpp"
+#include "ContextProvider.hpp"
 
 #include <stdlib.h>
 

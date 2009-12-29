@@ -2,7 +2,7 @@
 #include <dlfcn.h>
 
 #include "UbiVM.hpp"
-#include "GroupProvider.hpp"
+#include "ContextProvider.hpp"
 
 
 // CUbiVM::CUbiVM(SOptions *options) : _options(options)

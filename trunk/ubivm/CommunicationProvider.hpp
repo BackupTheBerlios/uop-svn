@@ -34,7 +34,7 @@ class CCommunicationProvider;
 class CRunBytecode;
 
 #include "Tuple.hpp"
-#include "Group.hpp"
+#include "Context.hpp"
 #include "DataStack.hpp"
 #include "UbivmDefs.hpp"
 #include "Tools.hpp"
