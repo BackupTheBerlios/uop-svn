@@ -1,0 +1,60 @@
+import datetime;
+import ncurses;
+
+entity start
+	method constructor()
+		ncurses.initscr();
+		get_perfil_data();
+		show_users();
+		ncurses.endwin();
+	end
+	method get_perfil_data()
+		var int perfil_win;
+		perfil_win = ncurses.newwin(17, 100, 0, 0);
+		ncurses.box(perfil_win, 0, 0);
+		ncurses.mvwwrite(perfil_win, 1, 5, "Nome: ");
+		identity.name = ncurses.wread(perfil_win);
+		ncurses.mvwwrite(perfil_win, 2, 5, "Interesse geral: ");
+		identity.general_interest = ncurses.wread(perfil_win);
+		ncurses.mvwwrite(perfil_win, 3, 5, "Interesse especifico: ");
+		identity.specific_interest = ncurses.wread(perfil_win);
+		ncurses.mvwwrite(perfil_win, 4, 5, "Localização: ");
+		location.symbolic = ncurses.wread(perfil_win);
+		ncurses.wrefresh(perfil_win);
+		{"users"}.join(identity.name);
+		{"users"}.data.publish(identity.name => identity.general_interest, identity.specific_interest, location.symbolic);
+	end
+	method show_users()
+		var int users_win;
+		var int line;
+		var tuple user;
+		var table user_list;
+		var int user_number;
+		users_win = ncurses.newwin(7, 100, 18, 0);
+		while(true)
+			ncurses.wclear(users_win);
+			ncurses.box(users_win, 0, 0);
+			ncurses.mvwwrite(users_win, 1,  1, "Nome");
+			ncurses.mvwwrite(users_win, 1, 20, "Interesse geral");
+			ncurses.mvwwrite(users_win, 1, 40, "Interesse específico");
+			ncurses.mvwwrite(users_win, 1, 70, "Localização");
+//			ncurses.wrefresh(users_win);
+			line = 2;
+			user_list = {"users"}.data.list();
+//			foreach(user in userlist)
+			for(user_number=1; user_number<=user_list.size(); user_number=user_number+1)
+				user = user_list[user_number];
+				if (user.keys[1] <> identity.name and user.values[1] == identity.general_interest)
+					ncurses.mvwwrite(users_win, line,  1, user.keys[1]);
+					ncurses.mvwwrite(users_win, line, 20, user.values[1]);
+					ncurses.mvwwrite(users_win, line, 40, user.values[2]);
+					ncurses.mvwwrite(users_win, line, 70, user.values[3]);
+					line=line+1;
+				end
+			end
+			ncurses.wrefresh(users_win);
+//			ncurses.refresh();
+			datetime.sleep(10);
+		end
+	end
+end

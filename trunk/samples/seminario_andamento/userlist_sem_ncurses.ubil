@@ -1,0 +1,38 @@
+import io;
+import datetime;
+
+entity start
+	method constructor()
+		get_perfil_data();
+		show_users();
+	end
+	method get_perfil_data()
+		io.write("Nome: ");
+		identity.name = io.readln();
+		io.write("Interesse geral: ");
+		identity.general_interest = io.readln();
+		io.write("Interesse especifico: ");
+		identity.specific_interest = io.readln();
+		io.write("Localização: ");
+		location.symbolic = io.readln();
+		{"users"}.join(identity.name);
+		{"users"}.data.publish(identity.name => identity.general_interest, identity.specific_interest, location.symbolic);
+	end
+	method show_users()
+		var tuple user;
+		var table user_list;
+		var int user_number;
+		while(true)
+			io.writeln("");
+			io.writeln("Listando usuários com os mesmos interessentes gerais...");
+			user_list = {"users"}.data.list();
+			for(user_number=1; user_number<=user_list.size(); user_number=user_number+1)
+				user = user_list[user_number];
+				if (user.keys[1] <> identity.name and user.values[1] == identity.general_interest)
+					io.writeln("Nome: [", user.keys[1], "] Interesse geral: [", user.values[1], "] Interesse específico: [", user.values[2], "] Localização: [", user.values[3], "]");
+				end
+			end
+			datetime.sleep(20);
+		end
+	end
+end
