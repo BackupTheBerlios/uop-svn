@@ -2,7 +2,7 @@
 VERSAO 1
 ========
 
-Seguir apenas o cenário de colocar os alunos em contato por similiaridade e complementariedade. Somente aquele parte que está mais relacionado com grupos.
+Seguir apenas o cenário de colocar os alunos em contato por similiaridade e complementariedade. Somente aquele parte que está mais relacionado com contextos.
 
 
 ===============================
@@ -104,7 +104,7 @@ Telas
 RECURSOS DO UOP NECESSARIOS
 ---------------------------
 
-* Grupos com dados e elementos
+* Contextos com dados e elementos
 * Binding bibliotecas
   - ncurses ? QT ?
   - location system ? mas acho que o usuario poderia indicar nesta primeira versao

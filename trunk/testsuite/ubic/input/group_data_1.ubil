@@ -7,7 +7,7 @@ entity start
 	method constructor()
 //		while(true)
 //		end
-		{"MeuContexto"}.bind("prog1");
+		{"MeuContexto"}.join("prog1");
 		io.writeln("Inserindo informacoes");
 		{"MeuContexto"}.data.publish("Numero 1" => 100);
 		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.data.find("Numero 1"));

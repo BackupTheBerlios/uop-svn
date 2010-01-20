@@ -1,14 +1,14 @@
 entity start
 	method constructor()
 		var element p = process.new();
-		{"context"}.bind("Eu");
+		{"context"}.join("Eu");
 		io.writeln("Resultado: ", {"context"}.data.get("Resultado"));
 	end
 end
 
 entity process [parallel]
 	method constructor()
-		{"context"}.bind("Eu");
+		{"context"}.join("Eu");
 		{"context"}.data.publish("Resultado" => 10 * 2);
 	end
 end

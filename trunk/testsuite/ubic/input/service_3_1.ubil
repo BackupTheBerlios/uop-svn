@@ -5,7 +5,7 @@ entity servico
 		return x+y;
 	end
 	method constructor()
-		{"service"}.bind("Provider");
+		{"service"}.join("Provider");
 		{"service"}.service += soma(int,int);
 	end
 end

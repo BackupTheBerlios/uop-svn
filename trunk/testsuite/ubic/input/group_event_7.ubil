@@ -5,7 +5,7 @@ entity servico
 		return x+y;
 	end
 	method constructor()
-		{"context"}.bind("context");
+		{"context"}.join("context");
 		{"context"}.service.publish(soma(int,int));
 	end
 	method destructor()
@@ -16,7 +16,7 @@ end
 entity start
 	method constructor()
 		var element s;
-		{"context"}.bind("context");
+		{"context"}.join("context");
 		{"context"}.on_insert_service += ev_servico_inserido;
 		{"context"}.on_remove_service += ev_servico_removido;
  		s = servico.new();

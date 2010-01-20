@@ -51,7 +51,7 @@ entity personal_assistant
 		ncurses.wgetstr(perfil_win, activity.status)
 		ncurses.wrefresh(perfil_win)
 		["users"].data.af(identity.username => identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status)
-		// TODO: outras propostas de sintaxe para grupos
+		// TODO: outras propostas de sintaxe para contextos
 //		["users"].data.af(identity.username => {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status})
 //		["users"].data.af(identity.username, {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status})
 //		["users"].data[identity.username] = {identity.name, identity.email, identity.prefered_media, identity.general_interest, identity.specific_interest, identity.to_teach, identity.to_learn, location.symbolic, activity.status}

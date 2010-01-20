@@ -2,7 +2,7 @@ import datetime;
 
 entity start
 	method constructor()
-		{"context"}.bind("context");
+		{"context"}.join("context");
 		{"context"}.on_insert_service += ev_servico_inserido;
 		datetime.sleep(10);
 		io.writeln("Terminei de monitorar a insercao de servicos");

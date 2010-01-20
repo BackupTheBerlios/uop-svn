@@ -7,7 +7,7 @@ entity start
 		var int offer_number;
 		var tuple lixo;
 		identity.name    = "alex";
-		{"shopping.praca_alimentacao"}.bind(identity.name);
+		{"shopping.praca_alimentacao"}.join(identity.name);
 		while(true)
 			datetime.sleep(5);
 			offer_list = {"shopping.praca_alimentacao"}.data.list();

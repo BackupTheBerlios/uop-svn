@@ -1,7 +1,7 @@
 entity start
 	method constructor()
 		var tuple number;
-		{"MeuContexto"}.bind("teste");
+		{"MeuContexto"}.join("teste");
 		{"MeuContexto"}.data.publish("Numero 1" => 100);
 		number = {"MeuContexto"}.data.find("Numero 1");
 		io.writeln("Informacoes inseridas: key=", number.keys[1], " value=", number.values[1]);

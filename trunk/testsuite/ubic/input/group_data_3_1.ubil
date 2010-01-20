@@ -4,7 +4,7 @@ import datetime;
 
 entity start
 	method constructor()
-		{"MeuContexto"}.bind("prog1");
+		{"MeuContexto"}.join("prog1");
 		io.writeln("Programa 1 inserindo N1");
 		{"MeuContexto"}.data.publish("N1" => 100);
 //		datetime.sleep(5);

@@ -383,10 +383,12 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 		{ methodDef->addInstruction(STTAB_OPCODE, methodDef->getVarIndex(GETTEXT($IDENTIFIER))); }
 	;
 
+// TODO: Seria interessante colocar as derivacoes bem na esquerda (coluna 1) ???
+
 ///----------
    event_assignment_statement
 ///----------
-	:	context_bind_event
+	:	context_join_event
 	|	element_event_assignment_statement
 	;
 
@@ -403,7 +405,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 	;
 
 ///----------
-   context_bind_event
+   context_join_event
 ///----------
 	:	context '.' data=IDENTIFIER '.' event=IDENTIFIER '+=' method=IDENTIFIER
 		{
@@ -430,7 +432,7 @@ static ANTLR3_BOOLEAN enumIsKeyword = ANTLR3_TRUE;
 {
    std::string serviceName;
 }
-   :  '{' expr '}' '.' 'bind' '(' argument ')'  { methodDef->addInstruction(JOINC_OPCODE);  }
+   :  '{' expr '}' '.' 'join' '(' argument ')'  { methodDef->addInstruction(JOINC_OPCODE);  }
    |  '{' expr '}' '.' 'leave' '(' argument ')' { methodDef->addInstruction(LEAVEC_OPCODE); }
    |  { methodDef->pushInstructions(); } '{' expr '}' '.' { methodDef->addInstructions(); } IDENTIFIER
       '(' (args=argument_list)? ')'

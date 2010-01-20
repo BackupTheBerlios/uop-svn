@@ -4,7 +4,7 @@ entity servico
 		return par1+par2, par1-par2;
 	end
 	method constructor()
-		{"context"}.bind("Alex");
+		{"context"}.join("Alex");
 		{"context"}.service.publish(operations(int,int));
 	end
 end

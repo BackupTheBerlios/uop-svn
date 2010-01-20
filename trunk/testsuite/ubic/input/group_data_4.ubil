@@ -3,14 +3,14 @@ import datetime;
 entity start
 	method constructor()
 		var element insere = insert_data.new();
-		{"MeuContexto"}.bind("start");
+		{"MeuContexto"}.join("start");
 		io.writeln("Informacao inserida: ", {"MeuContexto"}.data.find("Numero 1"));
 	end
 end
 
 entity insert_data [parallel]
 	method constructor()
-		{"MeuContexto"}.bind("insert");
+		{"MeuContexto"}.join("insert");
 		datetime.sleep(5);
 		io.writeln("Inserindo informacao");
 		{"MeuContexto"}.data.publish("Numero 1" => 100);

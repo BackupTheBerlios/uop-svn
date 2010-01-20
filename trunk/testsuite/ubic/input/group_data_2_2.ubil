@@ -2,7 +2,7 @@
 
 entity start
 	method constructor()
-		{"MeuContexto"}.bind("prog2");
+		{"MeuContexto"}.join("prog2");
 		io.writeln("Informacoes inseridas pelo programa 1: ", {"MeuContexto"}.data.find("Numero 1"));
 	end
 end

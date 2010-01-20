@@ -2,7 +2,7 @@ import datetime;
 
 entity start
 	method constructor()
-		{"context"}.bind("xxx");
+		{"context"}.join("xxx");
 		{"context"}.on_insert_data += ev_dado_inserido;
 		{"context"}.data.publish("xxx" => "yyy", "zzz");
 		{"context"}.data.publish("xxx2" => "yyy2", "zzz2");

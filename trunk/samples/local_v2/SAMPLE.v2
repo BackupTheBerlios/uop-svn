@@ -29,7 +29,7 @@ Learner profiles
 Learning objects
 ----------------
 
-* sao disponibilizados aos aprendizes qdo interagem com os contextos (grupos do UOP)
+* sao disponibilizados aos aprendizes qdo interagem com os contextos
 * Learning objects repository: armazena e indexa conteúdo relacionado ao processo de ensino
   - creation date, expiration date, category, keywords
 
@@ -172,28 +172,28 @@ Telas
 RECURSOS DO UOP NECESSARIOS
 ---------------------------
 
-* Grupos com dados e elementos
+* Contextos com dados e elementos
 * Binding bibliotecas
   - ncurses ? QT ?
   - location system ? mas acho que o usuario poderia indicar nesta primeira versao
   - tb poderia implementar read, write e writeln, e esquecer os bindings por enquanto...
 * Mobilidade ? Nao... 
 * Eventos ? acho que facilitaria
-* Comunicacao em grupo (da para simular com os dados disponibilizados nos grupos, mas nao fica "a mesma coisa"...)
+* Comunicacao em grupo (da para simular com os dados disponibilizados nos contextos, mas nao fica "a mesma coisa"...)
 
 * Tela com mensagens, eventos e usuarios
   - podem ser implementadas com o recurso de mensagens
   - dados podem ser armazenados em arrays ou nos proprios componentes da tela
 * Tela com objetos de aprendizagem
-  - Utiliza grupo do UOP para procurar, armazenar e compartilhar os objetos
+  - Utiliza contexto do UOP para procurar, armazenar e compartilhar os objetos
 
 
 DUVIDAS
 -------
 
 * Learner profiles usa contextos (UOP) para implementar persistent data (contact, preferences e interests) ?
-* Learning objects serao armazenados nos grupos do UOP ?
-* LOCAL eh contexto, UOP eh grupo... LOCAL eh profile, UOP eh contexto... qual o correto ???
+* Learning objects serao armazenados nos contextos do UOP ?
+* LOCAL eh profile, UOP eh contexto... qual o correto ???
 * Se a mobilidade eh do aplicativo, os elementos (ou os aplicativos) estao nos grupos ??? Acho q confundi, sao os elementos sim, de qq forma...
 * acho que vou precisar de elementos concorrentes para implementar tutor... teria como evitar isso ? talvez ate tem como, mas talvez complicaria (e muito) o codigo... ver com o barbosa se o codigo vai ser tao "importante" para o SBIE...
 * as notificacoes serao enviadas ou o usuario (aplicativo) verifica no grupo se tem algo q lhe interessa ???

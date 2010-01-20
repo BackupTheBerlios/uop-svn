@@ -5,7 +5,7 @@ entity servico
 		return x+y;
 	end
 	method constructor()
-		{"context"}.bind("context");
+		{"context"}.join("context");
 		{"context"}.service.publish(soma(int,int));
 	end
 end
@@ -13,7 +13,7 @@ end
 entity start
 	method constructor()
 		var element s;
-		{"context"}.bind("context");
+		{"context"}.join("context");
 		{"context"}.on_insert_service += ev_servico_inserido;
  		s = servico.new();
 //		io.writeln("Soma: ",  {"context"}.soma(10,20));

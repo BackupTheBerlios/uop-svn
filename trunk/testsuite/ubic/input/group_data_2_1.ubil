@@ -2,7 +2,7 @@
 
 entity start
 	method constructor()
-		{"MeuContexto"}.bind("prog1");
+		{"MeuContexto"}.join("prog1");
 		io.writeln("Programa 1 inserindo informacoes");
 		{"MeuContexto"}.data.publish("Numero 1" => 100);
 		while(true)

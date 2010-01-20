@@ -729,7 +729,7 @@ bool CRunBytecode::runsCode(std::string contextName, std::string serviceName, st
 	std::string elementName = (*_contextList)[contextName]->findService(serviceName);
 
 	if (elementName == "") {
-// 		std::cout << "Servico " << serviceName << " no grupo " << contextName << " nao encontrado !!!" << std::endl;
+// 		std::cout << "Servico " << serviceName << " no contexto " << contextName << " nao encontrado !!!" << std::endl;
 		return false;
 	}
 
