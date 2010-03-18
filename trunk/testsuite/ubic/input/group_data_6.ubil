@@ -1,9 +1,8 @@
 entity start
 	method constructor()
-		{"MeuContexto"}.join("prog1");
 		io.writeln("Inserindo informacoes");
-		{"MeuContexto"}.data.publish("Numero 1" => 100);
-		io.writeln("findnb em informacao inexistente: ", {"MeuContexto"}.data.findnb("Numero X"));
-		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.data.get("Numero 1"));
+		{"MeuContexto"}.cpublish("Numero 1" => 100);
+		io.writeln("findnb em informacao inexistente: ", {"MeuContexto"}.cfindnb("Numero X"));
+		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.cget("Numero 1"));
 	end
 end

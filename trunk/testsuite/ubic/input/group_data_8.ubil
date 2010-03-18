@@ -2,13 +2,12 @@ import datetime;
 
 entity start
 	method constructor()
-		{"MeuContexto"}.join("prog1");
 		io.writeln("Inserindo informacao");
-		{"MeuContexto"}.data.publish("Numero 1" => 100);
-		io.writeln("findnb em informacao inexistente: ", {"MeuContexto"}.data.findnb("Numero X"));
-		io.writeln("Informacao inserida: ", {"MeuContexto"}.data.find("Numero 1"));
-		io.writeln("Removendo informacao inserida: ", {"MeuContexto"}.data.get("Numero 1"));
-		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.data.findnb("Numero 1"));
-		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.data.getnb("Numero 1"));
+		{"MeuContexto"}.cpublish("Numero 1" => 100);
+		io.writeln("findnb em informacao inexistente: ", {"MeuContexto"}.cfindnb("Numero X"));
+		io.writeln("Informacao inserida: ", {"MeuContexto"}.cfind("Numero 1"));
+		io.writeln("Removendo informacao inserida: ", {"MeuContexto"}.cget("Numero 1"));
+		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.cfindnb("Numero 1"));
+		io.writeln("Numero 1 nao existe mais: ", {"MeuContexto"}.cgetnb("Numero 1"));
 	end
 end

@@ -1,0 +1,63 @@
+entity start
+    method constructor()
+        // Publica o servico e as informacoes sobre ele
+        {"parque"}.spublish("visita_assistida");
+        {"parque"}.cpublish(
+            "Visita assistida" => "1 hora", 
+            "Baseado na sua localização, são disponibilizadas informações sobre a fauna e a flora local.",
+            "Mini zoológico, Plantas silvestres, Flores e Animais silvestres.");
+
+        io.key_press();
+    end
+
+    service visita_assistida(int y, int x) [string]
+        var table _y1_desc;
+        var table _x1_desc;
+        var table _y2_desc;
+        var table _x2_desc;
+        var table _desc;
+        var int   _desc_count;
+        var int   desc_number;
+
+        io.writeln("[Visita assistida] Recebido pedido para coordenadas ", y, ", ", x);
+
+        // Registra as areas de interesse
+
+        // Area 1
+        _desc_count++;
+        _y1_desc[_desc_count] = 13;
+        _x1_desc[_desc_count] = 04;
+        _y2_desc[_desc_count] = 14;
+        _x2_desc[_desc_count] = 12;
+        _desc   [_desc_count] = "Mini zoo tem animais como girafa, urso, macaco prego, entre outros.";
+
+        // Area 2
+        _desc_count++;
+        _y1_desc[_desc_count] = 13;
+        _x1_desc[_desc_count] = 14;
+        _y2_desc[_desc_count] = 14;
+        _x2_desc[_desc_count] = 20;
+        _desc   [_desc_count] =
+            "Plantas como aroeira, cavalinha, pau-santo e tucum podem ser encontrados neste local.";
+
+        // Area 3
+        _desc_count++;
+        _y1_desc[_desc_count] = 03;
+        _x1_desc[_desc_count] = 14;
+        _y2_desc[_desc_count] = 04;
+        _x2_desc[_desc_count] = 20;
+        _desc   [_desc_count] = 
+                "Estes animais silvestres vivem livremente aqui desde a construção do parque.";
+
+        // Verifica se a localizacao fornecida faz parte de uma das areas de interesse.
+        for(desc_number = 1; desc_number <= _desc_count; desc_number++)
+            if (y >= _y1_desc[desc_number] and y <= _y2_desc[desc_number] and
+                x >= _x1_desc[desc_number] and x <= _x2_desc[desc_number])
+                // Caso afirmativo, retorna a informacao sobre a area
+                return _desc[desc_number];
+            end
+        end
+		// Nenhuma informacao sobre a localizacao atual
+        return "Nenhuma informação sobre este local.";
+    end
+end

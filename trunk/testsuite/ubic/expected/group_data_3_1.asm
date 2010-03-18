@@ -1,39 +1,35 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S MeuContexto
-	3   S prog1
-	4   S Programa 1 inserindo N1
-	5   I 1
-	6   S io.writeln
-	7   S N1
-	8   I 100
-	9   S Informacoes inseridas pelo programa 2: 
-	10  S N2
-	11  I 2
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [Programa 1 inserindo N1]
+	.const 3   int      [1]
+	.const 4   string   [io.writeln]
+	.const 5   string   [MeuContexto]
+	.const 6   string   [N1]
+	.const 7   int      [100]
+	.const 8   string   [Informacoes inseridas pelo programa 2: ]
+	.const 9   string   [N2]
+	.const 10  int      [2]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
-		ldconst 2 --> [MeuContexto]
-		ldconst 3 --> [prog1]
-		joinc
-		ldconst 4 --> [Programa 1 inserindo N1]
-		ldconst 5 --> [1]
-		lcall 6 --> [io.writeln]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [N1]
-		ldconst 8 --> [100]
-		ldconst 5 --> [1]
-		ldconst 5 --> [1]
-		publishd
-		ldconst 9 --> [Informacoes inseridas pelo programa 2: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 10 --> [N2]
-		ldconst 5 --> [1]
-		findd
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		stop
+	        ldconst      2 --> [Programa 1 inserindo N1]
+	        ldconst      3 --> [1]
+	        lcall        4 --> [io.writeln]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [N1]
+	        ldconst      7 --> [100]
+	        ldconst      3 --> [1]
+	        ldconst      3 --> [1]
+	        cpublish    
+	        ldconst      8 --> [Informacoes inseridas pelo programa 2: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      9 --> [N2]
+	        ldconst      3 --> [1]
+	        cfind       
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        exit        
 	.end
 .end

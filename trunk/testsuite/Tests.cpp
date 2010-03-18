@@ -204,6 +204,17 @@ void CTests::define()
 	test = compiler.addTest(PASS, "for_1");
 	test = vm.addTest(PASS, "for_1");
 
+	test = compiler.addTest(PASS, "for_2");
+	test = vm.addTest(PASS, "for_2");
+
+	test_name = "for_testing_break";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "for_testing_continue";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
 	test = compiler.addTest(PASS, "exemplo_for");
 	test = vm.addTest(PASS, "exemplo_for");
 
@@ -213,8 +224,24 @@ void CTests::define()
 	test = compiler.addTest(PASS, "exemplo_while");
 	test = vm.addTest(PASS, "exemplo_while");
 
+	test_name = "while_testing_break";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "while_testing_continue";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
 	test = compiler.addTest(PASS, "repeat_until_1");
 	test = vm.addTest(PASS, "repeat_until_1");
+
+	test_name = "repeat_testing_break";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "repeat_testing_continue";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
 
 	test = compiler.addTest(PASS, "method_1");
 	test = vm.addTest(PASS, "method_1");
@@ -306,6 +333,22 @@ void CTests::define()
 	test = compiler.addTest(PASS, "group_4");
 	test = vm.addTest(PASS, "group_4");
 
+	test_name = "group_5";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "group_6";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "group_7";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "group_8";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
 	test = compiler.addTest(PASS, "service_1");
 	test = vm.addTest(PASS, "service_1");
 
@@ -338,6 +381,10 @@ void CTests::define()
 
 	test = compiler.addTest(PASS, "table_1d_7");
 	test = vm.addTest(PASS, "table_1d_7");
+
+	test_name = "table_1d_8";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
 
 	test = compiler.addTest(PASS, "group_data_1");
 	test = vm.addTest(PASS, "group_data_1");
@@ -487,6 +534,18 @@ void CTests::define()
 	test = vm.addTest(PASS, test_name);
 
 	test_name = "service_list_1";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "default_values";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "executa_construtor";
+	test = compiler.addTest(PASS, test_name);
+	test = vm.addTest(PASS, test_name);
+
+	test_name = "numeros_negativos";
 	test = compiler.addTest(PASS, test_name);
 	test = vm.addTest(PASS, test_name);
 

@@ -1,70 +1,66 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S MeuContexto
-	3   S prog1
-	4   S Inserindo informacao
-	5   I 1
-	6   S io.writeln
-	7   S Numero 1
-	8   I 100
-	9   S findnb em informacao inexistente: 
-	10  S Numero X
-	11  I 2
-	12  S Informacao inserida: 
-	13  S Removendo informacao inserida: 
-	14  S Numero 1 nao existe mais: 
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [Inserindo informacao]
+	.const 3   int      [1]
+	.const 4   string   [io.writeln]
+	.const 5   string   [MeuContexto]
+	.const 6   string   [Numero 1]
+	.const 7   int      [100]
+	.const 8   string   [findnb em informacao inexistente: ]
+	.const 9   string   [Numero X]
+	.const 10  int      [2]
+	.const 11  string   [Informacao inserida: ]
+	.const 12  string   [Removendo informacao inserida: ]
+	.const 13  string   [Numero 1 nao existe mais: ]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
-		ldconst 2 --> [MeuContexto]
-		ldconst 3 --> [prog1]
-		joinc
-		ldconst 4 --> [Inserindo informacao]
-		ldconst 5 --> [1]
-		lcall 6 --> [io.writeln]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 8 --> [100]
-		ldconst 5 --> [1]
-		ldconst 5 --> [1]
-		publishd
-		ldconst 9 --> [findnb em informacao inexistente: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 10 --> [Numero X]
-		ldconst 5 --> [1]
-		finddnb
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		ldconst 12 --> [Informacao inserida: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		findd
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		ldconst 13 --> [Removendo informacao inserida: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		getd
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		ldconst 14 --> [Numero 1 nao existe mais: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		finddnb
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		ldconst 14 --> [Numero 1 nao existe mais: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		getdnb
-		ldconst 11 --> [2]
-		lcall 6 --> [io.writeln]
-		stop
+	        ldconst      2 --> [Inserindo informacao]
+	        ldconst      3 --> [1]
+	        lcall        4 --> [io.writeln]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      7 --> [100]
+	        ldconst      3 --> [1]
+	        ldconst      3 --> [1]
+	        cpublish    
+	        ldconst      8 --> [findnb em informacao inexistente: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      9 --> [Numero X]
+	        ldconst      3 --> [1]
+	        cfindnb     
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        ldconst      11 --> [Informacao inserida: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        cfind       
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        ldconst      12 --> [Removendo informacao inserida: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        cget        
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        ldconst      13 --> [Numero 1 nao existe mais: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        cfindnb     
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        ldconst      13 --> [Numero 1 nao existe mais: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        cgetnb      
+	        ldconst      10 --> [2]
+	        lcall        4 --> [io.writeln]
+	        exit        
 	.end
 .end

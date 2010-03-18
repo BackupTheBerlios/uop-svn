@@ -1,0 +1,7 @@
+entity start
+	method constructor()
+		io.writeln(-10);
+		io.writeln(-10 + -20);
+	end
+end
+

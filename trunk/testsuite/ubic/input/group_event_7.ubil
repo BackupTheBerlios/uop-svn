@@ -5,22 +5,20 @@ entity servico
 		return x+y;
 	end
 	method constructor()
-		{"context"}.join("context");
-		{"context"}.service.publish(soma(int,int));
+		{"context"}.spublish("soma");
 	end
 	method destructor()
-		{"context"}.service.rem(soma(int,int));
+		{"context"}.sremove("soma");
 	end
 end
 
 entity start
 	method constructor()
 		var element s;
-		{"context"}.join("context");
 		{"context"}.on_insert_service += ev_servico_inserido;
 		{"context"}.on_remove_service += ev_servico_removido;
  		s = servico.new();
-		io.writeln("Resultado do servico soma(10,20): ",  {"context"}.soma(10,20));
+		io.writeln("Resultado do servico soma(10,20): ",  {"context"}.srun("soma",10,20));
 		s.destructor();
 		datetime.sleep(2);
 		io.writeln("Terminando a execucao...");

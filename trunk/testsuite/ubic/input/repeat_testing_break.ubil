@@ -1,0 +1,13 @@
+entity start
+	method constructor()
+		var int x = 1;
+		repeat
+			io.writeln("x=", x);
+			x++;
+			if (x>5)
+				break;
+			end
+		until(x > 10)
+	end
+end
+

@@ -2,10 +2,9 @@ import datetime;
 
 entity start
 	method constructor()
-		{"shopping.praca_alimentacao"}.join("lancheria");
 		while(true)
-			{"shopping.praca_alimentacao"}.data.publish("alex", "oferta", "lancheria", "suco laranja" => 3.50, "Esquerda logo na entrada");
-			{"shopping.praca_alimentacao"}.data.publish("alex", "oferta", "lancheria", "refri"        => 2.00, "Esquerda logo na entrada");
+			{"shopping.praca_alimentacao"}.cpublish("alex", "oferta", "lancheria", "suco laranja" => 3.50, "Esquerda logo na entrada");
+			{"shopping.praca_alimentacao"}.cpublish("alex", "oferta", "lancheria", "refri"        => 2.00, "Esquerda logo na entrada");
 		end
 	end
 end

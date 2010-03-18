@@ -23,6 +23,7 @@
 #include <iomanip>
 
 #include "Symbol.hpp"
+#include "LibUvmCommon.hpp"
 // #include "MultiIndex.hpp"
 
 // TODO: A classe CLiteral nao substitui essa classe ???
@@ -46,24 +47,27 @@ std::string CSymbol::toTextAssembly()
 {
 	std::stringstream result;
 
-	result << std::setw(3) << std::left << _index << " " << (char)_type << " " << _name;
+	result << ".const " << std::setw(3) << std::left << _index << " " << std::setw(8) << typeToText(_type) << " [" << _name << "]";
 
 	return result.str();
 }
 
 void CSymbol::saveBytecode(CBinString& bytecode)
 {
+	// Salva o tipo do simbolo
+	bytecode.save(&_type, sizeof(_type));
+	
 	// Salva o tamanho do simbolo e o simbolo
 	size_t symbolSize = _name.size();
 	bytecode.save(&symbolSize, sizeof(symbolSize));
 	bytecode.save(_name.c_str(), symbolSize);
-
-	// Salva o tipo do simbolo
-	bytecode.save(&_type, sizeof(_type));
 }
 
 bool CSymbol::loadBytecode(CBinString& bytecode)
 {
+	// Carrega o tipo do simbolo
+	bytecode.load(&_type, sizeof(_type));
+
 	// Carrega o tamanho do simbolo e o simbolo
 	size_t symbolSize;
 	bytecode.load(&symbolSize, sizeof(symbolSize));
@@ -73,9 +77,6 @@ bool CSymbol::loadBytecode(CBinString& bytecode)
 	_name = std::string(buffer).substr(0, symbolSize);
 
 	delete []buffer;
-
-	// Carrega o tipo do simbolo
-	bytecode.load(&_type, sizeof(_type));
 
 	setValue(_type, _name);
 

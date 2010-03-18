@@ -120,7 +120,7 @@ void CMethodDefinition::addForStatement()
 {
 }
 
-std::string CMethodDefinition::toTextAssembly(bool onlyCode)
+std::string CMethodDefinition::toTextAssembly(bool high_level, bool onlyCode)
 {
 	std::string result;
 
@@ -145,7 +145,7 @@ std::string CMethodDefinition::toTextAssembly(bool onlyCode)
 	}
 
 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
-		result += (*instruction)->toTextAssembly(_entity->_propertyList, _localVarList, _parameterList);
+		result += (*instruction)->toTextAssembly(high_level, _entity->_propertyList, _localVarList, _parameterList);
 	}
 
 	if (onlyCode == false) {
@@ -291,12 +291,22 @@ void CMethodDefinition::resolveLabels()
 				std::cerr << "Label " << (*instruction)->_arg1 << " inexistente !!!" << std::endl;
 			} else {
 				(*instruction)->_arg1 = address->second;
+				_instructionList[address->second]->_label_used = true;
 			}
 		}
 
 		// Troca label da instrucao pelo numero da instrucao
 		if ((*instruction)->_label != -1) {
-			(*instruction)->_label = instruction - _instructionList.begin();
+// 			if ((*instruction)->_label_used) {
+				(*instruction)->_label = instruction - _instructionList.begin();
+// 			}
+		}
+	}
+
+	// Elimina labels nao utilizados
+	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
+		if ((*instruction)->_label_used == false) {
+			(*instruction)->_label = -1;
 		}
 	}
 }

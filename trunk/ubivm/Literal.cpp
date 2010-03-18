@@ -43,8 +43,10 @@ CLiteral::CLiteral(const CLiteral& literal)
 		_value.stringValue = new std::string();
 		*_value.stringValue = *literal._value.stringValue;
 	} else if (_type == TableType) {
-		_value.tableValue = new CMultiIndex<CLiteral>();
-		*_value.tableValue = *literal._value.tableValue;
+		// TODO: O codigo abaixo nao pode ficar comentado !!! Eh so um teste !!!
+		// TODO: desse jeito, as tabelas sao passadas sempre por referencia na pilha, e nunca por valor
+// 		_value.tableValue = new CMultiIndex<CLiteral>();
+// 		*_value.tableValue = *literal._value.tableValue;
 	} else if (_type == TupleType) {
 		_value.tupleValue = new CTuple();
 		*_value.tupleValue = *literal._value.tupleValue;
@@ -227,7 +229,7 @@ void CLiteral::saveBytecode(CBinString& bytecode)
 	} else if (_type == BooleanType) {
 		bytecode.save(&_value.booleanValue, sizeof(_value.booleanValue));
 	} else {
-		std::cout << "serializacao nao implementada para tipo " << _type << std::endl;
+		std::cout << "serializacao nao implementada para tipo " << _type << " (" << (char) _type << ")" << std::endl;
 	}
 }
 
@@ -246,7 +248,7 @@ bool CLiteral::loadBytecode(CBinString& bytecode)
 	} else if (_type == BooleanType) {
 		bytecode.load(&_value.booleanValue, sizeof(_value.booleanValue));
 	} else {
-		std::cout << "serializacao nao implementada para tipo " << _type << std::endl;
+		std::cout << "serializacao nao implementada para tipo " << _type << " (" << (char) _type << ")" << std::endl;
 	}
 
 	return true;

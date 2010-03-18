@@ -22,6 +22,7 @@ void CContext::remObject(std::string name)
 void CContext::addTuple(CTuple* tuple)
 {
 	_listd[tuple->getComposedKeys()] = tuple;
+// 	std::cout << "Adicionado no contexto " << _name << " a tupla " << tuple->getComposedKeys() << " com valor " << tuple->getComposedValues() <<  std::endl;
 }
 
 

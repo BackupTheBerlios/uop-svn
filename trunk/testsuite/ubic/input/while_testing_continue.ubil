@@ -1,0 +1,14 @@
+entity start
+	method constructor()
+		var int x = 1;
+		while(x <= 10)
+			if (x==5 or x==7 or x==9)
+				x++;
+				continue;
+			end
+			io.writeln("x=", x);
+			x++;
+		end
+	end
+end
+

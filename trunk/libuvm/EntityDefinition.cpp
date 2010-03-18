@@ -59,7 +59,7 @@ CMethodDefinition* CEntityDefinition::addMethod(VisibilityType visibility, std::
 	return method;
 }
 
-std::string CEntityDefinition::toTextAssembly()
+std::string CEntityDefinition::toTextAssembly(bool high_level)
 {
 	std::string result;
 	result += ".entity " + _name + '\n';
@@ -72,7 +72,7 @@ std::string CEntityDefinition::toTextAssembly()
 	if (method == NULL) {
 		result += "\t.valid_context_when (always)\n";
 	} else {
-		result += "\t.valid_context_when " + method->toTextAssembly(true);
+		result += "\t.valid_context_when " + method->toTextAssembly(high_level, true);
 	}
 
 	for(std::vector<CPropertyDefinition*>::iterator prop = _propertyList.begin(); prop != _propertyList.end(); prop++) {
@@ -81,7 +81,7 @@ std::string CEntityDefinition::toTextAssembly()
 
 	for(std::vector<CMethodDefinition*>::iterator method = _methodList.begin(); method != _methodList.end(); method++) {
 		if ((*method)->getName() != "__when" ) {
-			result += (*method)->toTextAssembly();
+			result += (*method)->toTextAssembly(high_level);
 		}
 	}
 

@@ -1,0 +1,41 @@
+entity start
+	prop table proptab;
+
+	method constructor()
+		var table vartab;
+		var int index;
+
+		// vartab
+		for(index=1; index<=10; index=index+1)
+			vartab[index] = index*10;
+		end
+
+		for(index=1; index<=vartab.size(); index=index+1)
+			io.writeln("vartab[", index, "]=", vartab[index]);
+		end
+
+		// proptab
+		for(index=1; index<=10; index=index+1)
+			proptab[index] = 100 + index*10;
+		end
+
+		for(index=1; index<=proptab.size(); index=index+1)
+			io.writeln("proptab[", index, "]=", proptab[index]);
+		end
+
+		io.writeln("paramtab baseado em vartab");
+		imptab(vartab);
+
+		io.writeln("paramtab baseado em proptab");
+		imptab(proptab);
+	end
+
+	method imptab(table paramtab)
+		var int index;
+
+		for(index=1; index<=paramtab.size(); index=index+1)
+			io.writeln("paramtab[", index, "]=", paramtab[index]);
+		end
+	end
+end
+

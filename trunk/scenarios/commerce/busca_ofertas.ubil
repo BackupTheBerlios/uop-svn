@@ -1,0 +1,58 @@
+import ncurses;
+import ncurses_menu;
+import tools;
+
+entity start
+    method constructor()
+        var tuple offer;
+        var table offer_list;
+        var int offer_number;
+        var int count = 0;
+        var table offer_code_in_menu;
+        var table service_name_in_menu;
+
+        ncurses.initscr();
+        ncurses.mvwrite(1, 35, "BUSCA OFERTAS");
+        ncurses.mvwrite(3,  2, "NOME...........: "); identity.name            = ncurses.read();
+        ncurses.mvwrite(4,  2, "CATEGORIA......: "); identity.categoria       = ncurses.read();
+        ncurses.mvwrite(5,  2, "COMPONENTE BASE: "); identity.componente_base = ncurses.read();
+        ncurses.mvwrite(6,  2, "VALOR MAXIMO...: "); identity.valor_maximo    = tools.atof(ncurses.read());
+        ncurses.mvwrite(7,  2, "NUMERO PEDIDO..:");
+
+        ncurses.mvwrite(9, 30, "OFERTAS DE PRODUTOS");
+        ncurses.mvwrite(10, 3, "LOJISTA                       OFERTA                             VALOR");
+
+        // Monta um menu com as ofertas que atendem 100% das caracteristicas definidas pelo cliente
+        ncurses_menu.clear();
+        offer_list = {"/shopping/praca_alimentacao"}.clist();
+        for(offer_number=1; offer_number<=offer_list.size(); offer_number++)
+            offer = offer_list[offer_number];
+            if (offer.values[2] == identity.categoria 
+                    and offer.values[3] == identity.componente_base 
+                    and offer.values[5] <= identity.valor_maximo)
+                ncurses_menu.new_item(tools.pad(offer.keys[1], 30) + tools.pad(offer.keys[2],5) + 
+                        tools.pad(offer.values[1], 30) + tools.ftoa(offer.values[5]));
+                count++;
+                offer_code_in_menu[count]   = offer.keys[2];
+                service_name_in_menu[count] = offer.values[6];
+            end
+        end
+
+        if (count > 0)
+		    // Cliente seleciona uma das ofertas
+            offer_number = ncurses_menu.show(5, 80, 11, 1);
+
+            // Executa o servico disponibilizado pelo lojista para realizar o pedido
+            identity.checkout_number =
+                    {"/shopping/praca_alimentacao"}.srun(service_name_in_menu[offer_number],
+                    identity.name, offer_code_in_menu[offer_number]);
+
+            // Exibe o numero do pedido
+            ncurses.mvwrite(7, 19, identity.checkout_number);
+        end
+
+        ncurses.refresh();
+        ncurses.getch();
+        ncurses.endwin();
+    end
+end

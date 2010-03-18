@@ -1,0 +1,12 @@
+entity start
+	method constructor()
+		var int x;
+		for(x = 1; x <= 10; x++)
+			if (x==5 or x==7 or x==9)
+				continue;
+			end
+			io.writeln("x=", x);
+		end
+	end
+end
+

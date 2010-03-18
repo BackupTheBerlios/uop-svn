@@ -2,7 +2,6 @@ import datetime;
 
 entity start
 	method constructor()
-		{"context"}.join("xxx");
 		{"context"}.on_insert_data += ev_dado_inserido;
 		datetime.sleep(10);
 		io.writeln("Terminei de monitorar o evento on_insert_data.");

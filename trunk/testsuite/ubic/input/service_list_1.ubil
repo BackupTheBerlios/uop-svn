@@ -3,16 +3,16 @@ entity start
 		var table service_list;
 		var tuple servicet; // era para ser service apenas
 		var int   service_number;
-		service_list = {"users"}.service.list();
+		service_list = {"users"}.slist();
 //		foreach(service in service_list)
 		for(service_number=1; service_number<=service_list.size(); service_number=service_number+1)
 			servicet = service_list[service_number];
 			io.writeln("Nome:      ", servicet.keys[1]);
-			io.writeln("Descricao: ", servicet.values[1]);
-			io.writeln("TBF:       ", servicet.values[2]);
+			io.writeln("Descricao: ", servicet.results[1]);
+			io.writeln("TBF:       ", servicet.results[2]);
 		end
 
-//		foreach(service service in {"context"}.service.list())
+//		foreach(service service in {"context"}.slist())
 //			io.writeln("Nome : ", service.name);
 //			io.writeln("Descricao: ", service.description);
 //			io.writeln("TBF : ", service.tbf);

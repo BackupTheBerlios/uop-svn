@@ -1,7 +1,6 @@
 entity start
 	method constructor()
-		{"service"}.join("Requester");
-		io.writeln("Soma: ", {"service"}.soma(10,20));
+		io.writeln("Soma: ", {"service"}.srun("soma",10,20));
 	end
 end
 

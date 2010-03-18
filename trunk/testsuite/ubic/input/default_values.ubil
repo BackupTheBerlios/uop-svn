@@ -1,0 +1,10 @@
+entity start
+	method constructor()
+		var int    var_int;
+		var real   var_real;
+		var string var_string;
+		io.writeln("Default de int   =", var_int   );
+		io.writeln("Default de real  =", var_real  );
+		io.writeln("Default de string=", var_string);
+	end
+end

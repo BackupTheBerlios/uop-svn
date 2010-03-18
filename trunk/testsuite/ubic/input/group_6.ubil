@@ -1,8 +1,7 @@
 entity start
 	method constructor()
-		{"MeuContexto"}.join("Alex");
 		io.writeln("Inserindo informacoes");
-		{"MeuContexto"}.data.publish("key 1", "key 2" => "res1", "res2");
-		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.data.get("key 1", "key 2"));
+		{"MeuContexto"}.cpublish("key 1", "key 2" => "res1", "res2");
+		io.writeln("Informacoes inseridas: ", {"MeuContexto"}.cget("key 1", "key 2"));
 	end
 end

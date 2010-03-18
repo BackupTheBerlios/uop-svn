@@ -17,6 +17,7 @@ all:
 	make -C testsuite
 	make -C os_libs
 	make -C ubibind
+	make -C ubiprovider
 
 clean:
 	make -C libcommon clean
@@ -26,3 +27,4 @@ clean:
 	make -C testsuite clean
 	make -C os_libs clean
 	make -C ubibind clean
+	make -C ubiprovider clean

@@ -1,17 +1,18 @@
+import datetime;
+
 entity start
 	method constructor()
 		var table number_list;
 		var tuple number;
 		var int   count;
-		{"MeuContexto"}.join("teste");
-		{"MeuContexto"}.data.publish("Numero 1" => 100);
-		{"MeuContexto"}.data.publish("Numero 2" => 200);
-		{"MeuContexto"}.data.publish("Numero 3" => 300);
-		{"MeuContexto"}.data.publish("Numero 4" => 400);
-		number_list = {"MeuContexto"}.data.list();
+		{"MeuContexto"}.cpublish("Numero 1" => 100);
+		{"MeuContexto"}.cpublish("Numero 2" => 200);
+		{"MeuContexto"}.cpublish("Numero 3" => 300);
+		{"MeuContexto"}.cpublish("Numero 4" => 400);
+		number_list = {"MeuContexto"}.clist();
 		for(count=1; count<=number_list.size(); count=count+1)
 			number = number_list[count];
-			io.writeln("key=", number.keys[1], " value=", number.values[1]);
+			io.writeln("key=", number.keys[1], " value=", number.results[1]);
 		end
 	end
 end

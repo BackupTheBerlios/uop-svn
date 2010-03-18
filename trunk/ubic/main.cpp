@@ -95,8 +95,9 @@ void showVersion() {
 void showSyntax(int valor) {
     std::cout << "Use: ubic [options] filename" << std::endl;
     std::cout << "\t-o\tDefine uvm output filename." << std::endl;
-    std::cout << "\t-a\tDefine assembly output filename." << std::endl;
-    std::cout << "\t-h\tShow this help." << std::endl;
+	std::cout << "\t-a\tDefine assembly output filename." << std::endl;
+	std::cout << "\t-A\tDefine high level assembly output filename." << std::endl;
+	std::cout << "\t-h\tShow this help." << std::endl;
     std::cout << "\t-v\tShow version." << std::endl;
     std::cout << std::endl;
     std::cout << "To report bugs: alexgarzao@gmail.com " << std::endl;
@@ -119,10 +120,13 @@ main	(int argc, char *argv[])
 	SParamOptions options;
 
 	int param;
-	while ((param = getopt(argc, argv, "a:o:hv")) != -1) {
+	while ((param = getopt(argc, argv, "a:A:o:hv")) != -1) {
 		switch (param) {
 			case 'a': // Make assembly text file
 				options.asmFilename = std::string(optarg);
+				break;
+			case 'A': // Make high level assembly text file
+				options.hlasmFilename = std::string(optarg);
 				break;
 			case 'o': // Output uvm filename
 				options.uvmFilename = std::string(optarg);
@@ -445,7 +449,11 @@ static int parseFile(SParamOptions options)
 	if (errors == 0) {
 		if (options.asmFilename != "") {
 			std::ofstream out(options.asmFilename.c_str(), std::ios_base::out);
-			out << get_asm_def()->toTextAssembly();
+			out << get_asm_def()->toTextAssembly(false);
+		}
+		if (options.hlasmFilename != "") {
+			std::ofstream out(options.hlasmFilename.c_str(), std::ios_base::out);
+			out << get_asm_def()->toTextAssembly(true);
 		}
 		get_asm_def()->saveBytecode(options.uvmFilename);
 	}

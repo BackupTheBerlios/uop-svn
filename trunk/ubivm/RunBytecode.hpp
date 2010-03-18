@@ -52,6 +52,7 @@ private:
 	void procWriteln();
    void procWrite();
    void procReadln();
+   void procKeyPress();
    void procSleep();
 //   void setIntData(const int &address, const int &value);
 //   int  getIntData(const int &address);
@@ -72,7 +73,7 @@ private:
    void stresultOpcode();
    void ldconstOpcode();
    void ldparamOpcode();
-   void stopOpcode();
+   void exitOpcode();
    void retOpcode();
    void mcallOpcode();
    void addOpcode();
@@ -91,24 +92,24 @@ private:
    void jmpOpcode();
    void newelemOpcode();
    void ldselfOpcode();
-	void joincOpcode();
-	void publishdOpcode();
-	void getdOpcode();
-	void finddOpcode();
-	void getdnbOpcode();
-	void finddnbOpcode();
-	void listdOpcode();
+	void mjoinOpcode();
+	void cpublishOpcode();
+	void cgetOpcode();
+	void cfindOpcode();
+	void cgetnbOpcode();
+	void cfindnbOpcode();
+	void clistOpcode();
 	void stcontextiOpcode();
 	void ldcontextiOpcode();
-	void publishsOpcode();
-	void removesOpcode();
-	void runsOpcode();
+	void spublishOpcode();
+	void sremOpcode();
+	void srunOpcode();
 	void sttabOpcode();
 	void ldtabOpcode();
 	void ldtuplekOpcode();
-	void ldtuplevOpcode();
+	void ldtuplerOpcode();
 	void sttuplekOpcode();
-	void sttuplevOpcode();
+	void sttuplerOpcode();
 	void tabsizeOpcode();
 	void ldpropOpcode();
 	void stpropOpcode();
@@ -117,7 +118,7 @@ private:
 	void bcontextevOpcode();
 
 	OpcodePointer   _opcodePointer[OPCODE_COUNT];
-	bool            _stop;
+	bool            _exit;
 	int             _returnCode;
 	CInstructionDefinition* _currentInstruction;
 	SOptions* _options;
@@ -137,6 +138,7 @@ private:
 	SVmId _vmId;
 	void run_property_event(CElement* element, CMethodDefinition* method, std::string name, CLiteral old_value, CLiteral new_value);
 // 	void run_context_event_insert_data(std::string keys, std::string values);
+	CContext* force_context_creation(std::string context_name);
 };
 
 #endif

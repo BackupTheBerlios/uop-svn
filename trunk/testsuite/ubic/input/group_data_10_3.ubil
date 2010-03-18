@@ -1,7 +1,6 @@
 entity start
 	method constructor()
-		{"MeuContexto"}.join("prog3");
-		io.writeln("Primeira informacao inserida: ", {"MeuContexto"}.data.get("Nro 1"));
-		io.writeln("Segunda informacao inserida: ", {"MeuContexto"}.data.get("Nro 2"));
+		io.writeln("Primeira informacao inserida: ", {"MeuContexto"}.cget("Nro 1"));
+		io.writeln("Segunda informacao inserida: ", {"MeuContexto"}.cget("Nro 2"));
 	end
 end

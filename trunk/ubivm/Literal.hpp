@@ -46,6 +46,7 @@ public:
 	CLiteral(double value) { setValue(RealType, &value); }
 	CLiteral(bool value) { setValue(BooleanType, &value); }
 	CLiteral(std::string value) { setValue(StringType, &value); }
+	CLiteral(char* value) { std::string strvalue(value); setValue(StringType, &strvalue); }
 	CLiteral(CElement* value) { setValue(ElementType, value); }
 	CLiteral(CMultiIndex<CLiteral>* value) { setValue(TableType, value); }
 	CLiteral(CTuple* value) { setValue(TupleType, value); }

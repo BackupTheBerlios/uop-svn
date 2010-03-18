@@ -1,33 +1,29 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S MeuContexto
-	3   S prog1
-	4   S Programa 1 inserindo informacoes
-	5   I 1
-	6   S io.writeln
-	7   S Numero 1
-	8   I 100
-	9   B true
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [Programa 1 inserindo informacoes]
+	.const 3   int      [1]
+	.const 4   string   [io.writeln]
+	.const 5   string   [MeuContexto]
+	.const 6   string   [Numero 1]
+	.const 7   int      [100]
+	.const 8   bool     [true]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
-		ldconst 2 --> [MeuContexto]
-		ldconst 3 --> [prog1]
-		joinc
-		ldconst 4 --> [Programa 1 inserindo informacoes]
-		ldconst 5 --> [1]
-		lcall 6 --> [io.writeln]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 8 --> [100]
-		ldconst 5 --> [1]
-		ldconst 5 --> [1]
-		publishd
-	:12   	ldconst 9 --> [true]
-		ifnot 15 --> [15]
-		jmp 12 --> [12]
-	:15   	stop
+	        ldconst      2 --> [Programa 1 inserindo informacoes]
+	        ldconst      3 --> [1]
+	        lcall        4 --> [io.writeln]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      7 --> [100]
+	        ldconst      3 --> [1]
+	        ldconst      3 --> [1]
+	        cpublish    
+	:9      ldconst      8 --> [true]
+	        ifnot        12 --> [12]
+	        jmp          9 --> [9]
+	:12     exit        
 	.end
 .end

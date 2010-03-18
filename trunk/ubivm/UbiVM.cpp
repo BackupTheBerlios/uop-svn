@@ -38,7 +38,7 @@ int CUbiVM::run()
 
 std::string CUbiVM::_toTextAssembly()
 {
-	return _asmDef.toTextAssembly();
+	return _asmDef.toTextAssembly(false);
 }
 
 

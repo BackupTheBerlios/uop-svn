@@ -1,51 +1,44 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S p
-	3   S process
-	4   S context
-	5   S Eu
-	6   S Resultado: 
-	7   S Resultado
-	8   I 1
-	9   I 2
-	10  S io.writeln
-	11  I 10
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [p]
+	.const 3   string   [process]
+	.const 4   string   [Resultado: ]
+	.const 5   string   [context]
+	.const 6   string   [Resultado]
+	.const 7   int      [1]
+	.const 8   int      [2]
+	.const 9   string   [io.writeln]
+	.const 10  int      [10]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
 		.var 0 element p
-		newelem 3 --> [process]
-		stvar 0 --> [p]
-		ldconst 4 --> [context]
-		ldconst 5 --> [Eu]
-		joinc
-		ldconst 6 --> [Resultado: ]
-		ldconst 4 --> [context]
-		ldconst 7 --> [Resultado]
-		ldconst 8 --> [1]
-		getd
-		ldconst 9 --> [2]
-		lcall 10 --> [io.writeln]
-		stop
+	        newelem      3 --> [process]
+	        stvar        0 --> [p]
+	        ldconst      4 --> [Resultado: ]
+	        ldconst      5 --> [context]
+	        ldconst      6 --> [Resultado]
+	        ldconst      7 --> [1]
+	        cget        
+	        ldconst      8 --> [2]
+	        lcall        9 --> [io.writeln]
+	        exit        
 	.end
 .end
 .entity process
 	.option parallel
 	.valid_context_when (always)
 	.method constructor
-		ldconst 4 --> [context]
-		ldconst 5 --> [Eu]
-		joinc
-		ldconst 4 --> [context]
-		ldconst 7 --> [Resultado]
-		ldconst 11 --> [10]
-		ldconst 9 --> [2]
-		mul
-		ldconst 8 --> [1]
-		ldconst 8 --> [1]
-		publishd
-		ret
+	        ldconst      5 --> [context]
+	        ldconst      6 --> [Resultado]
+	        ldconst      10 --> [10]
+	        ldconst      8 --> [2]
+	        mul         
+	        ldconst      7 --> [1]
+	        ldconst      7 --> [1]
+	        cpublish    
+	        ret         
 	.end
 .end

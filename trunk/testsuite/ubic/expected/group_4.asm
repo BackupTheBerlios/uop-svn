@@ -1,38 +1,34 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S MeuContexto
-	3   S Alex
-	4   S Inserindo informacoes
-	5   I 1
-	6   S io.writeln
-	7   S Numero 1
-	8   I 2
-	9   S Informacoes inseridas: 
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [Inserindo informacoes]
+	.const 3   int      [1]
+	.const 4   string   [io.writeln]
+	.const 5   string   [MeuContexto]
+	.const 6   string   [Numero 1]
+	.const 7   int      [2]
+	.const 8   string   [Informacoes inseridas: ]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
-		ldconst 2 --> [MeuContexto]
-		ldconst 3 --> [Alex]
-		joinc
-		ldconst 4 --> [Inserindo informacoes]
-		ldconst 5 --> [1]
-		lcall 6 --> [io.writeln]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		ldconst 8 --> [2]
-		ldconst 5 --> [1]
-		ldconst 8 --> [2]
-		publishd
-		ldconst 9 --> [Informacoes inseridas: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 7 --> [Numero 1]
-		ldconst 5 --> [1]
-		getd
-		ldconst 8 --> [2]
-		lcall 6 --> [io.writeln]
-		stop
+	        ldconst      2 --> [Inserindo informacoes]
+	        ldconst      3 --> [1]
+	        lcall        4 --> [io.writeln]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        ldconst      7 --> [2]
+	        ldconst      3 --> [1]
+	        ldconst      7 --> [2]
+	        cpublish    
+	        ldconst      8 --> [Informacoes inseridas: ]
+	        ldconst      5 --> [MeuContexto]
+	        ldconst      6 --> [Numero 1]
+	        ldconst      3 --> [1]
+	        cget        
+	        ldconst      7 --> [2]
+	        lcall        4 --> [io.writeln]
+	        exit        
 	.end
 .end

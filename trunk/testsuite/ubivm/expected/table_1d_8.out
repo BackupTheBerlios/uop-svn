@@ -1,0 +1,43 @@
+UbiVM - Release 0.1.0 (development release)
+vartab[1]=10
+vartab[2]=20
+vartab[3]=30
+vartab[4]=40
+vartab[5]=50
+vartab[6]=60
+vartab[7]=70
+vartab[8]=80
+vartab[9]=90
+vartab[10]=100
+proptab[1]=110
+proptab[2]=120
+proptab[3]=130
+proptab[4]=140
+proptab[5]=150
+proptab[6]=160
+proptab[7]=170
+proptab[8]=180
+proptab[9]=190
+proptab[10]=200
+paramtab baseado em vartab
+paramtab[1]=10
+paramtab[2]=20
+paramtab[3]=30
+paramtab[4]=40
+paramtab[5]=50
+paramtab[6]=60
+paramtab[7]=70
+paramtab[8]=80
+paramtab[9]=90
+paramtab[10]=100
+paramtab baseado em proptab
+paramtab[1]=110
+paramtab[2]=120
+paramtab[3]=130
+paramtab[4]=140
+paramtab[5]=150
+paramtab[6]=160
+paramtab[7]=170
+paramtab[8]=180
+paramtab[9]=190
+paramtab[10]=200

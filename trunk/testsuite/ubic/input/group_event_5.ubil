@@ -2,12 +2,12 @@ import datetime;
 
 entity start
 	method constructor()
-		{""}.join("Alex");
+		{""}.mjoin("Alex");
 		{""}.on_new_context += ev_contexto_inserido;
-		{"context"}.join("Alex");
-		{"context.1"}.join("Alex");
+		{"context"}.mjoin("Alex");
+		{"context.1"}.mjoin("Alex");
 		{"context.1"}.on_new_context += ev_contexto_inserido2;
-		{"context.1.1"}.join("Alex");
+		{"context.1.1"}.mjoin("Alex");
 		datetime.sleep(2);
 		io.writeln("Terminando a execucao...");
 	end

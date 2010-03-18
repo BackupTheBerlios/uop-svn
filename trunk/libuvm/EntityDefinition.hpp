@@ -23,7 +23,7 @@ public:
 	size_t getSymbolIndex(std::string name, LiteralType type);
 	SymbolType getSymbolType(std::string name);
 	CSymbol* getSymbolByIndex(size_t index);
-	std::string toTextAssembly();
+	std::string toTextAssembly(bool high_level);
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
 	CMethodDefinition* getMethod(std::string name);

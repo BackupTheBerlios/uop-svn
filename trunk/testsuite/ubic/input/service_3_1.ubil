@@ -5,15 +5,13 @@ entity servico
 		return x+y;
 	end
 	method constructor()
-		{"service"}.join("Provider");
-		{"service"}.service += soma(int,int);
+		{"service"}.spublish("soma");
 	end
 end
 
 entity start
 	method constructor()
 		var element s = servico.new();
-		s.servico();
 		datetime.sleep(100);
 	end
 end

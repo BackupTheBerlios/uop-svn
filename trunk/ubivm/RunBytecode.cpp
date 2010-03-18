@@ -51,20 +51,32 @@ int CRunBytecode::run()
    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
 
 
+	// Init default context values
+	// TODO: deveria estar aqui ???
+	(*_contextsInfo)["identity.name"]     = CLiteral(std::string(""));
+	(*_contextsInfo)["identity.username"] = CLiteral(std::string(""));
+	(*_contextsInfo)["location.symbolic"] = CLiteral(std::string(""));
+
+// 	std::cout << "No init, identity.name=" << (*_contextsInfo)["identity.name"].getText() << std::endl;
+
+
+
 	CElement* element = new CElement(CUbiVM::getInstance()->getAsmDef()->getEntity("start"));
 
 	if (element == NULL) {
-		std::cout << "Entidade " << "start" << " nao encontrada !!!" << std::endl;
+// 		std::cout << "Entidade " << "start" << " nao encontrada !!!" << std::endl;
 		return 1;
 	}
+
+	_elementList->push_back(element);
 
 	CActivationRecord* ar = new CActivationRecord(this, element, "constructor", _ip, _dataStack);
 
 	_controlStack.push(ar);
 
-	_stop = false;
+	_exit = false;
 
-	while (!_stop) {
+	while (!_exit) {
 		step();
 	}
 
@@ -150,9 +162,9 @@ int CRunBytecode::run()
 
 void CRunBytecode::run_bytecode()
 {
-	_stop = false;
+	_exit = false;
 
-	while (!_stop) {
+	while (!_exit) {
 		step();
 	}
 }
@@ -160,9 +172,9 @@ void CRunBytecode::run_bytecode()
 
 void CRunBytecode::run_bytecode_until(unsigned char return_after_opcode)
 {
-	_stop = false;
+	_exit = false;
 
-	while (!_stop) {
+	while (!_exit) {
 		if (step() == return_after_opcode) {
 			break;
 		}
@@ -185,7 +197,7 @@ void CRunBytecode::_initOpcodePointer()
 	_opcodePointer[STRESULT_OPCODE ] = &CRunBytecode::stresultOpcode;
 	_opcodePointer[LDCONST_OPCODE  ] = &CRunBytecode::ldconstOpcode;
 	_opcodePointer[LDPARAM_OPCODE  ] = &CRunBytecode::ldparamOpcode;
-	_opcodePointer[STOP_OPCODE     ] = &CRunBytecode::stopOpcode;
+	_opcodePointer[EXIT_OPCODE     ] = &CRunBytecode::exitOpcode;
 	_opcodePointer[RET_OPCODE      ] = &CRunBytecode::retOpcode;
 	_opcodePointer[MCALL_OPCODE    ] = &CRunBytecode::mcallOpcode;
 	_opcodePointer[ADD_OPCODE      ] = &CRunBytecode::addOpcode;    // TODO: trocar ADD por SUM
@@ -204,22 +216,22 @@ void CRunBytecode::_initOpcodePointer()
 	_opcodePointer[JMP_OPCODE      ] = &CRunBytecode::jmpOpcode;
 	_opcodePointer[LDSELF_OPCODE   ] = &CRunBytecode::ldselfOpcode;
 	_opcodePointer[NEWELEM_OPCODE  ] = &CRunBytecode::newelemOpcode;
-	_opcodePointer[JOINC_OPCODE    ] = &CRunBytecode::joincOpcode;
-	_opcodePointer[PUBLISHD_OPCODE   ] = &CRunBytecode::publishdOpcode;
-	_opcodePointer[GETD_OPCODE  ] = &CRunBytecode::getdOpcode;
-	_opcodePointer[FINDD_OPCODE   ] = &CRunBytecode::finddOpcode;
-	_opcodePointer[GETDNB_OPCODE  ] = &CRunBytecode::getdnbOpcode;
-	_opcodePointer[FINDDNB_OPCODE   ] = &CRunBytecode::finddnbOpcode;
-	_opcodePointer[LISTD_OPCODE ] = &CRunBytecode::listdOpcode;
+	_opcodePointer[MJOIN_OPCODE    ] = &CRunBytecode::mjoinOpcode;
+	_opcodePointer[CPUBLISH_OPCODE   ] = &CRunBytecode::cpublishOpcode;
+	_opcodePointer[CGET_OPCODE  ] = &CRunBytecode::cgetOpcode;
+	_opcodePointer[CFIND_OPCODE   ] = &CRunBytecode::cfindOpcode;
+	_opcodePointer[CGETNB_OPCODE  ] = &CRunBytecode::cgetnbOpcode;
+	_opcodePointer[CFINDNB_OPCODE   ] = &CRunBytecode::cfindnbOpcode;
+	_opcodePointer[CLIST_OPCODE ] = &CRunBytecode::clistOpcode;
 	_opcodePointer[STCONTEXTI_OPCODE] = &CRunBytecode::stcontextiOpcode;
 	_opcodePointer[LDCONTEXTI_OPCODE] = &CRunBytecode::ldcontextiOpcode;
-	_opcodePointer[PUBLISHS_OPCODE ] = &CRunBytecode::publishsOpcode;
-	_opcodePointer[REMOVES_OPCODE  ] = &CRunBytecode::removesOpcode;
-	_opcodePointer[RUNS_OPCODE     ] = &CRunBytecode::runsOpcode;
+	_opcodePointer[SPUBLISH_OPCODE ] = &CRunBytecode::spublishOpcode;
+	_opcodePointer[SREM_OPCODE     ] = &CRunBytecode::sremOpcode;
+	_opcodePointer[SRUN_OPCODE     ] = &CRunBytecode::srunOpcode;
 	_opcodePointer[STTAB_OPCODE    ] = &CRunBytecode::sttabOpcode;
 	_opcodePointer[LDTAB_OPCODE    ] = &CRunBytecode::ldtabOpcode;
 	_opcodePointer[LDTUPLEK_OPCODE ] = &CRunBytecode::ldtuplekOpcode;
-	_opcodePointer[LDTUPLEV_OPCODE ] = &CRunBytecode::ldtuplevOpcode;
+	_opcodePointer[LDTUPLER_OPCODE ] = &CRunBytecode::ldtuplerOpcode;
 	_opcodePointer[TABSIZE_OPCODE  ] = &CRunBytecode::tabsizeOpcode;
 	_opcodePointer[LDPROP_OPCODE   ] = &CRunBytecode::ldpropOpcode;
 	_opcodePointer[STPROP_OPCODE   ] = &CRunBytecode::stpropOpcode;
@@ -296,6 +308,13 @@ void CRunBytecode::procReadln()
 	std::cin >> text;
 
 	_dataStack.push(text);
+}
+
+
+void CRunBytecode::procKeyPress()
+{
+	char ch;
+	std::cin >> ch;
 }
 
 
@@ -495,6 +514,8 @@ void CRunBytecode::lcallOpcode()
 		procReadln();
 	} else if (procname == "datetime.sleep") {
 		procSleep();
+	} else if (procname == "io.key_press") {
+		procKeyPress();
 //      } else if (procname == "leia") {
 //         procLeia();
 	} else {
@@ -555,11 +576,11 @@ void CRunBytecode::ldparamOpcode()
 	_dataStack.push(literal);
 }
 
-void CRunBytecode::stopOpcode()
+void CRunBytecode::exitOpcode()
 {
-	trace ("stop opcode");
+	trace ("exit opcode");
 
-	_stop = true;
+	_exit = true;
 }
 
 void CRunBytecode::retOpcode()
@@ -574,7 +595,7 @@ void CRunBytecode::retOpcode()
 
 	if (_controlStack.size() == 0) {
 // 		std::cout << "_stop=true!!!" << std::endl;
-		_stop = true;
+		_exit = true;
 	}
 }
 
@@ -672,13 +693,24 @@ bool CRunBytecode::runsCode(std::string contextName, std::string serviceName, st
 {
 	trace ("runs internal code");
 
+// 	std::cout << __FUNCTION__ << ": context name: " << contextName << " service name: " << serviceName << std::endl;
+
+	std::map<std::string, CContext*>::iterator contextit = _contextList->find(contextName);
+	if (contextit == _contextList->end()) {
+		// Nao tenho nada sobre este contexto...
+		return false;
+	}
+
 	std::string elementName = (*_contextList)[contextName]->findService(serviceName);
 
 	if (elementName == "") {
+// 		std::cout << "servico nao encontrado neste contexto..." << std::endl;
 		return false;
 	}
 
 	CElement* element = NULL;
+
+// 	std::cout << "numero de elementos instanciados: " << _elementList->size() << std::endl;
 
 	for(std::vector<CElement*>::iterator elementIt = _elementList->begin();
 		elementIt != _elementList->end();
@@ -690,6 +722,7 @@ bool CRunBytecode::runsCode(std::string contextName, std::string serviceName, st
 	}
 
 	if (element == NULL) {
+// 		std::cout << "elemento " << elementName << " nao encontrado..." << std::endl;
 		return false;
 	}
 
@@ -1159,38 +1192,29 @@ void CRunBytecode::newelemOpcode()
 // }
 
 
-void CRunBytecode::joincOpcode()
+void CRunBytecode::mjoinOpcode()
 {
-	trace("joinc opcode");
+	trace("mjoin opcode");
 
 	std::string object    = _dataStack.pop().getString();
 	std::string contextName = _dataStack.pop().getString();
-	CContext* context;
 
-	std::map<std::string, CContext*>::iterator contextit = _contextList->find(contextName);
-	if (contextit == _contextList->end()) {
-		context = new CContext(contextName);
-		(*_contextList)[contextName] = context;
-	} else {
-		context = (*contextit).second;
-	}
-
-	context->addObject(object);
+	force_context_creation(contextName)->addObject(object);
 }
 
 
-void CRunBytecode::publishdOpcode()
+void CRunBytecode::cpublishOpcode()
 {
-	trace("publishd opcode");
+	trace("cpublish opcode");
 
-	uint tupleValues = _dataStack.pop().getInteger();
+	uint tupleResults = _dataStack.pop().getInteger();
 	uint tupleKeys   = _dataStack.pop().getInteger();
 	CTuple* tuple = new CTuple();
 
 	// TODO: eu estou forcando que key e values sejam string... mas eu posso deixar como CLiteral, a principio, e converter para texto para poder montar as chaves... so nao sei como ficaria o o resultado qdo eu rodo o getComposedValues da tupla...
 
 	// Read tuple values
-	for(uint value=0; value<tupleValues;value++) {
+	for(uint value=0; value<tupleResults;value++) {
 		tuple->addValueAtBegin(_dataStack.pop());
 	}
 
@@ -1199,16 +1223,17 @@ void CRunBytecode::publishdOpcode()
 		tuple->addKeyAtBegin(_dataStack.pop());
 	}
 
+
 	std::string contextName = _dataStack.pop().getString();
-	(*_contextList)[contextName]->addTuple(tuple); // TODO: addTuple deveria chamar sendRequestDataafOpcode de ContextProvider ????
+	force_context_creation(contextName)->addTuple(tuple); // TODO: addTuple deveria chamar sendRequestDataafOpcode de ContextProvider ????
 
 	CContextProvider::getInstance()->sendRequestPublishdOpcode(_vmId, contextName, *tuple);
 }
 
 
-void CRunBytecode::getdOpcode()
+void CRunBytecode::cgetOpcode()
 {
-	trace("getd opcode");
+	trace("cget opcode");
 
 	uint tupleKeys = _dataStack.pop().getInteger();
 	CTuple tuple;
@@ -1226,9 +1251,9 @@ void CRunBytecode::getdOpcode()
 }
 
 
-void CRunBytecode::getdnbOpcode()
+void CRunBytecode::cgetnbOpcode()
 {
-	trace("getdnb opcode");
+	trace("cgetnb opcode");
 
 	uint tupleKeys = _dataStack.pop().getInteger();
 	CTuple tuple;
@@ -1262,9 +1287,9 @@ void CRunBytecode::getdnbOpcode()
 // }
 
 
-void CRunBytecode::finddOpcode()
+void CRunBytecode::cfindOpcode()
 {
-	trace("findd opcode");
+	trace("cfind opcode");
 
 	uint tupleKeys = _dataStack.pop().getInteger();
 	CTuple tuple;
@@ -1285,9 +1310,9 @@ void CRunBytecode::finddOpcode()
 }
 
 
-void CRunBytecode::finddnbOpcode()
+void CRunBytecode::cfindnbOpcode()
 {
-	trace("finddnb_opcode");
+	trace("cfindnb opcode");
 
 	uint tupleKeys = _dataStack.pop().getInteger();
 	CTuple tuple;
@@ -1308,9 +1333,9 @@ void CRunBytecode::finddnbOpcode()
 }
 
 
-void CRunBytecode::listdOpcode()
+void CRunBytecode::clistOpcode()
 {
-	trace("listd opcode");
+	trace("clist opcode");
 
 	std::string contextName = _dataStack.pop().getString();
 	CContextProvider::getInstance()->sendRequestListdOpcode(_vmId, contextName);
@@ -1326,7 +1351,7 @@ void CRunBytecode::stcontextiOpcode()
 
 	// TODO: otimizar isso...
 
-	bool run_new_value_event = (_contextsInfo->find(context) == _contextsInfo->end());
+	bool run_new_value_event = (_contextsInfo->find(context) == _contextsInfo->end() || (*_contextsInfo->find(context)).second.getText() == "");
 
 	CLiteral old_value = (*_contextsInfo)[context];
 
@@ -1363,29 +1388,40 @@ void CRunBytecode::ldcontextiOpcode()
 
 	std::string context = getSymbolName(_currentInstruction->getArg1());
 
-	_dataStack.push((*_contextsInfo)[context]);
+	if (context == "time.hour") {
+		// TODO: deveria obter de um sensor ou do SO
+		_dataStack.push(CLiteral(12));
+	} else {
+		_dataStack.push((*_contextsInfo)[context]);
+	}
 }
 
 
-void CRunBytecode::publishsOpcode()
+void CRunBytecode::spublishOpcode()
 {
-	trace("publishs opcode");
+	trace("spublish opcode");
 
-	std::string contextName   = _dataStack.pop().getString();
-	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+	std::string serviceName = _dataStack.pop().getString();
+	std::string contextName = _dataStack.pop().getString();
 
-	(*_contextList)[contextName]->addService(serviceName, _ip.element->getName());
+// 	std::cout << "Adicionando servico " << serviceName << " ao contexto " << contextName << " que sera executado pelo elemento " << _ip.element->getName() << std::endl;
+	force_context_creation(contextName)->addService(serviceName, _ip.element->getName());
 
 	CContextProvider::getInstance()->sendRequestPublishsOpcode(_vmId, contextName, serviceName);
 }
 
 
-void CRunBytecode::removesOpcode()
+void CRunBytecode::sremOpcode()
 {
-	trace("removes opcode");
+	trace("srem opcode");
 
-	std::string contextName   = _dataStack.pop().getString();
-	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+	std::string serviceName = _dataStack.pop().getString();
+	std::string contextName = _dataStack.pop().getString();
+
+	std::map<std::string, CContext*>::iterator contextit = _contextList->find(contextName);
+	if (contextit == _contextList->end()) {
+		return;
+	}
 
 	(*_contextList)[contextName]->remService(serviceName);
 // 	(*_contextList)[contextName]->remService(serviceName, _ip.element->getName());
@@ -1394,12 +1430,27 @@ void CRunBytecode::removesOpcode()
 }
 
 
-void CRunBytecode::runsOpcode()
+void CRunBytecode::srunOpcode()
 {
-	trace ("runs opcode");
+	trace ("srun opcode");
 
+	int args_number = _dataStack.pop().getInteger();
+	std::stack<CLiteral> args;
+
+	for(int count=0; count < args_number; count++) {
+		args.push(_dataStack.pop());
+	}
+
+	std::string serviceName   = _dataStack.pop().getString();
 	std::string contextName   = _dataStack.pop().getString();
-	std::string serviceName = getSymbolName(_currentInstruction->getArg1());
+// 	std::cout << "args_number=" << args_number << " service_name=" << serviceName << " contextName=" << contextName << std::endl;
+
+	for(int count=0; count < args_number; count++) {
+		_dataStack.push(args.top());
+		args.pop();
+	}
+
+	_dataStack.push(CLiteral(args_number));
 
 	CContextProvider::getInstance()->sendRequestRunsOpcode(_vmId, contextName, serviceName);
 }
@@ -1470,12 +1521,13 @@ void CRunBytecode::ldtabOpcode()
 	trace ("ldtab opcode");
 
 	CLiteral index = _dataStack.pop();
+	CLiteral tab   = _dataStack.pop();
 	CLiteral value;
 
 	if (index._type == StringType) {
-		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getText());
+		value = tab.getTable()->get(index.getText());
 	} else {
-		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getInteger() - 1);
+		value = tab.getTable()->get(index.getInteger() - 1);
 	}
 
 	_dataStack.push(value);
@@ -1488,14 +1540,60 @@ void CRunBytecode::sttabOpcode()
 
 	CLiteral value = _dataStack.pop();
 	CLiteral index = _dataStack.pop();
+	CLiteral tab   = _dataStack.pop();
 
 // 	if (index._type == StringType) {
-		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getText(), value);
+		tab.getTable()->add(index.getText(), value);
 // 	} else {
 // 		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getInteger() - 1, value);
 // 	}
 }
 
+
+
+void CRunBytecode::tabsizeOpcode()
+{
+	trace ("tabsize opcode");
+
+	CLiteral tab   = _dataStack.pop();
+
+	_dataStack.push(CLiteral((int)tab.getTable()->size()));
+}
+
+
+
+
+
+// void CRunBytecode::ldtabOpcode()
+// {
+// 	trace ("ldtab opcode");
+//
+// 	CLiteral index = _dataStack.pop();
+// 	CLiteral value;
+//
+// 	if (index._type == StringType) {
+// 		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getText());
+// 	} else {
+// 		value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->get(index.getInteger() - 1);
+// 	}
+//
+// 	_dataStack.push(value);
+// }
+//
+//
+// void CRunBytecode::sttabOpcode()
+// {
+// 	trace ("sttab opcode");
+//
+// 	CLiteral value = _dataStack.pop();
+// 	CLiteral index = _dataStack.pop();
+//
+// // 	if (index._type == StringType) {
+// 	_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getText(), value);
+// // 	} else {
+// // 		_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->add(index.getInteger() - 1, value);
+// // 	}
+// }
 
 void CRunBytecode::ldtuplekOpcode()
 {
@@ -1510,9 +1608,9 @@ void CRunBytecode::ldtuplekOpcode()
 }
 
 
-void CRunBytecode::ldtuplevOpcode()
+void CRunBytecode::ldtuplerOpcode()
 {
-	trace ("ldtuplev opcode");
+	trace ("ldtupler opcode");
 
 	CLiteral index = _dataStack.pop();
 	CLiteral value;
@@ -1520,14 +1618,6 @@ void CRunBytecode::ldtuplevOpcode()
 	value = _controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTuple()->_valueList[index.getInteger()-1];
 
 	_dataStack.push(value);
-}
-
-
-void CRunBytecode::tabsizeOpcode()
-{
-	trace ("tabsize opcode");
-
-	_dataStack.push(CLiteral((int)_controlStack.top()->_localVarList[_currentInstruction->getArg1()].getTable()->size()));
 }
 
 
@@ -1628,7 +1718,7 @@ void CRunBytecode::bind_contexti_event(std::string context_name, std::string eve
 
 void CRunBytecode::bind_context_event(std::string context_name, std::string event_name, CElement* element, CMethodDefinition* method)
 {
-	(*_contextList)[context_name]->_events[event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
+	force_context_creation(context_name)->_events[event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
 }
 
 
@@ -1644,3 +1734,18 @@ void CRunBytecode::bind_context_event(std::string context_name, std::string even
 // 		_controlStack.push(ar);
 // 	}
 // }
+
+CContext* CRunBytecode::force_context_creation(std::string context_name)
+{
+	CContext* context = NULL;
+
+	std::map<std::string, CContext*>::iterator contextit = _contextList->find(context_name);
+	if (contextit == _contextList->end()) {
+		context = new CContext(context_name);
+		(*_contextList)[context_name] = context;
+	} else {
+		context = (*contextit).second;
+	}
+
+	return context;
+}

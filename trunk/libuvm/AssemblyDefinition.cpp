@@ -65,14 +65,16 @@ int CAssemblyDefinition::optimize()
 	return 1;
 }
 
-std::string CAssemblyDefinition::toTextAssembly()
+std::string CAssemblyDefinition::toTextAssembly(bool high_level)
 {
 	std::string result;
 
-	result += _symbolTable.toTextAssembly();
+	if (high_level == false) {
+		result += _symbolTable.toTextAssembly();
+	}
 
 	foreach(CEntityDefinition* entity, _entityList) {
-		result += entity->toTextAssembly();
+		result += entity->toTextAssembly(high_level);
 	}
 
 	return result;

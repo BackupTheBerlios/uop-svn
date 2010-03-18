@@ -1,8 +1,7 @@
 entity start
 	method constructor()
-		{"MeuContexto"}.join("prog2");
 		io.writeln("Programa 2 inserindo informacao");
-		{"MeuContexto"}.data.publish("Nro 2" => 1000);
+		{"MeuContexto"}.cpublish("Nro 2" => 1000);
 		while(true)
 		end
 	end

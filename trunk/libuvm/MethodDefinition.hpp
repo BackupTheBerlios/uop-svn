@@ -32,7 +32,7 @@ public:
 	void addResult(CResultDefinition* result);
 	CInstructionDefinition *addInstruction(OpcodeType opcode);
 	CInstructionDefinition *addInstruction(OpcodeType opcode, ArgType arg1);
-	std::string toTextAssembly(bool onlyCode=false);
+	std::string toTextAssembly(bool high_level, bool onlyCode=false);
 	void saveBytecode(CBinString& bytecode);
 	bool loadBytecode(CBinString& bytecode);
 	void addIfStatement();
@@ -44,6 +44,13 @@ public:
 	size_t getParamIndex(std::string name);
 	int getNewLabel() {
 		return _nextLabel++;
+	}
+	CInstructionDefinition*	getLastInstruction() {
+		return _instructionList.back();
+	}
+	bool hasNextInstructionLabel() const
+	{
+		return _nextInstructionLabelList.size() > 0;
 	}
 	int setNextInstructionLabel(int label);
 	void resolveLabels();

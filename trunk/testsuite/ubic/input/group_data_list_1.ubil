@@ -1,0 +1,37 @@
+entity start
+	method constructor()
+		var tuple offer;
+		var table offer_list;
+		var int offer_number;
+		{"/shopping/praca_alimentacao"}.cpublish(
+			"restaurante1", "1" =>
+			"massa a carbonara", "refeição", "massa", "ovos, creme de leite, bacon, queijo parmesão, macarrão", 13.00,
+			"restaurante_checkout");
+		{"/shopping/praca_alimentacao"}.cpublish(
+			"restaurante2", "2" =>
+			"massa alho e óleo", "refeição", "massa", "alho, azeite, macarrão", 11.00,
+			"restaurante_checkout");
+		{"/shopping/praca_alimentacao"}.cpublish(
+			"restaurante3", "3" =>
+			"picanha na chapa", "refeição", "carne", "carne, arroz, salada", 21.00,
+			"restaurante_checkout");
+		offer_list = {"/shopping/praca_alimentacao"}.clist();
+		for(offer_number=1; offer_number<=offer_list.size(); offer_number=offer_number+1)
+			offer = offer_list[offer_number];
+			io.writeln("LOJISTA: ", offer.keys[1], " OFERTA: ", offer.results[1], " VALOR: ", offer.results[5], " INGREDIENTES: ", offer.results[4]);
+		end
+	end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

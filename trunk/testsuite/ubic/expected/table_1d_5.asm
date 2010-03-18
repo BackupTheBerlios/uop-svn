@@ -1,37 +1,41 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S tab
-	3   S 1
-	4   I 10
-	5   S 2
-	6   I 20
-	7   S tab[1]=
-	8   I 1
-	9   I 2
-	10  S io.writeln
-	11  S tab[2]=
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [tab]
+	.const 3   string   [1]
+	.const 4   int      [10]
+	.const 5   string   [2]
+	.const 6   int      [20]
+	.const 7   string   [tab[1]=]
+	.const 8   int      [1]
+	.const 9   int      [2]
+	.const 10  string   [io.writeln]
+	.const 11  string   [tab[2]=]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
 		.var 0 table tab
-		ldconst 3 --> [1]
-		ldconst 4 --> [10]
-		sttab 0 --> [tab]
-		ldconst 5 --> [2]
-		ldconst 6 --> [20]
-		sttab 0 --> [tab]
-		ldconst 7 --> [tab[1]=]
-		ldconst 8 --> [1]
-		ldtab 0 --> [tab]
-		ldconst 9 --> [2]
-		lcall 10 --> [io.writeln]
-		ldconst 11 --> [tab[2]=]
-		ldconst 9 --> [2]
-		ldtab 0 --> [tab]
-		ldconst 9 --> [2]
-		lcall 10 --> [io.writeln]
-		stop
+	        ldvar        0 --> [tab]
+	        ldconst      3 --> [1]
+	        ldconst      4 --> [10]
+	        sttab       
+	        ldvar        0 --> [tab]
+	        ldconst      5 --> [2]
+	        ldconst      6 --> [20]
+	        sttab       
+	        ldconst      7 --> [tab[1]=]
+	        ldvar        0 --> [tab]
+	        ldconst      8 --> [1]
+	        ldtab       
+	        ldconst      9 --> [2]
+	        lcall        10 --> [io.writeln]
+	        ldconst      11 --> [tab[2]=]
+	        ldvar        0 --> [tab]
+	        ldconst      9 --> [2]
+	        ldtab       
+	        ldconst      9 --> [2]
+	        lcall        10 --> [io.writeln]
+	        exit        
 	.end
 .end

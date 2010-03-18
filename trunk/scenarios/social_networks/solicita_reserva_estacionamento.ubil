@@ -1,0 +1,18 @@
+entity start
+    method constructor()
+        var int vacancy_number;
+        var string username;
+
+        io.write("Nome do usuario: "); username = io.readln();
+
+        vacancy_number = {"parque"}.srun("reserva_vagas_estacionamento", username);
+
+        if (vacancy_number == 0)
+            io.writeln("Estacionamento lotado...");
+        else
+            io.writeln("Numero da vaga de estacionamento: ", vacancy_number);
+        end
+
+        io.key_press();
+    end
+end

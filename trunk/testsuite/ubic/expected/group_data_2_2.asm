@@ -1,27 +1,23 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S MeuContexto
-	3   S prog2
-	4   S Informacoes inseridas pelo programa 1: 
-	5   S Numero 1
-	6   I 1
-	7   I 2
-	8   S io.writeln
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [Informacoes inseridas pelo programa 1: ]
+	.const 3   string   [MeuContexto]
+	.const 4   string   [Numero 1]
+	.const 5   int      [1]
+	.const 6   int      [2]
+	.const 7   string   [io.writeln]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
-		ldconst 2 --> [MeuContexto]
-		ldconst 3 --> [prog2]
-		joinc
-		ldconst 4 --> [Informacoes inseridas pelo programa 1: ]
-		ldconst 2 --> [MeuContexto]
-		ldconst 5 --> [Numero 1]
-		ldconst 6 --> [1]
-		findd
-		ldconst 7 --> [2]
-		lcall 8 --> [io.writeln]
-		stop
+	        ldconst      2 --> [Informacoes inseridas pelo programa 1: ]
+	        ldconst      3 --> [MeuContexto]
+	        ldconst      4 --> [Numero 1]
+	        ldconst      5 --> [1]
+	        cfind       
+	        ldconst      6 --> [2]
+	        lcall        7 --> [io.writeln]
+	        exit        
 	.end
 .end

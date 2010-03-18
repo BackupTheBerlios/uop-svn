@@ -1,0 +1,36 @@
+import datetime;
+
+entity start
+    method constructor()
+        var tuple  visita_assistida;
+        var int    last_latitude;
+        var int    last_longitude;
+
+        identity.name      = "graciele";
+        location.latitude  = 0;
+        location.longitude = 0;
+
+        // Exibe as informacoes sobre o servico
+        visita_assistida = {"parque"}.cfind("Visita assistida");
+        io.writeln("Informacoes sobre o servico Visita Assistida:");
+        io.writeln("    Tempo de duracao   : ", visita_assistida.values[1]);
+        io.writeln("    Descricao          : ", visita_assistida.values[2]);
+        io.writeln("    Locais de interesse: ", visita_assistida.values[3]);
+        io.writeln("");
+
+        io.writeln("**** Informacoes sobre a fauna e flora ****");
+
+        while(true)
+            if (last_latitude <> location.latitude or last_longitude <> location.longitude)
+                // Sempre que a localizacao do usuario eh alterada, executa o servico visita_assistida para
+				// saber se existem informacoes sobre a nova localizacao
+                last_latitude  = location.latitude;
+                last_longitude = location.longitude;
+                io.writeln("Sobre este local (latitude=", last_latitude, ", longitude=", last_longitude, "): ",
+                        {"parque"}.srun("visita_assistida", last_latitude, last_longitude));
+            end
+
+            datetime.sleep(2);
+        end
+    end
+end

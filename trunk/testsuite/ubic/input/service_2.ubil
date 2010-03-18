@@ -9,19 +9,18 @@ entity servico
 		io.writeln("Mensagem: ", msg);
 	end
 	method constructor()
-		{"context"}.join("Alex");
-		{"context"}.service.publish(soma(int,int));
-		{"context"}.service.publish(diminui(int,int));
-		{"context"}.service.publish(imprime(string));
+		{"context"}.spublish("soma");
+		{"context"}.spublish("diminui");
+		{"context"}.spublish("imprime");
 	end
 end
 
 entity start
 	method constructor()
 		var element s = servico.new();
-		io.writeln("Soma  : ",  {"context"}.soma(10,20));
-		io.writeln("Diminui: ", {"context"}.diminui(10,20));
-		{"context"}.imprime("Ola !!!");
+		io.writeln("Soma  : ",  {"context"}.srun("soma",10,20));
+		io.writeln("Diminui: ", {"context"}.srun("diminui",10,20));
+		{"context"}.srun("imprime","Ola !!!");
 	end
 end
 

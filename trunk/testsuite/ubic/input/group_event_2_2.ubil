@@ -2,9 +2,8 @@ import datetime
 
 entity start
 	method constructor()
-		{"context"}.join("xxx");
-		{"context"}.data.publish("xxx" => "yyy", "zzz");
-		{"context"}.data.publish("xxx2" => "yyy2", "zzz2");
+		{"context"}.cpublish("xxx" => "yyy", "zzz");
+		{"context"}.cpublish("xxx2" => "yyy2", "zzz2");
 	end
 end
 

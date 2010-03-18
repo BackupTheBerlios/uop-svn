@@ -35,13 +35,14 @@ void CContextProvider::sendRequestPublishdOpcode(SVmId vmId, std::string context
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = PUBLISHD_OPCODE;
+	header._opcode       = CPUBLISH_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
 	packet.save(contextName);
-	packet.save(tuple.getComposedKeys());
-	packet.save(tuple.getComposedValues());
+	tuple.saveBytecode(packet);
+// 	packet.save(tuple.getComposedKeys());
+// 	packet.save(tuple.getComposedValues());
 
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 }
@@ -56,12 +57,12 @@ void CContextProvider::sendRequestFinddOpcode(SVmId vmId, std::string contextNam
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = FINDD_OPCODE;
+	header._opcode       = CFIND_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
 	packet.save(contextName);
-	packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(packet);
 
 // 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
 // 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
@@ -97,7 +98,7 @@ void CContextProvider::sendRequestGetdOpcode(SVmId vmId, std::string contextName
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = FINDD_OPCODE;
+	header._opcode       = CFIND_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
@@ -105,7 +106,7 @@ void CContextProvider::sendRequestGetdOpcode(SVmId vmId, std::string contextName
 	packet.save(contextName);
 
 	// Tuple key
-	packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(packet);
 
 	_bce_list[vmId._bce]->_dataReady = false;
 
@@ -117,10 +118,10 @@ void CContextProvider::sendRequestGetdOpcode(SVmId vmId, std::string contextName
 	// Envia um DQU unicast
 	CBinString dqu_packet;
 	header._dstVmId = _bce_list[vmId._bce]->_lastSrcVmId; // TODO: como descobrir a VM correta ???;
-	header._opcode = GETD_OPCODE;
+	header._opcode = CGET_OPCODE;
 	dqu_packet.save(&header, sizeof(header));
 	dqu_packet.save(contextName);
-	dqu_packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(dqu_packet);
 
 	_bce_list[vmId._bce]->_dataReady = false;
 
@@ -146,7 +147,7 @@ void CContextProvider::sendRequestFinddnbOpcode(SVmId vmId, std::string contextN
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = FINDDNB_OPCODE;
+	header._opcode       = CFINDNB_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
@@ -154,7 +155,7 @@ void CContextProvider::sendRequestFinddnbOpcode(SVmId vmId, std::string contextN
 	packet.save(contextName);
 
 	// Tuple key
-	packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(packet);
 
 // 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
 // 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
@@ -193,12 +194,12 @@ void CContextProvider::sendRequestGetdnbOpcode(SVmId vmId, std::string contextNa
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = FINDD_OPCODE;
+	header._opcode       = CFIND_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
 	packet.save(contextName);
-	packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(packet);
 
 	_bce_list[vmId._bce]->_dataReady = false;
 
@@ -215,10 +216,10 @@ void CContextProvider::sendRequestGetdnbOpcode(SVmId vmId, std::string contextNa
 	// Envia um DQU unicast
 	CBinString dqu_packet;
 	header._dstVmId = _bce_list[vmId._bce]->_lastSrcVmId; // TODO: como descobrir a VM correta ???;
-	header._opcode = GETD_OPCODE;
+	header._opcode = CGET_OPCODE;
 	dqu_packet.save(&header, sizeof(header));
 	dqu_packet.save(contextName);
-	dqu_packet.save(tuple.getComposedKeys());
+	tuple.saveBytecode(dqu_packet);
 
 	_bce_list[vmId._bce]->_dataReady = false;
 
@@ -242,7 +243,7 @@ void CContextProvider::sendRequestListdOpcode(SVmId vmId, std::string contextNam
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = LISTD_OPCODE;
+	header._opcode       = CLIST_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 	packet.save(&header, sizeof(header));
 
@@ -258,6 +259,7 @@ void CContextProvider::sendRequestListdOpcode(SVmId vmId, std::string contextNam
 	_bce_list[vmId._bce]->_dataReady = false;
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 // 	std::cout << "Request foi enviado em sendRequestListd" << std::endl;
+	
 // 	while(!_dataReadyInListd) {
 // 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
 // 		_cond.wait(lock);
@@ -287,7 +289,7 @@ void CContextProvider::sendRequestPublishsOpcode(SVmId vmId, std::string context
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = PUBLISHS_OPCODE;
+	header._opcode       = SPUBLISH_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
@@ -307,7 +309,7 @@ void CContextProvider::sendRequestRemovesOpcode(SVmId vmId, std::string contextN
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = REMOVES_OPCODE;
+	header._opcode       = SREM_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
@@ -327,7 +329,7 @@ void CContextProvider::sendRequestRunsOpcode(SVmId vmId, std::string contextName
 	header._srcVmId      = vmId;
 	header._dstVmId      = dstVmId;
 	header._packetNumber = CCommunicationProvider::getInstance()->getNextPacketNumber();
-	header._opcode       = RUNS_OPCODE;
+	header._opcode       = SRUN_OPCODE;
 	header._operation    = REQUEST_OPERATION;
 
 	packet.save(&header, sizeof(header));
@@ -362,21 +364,46 @@ void CContextProvider::sendRequestRunsOpcode(SVmId vmId, std::string contextName
 void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
 // 	SPacketHeader replyHeader;
-// 	CTuple*       tuple;
+	CTuple*       tuple = new CTuple();;
 
 	std::string contextName;
 	requestPacket.load(contextName);
 
-	std::string tupleKeys;
-	requestPacket.load(tupleKeys);
+	tuple->loadBytecode(requestPacket);
+// 	std::string tupleKeys;
+// 	requestPacket.load(tupleKeys);
 
-	std::string tupleValues;
-	requestPacket.load(tupleValues);
+// 	std::string tupleValues;
+// 	requestPacket.load(tupleValues);
 
 	if (_contextList->find(contextName) != _contextList->end()) {
-		(*_contextList)[contextName]->run_insert_data_event(tupleKeys, tupleValues);
+		(*_contextList)[contextName]->run_insert_data_event(tuple->getComposedKeys(), tuple->getComposedValues());
 	}
+
+	delete tuple;
 }
+
+
+
+// void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
+// {
+// // 	SPacketHeader replyHeader;
+// // 	CTuple*       tuple;
+// 
+// 	std::string contextName;
+// 	requestPacket.load(contextName);
+// 
+// 	std::string tupleKeys;
+// 	requestPacket.load(tupleKeys);
+// 
+// 	std::string tupleValues;
+// 	requestPacket.load(tupleValues);
+// 
+// 	if (_contextList->find(contextName) != _contextList->end()) {
+// 		(*_contextList)[contextName]->run_insert_data_event(tupleKeys, tupleValues);
+// 	}
+// }
+
 
 
 void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
@@ -387,11 +414,15 @@ void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHea
 	std::string contextName;
 	requestPacket.load(contextName);
 
-	std::string tupleKey;
-	requestPacket.load(tupleKey);
-
 	CTuple tupleToFind;
-	tupleToFind.addKeyAtEnd(tupleKey);
+	tupleToFind.loadBytecode(requestPacket);
+	
+
+	// Verify if context exist...
+	if (_contextList->find(contextName) == _contextList->end()) {
+		return;
+	}
+
 	tuple = (*_contextList)[contextName]->getTuple(&tupleToFind);
 
 	if (tuple == NULL) {
@@ -405,9 +436,7 @@ void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHea
 	replyHeader._opcode       = requestHeader._opcode;
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
-	// asdfg
-	replyPacket.save(tuple->getComposedKeys());
-	replyPacket.save(tuple->getComposedValues());
+	tuple->saveBytecode(replyPacket);
 
 // 		std::cout << "Enviando reply packet" << std::endl;
 // 		sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
@@ -429,11 +458,17 @@ void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHead
 	std::string contextName;
 	requestPacket.load(contextName);
 
-	std::string tupleKey;
-	requestPacket.load(tupleKey);
+// 	std::string tupleKey;
+// 	requestPacket.load(tupleKey);
 
 	CTuple tupleToFind;
-	tupleToFind.addKeyAtEnd(tupleKey);
+	tupleToFind.loadBytecode(requestPacket);
+	
+	// Verify if context exist...
+	if (_contextList->find(contextName) == _contextList->end()) {
+		return;
+	}
+
 	tuple = (*_contextList)[contextName]->getTuple(&tupleToFind);
 
 	if (tuple == NULL) {
@@ -448,13 +483,18 @@ void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHead
 	replyHeader._opcode       = requestHeader._opcode;
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
-	replyPacket.save(tuple->getComposedKeys());
-	replyPacket.save(tuple->getComposedValues());
+	tuple->saveBytecode(replyPacket);
+
+	// Verify if context exist...
+	if (_contextList->find(contextName) == _contextList->end()) {
+		return;
+	}
 
 	(*_contextList)[contextName]->remTuple(&tupleToFind);
 //  	std::cout << __FUNCTION__ << ": tupla " << tupleKey << " removida !!!" << std::endl;
 
 	if (_contextList->find(contextName) != _contextList->end()) {
+		// TODO: acho que deveria passar a tupla mesmo no evento abaixo...
 		(*_contextList)[contextName]->run_remove_data_event(tuple->getComposedKeys(), tuple->getComposedValues());
 	}
 
@@ -478,10 +518,14 @@ void CContextProvider::processListdRequest(CBinString& requestPacket, SPacketHea
 	std::string contextName;
 	requestPacket.load(contextName);
 
+// 	std::cout << "Antes de testar se o context " << contextName << " existe..." << std::endl;
+	
 	// Verify if context exist...
 	if (_contextList->find(contextName) == _contextList->end()) {
 		return;
 	}
+
+// 	std::cout << "Context " << contextName << " ta com " << (*_contextList)[contextName]->_listd.size() << " tuplas..." << std::endl;
 
 	if ((*_contextList)[contextName]->_listd.size() == 0) {
 		return;
@@ -494,7 +538,7 @@ void CContextProvider::processListdRequest(CBinString& requestPacket, SPacketHea
 	replyHeader._srcVmId      = requestHeader._dstVmId;
 	replyHeader._packetNumber = requestHeader._packetNumber;
 	replyHeader._operation    = REPLY_OPERATION;
-	replyHeader._opcode       = LISTD_OPCODE;
+	replyHeader._opcode       = CLIST_OPCODE;
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
 	// Packing tuple count
@@ -616,15 +660,16 @@ void CContextProvider::processFinddReply(CBinString& replyPacket, SPacketHeader&
 {
  	CTuple* tuple = new CTuple();
 
-	std::string tupleKey;
-	std::string tupleValue;
+// 	std::string tupleKey;
+// 	std::string tupleValue;
 
-	replyPacket.load(tupleKey);
-	replyPacket.load(tupleValue);
+	tuple->loadBytecode(replyPacket);
+// 	replyPacket.load(tupleKey);
+// 	replyPacket.load(tupleValue);
 
 	// asdfg
-	tuple->addKeyAtEnd(tupleKey);
-	tuple->addValueAtEnd(tupleValue);
+// 	tuple->addKeyAtEnd(tupleKey);
+// 	tuple->addValueAtEnd(tupleValue);
 
 // 		std::cout << "Current VMID: " << getpid() << std::endl;
 

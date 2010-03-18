@@ -182,23 +182,25 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 
 	requestHeader._dstVmId._pid = getpid();
 
-	if (requestHeader._opcode == PUBLISHD_OPCODE) {
+
+	if (requestHeader._opcode == CPUBLISH_OPCODE) {
 		CContextProvider::getInstance()->processPublishdRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == FINDD_OPCODE) {
+	} else if (requestHeader._opcode == CFIND_OPCODE) {
 		CContextProvider::getInstance()->processFinddRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == GETD_OPCODE) {
+	} else if (requestHeader._opcode == CGET_OPCODE) {
 		CContextProvider::getInstance()->processGetdRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == FINDDNB_OPCODE) {
+	} else if (requestHeader._opcode == CFINDNB_OPCODE) {
 		CContextProvider::getInstance()->processFinddnbRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == GETDNB_OPCODE) {
+	} else if (requestHeader._opcode == CGETNB_OPCODE) {
 		CContextProvider::getInstance()->processGetdnbRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == LISTD_OPCODE) {
+	} else if (requestHeader._opcode == CLIST_OPCODE) {
+// 		std::cout << "Requisicao listd recebida..." << std::endl;
 		CContextProvider::getInstance()->processListdRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == PUBLISHS_OPCODE) {
+	} else if (requestHeader._opcode == SPUBLISH_OPCODE) {
 		CContextProvider::getInstance()->processPublishsRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == REMOVES_OPCODE) {
+	} else if (requestHeader._opcode == SREM_OPCODE) {
 		CContextProvider::getInstance()->processRemovesRequest(requestPacket, requestHeader, replyPacket);
-	} else if (requestHeader._opcode == RUNS_OPCODE) {
+	} else if (requestHeader._opcode == SRUN_OPCODE) {
 		CContextProvider::getInstance()->processRunsRequest(requestPacket, requestHeader, replyPacket);
 	} else {
 		std::cout << "Error in processPacket !!!" << std::endl;
@@ -220,24 +222,24 @@ void CCommunicationProvider::processReplyOperation(CBinString& replyPacket, udp:
 		return;
 	}
 
-	if (CContextProvider::getInstance()->_bce_list[replyHeader._dstVmId._bce]->_dataReady == true && replyHeader._opcode != LISTD_OPCODE) {
+	if (CContextProvider::getInstance()->_bce_list[replyHeader._dstVmId._bce]->_dataReady == true && replyHeader._opcode != CLIST_OPCODE) {
 		return;
 	}
 
-	if (replyHeader._opcode == FINDD_OPCODE) {
+	if (replyHeader._opcode == CFIND_OPCODE) {
 		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
-	} else if (replyHeader._opcode == FINDDNB_OPCODE) {
+	} else if (replyHeader._opcode == CFINDNB_OPCODE) {
 		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
 // 		CContextProvider::getInstance()->processFinddnbReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == GETD_OPCODE) {
+	} else if (replyHeader._opcode == CGET_OPCODE) {
 		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
 // 		CContextProvider::getInstance()->processGetdReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == GETDNB_OPCODE) {
+	} else if (replyHeader._opcode == CGETNB_OPCODE) {
 		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
 // 		CContextProvider::getInstance()->processGetdnbReply(replyPacket, requestHeader);
-	} else if (replyHeader._opcode == LISTD_OPCODE) {
+	} else if (replyHeader._opcode == CLIST_OPCODE) {
 		CContextProvider::getInstance()->processListdReply(replyPacket, replyHeader);
-	} else if (replyHeader._opcode == RUNS_OPCODE) {
+	} else if (replyHeader._opcode == SRUN_OPCODE) {
 		CContextProvider::getInstance()->processRunsReply(replyPacket, replyHeader);
 	} else {
 		std::cout << "Error in processPacket !!!" << std::endl;

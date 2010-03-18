@@ -1,0 +1,10 @@
+entity start
+	prop table txt;
+	method constructor()
+//		var table txt;
+		txt[1] = "Mensagem";
+		io.writeln(txt[1]);
+	end
+end
+
+

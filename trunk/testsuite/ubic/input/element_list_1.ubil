@@ -3,11 +3,11 @@ entity start
 		var table element_list;
 		var tuple elementt; // era para ser element apenas...
 		var int   element_number;
-		element_list = {"users"}.element.list();
+		element_list = {"users"}.mlist();
 		for(element_number=1; element_number<=element_list.size(); element_number=element_number+1)
 			elementt = element_list[element_number];
 			io.writeln("Nome:      ", elementt.keys[1]);
-			io.writeln("Descricao: ", elementt.values[1]);
+			io.writeln("Descricao: ", elementt.results[1]);
 		end
 	end
 end

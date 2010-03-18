@@ -1,0 +1,78 @@
+import datetime;
+
+entity start
+    prop int    _last_park_vacancy;
+    prop int    _last_team_vacancy;
+    prop string _soccer_field_reserve;
+    prop string _soccer_field_play_time;
+    prop string _bowl_field_reserve;
+
+    method constructor()
+        // Publica informacoes sobre o parque
+        {"parque"}.cpublish("Roteiros de caminhadas" => 
+                "Iniciando pelo Mini zoológico, percorra ...");
+        {"parque"}.cpublish("Localizacao de servicos" => 
+                "Banheiros: na entrada do parque. Bicicletário: ao lado do estacionamento.");
+
+        // Publica os servicos disponiveis
+        {"parque"}.spublish("reserva_vagas_estacionamento");
+        {"parque"}.spublish("reserva_vagas_time_basquete");
+        {"parque"}.spublish("reserva_quadra_futebol");
+        {"parque"}.spublish("reserva_cancha_bocha");
+
+        _soccer_field_play_time = "16hs";
+        io.key_press();
+    end
+
+    service reserva_vagas_estacionamento(string person_name) [int]
+        io.writeln("[Parque] Recebido pedido de reserva de vaga de estacionamento para ", person_name);
+
+        if (_last_park_vacancy < 100)
+            _last_park_vacancy++;
+            io.writeln("[Parque] Vaga numero ", _last_park_vacancy, " reservada para ", person_name);
+            return _last_park_vacancy;
+        else
+            io.writeln("[Parque] Estacionamento lotado ", person_name);
+            return 0;
+        end
+    end
+
+    service reserva_vagas_time_basquete(string person_name) [string]
+        io.writeln("[Parque] Recebido pedido de reserva de vaga no time de basquete para ", person_name);
+
+        if (_last_team_vacancy < 10)
+            _last_team_vacancy++;
+            io.writeln("[Parque] Vaga numero ", _last_team_vacancy, " reservada para ", person_name);
+            return _soccer_field_play_time;
+        else
+            io.writeln("[Parque] Time de basquete lotado ", person_name);
+            return "";
+        end
+    end
+
+    service reserva_quadra_futebol(string penson_name) [bool]
+        io.writeln("[Parque] Recebido pedido de reserva da quadra de futebol para ", person_name);
+
+        if (_soccer_field_reserve == "")
+            _soccer_field_reserve = person_name;
+            io.writeln("[Parque] Quadra de futebol reservada para ", person_name);
+            return true;
+        else
+            io.writeln("[Parque] Quadra de futebol já está reservada ", person_name);
+            return false;
+        end
+    end
+
+    service reserva_cancha_bocha(string penson_name) [bool]
+        io.writeln("[Parque] Recebido pedido de reserva da cancha de bocha para ", person_name);
+
+        if (_bowl_field_reserve == "")
+            _bowl_field_reserve = person_name;
+            io.writeln("[Parque] Cancha de bocha reservada para ", person_name);
+            return true;
+        else
+            io.writeln("[Parque] Cancha de bocha já está reservada ", person_name);
+            return false;
+        end
+    end
+end

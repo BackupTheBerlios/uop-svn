@@ -98,6 +98,7 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln("UBIVM=../../ubivm");
 	makefileSource.writeln("LIBCOMMON=../../libcommon/");
 	makefileSource.writeln("INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../ -I/usr/local/include/boost-1_39/");
+	makefileSource.writeln("LIB_DIR=-L$(LIBCOMMON)");
 	makefileSource.writeln("CC=g++");
 	makefileSource.writeln("CCFLAGS=-g -Wall -pedantic");
 	makefileSource.write("LIBS=");
@@ -115,7 +116,7 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln();
 
 	makefileSource.writeln("all: $(OBJECTS)");
-makefileSource.writeln("\tg++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS)");
+	makefileSource.writeln("\tg++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS) $(LIB_DIR)");
 	makefileSource.writeln();
 
 	makefileSource.writeln("%.cpp:");

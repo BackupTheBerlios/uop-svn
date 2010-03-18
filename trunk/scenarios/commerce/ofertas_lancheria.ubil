@@ -1,0 +1,25 @@
+entity start
+    prop int last_order;
+
+    method constructor()
+        // Publica o servico que deve ser utilizado para realizacao de pedidos
+        {"/shopping/praca_alimentacao"}.spublish("lancheria_checkout");
+
+        // Publica as ofertas
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Lancheria do Victorio", "1" =>
+            "pizza presunto", "lanche", "massa", "presunto, queijo, oregano", 11.00,
+            "lancheria_checkout");
+
+        io.key_press();
+    end
+
+    service lancheria_checkout(string client_name, string offer_code) [int]
+        io.writeln("[Lancheria] Recebido pedido de ", client_name, 
+                ", referente a oferta ", offer_code);
+        last_order++;
+        io.writeln("[Lancheria] Numero do pedido: ", last_order);
+
+        return last_order;
+    end
+end

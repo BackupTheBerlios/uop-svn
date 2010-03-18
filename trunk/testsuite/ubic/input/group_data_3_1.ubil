@@ -4,11 +4,10 @@ import datetime;
 
 entity start
 	method constructor()
-		{"MeuContexto"}.join("prog1");
 		io.writeln("Programa 1 inserindo N1");
-		{"MeuContexto"}.data.publish("N1" => 100);
+		{"MeuContexto"}.cpublish("N1" => 100);
 //		datetime.sleep(5);
-		io.writeln("Informacoes inseridas pelo programa 2: ", {"MeuContexto"}.data.find("N2"));
+		io.writeln("Informacoes inseridas pelo programa 2: ", {"MeuContexto"}.cfind("N2"));
 //		datetime.sleep(5); // TODO: necessario pq, se a VM termina, ela nao responde mais
 	end
 end

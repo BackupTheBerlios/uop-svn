@@ -1,0 +1,55 @@
+entity restaurante_offers when (time.hour >= 11 and time.hour <= 14)
+    // Ofertas para o horario do almoco
+    method constructor()
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Restaurante da Olga", "1" => "massa a carbonara", "refeicao", "massa",
+            "ovos, creme de leite, bacon, queijo parmesao, macarrao", 13.00,
+            "restaurante_checkout");
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Restaurante da Olga", "2" =>
+            "massa alho e oleo", "refeicao", "massa", "alho, azeite, macarrao", 11.00,
+            "restaurante_checkout");
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Restaurante da Olga", "3" =>
+            "picanha na chapa", "refeicao", "carne", "carne, arroz, salada", 21.00,
+            "restaurante_checkout");
+    end
+end
+
+entity restaurante_offers when (time.hour >= 18 and time.hour <= 22)
+    // Ofertas para o horario da janta
+    method constructor()
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Restaurante da Olga", "1" => "sopa creme ervilha", "refeicao", "sopa",
+            "creme de erviha, leite", 9.00,
+            "restaurante_checkout");
+        {"/shopping/praca_alimentacao"}.cpublish(
+            "Restaurante da Olga", "2" =>
+            "panqueca a moda da casa", "refeicao", "massa", "queijo, presunto, oregano, azeitona, bacon", 9.00,
+            "restaurante_checkout");
+    end
+end
+
+entity start
+    prop int last_order;
+
+    method constructor()
+        var element offers;
+
+        // Publica o servico que deve ser utilizado para realizacao de pedidos
+        {"/shopping/praca_alimentacao"}.spublish("restaurante_checkout");
+
+        // Publica as ofertas
+        offers = restaurante_offers.new();
+        io.key_press();
+    end
+
+    service restaurante_checkout(string client_name, string offer_code) [int]
+        io.writeln("[Restaurante] Recebido pedido de ", client_name, 
+                ", referente a oferta ", offer_code);
+        last_order++;
+        io.writeln("[Restaurante] Numero do pedido: ", last_order);
+
+        return last_order;
+    end
+end

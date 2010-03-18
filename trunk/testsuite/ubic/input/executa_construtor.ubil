@@ -1,0 +1,12 @@
+entity minha_entidade
+	method constructor()
+		io.writeln("Executando o construtor...");
+	end
+end
+
+entity start
+	method constructor()
+		var element e = minha_entidade.new();
+	end
+end
+

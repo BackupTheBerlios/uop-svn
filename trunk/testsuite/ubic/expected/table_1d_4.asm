@@ -1,47 +1,53 @@
 .constant_pool
-	0   S start
-	1   S constructor
-	2   S tab
-	3   S Nome
-	4   S Alex
-	5   S Sexo
-	6   S M
-	7   S Idade
-	8   I 34
-	9   S Nome =
-	10  I 2
-	11  S io.writeln
-	12  S Sexo =
-	13  S Idade=
+	.const 0   string   [start]
+	.const 1   string   [constructor]
+	.const 2   string   [tab]
+	.const 3   string   [Nome]
+	.const 4   string   [Alex]
+	.const 5   string   [Sexo]
+	.const 6   string   [M]
+	.const 7   string   [Idade]
+	.const 8   int      [34]
+	.const 9   string   [Nome =]
+	.const 10  int      [2]
+	.const 11  string   [io.writeln]
+	.const 12  string   [Sexo =]
+	.const 13  string   [Idade=]
 .end
 .entity start
 	.valid_context_when (always)
 	.method constructor
 		.var 0 table tab
-		ldconst 3 --> [Nome]
-		ldconst 4 --> [Alex]
-		sttab 0 --> [tab]
-		ldconst 5 --> [Sexo]
-		ldconst 6 --> [M]
-		sttab 0 --> [tab]
-		ldconst 7 --> [Idade]
-		ldconst 8 --> [34]
-		sttab 0 --> [tab]
-		ldconst 9 --> [Nome =]
-		ldconst 3 --> [Nome]
-		ldtab 0 --> [tab]
-		ldconst 10 --> [2]
-		lcall 11 --> [io.writeln]
-		ldconst 12 --> [Sexo =]
-		ldconst 5 --> [Sexo]
-		ldtab 0 --> [tab]
-		ldconst 10 --> [2]
-		lcall 11 --> [io.writeln]
-		ldconst 13 --> [Idade=]
-		ldconst 7 --> [Idade]
-		ldtab 0 --> [tab]
-		ldconst 10 --> [2]
-		lcall 11 --> [io.writeln]
-		stop
+	        ldvar        0 --> [tab]
+	        ldconst      3 --> [Nome]
+	        ldconst      4 --> [Alex]
+	        sttab       
+	        ldvar        0 --> [tab]
+	        ldconst      5 --> [Sexo]
+	        ldconst      6 --> [M]
+	        sttab       
+	        ldvar        0 --> [tab]
+	        ldconst      7 --> [Idade]
+	        ldconst      8 --> [34]
+	        sttab       
+	        ldconst      9 --> [Nome =]
+	        ldvar        0 --> [tab]
+	        ldconst      3 --> [Nome]
+	        ldtab       
+	        ldconst      10 --> [2]
+	        lcall        11 --> [io.writeln]
+	        ldconst      12 --> [Sexo =]
+	        ldvar        0 --> [tab]
+	        ldconst      5 --> [Sexo]
+	        ldtab       
+	        ldconst      10 --> [2]
+	        lcall        11 --> [io.writeln]
+	        ldconst      13 --> [Idade=]
+	        ldvar        0 --> [tab]
+	        ldconst      7 --> [Idade]
+	        ldtab       
+	        ldconst      10 --> [2]
+	        lcall        11 --> [io.writeln]
+	        exit        
 	.end
 .end

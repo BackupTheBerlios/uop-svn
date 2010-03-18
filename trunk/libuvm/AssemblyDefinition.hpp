@@ -19,7 +19,7 @@ public:
 	CEntityDefinition *addEntity(std::string name);
 	int load(void* buffer, size_t bufferSize);
 	int optimize();// retorna numero de otimizacoes realizadas
-	std::string toTextAssembly();
+	std::string toTextAssembly(bool high_level);
 	int saveBytecode(std::string name);
 	bool loadBytecode(std::string name);
 	CEntityDefinition* getEntity(std::string name);

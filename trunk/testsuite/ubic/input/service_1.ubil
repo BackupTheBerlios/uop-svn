@@ -1,18 +1,16 @@
 entity servico
 	service soma(int x, int y) [int]
-//		io.writeln("x=", x, " y=", y);
 		return x+y;
 	end
 	method constructor()
-		{"context"}.join("Alex");
-		{"context"}.service.publish(soma(int,int));
+		{"context"}.spublish("soma");
 	end
 end
 
 entity start
 	method constructor()
 		var element s = servico.new();
-		io.writeln("Soma: ",  {"context"}.soma(10,20));
+		io.writeln("Soma: ", {"context"}.srun("soma",10,20));
 	end
 end
 

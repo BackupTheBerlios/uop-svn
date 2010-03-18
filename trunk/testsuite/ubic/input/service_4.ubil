@@ -4,8 +4,7 @@ entity servico
 		return par1+par2, par1-par2;
 	end
 	method constructor()
-		{"context"}.join("Alex");
-		{"context"}.service.publish(operations(int,int));
+		{"context"}.spublish("operations");
 	end
 end
 
@@ -14,7 +13,7 @@ entity start
 		var int soma;
 		var int subtracao;
 		var element s = servico.new();
-		soma,subtracao = {"context"}.operations(2, 10);
+		soma,subtracao = {"context"}.srun("operations",2, 10);
 		io.writeln("soma     : ", soma);
 		io.writeln("subtracao: ", subtracao);
 	end

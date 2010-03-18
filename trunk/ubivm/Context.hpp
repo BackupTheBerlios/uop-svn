@@ -49,7 +49,7 @@ public:
 	void run_remove_service_event(std::string service_name);
 
 	std::string _name;
-	std::set<std::string> _objectList;
+	std::set<std::string> _objectList; // TODO: ou element_list ???
 	std::map<std::string, CTuple*> _listd;
 	std::map<std::string, std::string> _serviceList;
 	std::map<std::string, std::pair<CElement*, CMethodDefinition*> > _events;

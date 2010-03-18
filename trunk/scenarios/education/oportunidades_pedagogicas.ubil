@@ -1,0 +1,123 @@
+import datetime;
+import ncurses;
+
+entity start
+    prop int _line;
+    prop int _obj_count;
+
+    method constructor()
+        ncurses.initscr();
+
+        get_infos();
+        show_learning_objects();
+
+        ncurses.endwin();
+    end
+
+    method get_infos()
+        var string object_name;
+        var string object_type;
+        var string object_publisher;
+        var string object_year;
+
+        // Solicita as informacoes sobre o aprendiz
+        ncurses.clear();
+        ncurses.mvwrite(1, 37, "OPORTUNIDADES PEDAGOGICAS");
+        ncurses.mvwrite(3,  2, "NOME..................: "); identity.name              = ncurses.read();
+        ncurses.mvwrite(4,  2, "INTERESSE GERAL.......: "); identity.general_interest  = ncurses.read();
+        ncurses.mvwrite(5,  2, "INTERESSE ESPECIFICO..: "); identity.specific_interest = ncurses.read();
+
+        // Solicita os objetos de aprendizagem do aprendiz
+        ncurses.mvwrite( 8, 39, "OBJETOS DE APRENDIZAGEM");
+        ncurses.mvwrite(10, 12, "OBJETO");
+        ncurses.mvwrite(10, 67, "TIPO");
+        ncurses.mvwrite(10, 77, "QUEM_PUBLICOU");
+        ncurses.mvwrite(10, 96, "ANO");
+        _line = 11;
+
+        while(object_name <> "fim")
+            ncurses.mvwrite(_line, 12, ""); object_name = ncurses.read();
+
+            if (object_name <> "fim")
+                ncurses.mvwrite(_line, 67, ""); object_type      = ncurses.read();
+                ncurses.mvwrite(_line, 77, ""); object_publisher = ncurses.read();
+                ncurses.mvwrite(_line, 96, ""); object_year      = ncurses.read();
+
+                add_object(object_name, object_type, object_publisher, object_year);
+            end
+            _line++;
+        end
+    end
+
+    method show_learning_objects()
+        var tuple learner;
+        var table learner_list;
+        var int   learner_num;
+
+        location.symbolic = "start";
+
+        while(true)
+            ncurses.clear();
+            {"/PIPCA"}.cpublish("LEARNER", identity.name =>
+                    identity.general_interest, identity.specific_interest, location.symbolic);
+
+            ncurses.mvwrite(1, 37, "OPORTUNIDADES PEDAGOGICAS");
+            ncurses.mvwrite(3,  2, "NOME..................:"); ncurses.mvwrite(3, 26, identity.name);
+            ncurses.mvwrite(4,  2, "INTERESSE GERAL.......:"); ncurses.mvwrite(4, 26, identity.general_interest);
+            ncurses.mvwrite(5,  2, "INTERESSE ESPECIFICO..:"); ncurses.mvwrite(5, 26, identity.specific_interest);
+            ncurses.mvwrite(6,  2, "LOCALIZACAO SIMBOLICA.:"); ncurses.mvwrite(6, 26, location.symbolic);
+
+            ncurses.mvwrite( 8, 39, "OBJETOS DE APRENDIZAGEM");
+            ncurses.mvwrite(10,  2, "APRENDIZ");
+            ncurses.mvwrite(10, 12, "OBJETO");
+            ncurses.mvwrite(10, 67, "TIPO");
+            ncurses.mvwrite(10, 77, "QUEM_PUBLICOU");
+            ncurses.mvwrite(10, 96, "ANO");
+            _line = 11;
+
+            // Verifica por aprendizes com interesses similares
+            learner_list = {"/PIPCA"}.clist();
+            for(learner_num=1; learner_num<=learner_list.size();learner_num++)
+                learner = learner_list[learner_num];
+                if (learner.keys[1] == "LEARNER")
+                    if (learner.keys[2] <> identity.name and learner.values[1] == identity.general_interest
+                            and learner.values[3] == location.symbolic)
+                        // Quando encontra um aprendiz com interesses similares, 
+                        // lista os seus objetos de aprendizagem
+                        show_learner_objects(learner.keys[2]);
+                    end
+                end
+            end
+
+            ncurses.refresh();
+            datetime.sleep(10);
+        end
+    end
+
+    method add_object(string name, string type, string event, string year)
+        _obj_count++;
+        {"/PIPCA"}.cpublish("OBJECT", identity.name, _obj_count => name, type, event, year);
+    end
+
+    method show_learner_objects(string learner_name)
+        var tuple obj;
+        var table obj_list;
+        var int   obj_number;
+
+        // Lista os objetos de aprendizagem disponibilizados pelo aprendiz
+        obj_list = {"/PIPCA"}.clist();
+        for(obj_number=1; obj_number<=obj_list.size(); obj_number++)
+            obj = obj_list[obj_number];
+            if (obj.keys[1] == "OBJECT")
+                if (obj.keys[2] == learner_name)
+                    ncurses.mvwrite(_line, 2, learner_name);
+                    ncurses.mvwrite(_line, 12, obj.values[1]);
+                    ncurses.mvwrite(_line, 67, obj.values[2]);
+                    ncurses.mvwrite(_line, 77, obj.values[3]);
+                    ncurses.mvwrite(_line, 96, obj.values[4]);
+                    _line++;
+                end
+            end
+        end
+    end
+end
