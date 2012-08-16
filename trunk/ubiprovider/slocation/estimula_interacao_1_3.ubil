@@ -1,0 +1,61 @@
+import io;
+import datetime;
+import ncurses;
+
+entity start
+	method constructor()
+		var int perfil_win;
+		ncurses.initscr();
+		perfil_win = ncurses.newwin(6, 100, 0, 0);
+		identity.name              = "biel";
+		identity.general_interest  = "compiler";
+		identity.specific_interest = "semantic";
+		{"unisinos.pipca"}.bind(identity.name);
+		while(true)
+			datetime.sleep(5);
+			ncurses.wclear(perfil_win);
+			ncurses.box(perfil_win, 0, 0);
+			ncurses.mvwwrite(perfil_win, 1, 45, "MEU PERFIL");
+			ncurses.mvwwrite(perfil_win, 3, 2,  "NOME..............:");
+			ncurses.mvwwrite(perfil_win, 3, 22, identity.name);
+			ncurses.mvwwrite(perfil_win, 4, 2,  "LOCALIZACAO ATUAL.:");
+			ncurses.mvwwrite(perfil_win, 4, 22, location.symbolic);
+			ncurses.mvwwrite(perfil_win, 3, 50, "INTERESSE GERAL......:");
+			ncurses.mvwwrite(perfil_win, 3, 73, identity.general_interest);
+			ncurses.mvwwrite(perfil_win, 4, 50, "INTERESSE ESPECIFICO.:");
+			ncurses.mvwwrite(perfil_win, 4, 73, identity.specific_interest);
+			ncurses.wrefresh(perfil_win);
+			{"unisinos.pipca"}.data.af(identity.name => identity.general_interest, identity.specific_interest, location.symbolic);
+			show_users();
+		end
+		ncurses.endwin();
+	end
+	method show_users()
+		var int users_win;
+		var int line;
+		var tuple user;
+		var table user_list;
+		var int user_number;
+		users_win = ncurses.newwin(15, 100, 6, 0);
+		ncurses.wclear(users_win);
+		ncurses.box(users_win, 0, 0);
+		ncurses.mvwwrite(users_win, 1, 35, "PERFIS SIMILARES NO MESMO LOCAL");
+		ncurses.mvwwrite(users_win, 3,  2, "NOME");
+		ncurses.mvwwrite(users_win, 3, 20, "INTERESSE GERAL");
+		ncurses.mvwwrite(users_win, 3, 40, "INTERESSE ESPECIFICO");
+		ncurses.mvwwrite(users_win, 3, 70, "LOCALIZACAO ATUAL");
+		line = 5;
+		user_list = {"unisinos.pipca"}.data.list();
+		for(user_number=1; user_number<=user_list.size(); user_number=user_number+1)
+			user = user_list[user_number];
+			if (user.keys[1] <> identity.name and user.values[1] == identity.general_interest and user.values[3] == location.symbolic)
+				ncurses.mvwwrite(users_win, line,  2, user.keys[1]);
+				ncurses.mvwwrite(users_win, line, 20, user.values[1]);
+				ncurses.mvwwrite(users_win, line, 40, user.values[2]);
+				ncurses.mvwwrite(users_win, line, 70, user.values[3]);
+				line=line+1;
+			end
+		end
+		ncurses.wrefresh(users_win);
+	end
+end

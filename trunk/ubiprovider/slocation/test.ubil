@@ -1,0 +1,14 @@
+import io;
+import datetime;
+
+entity start
+	method constructor()
+		identity.name = "alex";
+		location.symbolic = "undefined";
+		while(true)
+			datetime.sleep(5);
+			io.writeln("Minha localizacao atual: ", location.symbolic);
+		end
+	end
+end
+

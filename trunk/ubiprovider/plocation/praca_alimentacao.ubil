@@ -1,0 +1,96 @@
+// PRACA ALIMENTACAO
+
+import io;
+import datetime;
+
+entity start
+	method constructor()
+		var element negociante1 = lancheria.new();
+		var element negociante2 = buffet.new();
+		negociante1.wait();
+		negociante2.wait();
+	end
+end
+
+entity lancheria [parallel]
+	method constructor()
+		var tuple searching;
+		var table searching_list;
+		var int searching_number;
+		var int y1 = 4;
+		var int x1 = 4;
+		var int y2 = 16;
+		var int x2 = 8;
+		{"shopping.praca_alimentacao"}.bind("lancheria");
+		while(true)
+			searching_list = {"shopping.praca_alimentacao"}.data.list();
+			for(searching_number=1; searching_number<=searching_list.size(); searching_number=searching_number+1)
+				searching = searching_list[searching_number];
+				if (searching.keys[2] == "busca")
+					if (searching.values[3] >= x1 and searching.values[3] <= x2 and searching.values[4] >= y1 and searching.values[4] <= y2)
+						if (searching.values[1] == "S")
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "lancheria", "suco laranja" => 3.50, "Esquerda logo na entrada");
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "lancheria", "refri"        => 2.00, "Esquerda logo na entrada");
+						end
+						if (searching.values[2] == "S")
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "lancheria", "batata frita" => 8.00, "Esquerda logo na entrada");
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "lancheria", "pastel"       => 3.00, "Esquerda logo na entrada");
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+entity buffet [parallel]
+	method constructor()
+		var tuple searching;
+		var table searching_list;
+		var int searching_number;
+		var int y1 = 4;
+		var int x1 = 12;
+		var int y2 = 16;
+		var int x2 = 16;
+		{"shopping.praca_alimentacao"}.bind("buffet");
+		while(true)
+			searching_list = {"shopping.praca_alimentacao"}.data.list();
+			for(searching_number=1; searching_number<=searching_list.size(); searching_number=searching_number+1)
+				searching = searching_list[searching_number];
+				if (searching.keys[2] == "busca")
+					if (searching.values[3] >= x1 and searching.values[3] <= x2 and searching.values[4] >= y1 and searching.values[4] <= y2)
+						if (searching.values[1] == "S")
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "buffet", "cerveja"      => 3.00, "Direita, perto da saida");
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "buffet", "refrigerante" => 2.50, "Direita, perto da saida");
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "buffet", "agua"         => 1.50, "Direita, perto da saida");
+						end
+						if (searching.values[2] == "S")
+							{"shopping.praca_alimentacao"}.data.af(searching.keys[1], "oferta", "buffet", "buffet pratos quentes (KG)" => 19.00, "Direita, perto da saida");
+						end
+					end
+				end
+			end
+		end
+	end
+end
+
+//entity negociante [parallel]
+//	method construtor(string name, int latitude, int longitude, int altitude)
+//
+//	end
+//		var tuple buy;
+//		var table buy_list;
+//		var int buy_number;
+//		buy_list = {"shopping.praca_alimentacao"}.data.list();
+//		for(offer_number=1; offer_number<=offer_list.size(); offer_number=offer_number+1)
+//			offer = offer_list[offer_number];
+//			if (offer.keys[2] == "busca"identity.name and offer.values[1])
+//				ncurses.mvwwrite(offers_win, line,  2, offer.values[1]);
+//				ncurses.mvwwrite(offers_win, line, 20, offer.values[2]);
+//				ncurses.mvwwrite(offers_win, line, 40, offer.values[3]);
+//				line=line+1;
+//			end
+//		end
+//		ncurses.wrefresh(offers_win);
+//	end
+//end

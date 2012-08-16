@@ -1,0 +1,58 @@
+import io;
+import datetime;
+import ncurses;
+
+entity start
+	method constructor()
+		ncurses.initscr();
+		run();
+		ncurses.endwin();
+	end
+	method run()
+		var int perfil_win;
+		identity.name              = "alex";
+		identity.general_interest  = "compiler";
+		identity.specific_interest = "optimization";
+		{"users"}.bind(identity.name);
+		while(true)
+			datetime.sleep(5);
+			ncurses.clear();
+			ncurses.mvwrite(1, 45, "MEU PERFIL");
+			ncurses.mvwrite(3, 2, "Nome.................: ");
+			ncurses.mvwrite(3, 25, identity.name);
+			ncurses.mvwrite(3, 60, "Interesse geral......: ");
+			ncurses.mvwrite(3, 83, identity.general_interest);
+			ncurses.mvwrite(4, 60, "Interesse especifico.: ");
+			ncurses.mvwrite(4, 83, identity.specific_interest);
+			ncurses.mvwrite(4, 2, "Localizacao..........: ");
+			ncurses.mvwrite(4, 25, location.symbolic);
+			{"users"}.data.af(identity.name => identity.general_interest, identity.specific_interest, location.symbolic);
+			show_users();
+			ncurses.refresh();
+		end
+	end
+	method show_users()
+		var int line;
+		var tuple user;
+		var table user_list;
+		var int user_number;
+		ncurses.mvwrite(9,  42, "PERFIS SIMILARES");
+		ncurses.mvwrite(11,  2, "Nome");
+		ncurses.mvwrite(11, 20, "Interesse geral");
+		ncurses.mvwrite(11, 40, "Interesse especifico");
+		ncurses.mvwrite(11, 70, "Localizacao");
+		line = 12;
+		user_list = {"users"}.data.list();
+		for(user_number=1; user_number<=user_list.size(); user_number=user_number+1)
+			user = user_list[user_number];
+			if (user.keys[1] <> identity.name and user.values[1] == identity.general_interest and user.values[3] == location.symbolic)
+				ncurses.mvwrite(line,  2, user.keys[1]);
+				ncurses.mvwrite(line, 20, user.values[1]);
+				ncurses.mvwrite(line, 40, user.values[2]);
+				ncurses.mvwrite(line, 70, user.values[3]);
+				line=line+1;
+			end
+		end
+	end
+end
+
