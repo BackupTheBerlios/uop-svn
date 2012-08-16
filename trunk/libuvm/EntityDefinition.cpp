@@ -20,10 +20,11 @@
 #include "EntityDefinition.hpp"
 
 #include <iostream>
+#include <string.h>
 
 #pragma pack(1)
 
-typedef struct SEntityHeader {
+struct SEntityHeader {
 	u_int indexName;       // Indice na constant pool que contem o nome da entidade
 	u_int optionsCount;    // Numero de opcoes
 	u_int propertiesCount; // Numero de propriedades

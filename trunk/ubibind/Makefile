@@ -16,7 +16,7 @@ all: $(objects)
 	make -C tools
 
 ubibindLexer.o ubibindParser.o: ubibind.g
-	java -jar ~/downloads/apps/antlr-3.1.3.jar ubibind.g
+	java -jar ../../antlr-3.1.3.jar ubibind.g
 	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubibindLexer.c -o ubibindLexer.o
 	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubibindParser.c -o ubibindParser.o
 

@@ -22,7 +22,7 @@
 #include "ParameterDefinition.hpp"
 #include "MethodDefinition.hpp"
 
-typedef struct SMethodHeader {
+struct SMethodHeader {
 	u_int indexName; // Indice na constant pool que contem o nome do metodo
 	u_int parametersCount; // Numero de parametros do metodo
 	u_int resultsCount; // Numero de resultados do metodo

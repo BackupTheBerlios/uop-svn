@@ -8,7 +8,7 @@
 #include "MethodDefinition.hpp"
 #include "Element.hpp"
 
-typedef struct SOptions {
+struct SOptions {
 	std::string sourcefile;
 	std::string asmFilename;
 	uint bindPort;

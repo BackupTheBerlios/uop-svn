@@ -27,14 +27,14 @@ entity start
         offer_list = {"/shopping/praca_alimentacao"}.clist();
         for(offer_number=1; offer_number<=offer_list.size(); offer_number++)
             offer = offer_list[offer_number];
-            if (offer.values[2] == identity.categoria 
-                    and offer.values[3] == identity.componente_base 
-                    and offer.values[5] <= identity.valor_maximo)
+            if (offer.results[2] == identity.categoria 
+                    and offer.results[3] == identity.componente_base 
+                    and offer.results[5] <= identity.valor_maximo)
                 ncurses_menu.new_item(tools.pad(offer.keys[1], 30) + tools.pad(offer.keys[2],5) + 
-                        tools.pad(offer.values[1], 30) + tools.ftoa(offer.values[5]));
+                        tools.pad(offer.results[1], 30) + tools.ftoa(offer.results[5]));
                 count++;
                 offer_code_in_menu[count]   = offer.keys[2];
-                service_name_in_menu[count] = offer.values[6];
+                service_name_in_menu[count] = offer.results[6];
             end
         end
 

@@ -200,7 +200,8 @@ main	(int argc, char *argv[])
 //		}
 //	}
 
-    printf("finished parsing OK\n");	// Finnish parking is pretty good - I think it is all the snow
+//    printf("Finished. Parsing OK.\n");	// Finnish parking is pretty good - I think it is all the snow
+    printf("*finished parsing OK\n");	// Finnish parking is pretty good - I think it is all the snow
 
     if (error > 0) {
 		fprintf(stderr, "The parser returned %d errors.\n", error);
@@ -440,7 +441,7 @@ static int parseFile(SParamOptions options)
     psr->compilation_unit(psr, options);
 //    printf("Retorno [%s]\n", psr->compilation_unit(psr).c_str());
     //putc('F', stdout); fflush(stdout);
-    putc('*', stdout); fflush(stdout);
+    /*putc('*', stdout);*/ fflush(stdout);
 
 //    printf("Retorno [%s]\n", psr->retabc);
 

@@ -80,8 +80,8 @@ entity start
             for(learner_num=1; learner_num<=learner_list.size();learner_num++)
                 learner = learner_list[learner_num];
                 if (learner.keys[1] == "LEARNER")
-                    if (learner.keys[2] <> identity.name and learner.values[1] == identity.general_interest
-                            and learner.values[3] == location.symbolic)
+                    if (learner.keys[2] <> identity.name and learner.results[1] == identity.general_interest
+                            and learner.results[3] == location.symbolic)
                         // Quando encontra um aprendiz com interesses similares, 
                         // lista os seus objetos de aprendizagem
                         show_learner_objects(learner.keys[2]);
@@ -111,10 +111,10 @@ entity start
             if (obj.keys[1] == "OBJECT")
                 if (obj.keys[2] == learner_name)
                     ncurses.mvwrite(_line, 2, learner_name);
-                    ncurses.mvwrite(_line, 12, obj.values[1]);
-                    ncurses.mvwrite(_line, 67, obj.values[2]);
-                    ncurses.mvwrite(_line, 77, obj.values[3]);
-                    ncurses.mvwrite(_line, 96, obj.values[4]);
+                    ncurses.mvwrite(_line, 12, obj.results[1]);
+                    ncurses.mvwrite(_line, 67, obj.results[2]);
+                    ncurses.mvwrite(_line, 77, obj.results[3]);
+                    ncurses.mvwrite(_line, 96, obj.results[4]);
                     _line++;
                 end
             end

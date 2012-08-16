@@ -1,6 +1,8 @@
 #include "UvmHeader.hpp"
 
-typedef struct SUvmHeader {
+#include <string.h>
+
+struct SUvmHeader {
 	u_int   binaryId;
 	char    strVersion[16];
 	u_short version;

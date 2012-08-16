@@ -18,7 +18,8 @@ all: $(objects)
 #	antlr parser.g
 
 ubilLexer.o ubilParser.o: ubil.g
-	java -jar ~/downloads/apps/antlr-3.1.3.jar ubil.g
+#	java -jar ../../antlr-3.4-complete.jar ubil.g
+	java -jar ../../antlr-3.1.3.jar ubil.g
 	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubilLexer.c -o ubilLexer.o
 	$(CC) $(CCFLAGS_ANTLR) -c $(INCLUDE_DIR) ubilParser.c -o ubilParser.o
 

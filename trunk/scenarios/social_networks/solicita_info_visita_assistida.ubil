@@ -13,9 +13,9 @@ entity start
         // Exibe as informacoes sobre o servico
         visita_assistida = {"parque"}.cfind("Visita assistida");
         io.writeln("Informacoes sobre o servico Visita Assistida:");
-        io.writeln("    Tempo de duracao   : ", visita_assistida.values[1]);
-        io.writeln("    Descricao          : ", visita_assistida.values[2]);
-        io.writeln("    Locais de interesse: ", visita_assistida.values[3]);
+        io.writeln("    Tempo de duracao   : ", visita_assistida.results[1]);
+        io.writeln("    Descricao          : ", visita_assistida.results[2]);
+        io.writeln("    Locais de interesse: ", visita_assistida.results[3]);
         io.writeln("");
 
         io.writeln("**** Informacoes sobre a fauna e flora ****");

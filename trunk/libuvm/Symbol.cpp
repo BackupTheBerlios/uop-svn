@@ -22,6 +22,9 @@
 #include <iostream>
 #include <iomanip>
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "Symbol.hpp"
 #include "LibUvmCommon.hpp"
 // #include "MultiIndex.hpp"
@@ -73,7 +76,7 @@ bool CSymbol::loadBytecode(CBinString& bytecode)
 	bytecode.load(&symbolSize, sizeof(symbolSize));
 	char* buffer = new char[symbolSize+1];
 	bytecode.load(buffer, symbolSize);
-	buffer[symbolSize] = NULL;
+	buffer[symbolSize] = '\0';
 	_name = std::string(buffer).substr(0, symbolSize);
 
 	delete []buffer;

@@ -1,0 +1,53 @@
+import tools;
+
+entity start
+    method constructor()
+        var tuple offer;
+        var table offer_list;
+        var int offer_number;
+        var int count = 0;
+        var table offer_code_in_menu;
+        var table service_name_in_menu;
+
+        io.writeln("MEU PERFIL");
+        io.writeln("");
+        io.write("NOME...........: ");
+        identity.name = io.readln();
+        io.write("CATEGORIA......: ");
+        identity.categoria = io.readln();
+        io.write("COMPONENTE BASE: ");
+        identity.componente_base = io.readln();
+        io.write("VALOR MAXIMO...: ");
+        identity.valor_maximo = tools.atof(io.readln());
+
+	io.writeln("");
+        io.writeln("OFERTAS DE PRODUTOS");
+        io.writeln("LOJISTA                       OFERTA                             VALOR");
+	io.writeln("");
+
+        offer_list = {"/shopping/praca_alimentacao"}.clist();
+        for(offer_number=1; offer_number<=offer_list.size(); offer_number++)
+            offer = offer_list[offer_number];
+            if (offer.results[2] == identity.categoria 
+                    and offer.results[3] == identity.componente_base 
+                    and offer.results[5] <= identity.valor_maximo)
+                io.writeln(tools.pad(offer.keys[1], 30) + tools.pad(offer.keys[2],5) + 
+                        tools.pad(offer.results[1], 30) + tools.ftoa(offer.results[5]));
+                count++;
+                offer_code_in_menu[count]   = offer.keys[2];
+		io.writeln("offer_code_in_menu[", count, "]=", offer_code_in_menu[count]);
+                service_name_in_menu[count] = offer.results[6];
+		io.writeln("service_name_in_menu[", count, "]=", service_name_in_menu[count]);
+            end
+        end
+
+        if (count > 0)
+            offer_number = 1; // escolheu o primeiro...
+            io.writeln("Servico a ser executado: ", service_name_in_menu[offer_number], " arg1: ", identity.name, " arg2: ", offer_code_in_menu[offer_number]);
+            identity.checkout_number =
+                    {"/shopping/praca_alimentacao"}.srun(service_name_in_menu[offer_number],
+                    identity.name, offer_code_in_menu[offer_number]);
+            io.writeln("NUMERO DO PEDIDO: ", identity.checkout_number);
+        end
+    end
+end

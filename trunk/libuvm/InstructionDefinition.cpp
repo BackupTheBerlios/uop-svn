@@ -39,7 +39,7 @@ enum OpcodeArgumentType {
  	PropertyOpcodeArgumentType  = 7
 };
 
-typedef struct Mnemonic_t {
+struct Mnemonic_t {
 	OpcodeType _opcode;
 	char _mnemonic[ MAX_MNEMONIC_SIZE ];
 	OpcodeArgumentType _argType;

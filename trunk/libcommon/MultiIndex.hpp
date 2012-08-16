@@ -53,7 +53,7 @@ public:
 		std::map<std::string, size_t>::iterator pos = _mapIndex.find(key);
 
 		if (pos == _mapIndex.end()) {
-			return T(NULL);
+			return T("");
 		} else {
 			return _vectorIndex[pos->second].value;
 		}

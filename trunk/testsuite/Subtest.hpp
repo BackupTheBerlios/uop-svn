@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include <sys/types.h>
+
 #include "TestSuiteDefs.hpp"
 #include "Args.hpp"
 
