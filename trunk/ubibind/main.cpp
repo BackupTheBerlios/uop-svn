@@ -12,18 +12,15 @@ static void parseFile   (SParamOptions options);
 
 void showVersion() {
    std::cerr << "UbiBind 0.1.0" << std::endl;
-   //std::cerr << rcstagid << " (" << rcsrevid << ")" << endl;
 }
 
 void showSyntax(int valor) {
     std::cout << "Use: ubibind [options] filename" << std::endl;
     std::cout << "\t-o\tDefine output filename." << std::endl;
-//    std::cout << "\t-a\tDefine assembly output filename." << std::endl;
     std::cout << "\t-h\tShow this help." << std::endl;
     std::cout << "\t-v\tShow version." << std::endl;
     std::cout << std::endl;
     std::cout << "To report bugs: alexgarzao@gmail.com " << std::endl;
-//    std::cout << "To report bugs: " << PACKAGE_BUGREPORT << std::endl;
 
     exit(valor);
 }
@@ -39,12 +36,8 @@ int ANTLR3_CDECL main(int argc, char *argv[])
 	SParamOptions options;
 
 	int param;
-//	while ((param = getopt(argc, argv, "a:o:hv")) != -1) {
 	while ((param = getopt(argc, argv, "o:hv")) != -1) {
 		switch (param) {
-//			case 'a': // Make assembly text file
-//				options.asmFilename = std::string(optarg);
-//				break;
 			case 'o': // Output filename
 				options.outputFilename = std::string(optarg);
 				break;
@@ -73,39 +66,7 @@ int ANTLR3_CDECL main(int argc, char *argv[])
 		options.outputFilename = std::string("uvm_os_") + options.sourceFilename.substr(0, options.sourceFilename.find_last_of('.')) + ".cpp";
 	}
 
-//	std::cout << "sourceFilename=" << options.sourceFilename << std::endl;
-//	std::cout << "uvmFilename=" << options.uvmFilename << std::endl;
-//	std::cout << "asmFilename=" << options.asmFilename << std::endl;
-
 	parseFile(options);
-
-//    string cppOutput = parser.getCpp();
-//    string hppOutput = parser.getHpp();
-//    string makefileOutput = parser.getMakefile();
-// 
-//    ofstream cppFile((_options->destfile + ".cpp").c_str(), ios_base::out);
-//    if (!cppFile) {
-//       cout << "ERRO: não foi possível abrir o arquivo: \"" << _options->destfile << "\"" << endl;
-//       return false;
-//    }
-// 
-//    cppFile << cppOutput;
-// 
-//    ofstream hppFile((_options->destfile + ".hpp").c_str(), ios_base::out);
-//    if (!hppFile) {
-//       cout << "ERRO: não foi possível abrir o arquivo: \"" << _options->destfile << "\"" << endl;
-//       return false;
-//    }
-// 
-//    hppFile << hppOutput;
-// 
-//    ofstream makefileFile(("Makefile." + _options->destfile).c_str(), ios_base::out);
-//    if (!makefileFile) {
-//       cout << "ERRO: não foi possível abrir o arquivo: \"" << _options->destfile << "\"" << endl;
-//       return false;
-//    }
-// 
-//    makefileFile << makefileOutput;
 
     printf("finished parsing OK\n");	// Finnish parking is pretty good - I think it is all the snow
 

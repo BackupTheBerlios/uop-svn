@@ -29,8 +29,6 @@ class CLiteral;
 #include "MultiIndex.hpp"
 
 
-//typedef CTable CMultiIndex<CLiteral>;
-
 #include "Tuple.hpp"
 
 /**
@@ -67,7 +65,6 @@ public:
 	void bind_event(std::string event_name, CMethodDefinition* method);
 //private:
     LiteralType _type;
-//	size_t size;
 	union {
 		int integerValue;
 		double realValue;

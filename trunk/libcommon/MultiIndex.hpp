@@ -33,21 +33,6 @@ public:
 		}
 	}
 
-// 	void add(size_t pos, T item)
-// 	{
-// 		if (pos >= _vectorIndex.size()) {
-// 			_vectorIndex.resize(pos+1);
-// 		}
-// 		std::map<std::string, size_t>::iterator pos = _mapIndex.find(key);
-// 
-// 		if (pos == _mapIndex.end()) {
-// 			_mapIndex[key] = _vectorIndex.size();
-// 			_vectorIndex.push_back(Item(key, item));
-// 		} else {
-// 			_vectorIndex[pos->second] = Item(key, item);
-// 		}
-// 	}
-
 	T get(std::string key)
 	{
 		std::map<std::string, size_t>::iterator pos = _mapIndex.find(key);

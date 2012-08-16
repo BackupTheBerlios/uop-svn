@@ -31,8 +31,7 @@
 // runtime header files, the generated header files (all of which are safe to include
 // multiple times) and your own project related header files. Use <> to include and
 // -I on the compile line (which vs2005 now handles, where vs2003 did not).
-//
-//#include    <java.h>
+
 #include "ubilLexer.h"
 #include "ubilParser.h"
 
@@ -46,50 +45,12 @@
 static    pubilLexer		    lxr;
 
 
-//static void	processDir  (char * directory);
 static int parseFile   (SParamOptions options);
 
 
 
-
-
-////////////
-
-
-// #include "MultiIndex.hpp"
-//
-// void teste()
-// {
-// 	MultiIndex<int> mi;
-//
-// 	mi.add("10", 100);
-// 	mi.add("20", 200);
-// 	mi.add("30", 300);
-//
-// 	std::cout << "Numero de itens: " << mi.size() << std::endl;
-//
-// 	for(MultiIndex<int>::iterator item = mi.begin(); item != mi.end(); item++) {
-// 		std::cout << "item: key[" << (*item).key << "] value[" << (*item).value << "]" << std::endl;
-// 	}
-//
-// 	std::cout << "Chave 10 valor " << mi.get("10") << std::endl;
-// 	std::cout << "Chave 20 valor " << mi.get("20") << std::endl;
-// 	std::cout << "Chave 30 valor " << mi.get("30") << std::endl;
-//
-// 	std::cout << "Indice 0 valor " << mi.get(0) << std::endl;
-// 	std::cout << "Indice 1 valor " << mi.get(1) << std::endl;
-// 	std::cout << "Indice 2 valor " << mi.get(2) << std::endl;
-//
-// 	exit(0);
-// }
-
-
-////////////
-
-
 void showVersion() {
    std::cerr << "UbiC 0.1.0" << std::endl;
-   //std::cerr << rcstagid << " (" << rcsrevid << ")" << endl;
 }
 
 void showSyntax(int valor) {
@@ -101,7 +62,6 @@ void showSyntax(int valor) {
     std::cout << "\t-v\tShow version." << std::endl;
     std::cout << std::endl;
     std::cout << "To report bugs: alexgarzao@gmail.com " << std::endl;
-//    std::cout << "To report bugs: " << PACKAGE_BUGREPORT << std::endl;
 
     exit(valor);
 }
@@ -113,8 +73,6 @@ void showSyntax(int valor) {
 int ANTLR3_CDECL
 main	(int argc, char *argv[])
 {
-// 	teste();
-
     	showVersion();
 
 	SParamOptions options;
@@ -132,7 +90,6 @@ main	(int argc, char *argv[])
 				options.uvmFilename = std::string(optarg);
 				break;
 			case 'v': // Version
-//				showVersion();
 				exit(1);
 				break;
 			case 'h': // Help
@@ -153,53 +110,11 @@ main	(int argc, char *argv[])
     }
 
     options.sourceFilename = std::string(argv[0]) + ".ubil";
-//     options.sourceFilename = std::string(argv[0]);
 	if (options.uvmFilename.empty()) {
 		options.uvmFilename = std::string(argv[0]) + ".uvm";
-//		options.uvmFilename = options.sourceFilename.substr(0, options.sourceFilename.size()-4) + "uvm";
 	}
-//         for (param = 1; param < argc; param++)
-//             options.parameters.push_back(Symbol(argv[param]));
-
-//        try {
-//            if (!options.quiet)
-//                showVersion();
-//            VirtualMachine vm(&options);
-//            vm.run();
-//        } catch (HVMException hvme) {
-//            cout << hvme.getErro() << endl;
-//            exit(EXIT_FAILURE);
-//        }
-//    }
-
-
-//	std::cout << "sourceFilename=" << options.sourceFilename << std::endl;
-//	std::cout << "uvmFilename=" << options.uvmFilename << std::endl;
-//	std::cout << "asmFilename=" << options.asmFilename << std::endl;
-
-
-	// Create the input stream based upon the arguement supplied to us on the command line
-	// for this example, the input will always default to ./input if there is no explicit
-	// argument, otherwise we are expecting potentially a whole list of 'em.
-	//
-//	if (argc < 2 || argv[1] == NULL)
-//	{
-//		exit(1);
-//		processDir("./input"); // Note in VS2005 debug, working directory must be configured
-//	}
 
 	int error = parseFile(options);
-	//parseFile((pANTLR3_UINT8)argv[1]);
-//	else
-//	{
-//		int i;
-//
-//		for (i = 1; i < argc; i++)
-//		{
-//			processDir(argv[i]);
-//		}
-//	}
-
 //    printf("Finished. Parsing OK.\n");	// Finnish parking is pretty good - I think it is all the snow
     printf("*finished parsing OK\n");	// Finnish parking is pretty good - I think it is all the snow
 
@@ -213,87 +128,7 @@ main	(int argc, char *argv[])
 }
 
 
-/*
-static void
-processDir(char * directory)
-{
-    unsigned char     buf[2048];
-    DIR		    * Hdir;
-    DIR		    * Hdirs;
-    struct dirent   * dirfil;
-
-    // First, determine if we have been given a directory or a file
-    //
-    Hdir    = opendir((const char *)directory);
-
-    if (Hdir == NULL)
-    {
-	// It was no a directory, therefore we assume that it was a file
-	//
-	parseFile((pANTLR3_UINT8)directory);
-    }
-    else
-    {
-		do
-		{
-			// We successfully opened a directory, we iterate all
-			// subdirectories and find all files within all directories
-			//
-			dirfil	= readdir(Hdir);
-
-			if	(      dirfil != NULL			// Out of entries in this directory
-					&& dirfil->d_name[0] != '.' // Current or prior directory, or hidden file
-				)
-			{
-				int buflen;
-
-				// We found a new entry in this directory, we need to know
-				// if it is a sub directory of course.
-				//
-				buflen = sprintf((char *)buf, "%s%c%s", directory, DIRDELIM, dirfil->d_name);
-				Hdirs	= opendir((const char *)buf);
-
-				if (Hdirs != NULL)
-				{
-					// This was a directory too, close the reference here, and call
-					// ourselves recursively, to process this subdirectory
-					//
-					processDir((char *)buf);
-					closedir(Hdirs);
-					printf(" %s\n", buf);
-				}
-				else
-				{
-					// This is a local file, if it is a .java file, then
-					// let's parse it.
-					//
-					if (       (buf[buflen-4] == 'j' || buf[buflen-4] == 'J')
-						&& (buf[buflen-3] == 'a' || buf[buflen-3] == 'A')
-						&& (buf[buflen-2] == 'v' || buf[buflen-2] == 'V')
-						&& (buf[buflen-1] == 'a' || buf[buflen-1] == 'A')
-						)
-					{
-						// // printf("  - %s\n", dirfil->d_name);
-						//printf(" S"); fflush(stdout);
-						parseFile((pANTLR3_UINT8) buf);
-						// putc('E', stdout); fflush(stdout);
-					}
-				}
-			}
-
-		} while (dirfil != NULL);
-
-	// This directory is complete, close this level and return
-	//
-	closedir(Hdir);
-	printf("\n");
-	return;
-    }
-}
-*/
-
 static int parseFile(SParamOptions options)
-//parseFile(pANTLR3_UINT8 fName)
 {
     // Now we declare the ANTLR related local variables we need.
     // Note that unless you are convinced you will never need thread safe
@@ -434,16 +269,8 @@ static int parseFile(SParamOptions options)
 	//	}
 	//}
     tstream->tstream->_LT(tstream->tstream, 1);	// Don't do this normally, just causes lexer to run for timings here
-    //putc('P', stdout); fflush(stdout);
-//    SParamOptions param;
-//    param.asmFilename = "aaa.asm";
-//    param.uvmFilename = "aaa.uvm";
     psr->compilation_unit(psr, options);
-//    printf("Retorno [%s]\n", psr->compilation_unit(psr).c_str());
-    //putc('F', stdout); fflush(stdout);
     /*putc('*', stdout);*/ fflush(stdout);
-
-//    printf("Retorno [%s]\n", psr->retabc);
 
 	int errors = psr->pParser->rec->state->errorCount;
 
@@ -470,190 +297,4 @@ static int parseFile(SParamOptions options)
 
 	return errors;
 }
-
-
-
-/*
-
-//////////////////////// COPIADO GPT /////////////////
-//
-//
-//
-
-#include "config.h"
-
-#include "GPTDisplay.hpp"
-#include "GPT.hpp"
-
-#include <sstream>
-#include <string>
-#include <list>
-#include <unistd.h>
-
-using namespace std;
-
-enum {
-  FLAG_DICA  = 0x1
-};
-
-enum {
-  CMD_SHOW_VERSION,
-  CMD_SHOW_HELP,
-  CMD_COMPILE,
-  CMD_INVALID
-};
-
-//----- globals ------
-
-int    _flags = 0;
-list<string> _ifilenames;
-
-string _csource;
-string _asmsource;
-string _binprogram;
-
-//----- Options -----
-
-static int init(int argc, char** argv) {
-
-  if(argc == 1) {
-    return CMD_SHOW_HELP;
-  }
-
-  stringstream s;
-  int cmd = CMD_COMPILE;
-  opterr = 0;
-  int c;
-  int count_cmds = 0;
-
-//
-//  Opcoes:  o: <output>,  t: <output>,  s: <output>, H: <host>,  P: <port>,  h[help]
-//           v[ersion],  i[nterpret],  p[ipe],  d[ica]
-//
-
-#ifndef DEBUG
-  while((c = getopt(argc, argv, "o:c:s:H:P:idvh")) != -1) {
-    switch(c) {
-#else
-  while((c = getopt(argc, argv, "o:t:s:H:P:idvhD")) != -1) {
-    switch(c) {
-#endif
-      case 'o':
-        count_cmds++;
-        cmd = CMD_COMPILE;
-        if(optarg) {
-          _binprogram = optarg;
-        }
-        break;
-      case 'd':
-        _flags |= FLAG_DICA;
-        break;
-      case 'v':
-        return CMD_SHOW_VERSION;
-        break;
-      case 'h':
-        return CMD_SHOW_HELP;
-        case '?':
-           if((optopt == 'o') || (optopt == 't')) {
-            s << PACKAGE << ": faltando argumento para opção -" << (char)optopt << endl;
-           } else {
-            s << PACKAGE << ": opção inválida: -" <<  char(optopt) << endl;
-           }
-           GPTDisplay::self()->showError(s);
-           goto bail;
-     default:
-        s << PACKAGE << ": erro interno." << endl;
-        GPTDisplay::self()->showError(s);
-        goto bail;
-    }
-  }
-
-  if(count_cmds > 1) {
-    s << PACKAGE << ": mais de um comando selecionado." << endl;
-    GPTDisplay::self()->showError(s);
-    goto bail;
-  }
-
-    c = optind;
-    while(c < argc) {
-      _ifilenames.push_back(argv[c++]);
-    }
-
-    if(_ifilenames.size() == 0) {
-      s << PACKAGE << ": nenhum arquivo especificado." << endl;
-      GPTDisplay::self()->showError(s);
-      goto bail;
-    }
-
-  return cmd;
-
-  bail:
-    return CMD_INVALID;
-}
-
-
-static void appendDefaultFiles() {
-  string inc;
-
-  char* env = getenv("GPT_INCLUDE");
-
-  if(!env || strlen(env) == 0) {
-    return;
-  }
-
-  inc = env;
-
-  string filename;
-  string::size_type c = 0;
-  string::size_type b = 0;
-  while((c = inc.find(":", b)) != string::npos) {
-    filename = inc.substr(b, c);
-    if(filename.length()) {
-      _ifilenames.push_back(filename);
-    }
-    b = c+1;
-  }
-  filename = inc.substr(b);
-  if(filename.length()) {
-    _ifilenames.push_back(filename);
-  }
-}
-
-int main(int argc, char** argv) {
-  int cmd = init(argc, argv);
-  bool success = false;
-  stringstream s;
-
-  if(_flags & FLAG_DICA) {
-    GPT::self()->reportDicas(true);
-  } else {
-    GPT::self()->reportDicas(false);
-  }
-
-  appendDefaultFiles();
-
-
-  switch(cmd) {
-    case CMD_SHOW_VERSION:
-      GPT::self()->showVersion();
-      break;
-    case CMD_SHOW_HELP:
-      GPT::self()->showHelp();
-      break;
-    case CMD_COMPILE:
-      if(!_binprogram.empty()) {
-        GPT::self()->setOutputFile(_binprogram);
-      }
-      success = GPT::self()->compile(_ifilenames);
-      break;
-    case CMD_INVALID:
-      break;
-  }
-
-  return success?EXIT_SUCCESS:EXIT_FAILURE;
-}
-
-*/
-
-
 

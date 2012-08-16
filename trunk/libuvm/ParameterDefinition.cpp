@@ -45,7 +45,6 @@ void CParameterDefinition::saveBytecode(CBinString& bytecode)
 
 	bytecode.save(&_type, sizeof(_type));
 	bytecode.save(&indexName, sizeof(indexName));
-// 	std::cout << "name=" << _name << " type=" << _type << " indexName=" << indexName << std::endl;
 }
 
 bool CParameterDefinition::loadBytecode(CBinString& bytecode)
@@ -54,8 +53,6 @@ bool CParameterDefinition::loadBytecode(CBinString& bytecode)
 
 	bytecode.load(&_type, sizeof(_type));
 	bytecode.load(&indexName, sizeof(indexName));
-
-// 	std::cout << " type=" << _type << " indexName=" << indexName << std::endl;
 
 	_name = _symbolTable->getSymbolByIndex(indexName)->_name;
 

@@ -143,7 +143,6 @@ int CTool::testOk(std::string name)
 		for(std::vector<std::string>::iterator command = _copyCommandLine.begin(); command != _copyCommandLine.end(); command++) {
 			std::string commandToExec = replaceAllTags((*command), test, (*subtest));
 			std::cout << "\t" << commandToExec;
-//			std::cout << "\tCommand line: " << commandToExec << std::endl;
 			if (system(commandToExec.c_str()) == 0) {
 				std::cout << " (OK)";
 			} else {
@@ -166,7 +165,6 @@ int CTool::check(std::string name)
 		for(std::vector<STestCommand>::iterator command = _testCommandLine.begin(); command != _testCommandLine.end(); command++) {
 			std::string commandToExec = replaceAllTags(command->_testCommand, test, (*subtest));
 			std::cout << "\t" << commandToExec;
-//			std::cout << "\tCommand line: " << commandToExec << " ";
 			if (system(commandToExec.c_str()) != 0) {
 				std::cout << " (FAIL)";
 				(*subtest)->_status = FAIL;

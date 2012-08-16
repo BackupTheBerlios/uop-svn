@@ -5,18 +5,10 @@
 #include "ContextProvider.hpp"
 
 
-// CUbiVM::CUbiVM(SOptions *options) : _options(options)
-// {
-// }
-
-
 int CUbiVM::run()
 {
-//	std::ifstream in(_options->sourcefile.c_str(), std::ios::in|std::ios::binary);
-
 	_load_providers();
 
-//   bytecode.readFromFile(in);
 	_readFromFile(_options->sourcefile);
 
 	if (_options->asmFilename != "") {
@@ -32,7 +24,6 @@ int CUbiVM::run()
 	CRunBytecode bytecode;
 
 	return bytecode.run();
-// 	return bytecode.run("start", NULL);
 }
 
 
@@ -49,32 +40,8 @@ bool CUbiVM::_readFromFile(std::string name)
 		return false;
 	}
 
-//	std::cout << "Assembly lido: " << std:: endl;
-//	std::cout << _asmDef.toTextAssembly() << std::endl;
-
 	return true;
 }
-
-/*
-bool CRunBytecode::readFromFile(std::ifstream &in)
-{
-   std::stringstream buf;
-   buf << in.rdbuf();
-   CBinString bin;
-   bin.assign(buf.str());
-
-   _header.readFromBinary(bin) &&
-         _symbolTable.readFromBinary(bin);
-
-   _dataStack.assign(bin.readString());
-   _dataStack.setBS(_dataStack.size());
-   _dataStack.setSP(_dataStack.size());
-
-   _code.assign(bin.readString());
-
-   return true;
-}
-*/
 
 
 int CUbiVM::_load_providers()

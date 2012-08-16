@@ -21,14 +21,12 @@ void CTuple::addValueAtBegin(CLiteral name)
 void CTuple::addKeyAtEnd(CLiteral name)
 {
 	_keyList.push_back(name);
-// 	_keyList.insert(_keyList.begin(), name);
 }
 
 
 void CTuple::addValueAtEnd(CLiteral name)
 {
 	_valueList.push_back(name);
-// 	_valueList.insert(_valueList.begin(), name);
 }
 
 

@@ -66,20 +66,14 @@ private:
 	void threadedCode();
 	void processReceivedPacket(const char* char_packet, size_t lenght, udp::socket& sock, udp::endpoint& sender_endpoint);
 	void processRequestOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-// 	void processListdRequest(CBinString& packet, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	void processReplyOperation(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
-// 	void processListdReply(CBinString& requestPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& requestHeader);
 	std::string dumpPacket(const char* packet, uint length);
 
 	boost::thread*   _thread;
 	uint             _packetNumber;
-// 	boost::mutex     _mutex;
-// 	boost::condition_variable _cond;
-// 	CDataStack*      _dataStack;
 	uint _bindPort;
 	uint _sendPort;
  	boost::asio::io_service _io_service;
-// 	boost::asio::ip::udp::socket* _socket;
 };
 
 #endif

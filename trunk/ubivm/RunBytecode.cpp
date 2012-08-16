@@ -38,16 +38,6 @@ CRunBytecode::~CRunBytecode()
 
 int CRunBytecode::run()
 {
-// 	_cp->register_bce(1, this);
-   //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
-//   std::cout << "Code size=" << _code.size() << std::endl;
-
-   // Empilha referencia para entidade start
-//    uint startIndex = _symbolTable.getSymbolIndex("start", StringType);
-//    _dataStack.push(CLiteral(IntegerType, &startIndex));
-//    newOpcode(); // new recebe na datastack ou como argumento a entidade a ser instanciada ???
-//    _dataStack.push(_asmDef.getEntity("start")->getMethod("start"));
-//    mcallOpcode(); // mas mcall recebe como argumento, e nao na datastack :-/
    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
 
 
@@ -57,14 +47,9 @@ int CRunBytecode::run()
 	(*_contextsInfo)["identity.username"] = CLiteral(std::string(""));
 	(*_contextsInfo)["location.symbolic"] = CLiteral(std::string(""));
 
-// 	std::cout << "No init, identity.name=" << (*_contextsInfo)["identity.name"].getText() << std::endl;
-
-
-
 	CElement* element = new CElement(CUbiVM::getInstance()->getAsmDef()->getEntity("start"));
 
 	if (element == NULL) {
-// 		std::cout << "Entidade " << "start" << " nao encontrada !!!" << std::endl;
 		return 1;
 	}
 
@@ -86,78 +71,6 @@ int CRunBytecode::run()
 
 	return _returnCode;
 }
-
-
-
-// int CRunBytecode::run(std::string entity_name, CElement* element)
-// {
-//    //std::cout << "Code lido: [" << _code.getBinary() << "]" << " size=" << _code.getBinary().size() << std::endl;
-// //   std::cout << "Code size=" << _code.size() << std::endl;
-//
-//    // Empilha referencia para entidade start
-// //    uint startIndex = _symbolTable.getSymbolIndex("start", StringType);
-// //    _dataStack.push(CLiteral(IntegerType, &startIndex));
-// //    newOpcode(); // new recebe na datastack ou como argumento a entidade a ser instanciada ???
-// //    _dataStack.push(_asmDef.getEntity("start")->getMethod("start"));
-// //    mcallOpcode(); // mas mcall recebe como argumento, e nao na datastack :-/
-//    // TODO: uma forma seria gerar um bytecode especifico para instanciar e executar o metodo correto... com isso daria para passar o q fosse necessario como argumento para invocar new, mcallopcode, ...
-//
-//
-//    //_code.setIP(0); // TODO: pegar o endereco de main
-//
-// 	if (element == NULL) {
-// 		element = new CElement(_asmDef->getEntity(entity_name));
-// 		_elementList->push_back(element); // uso no runs para encontrar a entidade que executa um servico... nao ta bem certo :-/
-// 		_dataStack.push(CLiteral(element));
-// 	}
-//
-//    _ip.element = element;
-//
-//    if (_ip.element == NULL) {
-// 	   std::cout << "Entidade " << entity_name << " nao encontrada !!!" << std::endl;
-//    }
-//
-// //   std::cout << "Entidade start encontrada !!!" << std::endl;
-//
-//    _ip.method  = _ip.element->getMethod(entity_name);
-//
-//    if (_ip.method == NULL) {
-// 	   std::cout << "Metodo " << entity_name << " nao encontrado !!!" << std::endl;
-//    }
-//
-// //   std::cout << "Metodo start encontrado !!!" << std::endl;
-//
-// 	// Define variaveis locais
-// 	// TODO: isso deve ficar definido no metodo...
-// //	_localVarList.clear();
-// //	_localVarList.reserve(_ip.method->_localVarList.size());
-//
-// //	std::cout << "Criando as variaveis locais do metodo..." << std::endl;
-//
-// 	CActivationRecord* ar = new CActivationRecord();
-//
-// 	for(std::vector<CLocalVarDefinition*>::iterator var = _ip.method->_localVarList.begin();
-// 		var != _ip.method->_localVarList.end(); var++) {
-// 		ar->_localVarList.push_back(CLiteral((*var)->_type));
-// 	}
-//
-// 	ar->_ip = _ip;
-//
-// 	_controlStack.push(ar);
-//
-// 	// TODO: fazer o mesmo para os parametros... resultados..
-//
-//
-//    _ip.ip      = 0;
-//
-// 	if (_asmDef->getEntity(entity_name)->isParallel()) {
-// 		element->_thread = new boost::thread( boost::bind( &CRunBytecode::run_bytecode, this));
-// 	} else {
-// 		run_bytecode();
-// 	}
-//
-//    return _returnCode;
-// }
 
 
 void CRunBytecode::run_bytecode()
@@ -189,8 +102,6 @@ void CRunBytecode::_initOpcodePointer()
 		_opcodePointer[i] = NULL; //&CRunBytecode::invalidOpcode;
 	}
 
-//   _opcodePointer[OP_NOP        ] = &CRunBytecode::nopOpcode;
-//   _opcodePointer[OP_PCALL      ] = &CRunBytecode::pcallOpcode;
 	_opcodePointer[LCALL_OPCODE    ] = &CRunBytecode::lcallOpcode;
 	_opcodePointer[LDVAR_OPCODE    ] = &CRunBytecode::ldvarOpcode;
 	_opcodePointer[STVAR_OPCODE    ] = &CRunBytecode::stvarOpcode;
@@ -276,15 +187,12 @@ void CRunBytecode::error(const std::string &message)
 
 void CRunBytecode::procWriteln()
 {
-//	std::cout << "Opcode writeln: ";
    int argNumber = _dataStack.pop().getInteger();
-   //int argNumber = _ip.element->getSymbolByIndex(_dataStack.pop().getInteger())->getInteger();
    std::string out;
 
    for (int arg=0; arg < argNumber; arg++) {
 	   // por enquanto so strings...
 	   out = _dataStack.pop().getText() + out;
-	   //std::cout << _ip.element->getSymbolByIndex(_dataStack.pop())->_name;
    }
    std::cout << out << std::endl;
 }
@@ -427,9 +335,6 @@ void CRunBytecode::callSyslib(const std::string &libFunc)
 {
 	std::string libName = libFunc.substr(0, libFunc.find_first_of("."));
 	std::string procName = libFunc.substr(libFunc.find_first_of(".")+1);
-
-// std::cout << "libFunc=" << libFunc << " libName=" << libName << " procName=" << procName << std::endl;
-
 
 	std::map<std::string, void*>::iterator ithandler;
 	void *dlhandler = NULL;

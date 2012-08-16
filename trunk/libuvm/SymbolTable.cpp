@@ -52,13 +52,11 @@ CSymbol* CSymbolTable::getSymbol(std::string name, LiteralType type)
 	key += type;
 	key += "::";
 	key += name;
-//	std::cout << "Buscando simbolo chave " << key << std::endl;
 	std::map<std::string, CSymbol*>::iterator symbolFound = _symbolList.find(key);
 	CSymbol* symbol;
 	if (symbolFound == _symbolList.end()) {
 		symbol = new CSymbol(name, type, _symbolListByIndex.size());
 		_symbolList[key] = symbol;
-//		std::cout << "Adicionando simbolo chave " << key << " nome " << symbol->_name << " index " << symbol->_index << std::endl;
 		_symbolListByIndex.push_back(symbol);
 		return symbol;
 	} else {
@@ -79,20 +77,6 @@ CSymbolTable::~CSymbolTable()
 {
 }
 
-//COPIADO GPT
-//
-//bool CSymbolTable::readFromBinary(CBinString &bin)
-//{
-//   int size;
-//   bin.readInt(size);
-//   for (int count=0; count < size; count++) {
-//      CSymbol *symbol = new CSymbol();
-//      symbol->readFromBinary(bin);
-//      add(symbol);
-//   }
-//   return true;
-//}
-
 std::string CSymbolTable::toTextAssembly()
 {
 	std::string result;
@@ -103,12 +87,6 @@ std::string CSymbolTable::toTextAssembly()
 		symbol != _symbolListByIndex.end(); symbol++) {
 		result += "\t" + (*symbol)->toTextAssembly() + "\n";
 	}
-
-// 	for(std::map<std::string, CSymbol*>::iterator symbol = _symbolList.begin();
-// 		symbol != _symbolList.end(); symbol++) {
-// 		result += "\t";
-// 		result += symbol->second->toTextAssembly();
-// 	}
 
 	result += ".end\n";
 
@@ -143,7 +121,6 @@ bool CSymbolTable::loadBytecode(CBinString& bytecode)
 		key += symbol->_name;
 		symbol->_index = _symbolListByIndex.size();
 		_symbolList[key] = symbol;
-//		std::cout << "Adicionando simbolo chave " << key << " nome " << symbol->_name << " index " << symbol->_index << std::endl;
 		_symbolListByIndex.push_back(symbol);
 	}
 

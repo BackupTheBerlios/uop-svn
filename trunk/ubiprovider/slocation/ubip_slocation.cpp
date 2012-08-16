@@ -43,9 +43,6 @@ static bool ubip_read_conf_file(std::string filename)
 
 		// Process non-comment line
 		boost::tokenizer<> token_list(line);
-/*		for(boost::tokenizer<>::iterator beg=token_list.begin(); beg!=token_list.end();++beg) {
- 			std::cout << *beg << "\n";
-		}*/
 		boost::tokenizer<>::iterator token=token_list.begin();
 		std::string step      = *token++;
 		std::string identity  = *token++;
@@ -126,7 +123,6 @@ static std::string _get_symbolic_location()
 	
 	_current_time++;
 	std::string key_map = std::string(itoa(_current_time)) + std::string(":") + (*_contextsInfo)["identity.name"].getText();
-// 	std::cout << "key_map=" << key_map << std::endl;
 	if (_users_locations.find(key_map) != _users_locations.end()) {
 		return _users_locations[key_map];
 	} else {

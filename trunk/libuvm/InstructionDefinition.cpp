@@ -58,9 +58,6 @@ struct Mnemonic_t {
 };
 
 static Mnemonic_t opcodeListDesc [ ] = {
-//	{ "nop", NoOpcodeArgumentType },
-//	{ "hlt", NoOpcodeArgumentType },
-//	{ "ret", NoOpcodeArgumentType },
 	{ LDCONST_OPCODE, "ldconst", ConstantOpcodeArgumentType },
 	{ LCALL_OPCODE, "lcall", SymbolOpcodeArgumentType },
 	{ MCALL_OPCODE, "mcall", SymbolOpcodeArgumentType },
@@ -179,7 +176,6 @@ std::string CInstructionDefinition::toTextAssembly(bool high_level, const std::v
 	// TODO: implementacao ineficiente... mas eh um teste apenas...
 	int pos = opcodeIndex(_opcode);
 	if (pos != -1) {
-//		std::cout.setf ( std::ios::left, std::ios::adjustfield );
 		result << std::setw(12) << std::left << opcodeListDesc[pos]._mnemonic;
 		if (opcodeListDesc[pos].size() > 1) {
 			if (high_level == false) {
@@ -231,7 +227,6 @@ void CInstructionDefinition::saveBytecode(CBinString& bytecode)
 
 	if (opcodeListDesc[opcodeIndex(_opcode)].size() > 1) {
 		bytecode.save(&_arg1, sizeof(_arg1));
-//		bytecode.save(_arg1);
 	}
 }
 
@@ -241,7 +236,6 @@ bool CInstructionDefinition::loadBytecode(CBinString& bytecode)
 
 	if (opcodeListDesc[opcodeIndex(_opcode)].size() > 1) {
 		bytecode.load(&_arg1, sizeof(_arg1));
-//		bytecode.load(&_arg1);
 	}
 
 	return true;

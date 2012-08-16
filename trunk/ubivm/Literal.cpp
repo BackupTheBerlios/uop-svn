@@ -25,10 +25,6 @@
 
 #include "Tools.hpp"
 
-//static size_t typeSizeList[] = {
-//{
-//};
-
 CLiteral::CLiteral()
 {
 	_type = UserdataType; // TODO: nao deveria ter um tipo especifico ???
@@ -62,7 +58,6 @@ CLiteral::CLiteral(LiteralType type, const void* value)
 CLiteral::CLiteral(LiteralType type)
 	: _type(type)
 {
-	//std::cout << "Adicionando tipo " << _type << std::endl;
 	if (_type == StringType) {
 		_value.stringValue = new std::string();
 	} else if (_type == IntegerType) {
@@ -115,10 +110,8 @@ void CLiteral::setValue(LiteralType type, const void* value)
 	if (_type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = *((std::string*) value);
-		//std::cout << "Literal string contendo " << *_value.stringValue << std::endl;
 	} else if (_type == ElementType) {
 		_value.elementValue = ((CElement*) value);
-// 		std::cout << "Element contendo " << _value.elementValue << std::endl;
 	} else if (_type == TableType) {
 		_value.tableValue = new CMultiIndex<CLiteral>();
 		*_value.tableValue = *((CMultiIndex<CLiteral>*) value);
@@ -137,11 +130,6 @@ void CLiteral::setValue(LiteralType type, const void* value)
 	}
 	// TODO: userdata
 
-// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
-// 	std::map<std::string, CMethodDefinition*>::iterator event = _events.find("on_changed");
-// 	if (event != _events.end()) {
-// 		std::cout << "Tem evento para ser executado !!!" << std::endl;
-// 	}
 }
 
 std::string CLiteral::getText()
@@ -201,7 +189,6 @@ bool CLiteral::getBoolean()
 
 CElement* CLiteral::getElement()
 {
-// 	std::cout << "getElement: " << _value.elementValue << std::endl;
 	return _value.elementValue;
 }
 
@@ -258,5 +245,4 @@ bool CLiteral::loadBytecode(CBinString& bytecode)
 void CLiteral::bind_event(std::string event_name, CMethodDefinition* method)
 {
 	_events[event_name] = method;
-// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
 }

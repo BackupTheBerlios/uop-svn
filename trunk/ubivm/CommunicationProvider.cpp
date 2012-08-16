@@ -16,7 +16,6 @@ void CCommunicationProvider::setConfig(std::map<std::string, CContext*>* context
 
 void CCommunicationProvider::run()
 {
-// 	boost::thread thr1( boost::bind( &CCommunicationProvider::run, this ) );
 	_thread = new boost::thread( boost::bind( &CCommunicationProvider::threadedCode, this));
 }
 
@@ -54,7 +53,6 @@ std::string CCommunicationProvider::dumpPacket(const char* char_packet, uint len
 
 void CCommunicationProvider::threadedCode()
 {
-// 	udp::socket sock(io_service, udp::endpoint(boost::asio::ip::address_v4::any(), _bindPort));
 	boost::asio::ip::udp::socket socket(_io_service);
 
 	boost::asio::ip::udp::endpoint listen_endpoint(boost::asio::ip::address_v4::any(), _bindPort);
@@ -82,41 +80,9 @@ void CCommunicationProvider::sendBroadcastPacket(const char* packet, size_t leng
 	udp::resolver::query query(udp::v4(), "255.255.255.255", itoa(_sendPort));
 	udp::resolver::iterator iterator = resolver.resolve(query);
 
-// 	std::cout << "Enviando pacote..." << std::endl;
 	s.send_to(boost::asio::buffer(packet, length), *iterator);
 
-// 	std::cout << getpid() << ": TX [" << dumpPacket(packet, length) << "]" << std::endl;
-
-// 	udp::endpoint sender_endpointXXX;
-
-// 	processReceivedPacket(packet, length, s, sender_endpointXXX); // Forca o bradcast a ser processado
-
 	return;
-
-/*	// Put the socket into non-blocking mode.
-	udp::socket::non_blocking_io non_blocking_io(true);
-	s.io_control(non_blocking_io);
-
-	char reply[max_length];
-	udp::endpoint sender_endpoint;
-	size_t retries = 1;
- 	while(retries <= 5) {
-		size_t reply_length;
-		try {
-			reply_length = s.receive_from(boost::asio::buffer(reply, max_length), sender_endpoint);
-		} catch (std::exception& e)
-		{
-			reply_length = 0;
-		}
-
-		if (reply_length > 0) {
-			processReceivedPacket(reply, reply_length, s, sender_endpoint);
-			retries = 1;
-		} else {
-			retries++;
-			sleep(1);
-		}
- 	}*/
 }
 
 
@@ -152,12 +118,8 @@ void CCommunicationProvider::processReceivedPacket(const char* char_packet, size
 	packet.load(&header, sizeof(header));
 
 	if (header._dstVmId._pid != 0 && header._dstVmId._pid != getpid()) {
-// 		std::cout << getpid() << " nao eh o meu pid !!!" << std::endl;
 		return;
 	}
-
-// 	std::cout << getpid() << ": RX [" << dumpPacket(char_packet, length) << "]" << std::endl;
-
 
 	if (header._operation == REQUEST_OPERATION) {
 		processRequestOperation(packet, sock, sender_endpoint, header);
@@ -170,7 +132,6 @@ void CCommunicationProvider::processReceivedPacket(const char* char_packet, size
 
 		processReplyOperation(packet, sock, sender_endpoint, header);
 	} else {
-// 		std::cout << "Invalid packet operation !!!" << std::endl;
 		return;
 	}
 }
@@ -194,7 +155,6 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 	} else if (requestHeader._opcode == CGETNB_OPCODE) {
 		CContextProvider::getInstance()->processGetdnbRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == CLIST_OPCODE) {
-// 		std::cout << "Requisicao listd recebida..." << std::endl;
 		CContextProvider::getInstance()->processListdRequest(requestPacket, requestHeader, replyPacket);
 	} else if (requestHeader._opcode == SPUBLISH_OPCODE) {
 		CContextProvider::getInstance()->processPublishsRequest(requestPacket, requestHeader, replyPacket);
@@ -214,7 +174,6 @@ void CCommunicationProvider::processRequestOperation(CBinString& requestPacket, 
 void CCommunicationProvider::processReplyOperation(CBinString& replyPacket, udp::socket& sock, udp::endpoint& sender_endpoint, SPacketHeader& replyHeader)
 {
 	if (replyHeader._dstVmId._pid != getpid()) {
-// 		std::cout << "Descartando reply VMID=" << header._vmId << std::endl;
 		return;
 	}
 
@@ -227,16 +186,13 @@ void CCommunicationProvider::processReplyOperation(CBinString& replyPacket, udp:
 	}
 
 	if (replyHeader._opcode == CFIND_OPCODE) {
-		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader);
 	} else if (replyHeader._opcode == CFINDNB_OPCODE) {
-		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CContextProvider::getInstance()->processFinddnbReply(replyPacket, requestHeader);
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader);
 	} else if (replyHeader._opcode == CGET_OPCODE) {
-		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CContextProvider::getInstance()->processGetdReply(replyPacket, requestHeader);
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader);
 	} else if (replyHeader._opcode == CGETNB_OPCODE) {
-		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader); //, sender_endpoint);
-// 		CContextProvider::getInstance()->processGetdnbReply(replyPacket, requestHeader);
+		CContextProvider::getInstance()->processFinddReply(replyPacket, replyHeader);
 	} else if (replyHeader._opcode == CLIST_OPCODE) {
 		CContextProvider::getInstance()->processListdReply(replyPacket, replyHeader);
 	} else if (replyHeader._opcode == SRUN_OPCODE) {

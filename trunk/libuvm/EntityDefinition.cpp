@@ -108,7 +108,6 @@ void CEntityDefinition::saveBytecode(CBinString& bytecode)
 	// Salva as opcoes
 	for(std::map<std::string, std::string>::iterator option = _optionList.begin(); option != _optionList.end(); option++) {
 		bytecode.save(option->first);
-//  		std::cout << "salvando a opcao " << option->first << std::endl;
 	}
 
 	// Salva as propriedades
@@ -135,7 +134,6 @@ bool CEntityDefinition::loadBytecode(CBinString& bytecode)
 	for(u_int count = 0; count < header.optionsCount; count++) {
 		std::string option;
 		bytecode.load(option);
-//  		std::cout << this << ": carregando a opcao " << option << std::endl;
 		_optionList[option] = "true";
 	}
 
@@ -186,16 +184,12 @@ CSymbol* CEntityDefinition::getSymbolByIndex(size_t index)
 
 bool CEntityDefinition::isParallel()
 {
-	// TODO: corrigir depois...
-// 	std::cout << _name << ":" << this << ": parallel=" << _optionList["parallel"] << std::endl;
 	return (_optionList["parallel"] == "true");
-//	return (_name == "concorrente");
 }
 
 
 void CEntityDefinition::setOption(std::string option)
 {
-// 	std::cout << "setando opcao " << option << " para true" << std::endl;
 	_optionList[option]="true";
 }
 

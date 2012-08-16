@@ -37,8 +37,6 @@ CParameterDefinition* CMethodDefinition::addParameter(LiteralType type, std::str
 
 	addParameter(parameter);
 
-//	addLocalVar(type, name);
-
 	return parameter;
 }
 
@@ -58,8 +56,6 @@ CLocalVarDefinition* CMethodDefinition::addLocalVar(LiteralType type, std::strin
 
 CResultDefinition* CMethodDefinition::addResult(LiteralType type)
 {
-// 	std::cout << __FUNCTION__ << ": Tipo=" << type << std::endl;
-
 	CResultDefinition* result = new CResultDefinition(_resultList.size(), type);
 
 	addResult(result);
@@ -311,31 +307,8 @@ void CMethodDefinition::resolveLabels()
 	}
 }
 
-// void CMethodDefinition::resolveLabels()
-// {
-// 	for(std::vector<CInstructionDefinition*>::iterator instruction = _instructionList.begin(); instruction != _instructionList.end(); instruction++) {
-// 		// Troca argumentos (label) de IFNOT e JMP pelo endereco correto
-// 		if ((*instruction)->_opcode == IFNOT_OPCODE || (*instruction)->_opcode == IF_OPCODE || (*instruction)->_opcode == JMP_OPCODE) {
-// 			if ((*instruction)->_arg1 >= _labelAddress.size()) {
-// 				std::cerr << "Label " << (*instruction)->_arg1 << " inexistente !!!" << std::endl;
-// 				std::cerr << "LabelAddress.size()=" << _labelAddress.size() << std::endl;
-// 			} else {
-// 				(*instruction)->_arg1 = _labelAddress[(*instruction)->_arg1];
-// 			}
-// 		}
-//
-// 		// Troca label da instrucao pelo numero da instrucao
-// 		if ((*instruction)->_label != -1) {
-// 			(*instruction)->_label = instruction - _instructionList.begin();
-// 		}
-// 	}
-// }
-
 int CMethodDefinition::setNextInstructionLabel(int label)
 {
-//	if (_nextInstructionLabel != -1) {
-//		std::cerr << "Label " << _nextInstructionLabel << " foi sobrescrito !!!" << std::endl;
-//	}
 	_nextInstructionLabelList.push_back(label);
 
 	return label;

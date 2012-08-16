@@ -22,15 +22,12 @@ void CContext::remObject(std::string name)
 void CContext::addTuple(CTuple* tuple)
 {
 	_listd[tuple->getComposedKeys()] = tuple;
-// 	std::cout << "Adicionado no contexto " << _name << " a tupla " << tuple->getComposedKeys() << " com valor " << tuple->getComposedValues() <<  std::endl;
 }
 
 
 void CContext::remTuple(CTuple* tuple)
 {
-// 	std::cout << "Antes de remover: " << _listd[tuple->getComposedKeys()] << " size=" << _listd.size() <<  std::endl;
 	_listd.erase(tuple->getComposedKeys());
-// 	std::cout << "Depois de remover: " << _listd[tuple->getComposedKeys()] << " size=" << _listd.size() << std::endl;
 }
 
 

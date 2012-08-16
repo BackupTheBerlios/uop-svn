@@ -114,13 +114,6 @@ enum OpcodeType {
 	STTUPLER_OPCODE,
 	LDTUPLER_OPCODE,
 
-
-//	SBIND_OPCODE, // TODO: ta sendo usado ???
-
-/*	LDIDENTITY_OPCODE,
-	LDLOCATION_OPCODE,
-	LDTIME_OPCODE,
-	LDACTIVITY_OPCODE,*/
 	BELEMENTEV_OPCODE,
 	BCONTEXTIEV_OPCODE,
 	BCONTEXTEV_OPCODE,
@@ -134,9 +127,7 @@ enum LiteralType {
 	RealType = 'R',
 	BooleanType = 'B',
 	MethodType = 'M',
-//	EntityType = 'E',
 	ElementType= 'E',
-// 	PointerType = 'P'
 	UserdataType= 'U',
 	TableType = 'L',
 	TupleType = 'T'

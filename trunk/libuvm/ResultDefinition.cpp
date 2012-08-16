@@ -31,7 +31,6 @@ CResultDefinition::CResultDefinition(size_t index)
 CResultDefinition::CResultDefinition(size_t index, LiteralType type)
 	: _index(index), _type(type)
 {
-// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
 }
 
 CResultDefinition::~CResultDefinition()
@@ -41,13 +40,11 @@ CResultDefinition::~CResultDefinition()
 void CResultDefinition::saveBytecode(CBinString& bytecode)
 {
 	bytecode.save(&_type, sizeof(_type));
-// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
 }
 
 bool CResultDefinition::loadBytecode(CBinString& bytecode)
 {
 	bytecode.load(&_type, sizeof(_type));
-// 	std::cout << __FUNCTION__ << ": Tipo=" << _type << std::endl;
 
 	return true;
 }

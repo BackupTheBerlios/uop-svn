@@ -86,26 +86,12 @@ int CAssemblyDefinition::saveBytecode(std::string name)
 
 	_header->setEntitiesCount(_entityList.size());
 	_header->saveBytecode(bytecode);
-	//bytecode.insert(bytecode.end(), bytecode.begin(), bytecode.end());
 
 	_symbolTable.saveBytecode(bytecode);
 
 	foreach(CEntityDefinition* entity, _entityList) {
 		entity->saveBytecode(bytecode);
 	}
-
-//	std::cout << "Formato binario com " << bytecode.size() << " bytes:" << std::endl;
-//
-//	for(size_t pos = 0; pos < bytecode.size(); pos++) {
-//		char temp[12];
-//		snprintf(temp, 12, " %.2X (%.3d)", bytecode.get(pos), bytecode.get(pos));
-//		std::cout << temp << " ";
-//		if ((pos+1) % 10 == 0) {
-//			std::cout << std::endl;
-//		}
-//	}
-//
-//	std::cout << std::endl;
 
 	std::ofstream out(name.c_str(), std::ios_base::out);
 
@@ -123,19 +109,6 @@ bool CAssemblyDefinition::loadBytecode(std::string name)
 	buf << in.rdbuf();
 
 	bytecode.assign(buf.str());
-
-//	std::cout << "Formato binario lido com " << bytecode.size() << " bytes:" << std::endl;
-//
-//	for(size_t pos = 0; pos < bytecode.size(); pos++) {
-//		char temp[12];
-//		snprintf(temp, 12, " %.2X (%.3d)", bytecode.get(pos), bytecode.get(pos));
-//		std::cout << temp << " ";
-//		if ((pos+1) % 10 == 0) {
-//			std::cout << std::endl;
-//		}
-//	}
-//
-//	std::cout << std::endl;
 
 	if (!_header->loadBytecode(bytecode)) {
 		CLog::log("Erro lendo header !!!");

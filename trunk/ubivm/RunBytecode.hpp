@@ -54,13 +54,6 @@ private:
    void procReadln();
    void procKeyPress();
    void procSleep();
-//   void setIntData(const int &address, const int &value);
-//   int  getIntData(const int &address);
-//    void setRealData(const int &address, const double &value);
-//    double getRealData(const int &address);
-//    void setStringData(const int &address, const std::string &value);
-//    std::string getStringData(const int &address);
-//    void popRA();
    void callSyslib(const std::string &procname);
 	std::string getSymbolName(uint index);
 	CSymbol* getSymbol(uint index);
@@ -132,12 +125,9 @@ private:
 	void bind_contexti_event(std::string context_info_name, std::string event_name, CElement* element, CMethodDefinition* method);
 	void bind_context_event(std::string context_name, std::string event_name, CElement* element, CMethodDefinition* method);
 
-// 	CCommunicationProvider* _cp;
-// 	CDataProvider* _dp;
 	static uint _bceCount;
 	SVmId _vmId;
 	void run_property_event(CElement* element, CMethodDefinition* method, std::string name, CLiteral old_value, CLiteral new_value);
-// 	void run_context_event_insert_data(std::string keys, std::string values);
 	CContext* force_context_creation(std::string context_name);
 };
 

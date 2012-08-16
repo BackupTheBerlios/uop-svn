@@ -70,24 +70,6 @@ CBindSources::CBindSources()
 
 void CBindSources::writeHeaders()
 {
-//   hppSource.writeln( "#ifndef GPTBIND_" + _filename + "_HPP" );
-//   hppSource.writeln( "#define GPTBIND_" + _filename + "_HPP" );
-//   hppSource.writeln();
-//
-//   for(std::list<std::string>::iterator header = _headerList.begin(); header != _headerList.end(); header++) {
-//      std::string sheader = (*header).substr(1, (*header).length()-2);
-//      hppSource.writeln( "#include <" + sheader + ">" );
-//   }
-//   hppSource.writeln();
-//
-//   hppSource.writeln( "#include \"CDataStack.hpp\"" );
-//   hppSource.writeln();
-//
-//   hppSource.writeln( "extern \"C\" {" );
-//   hppSource.incTab();
-
-//    cppSource.writeln( "#include \"" + _moduleName + ".hpp\"" );
-//    cppSource.writeln();
 	cppSource.writeln("#include \"DataStack.hpp\"");
 	cppSource.writeln();
 	

@@ -60,7 +60,6 @@ private:
 	std::map<std::string, CContext*> _contextList;
 	std::vector<CElement*> _elementList;
 	std::map<std::string, CLiteral> _contextsInfo;
-// 	CCommunicationProvider* _cp;
 };
 
 #endif

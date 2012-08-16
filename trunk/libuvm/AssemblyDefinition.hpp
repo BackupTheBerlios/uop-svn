@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-// #include <list>
 
 #include "SymbolTable.hpp"
 #include "EntityDefinition.hpp"

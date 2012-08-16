@@ -36,8 +36,6 @@ CElement::~CElement()
 void CElement::bind_event(std::string event_name, CElement* element, CMethodDefinition* method)
 {
 	_events[event_name] = std::pair<CElement*, CMethodDefinition*>(element, method);
-// 	std::cout << __FUNCTION__ << ": element= " << element->getName() << " event_name=" << event_name << " method=" << method->getName() << std::endl;
-// 	std::cout << this << ": events.size()=" << _events.size() << std::endl;
 }
 
 void CElement::run_event(std::string event_name)

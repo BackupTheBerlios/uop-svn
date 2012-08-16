@@ -10,9 +10,6 @@ extern "C" void uvm_os_wrap_libncurses_initscr(CDataStack& dataStack)
 }
 
 
-//	int printw (const char *,...)
-
-
 extern "C" void uvm_os_wrap_libncurses_writeln(CDataStack& dataStack)
 {
 	int argNumber = dataStack.pop().getInteger();

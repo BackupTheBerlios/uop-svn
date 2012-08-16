@@ -20,7 +20,6 @@ public:
 	CLiteral pop();
 	size_t size() const { return _dataStack.size(); }
 private:
-//	std::stack<uint> _dataStack;
 	std::stack<CLiteral> _dataStack;
 };
 

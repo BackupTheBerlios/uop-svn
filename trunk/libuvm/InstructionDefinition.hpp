@@ -24,7 +24,6 @@ public:
     ~CInstructionDefinition();
 
     std::string toTextAssembly(bool high_level, const std::vector<CPropertyDefinition*> &propertyList, const std::vector<CLocalVarDefinition*> &localVarList, const std::vector<CParameterDefinition*> &paramList);
-//    std::string toTextAssembly();
     void saveBytecode(CBinString& bytecode);
     bool loadBytecode(CBinString& bytecode);
 	std::string getTextOpcode();

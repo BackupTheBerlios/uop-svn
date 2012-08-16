@@ -51,8 +51,6 @@ int main(int argc, char *argv[])
 
    options.sourcefile = std::string(argv[0]) + ".uvm";
 
-//   cout << "Running " << options.sourcefile << "..." << endl;
-
    CUbiVM::getInstance()->setConfig( &options );
 
    int result = CUbiVM::getInstance()->run();

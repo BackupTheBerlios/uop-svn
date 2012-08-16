@@ -3,8 +3,6 @@
 
 //namespace ASSEMBLY_DEFINITION {
 
-//#include <string.h>
-//#include <iostream>
 #include <string>
 #include <map>
 #include <vector>
@@ -68,17 +66,12 @@ public:
 private:
 	void adjustInstructionsLabels();
 
-//	std::map<const char *, CParamDefinition*> _test;
-//	std::vector<CParameterDefinition*>           _parameterVector;
-//	std::map<std::string, CParameterDefinition*> _parameterMap;
-//	std::map<std::string, CLocalVarDefinition*>  _localVarList;
 	std::vector<CInstructionDefinition*>         _instructionList;
 	std::vector<CInstructionDefinition*>         _pushedInstructions;
 	CEntityDefinition* _entity;
 	CSymbolTable *_symbolTable;
 	VisibilityType _visibility;
 	std::string    _name;
-// 	std::map<std::string, size_t> _localVarNumber;
 	std::map<std::string, size_t> _parameterNumber;
 	int _nextLabel;
 	std::vector<int> _nextInstructionLabelList;

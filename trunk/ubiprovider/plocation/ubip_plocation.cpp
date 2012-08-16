@@ -133,11 +133,9 @@ static sphysical_location _get_symbolic_location()
 {
 	_current_time++;
 	std::string key_map = std::string(itoa(_current_time)) + std::string(":") + (*_contextsInfo)["identity.name"].getText();
-// 	std::cout << "key_map=" << key_map << std::endl;
 	if (_users_locations.find(key_map) != _users_locations.end()) {
 		return _users_locations[key_map];
 	} else {
-// 		std::cout << "Chave nao encontrada: " << key_map << std::endl;
 		return sphysical_location(-1,-1,-1);
 	}
 }

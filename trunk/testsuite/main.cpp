@@ -21,7 +21,6 @@ void showSyntax(int valor) {
     std::cout << "\t-v\tShow version." << std::endl;
     std::cout << std::endl;
     std::cout << "To report bugs: alexgarzao@gmail.com " << std::endl;
-//    std::cout << "To report bugs: " << PACKAGE_BUGREPORT << std::endl;
 
     exit(valor);
 }
@@ -78,7 +77,6 @@ int main(int argc, char* argv[])
 				}
 				break;
 			case 'v': // Version
-//				showVersion();
 				exit(1);
 				break;
 			case 'h': // Help

@@ -36,7 +36,6 @@ void CBinString::save(const void* data, size_t size)
 void CBinString::load(const void* data, size_t size)
 {
 	_data.copy((char*)data, size);
-//	_data.erase(size);
 	_data.erase(0, size);
 }
 

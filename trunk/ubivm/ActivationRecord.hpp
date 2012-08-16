@@ -21,13 +21,11 @@ public:
 	void restore_state(CDataStack& dataStack, SIp& currentIp);
 
 	CRunBytecode* _bce;
-// 	std::string _entityName;
 	std::string _methodName;
 	SIp _lastIp;
 	std::vector<CLiteral> _localVarList;
 	std::vector<CLiteral> _paramList;
 	std::vector<CLiteral> _resultList;
-// 	std::vector<CMultiIndex<CLiteral> > _localTabList;
 	CElement* _element;
 	CMethodDefinition* _method;
 	

@@ -41,8 +41,6 @@ void CContextProvider::sendRequestPublishdOpcode(SVmId vmId, std::string context
 	packet.save(&header, sizeof(header));
 	packet.save(contextName);
 	tuple.saveBytecode(packet);
-// 	packet.save(tuple.getComposedKeys());
-// 	packet.save(tuple.getComposedValues());
 
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 }
@@ -64,24 +62,8 @@ void CContextProvider::sendRequestFinddOpcode(SVmId vmId, std::string contextNam
 	packet.save(contextName);
 	tuple.saveBytecode(packet);
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
-// 	boost::unique_lock<boost::mutex> lock(_mutex);
-// 	std::cout << getpid() << ": Enviando findd request" << std::endl;
 	_bce_list[vmId._bce]->_dataReady = false;
-// 	sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestFindd" << std::endl;
-// 	while(!_dataReadyInFindd) {
-// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
-// 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
-// 		sleep(1);
-// 		std::cout << "DataReady=" << _dataReady << std::endl;
-//  	}
-// 	sleep(REQUEST_TIMEOUT);
 
-// 	boost::mutex::scoped_lock lk(_mutex);
-// 	_cond.wait(lk);
 	while( _bce_list[vmId._bce]->_dataReady == false) {
 		CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 		sleep(REQUEST_TIMEOUT);
@@ -126,9 +108,6 @@ void CContextProvider::sendRequestGetdOpcode(SVmId vmId, std::string contextName
 	_bce_list[vmId._bce]->_dataReady = false;
 
 	while(_bce_list[vmId._bce]->_dataReady == false) {
-// 		std::cout << getpid() << ": vou envia unicast reply" << std::endl;
-// 		std::cout << "last_endpoint=" << _bce_list[vmId._bce]->_last_endpoint << std::endl;
-// 		CCommunicationProvider::getInstance()->sendUnicastReply(dqu_packet.getData().c_str(), dqu_packet.size(), _bce_list[vmId._bce]->_last_endpoint);
 		CCommunicationProvider::getInstance()->sendBroadcastPacket(dqu_packet.getData().c_str(), dqu_packet.size());
 		sleep(REQUEST_TIMEOUT);
 	}
@@ -157,24 +136,7 @@ void CContextProvider::sendRequestFinddnbOpcode(SVmId vmId, std::string contextN
 	// Tuple key
 	tuple.saveBytecode(packet);
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestFindd" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
-// 	boost::unique_lock<boost::mutex> lock(_mutex);
-// 	std::cout << getpid() << ": Enviando findd request" << std::endl;
 	_bce_list[vmId._bce]->_dataReady = false;
-// 	sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestFindd" << std::endl;
-// 	while(!_dataReadyInFindd) {
-// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
-// 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
-// 		sleep(1);
-// 		std::cout << "DataReady=" << _dataReady << std::endl;
-//  	}
-// 	sleep(REQUEST_TIMEOUT);
-
-// 	boost::mutex::scoped_lock lk(_mutex);
-// 	_cond.wait(lk);
 
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
 	sleep(REQUEST_TIMEOUT);
@@ -249,34 +211,14 @@ void CContextProvider::sendRequestListdOpcode(SVmId vmId, std::string contextNam
 
 	packet.save(contextName.c_str());
 
-// 	std::cout << "Request ainda nao foi enviado em sendRequestListd" << std::endl;
-// 	std::cout << "antes lock mutex em sendRequestFindd" << std::endl;
-// 	boost::unique_lock<boost::mutex> lock(_mutex);
-//  	std::cout << getpid() << ": Enviando listd request" << std::endl;
-
 	_bce_list[vmId._bce]->_listdReplyTable = new CMultiIndex<CLiteral>();
 
 	_bce_list[vmId._bce]->_dataReady = false;
 	CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
-// 	std::cout << "Request foi enviado em sendRequestListd" << std::endl;
-	
-// 	while(!_dataReadyInListd) {
-// 		std::cout << "antes cond.wait em sendRequestFindd" << std::endl;
-// 		_cond.wait(lock);
-// 		std::cout << "depois cond.wait em sendRequestFindd" << std::endl;
-// 		sleep(1);
-// 		std::cout << "DataReady=" << _dataReady << std::endl;
-// 		std::cout << "Aguardando dados depois do sendBroadcast em sendRequestListd" << std::endl;
-//  	}
+
 	sleep(REQUEST_TIMEOUT);
 
-// 	std::cout << "_listdReplyTable" << _listdReplyTable->size() << std::endl;
-// 	_dataStack->push(CLiteral(_listdReplyTable));
 	_bce_list[vmId._bce]->_dataStack.push(CLiteral(_bce_list[vmId._bce]->_listdReplyTable));
-
-
-// 	boost::mutex::scoped_lock lk(_mutex);
-// 	_cond.wait(lk);
 }
 
 
@@ -344,15 +286,7 @@ void CContextProvider::sendRequestRunsOpcode(SVmId vmId, std::string contextName
 		_bce_list[vmId._bce]->_dataStack.pop().saveBytecode(packet);
 	}
 
-// 	for(uint arg=0; arg < argsNumber; arg++) {
-// 		// TODO: nao to mandando na ordem inversa ???
-// 		std::string sarg = _bce_list[vmId._bce]->_dataStack.pop().getText();
-// 		// TODO: os argumentos estao sendo convertidos para texto... isso nao eh o certo...
-// 		packet.save(sarg);
-// 	}
-
 	_bce_list[vmId._bce]->_dataReady = false;
-// 	std::cout << getpid() << ":dataReady de " << vmId._bce << "setado para false" << std::endl;
 
 	while( _bce_list[vmId._bce]->_dataReady == false) {
 		CCommunicationProvider::getInstance()->sendBroadcastPacket(packet.getData().c_str(), packet.size());
@@ -363,18 +297,12 @@ void CContextProvider::sendRequestRunsOpcode(SVmId vmId, std::string contextName
 
 void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
 {
-// 	SPacketHeader replyHeader;
 	CTuple*       tuple = new CTuple();;
 
 	std::string contextName;
 	requestPacket.load(contextName);
 
 	tuple->loadBytecode(requestPacket);
-// 	std::string tupleKeys;
-// 	requestPacket.load(tupleKeys);
-
-// 	std::string tupleValues;
-// 	requestPacket.load(tupleValues);
 
 	if (_contextList->find(contextName) != _contextList->end()) {
 		(*_contextList)[contextName]->run_insert_data_event(tuple->getComposedKeys(), tuple->getComposedValues());
@@ -382,28 +310,6 @@ void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacket
 
 	delete tuple;
 }
-
-
-
-// void CContextProvider::processPublishdRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
-// {
-// // 	SPacketHeader replyHeader;
-// // 	CTuple*       tuple;
-// 
-// 	std::string contextName;
-// 	requestPacket.load(contextName);
-// 
-// 	std::string tupleKeys;
-// 	requestPacket.load(tupleKeys);
-// 
-// 	std::string tupleValues;
-// 	requestPacket.load(tupleValues);
-// 
-// 	if (_contextList->find(contextName) != _contextList->end()) {
-// 		(*_contextList)[contextName]->run_insert_data_event(tupleKeys, tupleValues);
-// 	}
-// }
-
 
 
 void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHeader& requestHeader, CBinString& replyPacket)
@@ -437,10 +343,6 @@ void CContextProvider::processFinddRequest(CBinString& requestPacket, SPacketHea
 	replyPacket.save(&replyHeader, sizeof(replyHeader));
 
 	tuple->saveBytecode(replyPacket);
-
-// 		std::cout << "Enviando reply packet" << std::endl;
-// 		sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
-// 		std::cout << getpid() << ": Enviando Findd reply" << std::endl;
 }
 
 
@@ -458,9 +360,6 @@ void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHead
 	std::string contextName;
 	requestPacket.load(contextName);
 
-// 	std::string tupleKey;
-// 	requestPacket.load(tupleKey);
-
 	CTuple tupleToFind;
 	tupleToFind.loadBytecode(requestPacket);
 	
@@ -472,7 +371,6 @@ void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHead
 	tuple = (*_contextList)[contextName]->getTuple(&tupleToFind);
 
 	if (tuple == NULL) {
-// 		std::cout << __FUNCTION__ << ": tupla " << tupleKey << " nao encontrada !!!" << std::endl;
 		return;
 	}
 
@@ -491,7 +389,6 @@ void CContextProvider::processGetdRequest(CBinString& requestPacket, SPacketHead
 	}
 
 	(*_contextList)[contextName]->remTuple(&tupleToFind);
-//  	std::cout << __FUNCTION__ << ": tupla " << tupleKey << " removida !!!" << std::endl;
 
 	if (_contextList->find(contextName) != _contextList->end()) {
 		// TODO: acho que deveria passar a tupla mesmo no evento abaixo...
@@ -511,21 +408,14 @@ void CContextProvider::processListdRequest(CBinString& requestPacket, SPacketHea
 {
 	size_t size;
 	SPacketHeader replyHeader;
-// 	CTuple* tuple;
-
-// 	std::cout << "Processando Listd Request" << std::endl;
 
 	std::string contextName;
 	requestPacket.load(contextName);
 
-// 	std::cout << "Antes de testar se o context " << contextName << " existe..." << std::endl;
-	
 	// Verify if context exist...
 	if (_contextList->find(contextName) == _contextList->end()) {
 		return;
 	}
-
-// 	std::cout << "Context " << contextName << " ta com " << (*_contextList)[contextName]->_listd.size() << " tuplas..." << std::endl;
 
 	if ((*_contextList)[contextName]->_listd.size() == 0) {
 		return;
@@ -551,29 +441,7 @@ void CContextProvider::processListdRequest(CBinString& requestPacket, SPacketHea
 
 		CTuple* tuple = (*data).second;
 		tuple->saveBytecode(replyPacket);
-
-/*		// Packing keys count
-		size = tuple->_keyList.size();
-		replyPacket.save(&size, sizeof(size));
-
-		// Packing keys
-		for(size_t key = 0; key < tuple->_keyList.size(); key++) {
-			replyPacket.save(tuple->_keyList[key].getText());
-		}
-
-		// Packing values count
-		size = tuple->_valueList.size();
-		replyPacket.save(&size, sizeof(size));
-
-		// Packing values
-		for(size_t value = 0; value < tuple->_valueList.size(); value++) {
-			replyPacket.save(tuple->_valueList[value].getText());
-		}*/
 	}
-
-// 	std::cout << "Enviando listd reply packet" << std::endl;
-// 	sock.send_to(boost::asio::buffer(replyPacket.getData(), replyPacket.size()), sender_endpoint);
-// 	std::cout << getpid() << ": Enviando listd reply" << std::endl;
 }
 
 
@@ -656,51 +524,20 @@ void CContextProvider::processRunsRequest(CBinString& requestPacket, SPacketHead
 }
 
 
-void CContextProvider::processFinddReply(CBinString& replyPacket, SPacketHeader& replyHeader)//, udp::endpoint& sender_endpoint)
+void CContextProvider::processFinddReply(CBinString& replyPacket, SPacketHeader& replyHeader)
 {
  	CTuple* tuple = new CTuple();
 
-// 	std::string tupleKey;
-// 	std::string tupleValue;
-
 	tuple->loadBytecode(replyPacket);
-// 	replyPacket.load(tupleKey);
-// 	replyPacket.load(tupleValue);
-
-	// asdfg
-// 	tuple->addKeyAtEnd(tupleKey);
-// 	tuple->addValueAtEnd(tupleValue);
-
-// 		std::cout << "Current VMID: " << getpid() << std::endl;
-
-// 		std::cout << __FUNCTION__ << ": VMID: " << requestHeader._vmId << " FINDD reply recebido: tuplekey=" << tupleKey << " tupleValue=" << tupleValue << std::endl;
-
-// 		_bce_list[1]->_dataStack.push(CLiteral(tuple));
 	_bce_list[replyHeader._dstVmId._bce]->_dataStack.push(CLiteral(tuple));
-// 		_dataStack->push(CLiteral(tuple));
-
-// 		_dataStack->push(tupleValue);
-// 		std::cout << "antes lock mutex em processReply" << std::endl;
-// 		boost::unique_lock<boost::mutex> lock(_mutex);
-// 		std::cout << "antes cond.notify em reply operation" << std::endl;
-// 		{
-// 			boost::lock_guard<boost::mutex> lock(_mutex);
 	_bce_list[replyHeader._dstVmId._bce]->_dataReady     = true;
-// 	_bce_list[replyHeader._dstVmId._bce]->_last_endpoint = sender_endpoint;
 	_bce_list[replyHeader._dstVmId._bce]->_lastSrcVmId   = replyHeader._srcVmId;
-// 	std::cout << "last_endpoint=" << sender_endpoint << std::endl;
-// 			std::cout << "DataReady setado para true" << std::endl;
-// 		}
-
-//  		_cond.notify_one();
 }
 
 
 void CContextProvider::processListdReply(CBinString& replyPacket, SPacketHeader& replyHeader)
 {
 	size_t tuplesCount;
-
-// 	std::cout << "Processando Listd Reply" << std::endl;
 
 	// Unpacking tuple count
 	replyPacket.load(&tuplesCount, sizeof(tuplesCount));
@@ -709,37 +546,12 @@ void CContextProvider::processListdReply(CBinString& replyPacket, SPacketHeader&
 	for(size_t tupleNumber = 0; tupleNumber < tuplesCount; tupleNumber++) {
 		CTuple* tuple = new CTuple();
 		tuple->loadBytecode(replyPacket);
-// 		size_t keysCount;
-// 		size_t valuesCount;
-//
-// 		// Unpacking keys count
-// 		replyPacket.load(&keysCount, sizeof(keysCount));
-//
-// 		// Unpacking keys
-// 		for(size_t keyNumber = 0; keyNumber < keysCount; keyNumber++) {
-// 			std::string key;
-// 			replyPacket.load(key);
-// 			tuple->addKeyAtEnd(key);
-// 		}
-//
-// 		// Unpacking values count
-// 		replyPacket.load(&valuesCount, sizeof(valuesCount));
-//
-// 		// Unpacking values
-// 		for(size_t valueNumber = 0; valueNumber < valuesCount; valueNumber++) {
-// 			std::string value;
-// 			replyPacket.load(value);
-// 			tuple->addValueAtEnd(value);
-// 		}
 
 		_bce_list[replyHeader._dstVmId._bce]->_listdReplyTable->add(itoa(_bce_list[replyHeader._dstVmId._bce]->_listdReplyTable->size()), CLiteral(tuple));
 	}
 
 	_bce_list[replyHeader._dstVmId._bce]->_dataReady     = true;
-// 	_bce_list[replyHeader._dstVmId._bce]->_last_endpoint = sender_endpoint;
 	_bce_list[replyHeader._dstVmId._bce]->_lastSrcVmId   = replyHeader._srcVmId;
-
-// 	std::cout << "DataReady setado para true em Listd reply" << std::endl;
 }
 
 
@@ -752,17 +564,13 @@ void CContextProvider::processRunsReply(CBinString& replyPacket, SPacketHeader& 
 		CLiteral lresult;
 		lresult.loadBytecode(replyPacket);
 		_bce_list[replyHeader._dstVmId._bce]->_dataStack.push(lresult);
-// 		std::cout << "result=" << lresult.getText() << std::endl;
 	}
 	_bce_list[replyHeader._dstVmId._bce]->_dataReady     = true;
-// 	_bce_list[replyHeader._dstVmId._bce]->_last_endpoint = sender_endpoint;
 	_bce_list[replyHeader._dstVmId._bce]->_lastSrcVmId   = replyHeader._srcVmId;
-// 	std::cout << getpid() << ":dataReady de " << replyHeader._dstVmId._bce << "setado para true" << std::endl;
 }
 
 
 void CContextProvider::register_bce(uint bceId, CRunBytecode* bce)
 {
 	_bce_list[bceId] = bce;
-// 	std::cout << "Registrado BCE com id " << bceId << std::endl;
 }

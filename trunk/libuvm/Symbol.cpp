@@ -27,7 +27,6 @@
 
 #include "Symbol.hpp"
 #include "LibUvmCommon.hpp"
-// #include "MultiIndex.hpp"
 
 // TODO: A classe CLiteral nao substitui essa classe ???
 
@@ -87,25 +86,6 @@ bool CSymbol::loadBytecode(CBinString& bytecode)
 }
 
 
-//bool CSymbol::loadBytecode(CBinString& bytecode)
-//{
-//	// Carrega o tamanho do simbolo e o simbolo
-//	size_t symbolSize;
-//	bytecode.load(&symbolSize, sizeof(symbolSize));
-//	char buffer[symbolSize+1];
-//	bytecode.load(buffer, symbolSize);
-//	buffer[symbolSize+1] = NULL;
-//	_name = std::string(buffer).substr(0, symbolSize);
-//
-//	// Carrega o tipo do simbolo
-//	bytecode.load(&_type, sizeof(_type));
-//
-//	setValue(_type, _name);
-//
-//	return true;
-//}
-
-
 void CSymbol::setValue(LiteralType type, const void* value)
 {
 	_type = type;
@@ -113,10 +93,6 @@ void CSymbol::setValue(LiteralType type, const void* value)
 	if (_type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = *((std::string*) value);
-//		std::cout << "Simbolo string contendo " << *_value.stringValue << std::endl;
-// 	} else if (_type == TableType) {
-// 		_value.tableValue = new CMultiIndex<CLiteral>();
-// 		*_value.tableValue = *((CMultiIndex<CLiteral>*) value);
 	} else {
 		std::map<LiteralType, size_t> typeSizeMap;
 
@@ -135,7 +111,6 @@ void CSymbol::setValue(LiteralType type, std::string value)
 	if ( _type == StringType) {
 		_value.stringValue = new std::string();
 		*_value.stringValue = value;
-//		std::cout << "Simbolo string contendo " << *_value.stringValue << std::endl;
 	} else if (_type == IntegerType) {
 		_value.integerValue = atoi(value.c_str());
 	} else if (_type == RealType) {
@@ -143,9 +118,6 @@ void CSymbol::setValue(LiteralType type, std::string value)
 	} else if (_type == BooleanType) {
 		// TODO: fazer conversao descentemente...
 		_value.booleanValue = (value == "true");
-// 	} else if (_type == TableType) {
-// 		_value.tableValue = new CMultiIndex<CLiteral>();
-//		*_value.tableValue = value; // TODO ???
 	}
 }
 
@@ -153,8 +125,6 @@ const void* CSymbol::getValue()
 {
 	if (_type == StringType) {
 		return _value.stringValue;
-// 	} else if (_type == TableType) {
-// 		return _value.tableValue;
 	} else {
 		return &_value;
 	}

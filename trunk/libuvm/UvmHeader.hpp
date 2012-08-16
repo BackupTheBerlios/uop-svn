@@ -12,8 +12,6 @@ public:
    CUvmHeader(u_int binaryId, std::string strVersion, u_short version);
    ~CUvmHeader();
    void saveBytecode(CBinString& bytecode);
-   //std::vector<u_char> getBinary();
-//   bool readFromBinary(std::vector<u_char> bin);
    bool loadBytecode(CBinString& bytecode);
    void setEntitiesCount(u_short entitiesCount);
    u_short getEntitiesCount() const
