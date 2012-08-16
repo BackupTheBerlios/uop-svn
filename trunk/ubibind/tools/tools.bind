@@ -1,0 +1,82 @@
+/* tools.bind */
+
+%module tools
+%{
+#include <string>
+#include <stdlib.h>
+#include <iomanip>
+
+
+
+
+extern "C" void uvm_os_wrap_libtools_pad(CDataStack& dataStack)
+{
+	unsigned int _size = dataStack.pop().getInteger();
+	std::string  _text = dataStack.pop().getString();
+
+	if (_size > _text.length())
+		_text.append(_size - _text.length(), ' ');
+
+	dataStack.push(_text);
+}
+
+
+
+extern "C" void uvm_os_wrap_libtools_itoa(CDataStack& dataStack)
+{
+	int _number = dataStack.pop().getInteger();
+	std::stringstream s;
+
+	s << _number;
+	dataStack.push(s.str());
+}
+
+
+extern "C" void uvm_os_wrap_libtools_ftoa(CDataStack& dataStack)
+{
+	double _value = dataStack.pop().getReal();
+	std::stringstream s;
+
+	s <<  setiosflags(std::ios::fixed) << _value;
+    
+	dataStack.push(s.str());
+}
+
+
+extern "C" void uvm_os_wrap_libtools_atoi(CDataStack& dataStack)
+{
+	std::string _number = dataStack.pop().getString();
+
+	dataStack.push(atoi(_number.c_str()));
+}
+
+
+extern "C" void uvm_os_wrap_libtools_atof(CDataStack& dataStack)
+{
+	std::string _number = dataStack.pop().getString();
+
+	dataStack.push(atof(_number.c_str()));
+}
+
+
+
+extern "C" void uvm_os_wrap_libtools_alltrim(CDataStack& dataStack)
+{
+	std::string str = dataStack.pop().getString();
+
+	// TODO: usar `find', `rfind', ...
+	while (str[0] == ' ')
+		str.erase(0, 1);
+
+	while (str[str.length() - 1] == ' ')
+		str.erase(str.length() - 1, 1);
+
+	dataStack.push(str);
+}
+
+
+
+%}
+
+%linkerlibs = common;
+

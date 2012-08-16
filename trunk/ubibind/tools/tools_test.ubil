@@ -1,0 +1,8 @@
+import tools;
+
+entity start
+	method constructor()
+		io.writeln(tools.pad("10", 10), tools.atoi("20"), tools.ftoa(12.34), tools.itoa(30));
+		io.writeln(tools.alltrim("   xxx   ") + "yyy");
+	end
+end

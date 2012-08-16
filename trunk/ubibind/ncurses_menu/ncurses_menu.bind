@@ -1,0 +1,237 @@
+/* ncurses_menu.bind */
+
+%module ncurses_menu
+%{
+#include <ncurses.h>
+#include <curses.h>
+#include <menu.h>
+//#include <stdlib.h>
+//#include <iostream>
+
+#include <vector>
+
+static std::vector<std::string> items;
+
+
+extern "C" void uvm_os_wrap_libncurses_menu_clear(CDataStack& dataStack)
+{
+	items.clear();
+}
+
+
+extern "C" void uvm_os_wrap_libncurses_menu_new_item(CDataStack& dataStack)
+{
+	std::string item = dataStack.pop().getString();
+	items.push_back(item);
+}
+
+
+//extern "C" void uvm_os_wrap_libncurses_menu_show(CDataStack& dataStack)
+//{
+//	ITEM **my_items;
+//	int c;				
+//	MENU *my_menu;
+//	int n_choices, i;
+//	ITEM *cur_item;
+//	int ret;
+//
+//
+//	cbreak();
+//	noecho();
+//	keypad(stdscr, TRUE);
+//
+//	n_choices = items.size();
+//	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+//
+//	for(i = 0; i < n_choices; ++i)
+//	        my_items[i] = new_item(items[i].c_str(), items[i].c_str());
+//	my_items[n_choices] = (ITEM *)NULL;
+//
+//	my_menu = new_menu((ITEM **)my_items);
+//
+////	mvprintw(LINES - 2, 0, "F1 to Exit");
+//	post_menu(my_menu);
+//	refresh();
+//
+//	while((c = getch()) != 10) { // KEY_ENTER
+//		switch(c) {
+//			case KEY_DOWN:
+//				menu_driver(my_menu, REQ_DOWN_ITEM);
+//				break;
+//			case KEY_UP:
+//				menu_driver(my_menu, REQ_UP_ITEM);
+//				break;
+//		}
+//	}	
+//
+//	cur_item = current_item(my_menu);
+//
+//	ret = item_index(cur_item);
+//	
+//	/* Unpost and free all the memory taken up */
+//        unpost_menu(my_menu);
+//        free_menu(my_menu);
+//        for(i = 0; i < n_choices; ++i)
+//                free_item(my_items[i]);
+//
+//	dataStack.push(ret+1);
+//}
+
+
+extern "C" void uvm_os_wrap_libncurses_menu_show(CDataStack& dataStack)
+{
+	ITEM **my_items;
+	int c;				
+	MENU *my_menu;
+	int n_choices, i;
+	ITEM *cur_item;
+	int ret;
+	
+	int start_col = dataStack.pop().getInteger();
+	int start_row = dataStack.pop().getInteger();
+	int max_col   = dataStack.pop().getInteger();
+	int max_row   = dataStack.pop().getInteger();
+
+	WINDOW* my_menu_win = newwin(max_row, max_col, start_row, start_col);
+
+
+	cbreak();
+	noecho();
+	keypad(stdscr, TRUE);
+
+	n_choices = items.size();
+	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < n_choices; ++i)
+	        my_items[i] = new_item(items[i].c_str(),"");
+//	        my_items[i] = new_item(items[i].c_str(), items[i].c_str());
+	my_items[n_choices] = (ITEM *)NULL;
+
+	my_menu = new_menu((ITEM **)my_items);
+
+	set_menu_win(my_menu, my_menu_win);
+	set_menu_sub(my_menu, derwin(my_menu_win, max_row - 2, max_col - 2, 1, 1));
+//	set_menu_sub(my_menu, derwin(my_menu_win, max_row, max_col, start_row + 1, start_col + 1));
+//	set_menu_sub(my_menu, derwin(my_menu_win, 6, 38, 3, 1));
+
+
+	set_menu_mark(my_menu, " ");
+
+	box(my_menu_win, 0, 0);
+	
+//	mvprintw(LINES - 2, 0, "F1 to Exit");
+	refresh(); // TODO:precisa ???
+//	mvwprintw(my_menu_win, 5, 5, "XXX");
+	post_menu(my_menu);
+	wrefresh(my_menu_win);
+
+	while((c = getch()) != 10) { // KEY_ENTER
+		switch(c) {
+			case KEY_DOWN:
+				menu_driver(my_menu, REQ_DOWN_ITEM);
+				break;
+			case KEY_UP:
+				menu_driver(my_menu, REQ_UP_ITEM);
+				break;
+		}
+		wrefresh(my_menu_win);
+	}	
+
+	cur_item = current_item(my_menu);
+
+	ret = item_index(cur_item);
+	
+	/* Unpost and free all the memory taken up */
+        unpost_menu(my_menu);
+        free_menu(my_menu);
+        for(i = 0; i < n_choices; ++i)
+                free_item(my_items[i]);
+
+//	endwin();
+
+	dataStack.push(ret+1);
+//	return ret + 1;
+}
+
+
+
+extern "C" void uvm_os_wrap_libncurses_menu_wshow(CDataStack& dataStack)
+{
+	ITEM **my_items;
+	int c;				
+	MENU *my_menu;
+	int n_choices, i;
+	ITEM *cur_item;
+	int ret;
+	
+	int start_col = dataStack.pop().getInteger();
+	int start_row = dataStack.pop().getInteger();
+	int max_col   = dataStack.pop().getInteger();
+	int max_row   = dataStack.pop().getInteger();
+
+	WINDOW* my_menu_win = newwin(max_row, max_col, start_row, start_col);
+
+
+	cbreak();
+	noecho();
+	keypad(stdscr, TRUE);
+
+	n_choices = items.size();
+	my_items = (ITEM **)calloc(n_choices + 1, sizeof(ITEM *));
+
+	for(i = 0; i < n_choices; ++i)
+	        my_items[i] = new_item(items[i].c_str(),"");
+//	        my_items[i] = new_item(items[i].c_str(), items[i].c_str());
+	my_items[n_choices] = (ITEM *)NULL;
+
+	my_menu = new_menu((ITEM **)my_items);
+
+	set_menu_win(my_menu, my_menu_win);
+	set_menu_sub(my_menu, derwin(my_menu_win, max_row - 2, max_col - 2, 1, 1));
+//	set_menu_sub(my_menu, derwin(my_menu_win, max_row, max_col, start_row + 1, start_col + 1));
+//	set_menu_sub(my_menu, derwin(my_menu_win, 6, 38, 3, 1));
+
+
+	set_menu_mark(my_menu, " ");
+
+	box(my_menu_win, 0, 0);
+	
+//	mvprintw(LINES - 2, 0, "F1 to Exit");
+	refresh(); // TODO:precisa ???
+//	mvwprintw(my_menu_win, 5, 5, "XXX");
+	post_menu(my_menu);
+	wrefresh(my_menu_win);
+
+	while((c = getch()) != 10) { // KEY_ENTER
+		switch(c) {
+			case KEY_DOWN:
+				menu_driver(my_menu, REQ_DOWN_ITEM);
+				break;
+			case KEY_UP:
+				menu_driver(my_menu, REQ_UP_ITEM);
+				break;
+		}
+		wrefresh(my_menu_win);
+	}	
+
+	cur_item = current_item(my_menu);
+
+	ret = item_index(cur_item);
+	
+	/* Unpost and free all the memory taken up */
+        unpost_menu(my_menu);
+        free_menu(my_menu);
+        for(i = 0; i < n_choices; ++i)
+                free_item(my_items[i]);
+
+//	endwin();
+
+	dataStack.push(ret+1);
+//	return ret + 1;
+}
+
+
+%}
+
+%linkerlibs = menu;
+

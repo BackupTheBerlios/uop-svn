@@ -1,0 +1,23 @@
+import ncurses;
+import ncurses_menu;
+
+entity start
+	method constructor()
+		ncurses.initscr();                          /* Start curses mode              */
+		ncurses.writeln("Hello World !!!");         /* Print Hello World              */
+		ncurses.refresh();                          /* Print it on to the real screen */
+
+		ncurses_menu.clear();
+
+		ncurses_menu.new_item("Opcao 1");
+		ncurses_menu.new_item("Opcao 2");
+		ncurses_menu.new_item("Opcao 3");
+
+//		std::cout << "Opcao escolhida: " << menu_show() << std::endl;
+//		ncurses.writeln("Opcao escolhida: ");
+		ncurses.writeln(ncurses_menu.show(40, 40, 40, 40));
+
+		ncurses.getch();                            /* Wait for user input            */
+		ncurses.endwin();                           /* End curses mode                */
+	end
+end
