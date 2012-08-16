@@ -1,0 +1,2892 @@
+Clear output hello_world
+	rm -f ./ubic/output//hello_world.uvm (OK)
+	rm -f ./ubic/output//hello_world.asm (OK)
+	rm -f ./ubic/output//hello_world.out (OK)
+Running test hello_world
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//hello_world.uvm -a ./ubic/output//hello_world.asm  ./ubic/input//hello_world > ./ubic/output//hello_world.out (OK)
+Clear output hello_world2
+	rm -f ./ubic/output//hello_world2.uvm (OK)
+	rm -f ./ubic/output//hello_world2.asm (OK)
+	rm -f ./ubic/output//hello_world2.out (OK)
+Running test hello_world2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//hello_world2.uvm -a ./ubic/output//hello_world2.asm  ./ubic/input//hello_world2 > ./ubic/output//hello_world2.out (OK)
+Clear output hello_world3
+	rm -f ./ubic/output//hello_world3.uvm (OK)
+	rm -f ./ubic/output//hello_world3.asm (OK)
+	rm -f ./ubic/output//hello_world3.out (OK)
+Running test hello_world3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//hello_world3.uvm -a ./ubic/output//hello_world3.asm  ./ubic/input//hello_world3 > ./ubic/output//hello_world3.out (OK)
+Clear output writeln_varios_tipos
+	rm -f ./ubic/output//writeln_varios_tipos.uvm (OK)
+	rm -f ./ubic/output//writeln_varios_tipos.asm (OK)
+	rm -f ./ubic/output//writeln_varios_tipos.out (OK)
+Running test writeln_varios_tipos
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//writeln_varios_tipos.uvm -a ./ubic/output//writeln_varios_tipos.asm  ./ubic/input//writeln_varios_tipos > ./ubic/output//writeln_varios_tipos.out (OK)
+Clear output expr1
+	rm -f ./ubic/output//expr1.uvm (OK)
+	rm -f ./ubic/output//expr1.asm (OK)
+	rm -f ./ubic/output//expr1.out (OK)
+Running test expr1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr1.uvm -a ./ubic/output//expr1.asm  ./ubic/input//expr1 > ./ubic/output//expr1.out (OK)
+Clear output expr2
+	rm -f ./ubic/output//expr2.uvm (OK)
+	rm -f ./ubic/output//expr2.asm (OK)
+	rm -f ./ubic/output//expr2.out (OK)
+Running test expr2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr2.uvm -a ./ubic/output//expr2.asm  ./ubic/input//expr2 > ./ubic/output//expr2.out (OK)
+Clear output expr3
+	rm -f ./ubic/output//expr3.uvm (OK)
+	rm -f ./ubic/output//expr3.asm (OK)
+	rm -f ./ubic/output//expr3.out (OK)
+Running test expr3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr3.uvm -a ./ubic/output//expr3.asm  ./ubic/input//expr3 > ./ubic/output//expr3.out (OK)
+Clear output expr4
+	rm -f ./ubic/output//expr4.uvm (OK)
+	rm -f ./ubic/output//expr4.asm (OK)
+	rm -f ./ubic/output//expr4.out (OK)
+Running test expr4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr4.uvm -a ./ubic/output//expr4.asm  ./ubic/input//expr4 > ./ubic/output//expr4.out (OK)
+Clear output expr5
+	rm -f ./ubic/output//expr5.uvm (OK)
+	rm -f ./ubic/output//expr5.asm (OK)
+	rm -f ./ubic/output//expr5.out (OK)
+Running test expr5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr5.uvm -a ./ubic/output//expr5.asm  ./ubic/input//expr5 > ./ubic/output//expr5.out (OK)
+Clear output expr6
+	rm -f ./ubic/output//expr6.uvm (OK)
+	rm -f ./ubic/output//expr6.asm (OK)
+	rm -f ./ubic/output//expr6.out (OK)
+Running test expr6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr6.uvm -a ./ubic/output//expr6.asm  ./ubic/input//expr6 > ./ubic/output//expr6.out (OK)
+Clear output expr7
+	rm -f ./ubic/output//expr7.uvm (OK)
+	rm -f ./ubic/output//expr7.asm (OK)
+	rm -f ./ubic/output//expr7.out (OK)
+Running test expr7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr7.uvm -a ./ubic/output//expr7.asm  ./ubic/input//expr7 > ./ubic/output//expr7.out (OK)
+Clear output expr8
+	rm -f ./ubic/output//expr8.uvm (OK)
+	rm -f ./ubic/output//expr8.asm (OK)
+	rm -f ./ubic/output//expr8.out (OK)
+Running test expr8
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr8.uvm -a ./ubic/output//expr8.asm  ./ubic/input//expr8 > ./ubic/output//expr8.out (OK)
+Clear output expr9
+	rm -f ./ubic/output//expr9.uvm (OK)
+	rm -f ./ubic/output//expr9.asm (OK)
+	rm -f ./ubic/output//expr9.out (OK)
+Running test expr9
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr9.uvm -a ./ubic/output//expr9.asm  ./ubic/input//expr9 > ./ubic/output//expr9.out (OK)
+Clear output expr_real_1
+	rm -f ./ubic/output//expr_real_1.uvm (OK)
+	rm -f ./ubic/output//expr_real_1.asm (OK)
+	rm -f ./ubic/output//expr_real_1.out (OK)
+Running test expr_real_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_1.uvm -a ./ubic/output//expr_real_1.asm  ./ubic/input//expr_real_1 > ./ubic/output//expr_real_1.out (OK)
+Clear output expr_real_2
+	rm -f ./ubic/output//expr_real_2.uvm (OK)
+	rm -f ./ubic/output//expr_real_2.asm (OK)
+	rm -f ./ubic/output//expr_real_2.out (OK)
+Running test expr_real_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_2.uvm -a ./ubic/output//expr_real_2.asm  ./ubic/input//expr_real_2 > ./ubic/output//expr_real_2.out (OK)
+Clear output expr_real_3
+	rm -f ./ubic/output//expr_real_3.uvm (OK)
+	rm -f ./ubic/output//expr_real_3.asm (OK)
+	rm -f ./ubic/output//expr_real_3.out (OK)
+Running test expr_real_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_3.uvm -a ./ubic/output//expr_real_3.asm  ./ubic/input//expr_real_3 > ./ubic/output//expr_real_3.out (OK)
+Clear output expr_real_4
+	rm -f ./ubic/output//expr_real_4.uvm (OK)
+	rm -f ./ubic/output//expr_real_4.asm (OK)
+	rm -f ./ubic/output//expr_real_4.out (OK)
+Running test expr_real_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_4.uvm -a ./ubic/output//expr_real_4.asm  ./ubic/input//expr_real_4 > ./ubic/output//expr_real_4.out (OK)
+Clear output expr_real_5
+	rm -f ./ubic/output//expr_real_5.uvm (OK)
+	rm -f ./ubic/output//expr_real_5.asm (OK)
+	rm -f ./ubic/output//expr_real_5.out (OK)
+Running test expr_real_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_5.uvm -a ./ubic/output//expr_real_5.asm  ./ubic/input//expr_real_5 > ./ubic/output//expr_real_5.out (OK)
+Clear output expr_real_6
+	rm -f ./ubic/output//expr_real_6.uvm (OK)
+	rm -f ./ubic/output//expr_real_6.asm (OK)
+	rm -f ./ubic/output//expr_real_6.out (OK)
+Running test expr_real_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_6.uvm -a ./ubic/output//expr_real_6.asm  ./ubic/input//expr_real_6 > ./ubic/output//expr_real_6.out (OK)
+Clear output expr_real_7
+	rm -f ./ubic/output//expr_real_7.uvm (OK)
+	rm -f ./ubic/output//expr_real_7.asm (OK)
+	rm -f ./ubic/output//expr_real_7.out (OK)
+Running test expr_real_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_7.uvm -a ./ubic/output//expr_real_7.asm  ./ubic/input//expr_real_7 > ./ubic/output//expr_real_7.out (OK)
+Clear output expr_real_8
+	rm -f ./ubic/output//expr_real_8.uvm (OK)
+	rm -f ./ubic/output//expr_real_8.asm (OK)
+	rm -f ./ubic/output//expr_real_8.out (OK)
+Running test expr_real_8
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_8.uvm -a ./ubic/output//expr_real_8.asm  ./ubic/input//expr_real_8 > ./ubic/output//expr_real_8.out (OK)
+Clear output expr_real_9
+	rm -f ./ubic/output//expr_real_9.uvm (OK)
+	rm -f ./ubic/output//expr_real_9.asm (OK)
+	rm -f ./ubic/output//expr_real_9.out (OK)
+Running test expr_real_9
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//expr_real_9.uvm -a ./ubic/output//expr_real_9.asm  ./ubic/input//expr_real_9 > ./ubic/output//expr_real_9.out (OK)
+Clear output def_vars
+	rm -f ./ubic/output//def_vars.uvm (OK)
+	rm -f ./ubic/output//def_vars.asm (OK)
+	rm -f ./ubic/output//def_vars.out (OK)
+Running test def_vars
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//def_vars.uvm -a ./ubic/output//def_vars.asm  ./ubic/input//def_vars > ./ubic/output//def_vars.out (OK)
+Clear output attr_int_1
+	rm -f ./ubic/output//attr_int_1.uvm (OK)
+	rm -f ./ubic/output//attr_int_1.asm (OK)
+	rm -f ./ubic/output//attr_int_1.out (OK)
+Running test attr_int_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_int_1.uvm -a ./ubic/output//attr_int_1.asm  ./ubic/input//attr_int_1 > ./ubic/output//attr_int_1.out (OK)
+Clear output attr_int_2
+	rm -f ./ubic/output//attr_int_2.uvm (OK)
+	rm -f ./ubic/output//attr_int_2.asm (OK)
+	rm -f ./ubic/output//attr_int_2.out (OK)
+Running test attr_int_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_int_2.uvm -a ./ubic/output//attr_int_2.asm  ./ubic/input//attr_int_2 > ./ubic/output//attr_int_2.out (OK)
+Clear output attr_int_3
+	rm -f ./ubic/output//attr_int_3.uvm (OK)
+	rm -f ./ubic/output//attr_int_3.asm (OK)
+	rm -f ./ubic/output//attr_int_3.out (OK)
+Running test attr_int_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_int_3.uvm -a ./ubic/output//attr_int_3.asm  ./ubic/input//attr_int_3 > ./ubic/output//attr_int_3.out (OK)
+Clear output attr_real_1
+	rm -f ./ubic/output//attr_real_1.uvm (OK)
+	rm -f ./ubic/output//attr_real_1.asm (OK)
+	rm -f ./ubic/output//attr_real_1.out (OK)
+Running test attr_real_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_real_1.uvm -a ./ubic/output//attr_real_1.asm  ./ubic/input//attr_real_1 > ./ubic/output//attr_real_1.out (OK)
+Clear output attr_real_2
+	rm -f ./ubic/output//attr_real_2.uvm (OK)
+	rm -f ./ubic/output//attr_real_2.asm (OK)
+	rm -f ./ubic/output//attr_real_2.out (OK)
+Running test attr_real_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_real_2.uvm -a ./ubic/output//attr_real_2.asm  ./ubic/input//attr_real_2 > ./ubic/output//attr_real_2.out (OK)
+Clear output attr_real_3
+	rm -f ./ubic/output//attr_real_3.uvm (OK)
+	rm -f ./ubic/output//attr_real_3.asm (OK)
+	rm -f ./ubic/output//attr_real_3.out (OK)
+Running test attr_real_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_real_3.uvm -a ./ubic/output//attr_real_3.asm  ./ubic/input//attr_real_3 > ./ubic/output//attr_real_3.out (OK)
+Clear output attr_string_1
+	rm -f ./ubic/output//attr_string_1.uvm (OK)
+	rm -f ./ubic/output//attr_string_1.asm (OK)
+	rm -f ./ubic/output//attr_string_1.out (OK)
+Running test attr_string_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_string_1.uvm -a ./ubic/output//attr_string_1.asm  ./ubic/input//attr_string_1 > ./ubic/output//attr_string_1.out (OK)
+Clear output attr_string_2
+	rm -f ./ubic/output//attr_string_2.uvm (OK)
+	rm -f ./ubic/output//attr_string_2.asm (OK)
+	rm -f ./ubic/output//attr_string_2.out (OK)
+Running test attr_string_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_string_2.uvm -a ./ubic/output//attr_string_2.asm  ./ubic/input//attr_string_2 > ./ubic/output//attr_string_2.out (OK)
+Clear output attr_string_3
+	rm -f ./ubic/output//attr_string_3.uvm (OK)
+	rm -f ./ubic/output//attr_string_3.asm (OK)
+	rm -f ./ubic/output//attr_string_3.out (OK)
+Running test attr_string_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//attr_string_3.uvm -a ./ubic/output//attr_string_3.asm  ./ubic/input//attr_string_3 > ./ubic/output//attr_string_3.out (OK)
+Clear output add_with_var_int
+	rm -f ./ubic/output//add_with_var_int.uvm (OK)
+	rm -f ./ubic/output//add_with_var_int.asm (OK)
+	rm -f ./ubic/output//add_with_var_int.out (OK)
+Running test add_with_var_int
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//add_with_var_int.uvm -a ./ubic/output//add_with_var_int.asm  ./ubic/input//add_with_var_int > ./ubic/output//add_with_var_int.out (OK)
+Clear output add_with_var_real
+	rm -f ./ubic/output//add_with_var_real.uvm (OK)
+	rm -f ./ubic/output//add_with_var_real.asm (OK)
+	rm -f ./ubic/output//add_with_var_real.out (OK)
+Running test add_with_var_real
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//add_with_var_real.uvm -a ./ubic/output//add_with_var_real.asm  ./ubic/input//add_with_var_real > ./ubic/output//add_with_var_real.out (OK)
+Clear output add_with_var_string
+	rm -f ./ubic/output//add_with_var_string.uvm (OK)
+	rm -f ./ubic/output//add_with_var_string.asm (OK)
+	rm -f ./ubic/output//add_with_var_string.out (OK)
+Running test add_with_var_string
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//add_with_var_string.uvm -a ./ubic/output//add_with_var_string.asm  ./ubic/input//add_with_var_string > ./ubic/output//add_with_var_string.out (OK)
+Clear output if_1
+	rm -f ./ubic/output//if_1.uvm (OK)
+	rm -f ./ubic/output//if_1.asm (OK)
+	rm -f ./ubic/output//if_1.out (OK)
+Running test if_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//if_1.uvm -a ./ubic/output//if_1.asm  ./ubic/input//if_1 > ./ubic/output//if_1.out (OK)
+Clear output if_2
+	rm -f ./ubic/output//if_2.uvm (OK)
+	rm -f ./ubic/output//if_2.asm (OK)
+	rm -f ./ubic/output//if_2.out (OK)
+Running test if_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//if_2.uvm -a ./ubic/output//if_2.asm  ./ubic/input//if_2 > ./ubic/output//if_2.out (OK)
+Clear output if_3
+	rm -f ./ubic/output//if_3.uvm (OK)
+	rm -f ./ubic/output//if_3.asm (OK)
+	rm -f ./ubic/output//if_3.out (OK)
+Running test if_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//if_3.uvm -a ./ubic/output//if_3.asm  ./ubic/input//if_3 > ./ubic/output//if_3.out (OK)
+Clear output if_4
+	rm -f ./ubic/output//if_4.uvm (OK)
+	rm -f ./ubic/output//if_4.asm (OK)
+	rm -f ./ubic/output//if_4.out (OK)
+Running test if_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//if_4.uvm -a ./ubic/output//if_4.asm  ./ubic/input//if_4 > ./ubic/output//if_4.out (OK)
+Clear output exemplo_if
+	rm -f ./ubic/output//exemplo_if.uvm (OK)
+	rm -f ./ubic/output//exemplo_if.asm (OK)
+	rm -f ./ubic/output//exemplo_if.out (OK)
+Running test exemplo_if
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//exemplo_if.uvm -a ./ubic/output//exemplo_if.asm  ./ubic/input//exemplo_if > ./ubic/output//exemplo_if.out (OK)
+Clear output for_1
+	rm -f ./ubic/output//for_1.uvm (OK)
+	rm -f ./ubic/output//for_1.asm (OK)
+	rm -f ./ubic/output//for_1.out (OK)
+Running test for_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//for_1.uvm -a ./ubic/output//for_1.asm  ./ubic/input//for_1 > ./ubic/output//for_1.out (OK)
+Clear output for_2
+	rm -f ./ubic/output//for_2.uvm (OK)
+	rm -f ./ubic/output//for_2.asm (OK)
+	rm -f ./ubic/output//for_2.out (OK)
+Running test for_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//for_2.uvm -a ./ubic/output//for_2.asm  ./ubic/input//for_2 > ./ubic/output//for_2.out (OK)
+Clear output for_testing_break
+	rm -f ./ubic/output//for_testing_break.uvm (OK)
+	rm -f ./ubic/output//for_testing_break.asm (OK)
+	rm -f ./ubic/output//for_testing_break.out (OK)
+Running test for_testing_break
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//for_testing_break.uvm -a ./ubic/output//for_testing_break.asm  ./ubic/input//for_testing_break > ./ubic/output//for_testing_break.out (OK)
+Clear output for_testing_continue
+	rm -f ./ubic/output//for_testing_continue.uvm (OK)
+	rm -f ./ubic/output//for_testing_continue.asm (OK)
+	rm -f ./ubic/output//for_testing_continue.out (OK)
+Running test for_testing_continue
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//for_testing_continue.uvm -a ./ubic/output//for_testing_continue.asm  ./ubic/input//for_testing_continue > ./ubic/output//for_testing_continue.out (OK)
+Clear output exemplo_for
+	rm -f ./ubic/output//exemplo_for.uvm (OK)
+	rm -f ./ubic/output//exemplo_for.asm (OK)
+	rm -f ./ubic/output//exemplo_for.out (OK)
+Running test exemplo_for
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//exemplo_for.uvm -a ./ubic/output//exemplo_for.asm  ./ubic/input//exemplo_for > ./ubic/output//exemplo_for.out (OK)
+Clear output while_1
+	rm -f ./ubic/output//while_1.uvm (OK)
+	rm -f ./ubic/output//while_1.asm (OK)
+	rm -f ./ubic/output//while_1.out (OK)
+Running test while_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//while_1.uvm -a ./ubic/output//while_1.asm  ./ubic/input//while_1 > ./ubic/output//while_1.out (OK)
+Clear output exemplo_while
+	rm -f ./ubic/output//exemplo_while.uvm (OK)
+	rm -f ./ubic/output//exemplo_while.asm (OK)
+	rm -f ./ubic/output//exemplo_while.out (OK)
+Running test exemplo_while
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//exemplo_while.uvm -a ./ubic/output//exemplo_while.asm  ./ubic/input//exemplo_while > ./ubic/output//exemplo_while.out (OK)
+Clear output while_testing_break
+	rm -f ./ubic/output//while_testing_break.uvm (OK)
+	rm -f ./ubic/output//while_testing_break.asm (OK)
+	rm -f ./ubic/output//while_testing_break.out (OK)
+Running test while_testing_break
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//while_testing_break.uvm -a ./ubic/output//while_testing_break.asm  ./ubic/input//while_testing_break > ./ubic/output//while_testing_break.out (OK)
+Clear output while_testing_continue
+	rm -f ./ubic/output//while_testing_continue.uvm (OK)
+	rm -f ./ubic/output//while_testing_continue.asm (OK)
+	rm -f ./ubic/output//while_testing_continue.out (OK)
+Running test while_testing_continue
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//while_testing_continue.uvm -a ./ubic/output//while_testing_continue.asm  ./ubic/input//while_testing_continue > ./ubic/output//while_testing_continue.out (OK)
+Clear output repeat_until_1
+	rm -f ./ubic/output//repeat_until_1.uvm (OK)
+	rm -f ./ubic/output//repeat_until_1.asm (OK)
+	rm -f ./ubic/output//repeat_until_1.out (OK)
+Running test repeat_until_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//repeat_until_1.uvm -a ./ubic/output//repeat_until_1.asm  ./ubic/input//repeat_until_1 > ./ubic/output//repeat_until_1.out (OK)
+Clear output repeat_testing_break
+	rm -f ./ubic/output//repeat_testing_break.uvm (OK)
+	rm -f ./ubic/output//repeat_testing_break.asm (OK)
+	rm -f ./ubic/output//repeat_testing_break.out (OK)
+Running test repeat_testing_break
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//repeat_testing_break.uvm -a ./ubic/output//repeat_testing_break.asm  ./ubic/input//repeat_testing_break > ./ubic/output//repeat_testing_break.out (OK)
+Clear output repeat_testing_continue
+	rm -f ./ubic/output//repeat_testing_continue.uvm (OK)
+	rm -f ./ubic/output//repeat_testing_continue.asm (OK)
+	rm -f ./ubic/output//repeat_testing_continue.out (OK)
+Running test repeat_testing_continue
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//repeat_testing_continue.uvm -a ./ubic/output//repeat_testing_continue.asm  ./ubic/input//repeat_testing_continue > ./ubic/output//repeat_testing_continue.out (OK)
+Clear output method_1
+	rm -f ./ubic/output//method_1.uvm (OK)
+	rm -f ./ubic/output//method_1.asm (OK)
+	rm -f ./ubic/output//method_1.out (OK)
+Running test method_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_1.uvm -a ./ubic/output//method_1.asm  ./ubic/input//method_1 > ./ubic/output//method_1.out (OK)
+Clear output method_2
+	rm -f ./ubic/output//method_2.uvm (OK)
+	rm -f ./ubic/output//method_2.asm (OK)
+	rm -f ./ubic/output//method_2.out (OK)
+Running test method_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_2.uvm -a ./ubic/output//method_2.asm  ./ubic/input//method_2 > ./ubic/output//method_2.out (OK)
+Clear output method_3
+	rm -f ./ubic/output//method_3.uvm (OK)
+	rm -f ./ubic/output//method_3.asm (OK)
+	rm -f ./ubic/output//method_3.out (OK)
+Running test method_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_3.uvm -a ./ubic/output//method_3.asm  ./ubic/input//method_3 > ./ubic/output//method_3.out (OK)
+Clear output method_4
+	rm -f ./ubic/output//method_4.uvm (OK)
+	rm -f ./ubic/output//method_4.asm (OK)
+	rm -f ./ubic/output//method_4.out (OK)
+Running test method_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_4.uvm -a ./ubic/output//method_4.asm  ./ubic/input//method_4 > ./ubic/output//method_4.out (OK)
+Clear output method_5
+	rm -f ./ubic/output//method_5.uvm (OK)
+	rm -f ./ubic/output//method_5.asm (OK)
+	rm -f ./ubic/output//method_5.out (OK)
+Running test method_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_5.uvm -a ./ubic/output//method_5.asm  ./ubic/input//method_5 > ./ubic/output//method_5.out (OK)
+Clear output method_with_result_1
+	rm -f ./ubic/output//method_with_result_1.uvm (OK)
+	rm -f ./ubic/output//method_with_result_1.asm (OK)
+	rm -f ./ubic/output//method_with_result_1.out (OK)
+Running test method_with_result_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_1.uvm -a ./ubic/output//method_with_result_1.asm  ./ubic/input//method_with_result_1 > ./ubic/output//method_with_result_1.out (OK)
+Clear output method_with_result_2
+	rm -f ./ubic/output//method_with_result_2.uvm (OK)
+	rm -f ./ubic/output//method_with_result_2.asm (OK)
+	rm -f ./ubic/output//method_with_result_2.out (OK)
+Running test method_with_result_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_2.uvm -a ./ubic/output//method_with_result_2.asm  ./ubic/input//method_with_result_2 > ./ubic/output//method_with_result_2.out (OK)
+Clear output method_with_result_3
+	rm -f ./ubic/output//method_with_result_3.uvm (OK)
+	rm -f ./ubic/output//method_with_result_3.asm (OK)
+	rm -f ./ubic/output//method_with_result_3.out (OK)
+Running test method_with_result_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_3.uvm -a ./ubic/output//method_with_result_3.asm  ./ubic/input//method_with_result_3 > ./ubic/output//method_with_result_3.out (OK)
+Clear output method_with_result_4
+	rm -f ./ubic/output//method_with_result_4.uvm (OK)
+	rm -f ./ubic/output//method_with_result_4.asm (OK)
+	rm -f ./ubic/output//method_with_result_4.out (OK)
+Running test method_with_result_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_4.uvm -a ./ubic/output//method_with_result_4.asm  ./ubic/input//method_with_result_4 > ./ubic/output//method_with_result_4.out (OK)
+Clear output method_with_result_5
+	rm -f ./ubic/output//method_with_result_5.uvm (OK)
+	rm -f ./ubic/output//method_with_result_5.asm (OK)
+	rm -f ./ubic/output//method_with_result_5.out (OK)
+Running test method_with_result_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_5.uvm -a ./ubic/output//method_with_result_5.asm  ./ubic/input//method_with_result_5 > ./ubic/output//method_with_result_5.out (OK)
+Clear output method_with_result_6
+	rm -f ./ubic/output//method_with_result_6.uvm (OK)
+	rm -f ./ubic/output//method_with_result_6.asm (OK)
+	rm -f ./ubic/output//method_with_result_6.out (OK)
+Running test method_with_result_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_6.uvm -a ./ubic/output//method_with_result_6.asm  ./ubic/input//method_with_result_6 > ./ubic/output//method_with_result_6.out (OK)
+Clear output method_with_result_7
+	rm -f ./ubic/output//method_with_result_7.uvm (OK)
+	rm -f ./ubic/output//method_with_result_7.asm (OK)
+	rm -f ./ubic/output//method_with_result_7.out (OK)
+Running test method_with_result_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//method_with_result_7.uvm -a ./ubic/output//method_with_result_7.asm  ./ubic/input//method_with_result_7 > ./ubic/output//method_with_result_7.out (OK)
+Clear output fatorial
+	rm -f ./ubic/output//fatorial.uvm (OK)
+	rm -f ./ubic/output//fatorial.asm (OK)
+	rm -f ./ubic/output//fatorial.out (OK)
+Running test fatorial
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//fatorial.uvm -a ./ubic/output//fatorial.asm  ./ubic/input//fatorial > ./ubic/output//fatorial.out (OK)
+Clear output element_1
+	rm -f ./ubic/output//element_1.uvm (OK)
+	rm -f ./ubic/output//element_1.asm (OK)
+	rm -f ./ubic/output//element_1.out (OK)
+Running test element_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_1.uvm -a ./ubic/output//element_1.asm  ./ubic/input//element_1 > ./ubic/output//element_1.out (OK)
+Clear output element_2
+	rm -f ./ubic/output//element_2.uvm (OK)
+	rm -f ./ubic/output//element_2.asm (OK)
+	rm -f ./ubic/output//element_2.out (OK)
+Running test element_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_2.uvm -a ./ubic/output//element_2.asm  ./ubic/input//element_2 > ./ubic/output//element_2.out (OK)
+Clear output element_3
+	rm -f ./ubic/output//element_3.uvm (OK)
+	rm -f ./ubic/output//element_3.asm (OK)
+	rm -f ./ubic/output//element_3.out (OK)
+Running test element_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_3.uvm -a ./ubic/output//element_3.asm  ./ubic/input//element_3 > ./ubic/output//element_3.out (OK)
+Clear output element_4
+	rm -f ./ubic/output//element_4.uvm (OK)
+	rm -f ./ubic/output//element_4.asm (OK)
+	rm -f ./ubic/output//element_4.out (OK)
+Running test element_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_4.uvm -a ./ubic/output//element_4.asm  ./ubic/input//element_4 > ./ubic/output//element_4.out (OK)
+Clear output element_5
+	rm -f ./ubic/output//element_5.uvm (OK)
+	rm -f ./ubic/output//element_5.asm (OK)
+	rm -f ./ubic/output//element_5.out (OK)
+Running test element_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_5.uvm -a ./ubic/output//element_5.asm  ./ubic/input//element_5 > ./ubic/output//element_5.out (OK)
+Clear output element_6
+	rm -f ./ubic/output//element_6.uvm (OK)
+	rm -f ./ubic/output//element_6.asm (OK)
+	rm -f ./ubic/output//element_6.out (OK)
+Running test element_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_6.uvm -a ./ubic/output//element_6.asm  ./ubic/input//element_6 > ./ubic/output//element_6.out (OK)
+Clear output element_7
+	rm -f ./ubic/output//element_7.uvm (OK)
+	rm -f ./ubic/output//element_7.asm (OK)
+	rm -f ./ubic/output//element_7.out (OK)
+Running test element_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_7.uvm -a ./ubic/output//element_7.asm  ./ubic/input//element_7 > ./ubic/output//element_7.out (OK)
+Clear output element_method_with_result_1
+	rm -f ./ubic/output//element_method_with_result_1.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_1.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_1.out (OK)
+Running test element_method_with_result_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_1.uvm -a ./ubic/output//element_method_with_result_1.asm  ./ubic/input//element_method_with_result_1 > ./ubic/output//element_method_with_result_1.out (OK)
+Clear output element_method_with_result_2
+	rm -f ./ubic/output//element_method_with_result_2.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_2.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_2.out (OK)
+Running test element_method_with_result_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_2.uvm -a ./ubic/output//element_method_with_result_2.asm  ./ubic/input//element_method_with_result_2 > ./ubic/output//element_method_with_result_2.out (OK)
+Clear output element_method_with_result_3
+	rm -f ./ubic/output//element_method_with_result_3.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_3.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_3.out (OK)
+Running test element_method_with_result_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_3.uvm -a ./ubic/output//element_method_with_result_3.asm  ./ubic/input//element_method_with_result_3 > ./ubic/output//element_method_with_result_3.out (OK)
+Clear output element_method_with_result_4
+	rm -f ./ubic/output//element_method_with_result_4.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_4.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_4.out (OK)
+Running test element_method_with_result_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_4.uvm -a ./ubic/output//element_method_with_result_4.asm  ./ubic/input//element_method_with_result_4 > ./ubic/output//element_method_with_result_4.out (OK)
+Clear output element_method_with_result_5
+	rm -f ./ubic/output//element_method_with_result_5.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_5.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_5.out (OK)
+Running test element_method_with_result_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_5.uvm -a ./ubic/output//element_method_with_result_5.asm  ./ubic/input//element_method_with_result_5 > ./ubic/output//element_method_with_result_5.out (OK)
+Clear output element_method_with_result_6
+	rm -f ./ubic/output//element_method_with_result_6.uvm (OK)
+	rm -f ./ubic/output//element_method_with_result_6.asm (OK)
+	rm -f ./ubic/output//element_method_with_result_6.out (OK)
+Running test element_method_with_result_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_method_with_result_6.uvm -a ./ubic/output//element_method_with_result_6.asm  ./ubic/input//element_method_with_result_6 > ./ubic/output//element_method_with_result_6.out (OK)
+Clear output group_1
+	rm -f ./ubic/output//group_1.uvm (OK)
+	rm -f ./ubic/output//group_1.asm (OK)
+	rm -f ./ubic/output//group_1.out (OK)
+Running test group_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_1.uvm -a ./ubic/output//group_1.asm  ./ubic/input//group_1 > ./ubic/output//group_1.out (OK)
+Clear output group_2
+	rm -f ./ubic/output//group_2.uvm (OK)
+	rm -f ./ubic/output//group_2.asm (OK)
+	rm -f ./ubic/output//group_2.out (OK)
+Running test group_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_2.uvm -a ./ubic/output//group_2.asm  ./ubic/input//group_2 > ./ubic/output//group_2.out (OK)
+Clear output group_3
+	rm -f ./ubic/output//group_3.uvm (OK)
+	rm -f ./ubic/output//group_3.asm (OK)
+	rm -f ./ubic/output//group_3.out (OK)
+Running test group_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_3.uvm -a ./ubic/output//group_3.asm  ./ubic/input//group_3 > ./ubic/output//group_3.out (OK)
+Clear output group_4
+	rm -f ./ubic/output//group_4.uvm (OK)
+	rm -f ./ubic/output//group_4.asm (OK)
+	rm -f ./ubic/output//group_4.out (OK)
+Running test group_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_4.uvm -a ./ubic/output//group_4.asm  ./ubic/input//group_4 > ./ubic/output//group_4.out (OK)
+Clear output group_5
+	rm -f ./ubic/output//group_5.uvm (OK)
+	rm -f ./ubic/output//group_5.asm (OK)
+	rm -f ./ubic/output//group_5.out (OK)
+Running test group_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_5.uvm -a ./ubic/output//group_5.asm  ./ubic/input//group_5 > ./ubic/output//group_5.out (OK)
+Clear output group_6
+	rm -f ./ubic/output//group_6.uvm (OK)
+	rm -f ./ubic/output//group_6.asm (OK)
+	rm -f ./ubic/output//group_6.out (OK)
+Running test group_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_6.uvm -a ./ubic/output//group_6.asm  ./ubic/input//group_6 > ./ubic/output//group_6.out (OK)
+Clear output group_7
+	rm -f ./ubic/output//group_7.uvm (OK)
+	rm -f ./ubic/output//group_7.asm (OK)
+	rm -f ./ubic/output//group_7.out (OK)
+Running test group_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_7.uvm -a ./ubic/output//group_7.asm  ./ubic/input//group_7 > ./ubic/output//group_7.out (OK)
+Clear output group_8
+	rm -f ./ubic/output//group_8.uvm (OK)
+	rm -f ./ubic/output//group_8.asm (OK)
+	rm -f ./ubic/output//group_8.out (OK)
+Running test group_8
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_8.uvm -a ./ubic/output//group_8.asm  ./ubic/input//group_8 > ./ubic/output//group_8.out (OK)
+Clear output service_1
+	rm -f ./ubic/output//service_1.uvm (OK)
+	rm -f ./ubic/output//service_1.asm (OK)
+	rm -f ./ubic/output//service_1.out (OK)
+Running test service_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//service_1.uvm -a ./ubic/output//service_1.asm  ./ubic/input//service_1 > ./ubic/output//service_1.out (OK)
+Clear output service_2
+	rm -f ./ubic/output//service_2.uvm (OK)
+	rm -f ./ubic/output//service_2.asm (OK)
+	rm -f ./ubic/output//service_2.out (OK)
+Running test service_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//service_2.uvm -a ./ubic/output//service_2.asm  ./ubic/input//service_2 > ./ubic/output//service_2.out (OK)
+Clear output service_4
+	rm -f ./ubic/output//service_4.uvm (OK)
+	rm -f ./ubic/output//service_4.asm (OK)
+	rm -f ./ubic/output//service_4.out (OK)
+Running test service_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//service_4.uvm -a ./ubic/output//service_4.asm  ./ubic/input//service_4 > ./ubic/output//service_4.out (OK)
+Clear output context_1
+	rm -f ./ubic/output//context_1.uvm (OK)
+	rm -f ./ubic/output//context_1.asm (OK)
+	rm -f ./ubic/output//context_1.out (OK)
+Running test context_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//context_1.uvm -a ./ubic/output//context_1.asm  ./ubic/input//context_1 > ./ubic/output//context_1.out (OK)
+Clear output table_1d_1
+	rm -f ./ubic/output//table_1d_1.uvm (OK)
+	rm -f ./ubic/output//table_1d_1.asm (OK)
+	rm -f ./ubic/output//table_1d_1.out (OK)
+Running test table_1d_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_1.uvm -a ./ubic/output//table_1d_1.asm  ./ubic/input//table_1d_1 > ./ubic/output//table_1d_1.out (OK)
+Clear output table_1d_2
+	rm -f ./ubic/output//table_1d_2.uvm (OK)
+	rm -f ./ubic/output//table_1d_2.asm (OK)
+	rm -f ./ubic/output//table_1d_2.out (OK)
+Running test table_1d_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_2.uvm -a ./ubic/output//table_1d_2.asm  ./ubic/input//table_1d_2 > ./ubic/output//table_1d_2.out (OK)
+Clear output table_1d_3
+	rm -f ./ubic/output//table_1d_3.uvm (OK)
+	rm -f ./ubic/output//table_1d_3.asm (OK)
+	rm -f ./ubic/output//table_1d_3.out (OK)
+Running test table_1d_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_3.uvm -a ./ubic/output//table_1d_3.asm  ./ubic/input//table_1d_3 > ./ubic/output//table_1d_3.out (OK)
+Clear output table_1d_4
+	rm -f ./ubic/output//table_1d_4.uvm (OK)
+	rm -f ./ubic/output//table_1d_4.asm (OK)
+	rm -f ./ubic/output//table_1d_4.out (OK)
+Running test table_1d_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_4.uvm -a ./ubic/output//table_1d_4.asm  ./ubic/input//table_1d_4 > ./ubic/output//table_1d_4.out (OK)
+Clear output table_1d_5
+	rm -f ./ubic/output//table_1d_5.uvm (OK)
+	rm -f ./ubic/output//table_1d_5.asm (OK)
+	rm -f ./ubic/output//table_1d_5.out (OK)
+Running test table_1d_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_5.uvm -a ./ubic/output//table_1d_5.asm  ./ubic/input//table_1d_5 > ./ubic/output//table_1d_5.out (OK)
+Clear output table_1d_6
+	rm -f ./ubic/output//table_1d_6.uvm (OK)
+	rm -f ./ubic/output//table_1d_6.asm (OK)
+	rm -f ./ubic/output//table_1d_6.out (OK)
+Running test table_1d_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_6.uvm -a ./ubic/output//table_1d_6.asm  ./ubic/input//table_1d_6 > ./ubic/output//table_1d_6.out (OK)
+Clear output table_1d_7
+	rm -f ./ubic/output//table_1d_7.uvm (OK)
+	rm -f ./ubic/output//table_1d_7.asm (OK)
+	rm -f ./ubic/output//table_1d_7.out (OK)
+Running test table_1d_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_7.uvm -a ./ubic/output//table_1d_7.asm  ./ubic/input//table_1d_7 > ./ubic/output//table_1d_7.out (OK)
+Clear output table_1d_8
+	rm -f ./ubic/output//table_1d_8.uvm (OK)
+	rm -f ./ubic/output//table_1d_8.asm (OK)
+	rm -f ./ubic/output//table_1d_8.out (OK)
+Running test table_1d_8
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//table_1d_8.uvm -a ./ubic/output//table_1d_8.asm  ./ubic/input//table_1d_8 > ./ubic/output//table_1d_8.out (OK)
+Clear output group_data_1
+	rm -f ./ubic/output//group_data_1.uvm (OK)
+	rm -f ./ubic/output//group_data_1.asm (OK)
+	rm -f ./ubic/output//group_data_1.out (OK)
+Running test group_data_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_1.uvm -a ./ubic/output//group_data_1.asm  ./ubic/input//group_data_1 > ./ubic/output//group_data_1.out (OK)
+Clear output lcall_1
+	rm -f ./ubic/output//lcall_1.uvm (OK)
+	rm -f ./ubic/output//lcall_1.asm (OK)
+	rm -f ./ubic/output//lcall_1.out (OK)
+Running test lcall_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//lcall_1.uvm -a ./ubic/output//lcall_1.asm  ./ubic/input//lcall_1 > ./ubic/output//lcall_1.out (OK)
+Clear output ncurses_1
+	rm -f ./ubic/output//ncurses_1.uvm (OK)
+	rm -f ./ubic/output//ncurses_1.asm (OK)
+	rm -f ./ubic/output//ncurses_1.out (OK)
+Running test ncurses_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//ncurses_1.uvm -a ./ubic/output//ncurses_1.asm  ./ubic/input//ncurses_1 > ./ubic/output//ncurses_1.out (OK)
+Clear output ncurses_2
+	rm -f ./ubic/output//ncurses_2.uvm (OK)
+	rm -f ./ubic/output//ncurses_2.asm (OK)
+	rm -f ./ubic/output//ncurses_2.out (OK)
+Running test ncurses_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//ncurses_2.uvm -a ./ubic/output//ncurses_2.asm  ./ubic/input//ncurses_2 > ./ubic/output//ncurses_2.out (OK)
+Clear output ncurses_3
+	rm -f ./ubic/output//ncurses_3.uvm (OK)
+	rm -f ./ubic/output//ncurses_3.asm (OK)
+	rm -f ./ubic/output//ncurses_3.out (OK)
+Running test ncurses_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//ncurses_3.uvm -a ./ubic/output//ncurses_3.asm  ./ubic/input//ncurses_3 > ./ubic/output//ncurses_3.out (OK)
+Clear output ncurses_4
+	rm -f ./ubic/output//ncurses_4.uvm (OK)
+	rm -f ./ubic/output//ncurses_4.asm (OK)
+	rm -f ./ubic/output//ncurses_4.out (OK)
+Running test ncurses_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//ncurses_4.uvm -a ./ubic/output//ncurses_4.asm  ./ubic/input//ncurses_4 > ./ubic/output//ncurses_4.out (OK)
+Clear output ncurses_5
+	rm -f ./ubic/output//ncurses_5.uvm (OK)
+	rm -f ./ubic/output//ncurses_5.asm (OK)
+	rm -f ./ubic/output//ncurses_5.out (OK)
+Running test ncurses_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//ncurses_5.uvm -a ./ubic/output//ncurses_5.asm  ./ubic/input//ncurses_5 > ./ubic/output//ncurses_5.out (OK)
+Clear output concurrent_elements_1
+	rm -f ./ubic/output//concurrent_elements_1.uvm (OK)
+	rm -f ./ubic/output//concurrent_elements_1.asm (OK)
+	rm -f ./ubic/output//concurrent_elements_1.out (OK)
+Running test concurrent_elements_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//concurrent_elements_1.uvm -a ./ubic/output//concurrent_elements_1.asm  ./ubic/input//concurrent_elements_1 > ./ubic/output//concurrent_elements_1.out (OK)
+Clear output concurrent_elements_2
+	rm -f ./ubic/output//concurrent_elements_2.uvm (OK)
+	rm -f ./ubic/output//concurrent_elements_2.asm (OK)
+	rm -f ./ubic/output//concurrent_elements_2.out (OK)
+Running test concurrent_elements_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//concurrent_elements_2.uvm -a ./ubic/output//concurrent_elements_2.asm  ./ubic/input//concurrent_elements_2 > ./ubic/output//concurrent_elements_2.out (OK)
+Clear output data_list_1
+	rm -f ./ubic/output//data_list_1.uvm (OK)
+	rm -f ./ubic/output//data_list_1.asm (OK)
+	rm -f ./ubic/output//data_list_1.out (OK)
+Running test data_list_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//data_list_1.uvm -a ./ubic/output//data_list_1.asm  ./ubic/input//data_list_1 > ./ubic/output//data_list_1.out (OK)
+Clear output data_list_2
+	rm -f ./ubic/output//data_list_2.uvm (OK)
+	rm -f ./ubic/output//data_list_2.asm (OK)
+	rm -f ./ubic/output//data_list_2.out (OK)
+Running test data_list_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//data_list_2.uvm -a ./ubic/output//data_list_2.asm  ./ubic/input//data_list_2 > ./ubic/output//data_list_2.out (OK)
+Clear output tuple_1
+	rm -f ./ubic/output//tuple_1.uvm (OK)
+	rm -f ./ubic/output//tuple_1.asm (OK)
+	rm -f ./ubic/output//tuple_1.out (OK)
+Running test tuple_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//tuple_1.uvm -a ./ubic/output//tuple_1.asm  ./ubic/input//tuple_1 > ./ubic/output//tuple_1.out (OK)
+Clear output group_data_2_1
+	rm -f ./ubic/output//group_data_2_1.uvm (OK)
+	rm -f ./ubic/output//group_data_2_1.asm (OK)
+	rm -f ./ubic/output//group_data_2_1.out (OK)
+Running test group_data_2_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_2_1.uvm -a ./ubic/output//group_data_2_1.asm  ./ubic/input//group_data_2_1 > ./ubic/output//group_data_2_1.out (OK)
+Clear output group_data_2_2
+	rm -f ./ubic/output//group_data_2_2.uvm (OK)
+	rm -f ./ubic/output//group_data_2_2.asm (OK)
+	rm -f ./ubic/output//group_data_2_2.out (OK)
+Running test group_data_2_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_2_2.uvm -a ./ubic/output//group_data_2_2.asm  ./ubic/input//group_data_2_2 > ./ubic/output//group_data_2_2.out (OK)
+Clear output group_data_3_1
+	rm -f ./ubic/output//group_data_3_1.uvm (OK)
+	rm -f ./ubic/output//group_data_3_1.asm (OK)
+	rm -f ./ubic/output//group_data_3_1.out (OK)
+Running test group_data_3_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_3_1.uvm -a ./ubic/output//group_data_3_1.asm  ./ubic/input//group_data_3_1 > ./ubic/output//group_data_3_1.out (OK)
+Clear output group_data_3_2
+	rm -f ./ubic/output//group_data_3_2.uvm (OK)
+	rm -f ./ubic/output//group_data_3_2.asm (OK)
+	rm -f ./ubic/output//group_data_3_2.out (OK)
+Running test group_data_3_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_3_2.uvm -a ./ubic/output//group_data_3_2.asm  ./ubic/input//group_data_3_2 > ./ubic/output//group_data_3_2.out (OK)
+Clear output group_data_4
+	rm -f ./ubic/output//group_data_4.uvm (OK)
+	rm -f ./ubic/output//group_data_4.asm (OK)
+	rm -f ./ubic/output//group_data_4.out (OK)
+Running test group_data_4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_4.uvm -a ./ubic/output//group_data_4.asm  ./ubic/input//group_data_4 > ./ubic/output//group_data_4.out (OK)
+Clear output group_data_5
+	rm -f ./ubic/output//group_data_5.uvm (OK)
+	rm -f ./ubic/output//group_data_5.asm (OK)
+	rm -f ./ubic/output//group_data_5.out (OK)
+Running test group_data_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_5.uvm -a ./ubic/output//group_data_5.asm  ./ubic/input//group_data_5 > ./ubic/output//group_data_5.out (OK)
+Clear output group_data_6
+	rm -f ./ubic/output//group_data_6.uvm (OK)
+	rm -f ./ubic/output//group_data_6.asm (OK)
+	rm -f ./ubic/output//group_data_6.out (OK)
+Running test group_data_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_6.uvm -a ./ubic/output//group_data_6.asm  ./ubic/input//group_data_6 > ./ubic/output//group_data_6.out (OK)
+Clear output group_data_7
+	rm -f ./ubic/output//group_data_7.uvm (OK)
+	rm -f ./ubic/output//group_data_7.asm (OK)
+	rm -f ./ubic/output//group_data_7.out (OK)
+Running test group_data_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_7.uvm -a ./ubic/output//group_data_7.asm  ./ubic/input//group_data_7 > ./ubic/output//group_data_7.out (OK)
+Clear output group_data_8
+	rm -f ./ubic/output//group_data_8.uvm (OK)
+	rm -f ./ubic/output//group_data_8.asm (OK)
+	rm -f ./ubic/output//group_data_8.out (OK)
+Running test group_data_8
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_data_8.uvm -a ./ubic/output//group_data_8.asm  ./ubic/input//group_data_8 > ./ubic/output//group_data_8.out (OK)
+Clear output property_1
+	rm -f ./ubic/output//property_1.uvm (OK)
+	rm -f ./ubic/output//property_1.asm (OK)
+	rm -f ./ubic/output//property_1.out (OK)
+Running test property_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//property_1.uvm -a ./ubic/output//property_1.asm  ./ubic/input//property_1 > ./ubic/output//property_1.out (OK)
+Clear output property_2
+	rm -f ./ubic/output//property_2.uvm (OK)
+	rm -f ./ubic/output//property_2.asm (OK)
+	rm -f ./ubic/output//property_2.out (OK)
+Running test property_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//property_2.uvm -a ./ubic/output//property_2.asm  ./ubic/input//property_2 > ./ubic/output//property_2.out (OK)
+Clear output element_adaptation_1
+	rm -f ./ubic/output//element_adaptation_1.uvm (OK)
+	rm -f ./ubic/output//element_adaptation_1.asm (OK)
+	rm -f ./ubic/output//element_adaptation_1.out (OK)
+Running test element_adaptation_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_adaptation_1.uvm -a ./ubic/output//element_adaptation_1.asm  ./ubic/input//element_adaptation_1 > ./ubic/output//element_adaptation_1.out (OK)
+Clear output element_property_changed_event_1
+	rm -f ./ubic/output//element_property_changed_event_1.uvm (OK)
+	rm -f ./ubic/output//element_property_changed_event_1.asm (OK)
+	rm -f ./ubic/output//element_property_changed_event_1.out (OK)
+Running test element_property_changed_event_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_property_changed_event_1.uvm -a ./ubic/output//element_property_changed_event_1.asm  ./ubic/input//element_property_changed_event_1 > ./ubic/output//element_property_changed_event_1.out (OK)
+Clear output context_changed_event_1
+	rm -f ./ubic/output//context_changed_event_1.uvm (OK)
+	rm -f ./ubic/output//context_changed_event_1.asm (OK)
+	rm -f ./ubic/output//context_changed_event_1.out (OK)
+Running test context_changed_event_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//context_changed_event_1.uvm -a ./ubic/output//context_changed_event_1.asm  ./ubic/input//context_changed_event_1 > ./ubic/output//context_changed_event_1.out (OK)
+Clear output context_changed_event_2
+	rm -f ./ubic/output//context_changed_event_2.uvm (OK)
+	rm -f ./ubic/output//context_changed_event_2.asm (OK)
+	rm -f ./ubic/output//context_changed_event_2.out (OK)
+Running test context_changed_event_2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//context_changed_event_2.uvm -a ./ubic/output//context_changed_event_2.asm  ./ubic/input//context_changed_event_2 > ./ubic/output//context_changed_event_2.out (OK)
+Clear output group_event_1
+	rm -f ./ubic/output//group_event_1.uvm (OK)
+	rm -f ./ubic/output//group_event_1.asm (OK)
+	rm -f ./ubic/output//group_event_1.out (OK)
+Running test group_event_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_event_1.uvm -a ./ubic/output//group_event_1.asm  ./ubic/input//group_event_1 > ./ubic/output//group_event_1.out (OK)
+Clear output group_event_3
+	rm -f ./ubic/output//group_event_3.uvm (OK)
+	rm -f ./ubic/output//group_event_3.asm (OK)
+	rm -f ./ubic/output//group_event_3.out (OK)
+Running test group_event_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_event_3.uvm -a ./ubic/output//group_event_3.asm  ./ubic/input//group_event_3 > ./ubic/output//group_event_3.out (OK)
+Clear output group_event_5
+	rm -f ./ubic/output//group_event_5.uvm (OK)
+	rm -f ./ubic/output//group_event_5.asm (OK)
+	rm -f ./ubic/output//group_event_5.out (OK)
+Running test group_event_5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_event_5.uvm -a ./ubic/output//group_event_5.asm  ./ubic/input//group_event_5 > ./ubic/output//group_event_5.out (OK)
+Clear output group_event_6
+	rm -f ./ubic/output//group_event_6.uvm (OK)
+	rm -f ./ubic/output//group_event_6.asm (OK)
+	rm -f ./ubic/output//group_event_6.out (OK)
+Running test group_event_6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_event_6.uvm -a ./ubic/output//group_event_6.asm  ./ubic/input//group_event_6 > ./ubic/output//group_event_6.out (OK)
+Clear output group_event_7
+	rm -f ./ubic/output//group_event_7.uvm (OK)
+	rm -f ./ubic/output//group_event_7.asm (OK)
+	rm -f ./ubic/output//group_event_7.out (OK)
+Running test group_event_7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_event_7.uvm -a ./ubic/output//group_event_7.asm  ./ubic/input//group_event_7 > ./ubic/output//group_event_7.out (OK)
+Clear output group_synchronization_1
+	rm -f ./ubic/output//group_synchronization_1.uvm (OK)
+	rm -f ./ubic/output//group_synchronization_1.asm (OK)
+	rm -f ./ubic/output//group_synchronization_1.out (OK)
+Running test group_synchronization_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//group_synchronization_1.uvm -a ./ubic/output//group_synchronization_1.asm  ./ubic/input//group_synchronization_1 > ./ubic/output//group_synchronization_1.out (OK)
+Clear output returning_one_value
+	rm -f ./ubic/output//returning_one_value.uvm (OK)
+	rm -f ./ubic/output//returning_one_value.asm (OK)
+	rm -f ./ubic/output//returning_one_value.out (OK)
+Running test returning_one_value
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//returning_one_value.uvm -a ./ubic/output//returning_one_value.asm  ./ubic/input//returning_one_value > ./ubic/output//returning_one_value.out (OK)
+Clear output returning_one_value2
+	rm -f ./ubic/output//returning_one_value2.uvm (OK)
+	rm -f ./ubic/output//returning_one_value2.asm (OK)
+	rm -f ./ubic/output//returning_one_value2.out (OK)
+Running test returning_one_value2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//returning_one_value2.uvm -a ./ubic/output//returning_one_value2.asm  ./ubic/input//returning_one_value2 > ./ubic/output//returning_one_value2.out (OK)
+Clear output returning_two_values
+	rm -f ./ubic/output//returning_two_values.uvm (OK)
+	rm -f ./ubic/output//returning_two_values.asm (OK)
+	rm -f ./ubic/output//returning_two_values.out (OK)
+Running test returning_two_values
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//returning_two_values.uvm -a ./ubic/output//returning_two_values.asm  ./ubic/input//returning_two_values > ./ubic/output//returning_two_values.out (OK)
+Clear output returning_values
+	rm -f ./ubic/output//returning_values.uvm (OK)
+	rm -f ./ubic/output//returning_values.asm (OK)
+	rm -f ./ubic/output//returning_values.out (OK)
+Running test returning_values
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//returning_values.uvm -a ./ubic/output//returning_values.asm  ./ubic/input//returning_values > ./ubic/output//returning_values.out (OK)
+Clear output test2
+	rm -f ./ubic/output//test2.uvm (OK)
+	rm -f ./ubic/output//test2.asm (OK)
+	rm -f ./ubic/output//test2.out (OK)
+Running test test2
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test2.uvm -a ./ubic/output//test2.asm  ./ubic/input//test2 > ./ubic/output//test2.out (OK)
+Clear output test3
+	rm -f ./ubic/output//test3.uvm (OK)
+	rm -f ./ubic/output//test3.asm (OK)
+	rm -f ./ubic/output//test3.out (OK)
+Running test test3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test3.uvm -a ./ubic/output//test3.asm  ./ubic/input//test3 > ./ubic/output//test3.out (OK)
+Clear output test4
+	rm -f ./ubic/output//test4.uvm (OK)
+	rm -f ./ubic/output//test4.asm (OK)
+	rm -f ./ubic/output//test4.out (OK)
+Running test test4
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test4.uvm -a ./ubic/output//test4.asm  ./ubic/input//test4 > ./ubic/output//test4.out (OK)
+Clear output test5
+	rm -f ./ubic/output//test5.uvm (OK)
+	rm -f ./ubic/output//test5.asm (OK)
+	rm -f ./ubic/output//test5.out (OK)
+Running test test5
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test5.uvm -a ./ubic/output//test5.asm  ./ubic/input//test5 > ./ubic/output//test5.out (OK)
+Clear output test5_3
+	rm -f ./ubic/output//test5_3.uvm (OK)
+	rm -f ./ubic/output//test5_3.asm (OK)
+	rm -f ./ubic/output//test5_3.out (OK)
+Running test test5_3
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test5_3.uvm -a ./ubic/output//test5_3.asm  ./ubic/input//test5_3 > ./ubic/output//test5_3.out (OK)
+Clear output test6
+	rm -f ./ubic/output//test6.uvm (OK)
+	rm -f ./ubic/output//test6.asm (OK)
+	rm -f ./ubic/output//test6.out (OK)
+Running test test6
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test6.uvm -a ./ubic/output//test6.asm  ./ubic/input//test6 > ./ubic/output//test6.out (OK)
+Clear output test7
+	rm -f ./ubic/output//test7.uvm (OK)
+	rm -f ./ubic/output//test7.asm (OK)
+	rm -f ./ubic/output//test7.out (OK)
+Running test test7
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//test7.uvm -a ./ubic/output//test7.asm  ./ubic/input//test7 > ./ubic/output//test7.out (OK)
+Clear output using_basic_concepts
+	rm -f ./ubic/output//using_basic_concepts.uvm (OK)
+	rm -f ./ubic/output//using_basic_concepts.asm (OK)
+	rm -f ./ubic/output//using_basic_concepts.out (OK)
+Running test using_basic_concepts
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//using_basic_concepts.uvm -a ./ubic/output//using_basic_concepts.asm  ./ubic/input//using_basic_concepts > ./ubic/output//using_basic_concepts.out (OK)
+Clear output element_list_1
+	rm -f ./ubic/output//element_list_1.uvm (OK)
+	rm -f ./ubic/output//element_list_1.asm (OK)
+	rm -f ./ubic/output//element_list_1.out (OK)
+Running test element_list_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//element_list_1.uvm -a ./ubic/output//element_list_1.asm  ./ubic/input//element_list_1 > ./ubic/output//element_list_1.out (OK)
+Clear output service_list_1
+	rm -f ./ubic/output//service_list_1.uvm (OK)
+	rm -f ./ubic/output//service_list_1.asm (OK)
+	rm -f ./ubic/output//service_list_1.out (OK)
+Running test service_list_1
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//service_list_1.uvm -a ./ubic/output//service_list_1.asm  ./ubic/input//service_list_1 > ./ubic/output//service_list_1.out (OK)
+Clear output default_values
+	rm -f ./ubic/output//default_values.uvm (OK)
+	rm -f ./ubic/output//default_values.asm (OK)
+	rm -f ./ubic/output//default_values.out (OK)
+Running test default_values
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//default_values.uvm -a ./ubic/output//default_values.asm  ./ubic/input//default_values > ./ubic/output//default_values.out (OK)
+Clear output executa_construtor
+	rm -f ./ubic/output//executa_construtor.uvm (OK)
+	rm -f ./ubic/output//executa_construtor.asm (OK)
+	rm -f ./ubic/output//executa_construtor.out (OK)
+Running test executa_construtor
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//executa_construtor.uvm -a ./ubic/output//executa_construtor.asm  ./ubic/input//executa_construtor > ./ubic/output//executa_construtor.out (OK)
+Clear output numeros_negativos
+	rm -f ./ubic/output//numeros_negativos.uvm (OK)
+	rm -f ./ubic/output//numeros_negativos.asm (OK)
+	rm -f ./ubic/output//numeros_negativos.out (OK)
+Running test numeros_negativos
+UbiC 0.1.0
+	../ubic/ubic -o ./ubic/output//numeros_negativos.uvm -a ./ubic/output//numeros_negativos.asm  ./ubic/input//numeros_negativos > ./ubic/output//numeros_negativos.out (OK)
+Clear output hello_world
+	rm -f ./ubivm/output//hello_world.out (OK)
+Running test hello_world
+	../ubivm/ubivm -a ./ubivm/output//hello_world.asm  ./ubic/output//hello_world > ./ubivm/output//hello_world.out (OK)
+Clear output hello_world2
+	rm -f ./ubivm/output//hello_world2.out (OK)
+Running test hello_world2
+	../ubivm/ubivm -a ./ubivm/output//hello_world2.asm  ./ubic/output//hello_world2 > ./ubivm/output//hello_world2.out (OK)
+Clear output hello_world3
+	rm -f ./ubivm/output//hello_world3.out (OK)
+Running test hello_world3
+	../ubivm/ubivm -a ./ubivm/output//hello_world3.asm  ./ubic/output//hello_world3 > ./ubivm/output//hello_world3.out (OK)
+Clear output writeln_varios_tipos
+	rm -f ./ubivm/output//writeln_varios_tipos.out (OK)
+Running test writeln_varios_tipos
+	../ubivm/ubivm -a ./ubivm/output//writeln_varios_tipos.asm  ./ubic/output//writeln_varios_tipos > ./ubivm/output//writeln_varios_tipos.out (OK)
+Clear output expr1
+	rm -f ./ubivm/output//expr1.out (OK)
+Running test expr1
+	../ubivm/ubivm -a ./ubivm/output//expr1.asm  ./ubic/output//expr1 > ./ubivm/output//expr1.out (OK)
+Clear output expr2
+	rm -f ./ubivm/output//expr2.out (OK)
+Running test expr2
+	../ubivm/ubivm -a ./ubivm/output//expr2.asm  ./ubic/output//expr2 > ./ubivm/output//expr2.out (OK)
+Clear output expr3
+	rm -f ./ubivm/output//expr3.out (OK)
+Running test expr3
+	../ubivm/ubivm -a ./ubivm/output//expr3.asm  ./ubic/output//expr3 > ./ubivm/output//expr3.out (OK)
+Clear output expr4
+	rm -f ./ubivm/output//expr4.out (OK)
+Running test expr4
+	../ubivm/ubivm -a ./ubivm/output//expr4.asm  ./ubic/output//expr4 > ./ubivm/output//expr4.out (OK)
+Clear output expr5
+	rm -f ./ubivm/output//expr5.out (OK)
+Running test expr5
+	../ubivm/ubivm -a ./ubivm/output//expr5.asm  ./ubic/output//expr5 > ./ubivm/output//expr5.out (OK)
+Clear output expr6
+	rm -f ./ubivm/output//expr6.out (OK)
+Running test expr6
+	../ubivm/ubivm -a ./ubivm/output//expr6.asm  ./ubic/output//expr6 > ./ubivm/output//expr6.out (OK)
+Clear output expr7
+	rm -f ./ubivm/output//expr7.out (OK)
+Running test expr7
+	../ubivm/ubivm -a ./ubivm/output//expr7.asm  ./ubic/output//expr7 > ./ubivm/output//expr7.out (OK)
+Clear output expr8
+	rm -f ./ubivm/output//expr8.out (OK)
+Running test expr8
+	../ubivm/ubivm -a ./ubivm/output//expr8.asm  ./ubic/output//expr8 > ./ubivm/output//expr8.out (OK)
+Clear output expr9
+	rm -f ./ubivm/output//expr9.out (OK)
+Running test expr9
+	../ubivm/ubivm -a ./ubivm/output//expr9.asm  ./ubic/output//expr9 > ./ubivm/output//expr9.out (OK)
+Clear output expr_real_1
+	rm -f ./ubivm/output//expr_real_1.out (OK)
+Running test expr_real_1
+	../ubivm/ubivm -a ./ubivm/output//expr_real_1.asm  ./ubic/output//expr_real_1 > ./ubivm/output//expr_real_1.out (OK)
+Clear output expr_real_2
+	rm -f ./ubivm/output//expr_real_2.out (OK)
+Running test expr_real_2
+	../ubivm/ubivm -a ./ubivm/output//expr_real_2.asm  ./ubic/output//expr_real_2 > ./ubivm/output//expr_real_2.out (OK)
+Clear output expr_real_3
+	rm -f ./ubivm/output//expr_real_3.out (OK)
+Running test expr_real_3
+	../ubivm/ubivm -a ./ubivm/output//expr_real_3.asm  ./ubic/output//expr_real_3 > ./ubivm/output//expr_real_3.out (OK)
+Clear output expr_real_4
+	rm -f ./ubivm/output//expr_real_4.out (OK)
+Running test expr_real_4
+	../ubivm/ubivm -a ./ubivm/output//expr_real_4.asm  ./ubic/output//expr_real_4 > ./ubivm/output//expr_real_4.out (OK)
+Clear output expr_real_5
+	rm -f ./ubivm/output//expr_real_5.out (OK)
+Running test expr_real_5
+	../ubivm/ubivm -a ./ubivm/output//expr_real_5.asm  ./ubic/output//expr_real_5 > ./ubivm/output//expr_real_5.out (OK)
+Clear output expr_real_6
+	rm -f ./ubivm/output//expr_real_6.out (OK)
+Running test expr_real_6
+	../ubivm/ubivm -a ./ubivm/output//expr_real_6.asm  ./ubic/output//expr_real_6 > ./ubivm/output//expr_real_6.out (OK)
+Clear output expr_real_7
+	rm -f ./ubivm/output//expr_real_7.out (OK)
+Running test expr_real_7
+	../ubivm/ubivm -a ./ubivm/output//expr_real_7.asm  ./ubic/output//expr_real_7 > ./ubivm/output//expr_real_7.out (OK)
+Clear output expr_real_8
+	rm -f ./ubivm/output//expr_real_8.out (OK)
+Running test expr_real_8
+	../ubivm/ubivm -a ./ubivm/output//expr_real_8.asm  ./ubic/output//expr_real_8 > ./ubivm/output//expr_real_8.out (OK)
+Clear output expr_real_9
+	rm -f ./ubivm/output//expr_real_9.out (OK)
+Running test expr_real_9
+	../ubivm/ubivm -a ./ubivm/output//expr_real_9.asm  ./ubic/output//expr_real_9 > ./ubivm/output//expr_real_9.out (OK)
+Clear output def_vars
+	rm -f ./ubivm/output//def_vars.out (OK)
+Running test def_vars
+	../ubivm/ubivm -a ./ubivm/output//def_vars.asm  ./ubic/output//def_vars > ./ubivm/output//def_vars.out (OK)
+Clear output attr_int_1
+	rm -f ./ubivm/output//attr_int_1.out (OK)
+Running test attr_int_1
+	../ubivm/ubivm -a ./ubivm/output//attr_int_1.asm  ./ubic/output//attr_int_1 > ./ubivm/output//attr_int_1.out (OK)
+Clear output attr_int_2
+	rm -f ./ubivm/output//attr_int_2.out (OK)
+Running test attr_int_2
+	../ubivm/ubivm -a ./ubivm/output//attr_int_2.asm  ./ubic/output//attr_int_2 > ./ubivm/output//attr_int_2.out (OK)
+Clear output attr_int_3
+	rm -f ./ubivm/output//attr_int_3.out (OK)
+Running test attr_int_3
+	../ubivm/ubivm -a ./ubivm/output//attr_int_3.asm  ./ubic/output//attr_int_3 > ./ubivm/output//attr_int_3.out (OK)
+Clear output attr_real_1
+	rm -f ./ubivm/output//attr_real_1.out (OK)
+Running test attr_real_1
+	../ubivm/ubivm -a ./ubivm/output//attr_real_1.asm  ./ubic/output//attr_real_1 > ./ubivm/output//attr_real_1.out (OK)
+Clear output attr_real_2
+	rm -f ./ubivm/output//attr_real_2.out (OK)
+Running test attr_real_2
+	../ubivm/ubivm -a ./ubivm/output//attr_real_2.asm  ./ubic/output//attr_real_2 > ./ubivm/output//attr_real_2.out (OK)
+Clear output attr_real_3
+	rm -f ./ubivm/output//attr_real_3.out (OK)
+Running test attr_real_3
+	../ubivm/ubivm -a ./ubivm/output//attr_real_3.asm  ./ubic/output//attr_real_3 > ./ubivm/output//attr_real_3.out (OK)
+Clear output attr_string_1
+	rm -f ./ubivm/output//attr_string_1.out (OK)
+Running test attr_string_1
+	../ubivm/ubivm -a ./ubivm/output//attr_string_1.asm  ./ubic/output//attr_string_1 > ./ubivm/output//attr_string_1.out (OK)
+Clear output attr_string_2
+	rm -f ./ubivm/output//attr_string_2.out (OK)
+Running test attr_string_2
+	../ubivm/ubivm -a ./ubivm/output//attr_string_2.asm  ./ubic/output//attr_string_2 > ./ubivm/output//attr_string_2.out (OK)
+Clear output attr_string_3
+	rm -f ./ubivm/output//attr_string_3.out (OK)
+Running test attr_string_3
+	../ubivm/ubivm -a ./ubivm/output//attr_string_3.asm  ./ubic/output//attr_string_3 > ./ubivm/output//attr_string_3.out (OK)
+Clear output add_with_var_int
+	rm -f ./ubivm/output//add_with_var_int.out (OK)
+Running test add_with_var_int
+	../ubivm/ubivm -a ./ubivm/output//add_with_var_int.asm  ./ubic/output//add_with_var_int > ./ubivm/output//add_with_var_int.out (OK)
+Clear output add_with_var_real
+	rm -f ./ubivm/output//add_with_var_real.out (OK)
+Running test add_with_var_real
+	../ubivm/ubivm -a ./ubivm/output//add_with_var_real.asm  ./ubic/output//add_with_var_real > ./ubivm/output//add_with_var_real.out (OK)
+Clear output add_with_var_string
+	rm -f ./ubivm/output//add_with_var_string.out (OK)
+Running test add_with_var_string
+	../ubivm/ubivm -a ./ubivm/output//add_with_var_string.asm  ./ubic/output//add_with_var_string > ./ubivm/output//add_with_var_string.out (OK)
+Clear output if_1
+	rm -f ./ubivm/output//if_1.out (OK)
+Running test if_1
+	../ubivm/ubivm -a ./ubivm/output//if_1.asm  ./ubic/output//if_1 > ./ubivm/output//if_1.out (OK)
+Clear output if_2
+	rm -f ./ubivm/output//if_2.out (OK)
+Running test if_2
+	../ubivm/ubivm -a ./ubivm/output//if_2.asm  ./ubic/output//if_2 > ./ubivm/output//if_2.out (OK)
+Clear output if_3
+	rm -f ./ubivm/output//if_3.out (OK)
+Running test if_3
+	../ubivm/ubivm -a ./ubivm/output//if_3.asm  ./ubic/output//if_3 > ./ubivm/output//if_3.out (OK)
+Clear output if_4
+	rm -f ./ubivm/output//if_4.out (OK)
+Running test if_4
+	../ubivm/ubivm -a ./ubivm/output//if_4.asm  ./ubic/output//if_4 > ./ubivm/output//if_4.out (OK)
+Clear output exemplo_if
+	rm -f ./ubivm/output//exemplo_if.out (OK)
+Running test exemplo_if
+	../ubivm/ubivm -a ./ubivm/output//exemplo_if.asm  ./ubic/output//exemplo_if > ./ubivm/output//exemplo_if.out (OK)
+Clear output for_1
+	rm -f ./ubivm/output//for_1.out (OK)
+Running test for_1
+	../ubivm/ubivm -a ./ubivm/output//for_1.asm  ./ubic/output//for_1 > ./ubivm/output//for_1.out (OK)
+Clear output for_2
+	rm -f ./ubivm/output//for_2.out (OK)
+Running test for_2
+	../ubivm/ubivm -a ./ubivm/output//for_2.asm  ./ubic/output//for_2 > ./ubivm/output//for_2.out (OK)
+Clear output for_testing_break
+	rm -f ./ubivm/output//for_testing_break.out (OK)
+Running test for_testing_break
+	../ubivm/ubivm -a ./ubivm/output//for_testing_break.asm  ./ubic/output//for_testing_break > ./ubivm/output//for_testing_break.out (OK)
+Clear output for_testing_continue
+	rm -f ./ubivm/output//for_testing_continue.out (OK)
+Running test for_testing_continue
+	../ubivm/ubivm -a ./ubivm/output//for_testing_continue.asm  ./ubic/output//for_testing_continue > ./ubivm/output//for_testing_continue.out (OK)
+Clear output exemplo_for
+	rm -f ./ubivm/output//exemplo_for.out (OK)
+Running test exemplo_for
+	../ubivm/ubivm -a ./ubivm/output//exemplo_for.asm  ./ubic/output//exemplo_for > ./ubivm/output//exemplo_for.out (OK)
+Clear output while_1
+	rm -f ./ubivm/output//while_1.out (OK)
+Running test while_1
+	../ubivm/ubivm -a ./ubivm/output//while_1.asm  ./ubic/output//while_1 > ./ubivm/output//while_1.out (OK)
+Clear output exemplo_while
+	rm -f ./ubivm/output//exemplo_while.out (OK)
+Running test exemplo_while
+	../ubivm/ubivm -a ./ubivm/output//exemplo_while.asm  ./ubic/output//exemplo_while > ./ubivm/output//exemplo_while.out (OK)
+Clear output while_testing_break
+	rm -f ./ubivm/output//while_testing_break.out (OK)
+Running test while_testing_break
+	../ubivm/ubivm -a ./ubivm/output//while_testing_break.asm  ./ubic/output//while_testing_break > ./ubivm/output//while_testing_break.out (OK)
+Clear output while_testing_continue
+	rm -f ./ubivm/output//while_testing_continue.out (OK)
+Running test while_testing_continue
+	../ubivm/ubivm -a ./ubivm/output//while_testing_continue.asm  ./ubic/output//while_testing_continue > ./ubivm/output//while_testing_continue.out (OK)
+Clear output repeat_until_1
+	rm -f ./ubivm/output//repeat_until_1.out (OK)
+Running test repeat_until_1
+	../ubivm/ubivm -a ./ubivm/output//repeat_until_1.asm  ./ubic/output//repeat_until_1 > ./ubivm/output//repeat_until_1.out (OK)
+Clear output repeat_testing_break
+	rm -f ./ubivm/output//repeat_testing_break.out (OK)
+Running test repeat_testing_break
+	../ubivm/ubivm -a ./ubivm/output//repeat_testing_break.asm  ./ubic/output//repeat_testing_break > ./ubivm/output//repeat_testing_break.out (OK)
+Clear output repeat_testing_continue
+	rm -f ./ubivm/output//repeat_testing_continue.out (OK)
+Running test repeat_testing_continue
+	../ubivm/ubivm -a ./ubivm/output//repeat_testing_continue.asm  ./ubic/output//repeat_testing_continue > ./ubivm/output//repeat_testing_continue.out (OK)
+Clear output method_1
+	rm -f ./ubivm/output//method_1.out (OK)
+Running test method_1
+	../ubivm/ubivm -a ./ubivm/output//method_1.asm  ./ubic/output//method_1 > ./ubivm/output//method_1.out (OK)
+Clear output method_2
+	rm -f ./ubivm/output//method_2.out (OK)
+Running test method_2
+	../ubivm/ubivm -a ./ubivm/output//method_2.asm  ./ubic/output//method_2 > ./ubivm/output//method_2.out (OK)
+Clear output method_3
+	rm -f ./ubivm/output//method_3.out (OK)
+Running test method_3
+	../ubivm/ubivm -a ./ubivm/output//method_3.asm  ./ubic/output//method_3 > ./ubivm/output//method_3.out (OK)
+Clear output method_4
+	rm -f ./ubivm/output//method_4.out (OK)
+Running test method_4
+	../ubivm/ubivm -a ./ubivm/output//method_4.asm  ./ubic/output//method_4 > ./ubivm/output//method_4.out (OK)
+Clear output method_5
+	rm -f ./ubivm/output//method_5.out (OK)
+Running test method_5
+	../ubivm/ubivm -a ./ubivm/output//method_5.asm  ./ubic/output//method_5 > ./ubivm/output//method_5.out (OK)
+Clear output method_with_result_1
+	rm -f ./ubivm/output//method_with_result_1.out (OK)
+Running test method_with_result_1
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_1.asm  ./ubic/output//method_with_result_1 > ./ubivm/output//method_with_result_1.out (OK)
+Clear output method_with_result_2
+	rm -f ./ubivm/output//method_with_result_2.out (OK)
+Running test method_with_result_2
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_2.asm  ./ubic/output//method_with_result_2 > ./ubivm/output//method_with_result_2.out (OK)
+Clear output method_with_result_3
+	rm -f ./ubivm/output//method_with_result_3.out (OK)
+Running test method_with_result_3
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_3.asm  ./ubic/output//method_with_result_3 > ./ubivm/output//method_with_result_3.out (OK)
+Clear output method_with_result_4
+	rm -f ./ubivm/output//method_with_result_4.out (OK)
+Running test method_with_result_4
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_4.asm  ./ubic/output//method_with_result_4 > ./ubivm/output//method_with_result_4.out (OK)
+Clear output method_with_result_5
+	rm -f ./ubivm/output//method_with_result_5.out (OK)
+Running test method_with_result_5
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_5.asm  ./ubic/output//method_with_result_5 > ./ubivm/output//method_with_result_5.out (OK)
+Clear output method_with_result_6
+	rm -f ./ubivm/output//method_with_result_6.out (OK)
+Running test method_with_result_6
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_6.asm  ./ubic/output//method_with_result_6 > ./ubivm/output//method_with_result_6.out (OK)
+Clear output method_with_result_7
+	rm -f ./ubivm/output//method_with_result_7.out (OK)
+Running test method_with_result_7
+	../ubivm/ubivm -a ./ubivm/output//method_with_result_7.asm  ./ubic/output//method_with_result_7 > ./ubivm/output//method_with_result_7.out (OK)
+Clear output fatorial
+	rm -f ./ubivm/output//fatorial.out (OK)
+Running test fatorial
+	../ubivm/ubivm -a ./ubivm/output//fatorial.asm  ./ubic/output//fatorial > ./ubivm/output//fatorial.out (OK)
+Clear output element_1
+	rm -f ./ubivm/output//element_1.out (OK)
+Running test element_1
+	../ubivm/ubivm -a ./ubivm/output//element_1.asm  ./ubic/output//element_1 > ./ubivm/output//element_1.out (OK)
+Clear output element_2
+	rm -f ./ubivm/output//element_2.out (OK)
+Running test element_2
+	../ubivm/ubivm -a ./ubivm/output//element_2.asm  ./ubic/output//element_2 > ./ubivm/output//element_2.out (OK)
+Clear output element_3
+	rm -f ./ubivm/output//element_3.out (OK)
+Running test element_3
+	../ubivm/ubivm -a ./ubivm/output//element_3.asm  ./ubic/output//element_3 > ./ubivm/output//element_3.out (OK)
+Clear output element_4
+	rm -f ./ubivm/output//element_4.out (OK)
+Running test element_4
+	../ubivm/ubivm -a ./ubivm/output//element_4.asm  ./ubic/output//element_4 > ./ubivm/output//element_4.out (OK)
+Clear output element_5
+	rm -f ./ubivm/output//element_5.out (OK)
+Running test element_5
+	../ubivm/ubivm -a ./ubivm/output//element_5.asm  ./ubic/output//element_5 > ./ubivm/output//element_5.out (OK)
+Clear output element_6
+	rm -f ./ubivm/output//element_6.out (OK)
+Running test element_6
+	../ubivm/ubivm -a ./ubivm/output//element_6.asm  ./ubic/output//element_6 > ./ubivm/output//element_6.out (OK)
+Clear output element_7
+	rm -f ./ubivm/output//element_7.out (OK)
+Running test element_7
+	../ubivm/ubivm -a ./ubivm/output//element_7.asm  ./ubic/output//element_7 > ./ubivm/output//element_7.out (OK)
+Clear output element_method_with_result_1
+	rm -f ./ubivm/output//element_method_with_result_1.out (OK)
+Running test element_method_with_result_1
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_1.asm  ./ubic/output//element_method_with_result_1 > ./ubivm/output//element_method_with_result_1.out (OK)
+Clear output element_method_with_result_2
+	rm -f ./ubivm/output//element_method_with_result_2.out (OK)
+Running test element_method_with_result_2
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_2.asm  ./ubic/output//element_method_with_result_2 > ./ubivm/output//element_method_with_result_2.out (OK)
+Clear output element_method_with_result_3
+	rm -f ./ubivm/output//element_method_with_result_3.out (OK)
+Running test element_method_with_result_3
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_3.asm  ./ubic/output//element_method_with_result_3 > ./ubivm/output//element_method_with_result_3.out (OK)
+Clear output element_method_with_result_4
+	rm -f ./ubivm/output//element_method_with_result_4.out (OK)
+Running test element_method_with_result_4
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_4.asm  ./ubic/output//element_method_with_result_4 > ./ubivm/output//element_method_with_result_4.out (OK)
+Clear output element_method_with_result_5
+	rm -f ./ubivm/output//element_method_with_result_5.out (OK)
+Running test element_method_with_result_5
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_5.asm  ./ubic/output//element_method_with_result_5 > ./ubivm/output//element_method_with_result_5.out (OK)
+Clear output element_method_with_result_6
+	rm -f ./ubivm/output//element_method_with_result_6.out (OK)
+Running test element_method_with_result_6
+	../ubivm/ubivm -a ./ubivm/output//element_method_with_result_6.asm  ./ubic/output//element_method_with_result_6 > ./ubivm/output//element_method_with_result_6.out (OK)
+Clear output group_1
+	rm -f ./ubivm/output//group_1.out (OK)
+Running test group_1
+	../ubivm/ubivm -a ./ubivm/output//group_1.asm  ./ubic/output//group_1 > ./ubivm/output//group_1.out (OK)
+Clear output group_2
+	rm -f ./ubivm/output//group_2.out (OK)
+Running test group_2
+	../ubivm/ubivm -a ./ubivm/output//group_2.asm  ./ubic/output//group_2 > ./ubivm/output//group_2.out (OK)
+Clear output group_3
+	rm -f ./ubivm/output//group_3.out (OK)
+Running test group_3
+	../ubivm/ubivm -a ./ubivm/output//group_3.asm  ./ubic/output//group_3 > ./ubivm/output//group_3.out (OK)
+Clear output group_4
+	rm -f ./ubivm/output//group_4.out (OK)
+Running test group_4
+	../ubivm/ubivm -a ./ubivm/output//group_4.asm  ./ubic/output//group_4 > ./ubivm/output//group_4.out (OK)
+Clear output group_5
+	rm -f ./ubivm/output//group_5.out (OK)
+Running test group_5
+	../ubivm/ubivm -a ./ubivm/output//group_5.asm  ./ubic/output//group_5 > ./ubivm/output//group_5.out (OK)
+Clear output group_6
+	rm -f ./ubivm/output//group_6.out (OK)
+Running test group_6
+	../ubivm/ubivm -a ./ubivm/output//group_6.asm  ./ubic/output//group_6 > ./ubivm/output//group_6.out (OK)
+Clear output group_7
+	rm -f ./ubivm/output//group_7.out (OK)
+Running test group_7
+	../ubivm/ubivm -a ./ubivm/output//group_7.asm  ./ubic/output//group_7 > ./ubivm/output//group_7.out (OK)
+Clear output group_8
+	rm -f ./ubivm/output//group_8.out (OK)
+Running test group_8
+	../ubivm/ubivm -a ./ubivm/output//group_8.asm  ./ubic/output//group_8 > ./ubivm/output//group_8.out (OK)
+Clear output service_1
+	rm -f ./ubivm/output//service_1.out (OK)
+Running test service_1
+	../ubivm/ubivm -a ./ubivm/output//service_1.asm  ./ubic/output//service_1 > ./ubivm/output//service_1.out (OK)
+Clear output service_2
+	rm -f ./ubivm/output//service_2.out (OK)
+Running test service_2
+	../ubivm/ubivm -a ./ubivm/output//service_2.asm  ./ubic/output//service_2 > ./ubivm/output//service_2.out (OK)
+Clear output service_4
+	rm -f ./ubivm/output//service_4.out (OK)
+Running test service_4
+	../ubivm/ubivm -a ./ubivm/output//service_4.asm  ./ubic/output//service_4 > ./ubivm/output//service_4.out (OK)
+Clear output context_1
+	rm -f ./ubivm/output//context_1.out (OK)
+Running test context_1
+	../ubivm/ubivm -a ./ubivm/output//context_1.asm  ./ubic/output//context_1 > ./ubivm/output//context_1.out (OK)
+Clear output table_1d_1
+	rm -f ./ubivm/output//table_1d_1.out (OK)
+Running test table_1d_1
+	../ubivm/ubivm -a ./ubivm/output//table_1d_1.asm  ./ubic/output//table_1d_1 > ./ubivm/output//table_1d_1.out (OK)
+Clear output table_1d_2
+	rm -f ./ubivm/output//table_1d_2.out (OK)
+Running test table_1d_2
+	../ubivm/ubivm -a ./ubivm/output//table_1d_2.asm  ./ubic/output//table_1d_2 > ./ubivm/output//table_1d_2.out (OK)
+Clear output table_1d_3
+	rm -f ./ubivm/output//table_1d_3.out (OK)
+Running test table_1d_3
+	../ubivm/ubivm -a ./ubivm/output//table_1d_3.asm  ./ubic/output//table_1d_3 > ./ubivm/output//table_1d_3.out (OK)
+Clear output table_1d_4
+	rm -f ./ubivm/output//table_1d_4.out (OK)
+Running test table_1d_4
+	../ubivm/ubivm -a ./ubivm/output//table_1d_4.asm  ./ubic/output//table_1d_4 > ./ubivm/output//table_1d_4.out (OK)
+Clear output table_1d_5
+	rm -f ./ubivm/output//table_1d_5.out (OK)
+Running test table_1d_5
+	../ubivm/ubivm -a ./ubivm/output//table_1d_5.asm  ./ubic/output//table_1d_5 > ./ubivm/output//table_1d_5.out (OK)
+Clear output table_1d_6
+	rm -f ./ubivm/output//table_1d_6.out (OK)
+Running test table_1d_6
+	../ubivm/ubivm -a ./ubivm/output//table_1d_6.asm  ./ubic/output//table_1d_6 > ./ubivm/output//table_1d_6.out (OK)
+Clear output table_1d_7
+	rm -f ./ubivm/output//table_1d_7.out (OK)
+Running test table_1d_7
+	../ubivm/ubivm -a ./ubivm/output//table_1d_7.asm  ./ubic/output//table_1d_7 > ./ubivm/output//table_1d_7.out (OK)
+Clear output table_1d_8
+	rm -f ./ubivm/output//table_1d_8.out (OK)
+Running test table_1d_8
+	../ubivm/ubivm -a ./ubivm/output//table_1d_8.asm  ./ubic/output//table_1d_8 > ./ubivm/output//table_1d_8.out (OK)
+Clear output group_data_1
+	rm -f ./ubivm/output//group_data_1.out (OK)
+Running test group_data_1
+	../ubivm/ubivm -a ./ubivm/output//group_data_1.asm  ./ubic/output//group_data_1 > ./ubivm/output//group_data_1.out (OK)
+Clear output concurrent_elements_1
+	rm -f ./ubivm/output//concurrent_elements_1.out (OK)
+Running test concurrent_elements_1
+	../ubivm/ubivm -a ./ubivm/output//concurrent_elements_1.asm  ./ubic/output//concurrent_elements_1 > ./ubivm/output//concurrent_elements_1.out (OK)
+Clear output concurrent_elements_2
+	rm -f ./ubivm/output//concurrent_elements_2.out (OK)
+Running test concurrent_elements_2
+	../ubivm/ubivm -a ./ubivm/output//concurrent_elements_2.asm  ./ubic/output//concurrent_elements_2 > ./ubivm/output//concurrent_elements_2.out (OK)
+Clear output data_list_1
+	rm -f ./ubivm/output//data_list_1.out (OK)
+Running test data_list_1
+	../ubivm/ubivm -a ./ubivm/output//data_list_1.asm  ./ubic/output//data_list_1 > ./ubivm/output//data_list_1.out (OK)
+Clear output data_list_2
+	rm -f ./ubivm/output//data_list_2.out (OK)
+Running test data_list_2
+	../ubivm/ubivm -a ./ubivm/output//data_list_2.asm  ./ubic/output//data_list_2 > ./ubivm/output//data_list_2.out (OK)
+Clear output tuple_1
+	rm -f ./ubivm/output//tuple_1.out (OK)
+Running test tuple_1
+	../ubivm/ubivm -a ./ubivm/output//tuple_1.asm  ./ubic/output//tuple_1 > ./ubivm/output//tuple_1.out (OK)
+Clear output group_data_4
+	rm -f ./ubivm/output//group_data_4.out (OK)
+Running test group_data_4
+	../ubivm/ubivm -a ./ubivm/output//group_data_4.asm  ./ubic/output//group_data_4 > ./ubivm/output//group_data_4.out (OK)
+Clear output group_data_5
+	rm -f ./ubivm/output//group_data_5.out (OK)
+Running test group_data_5
+	../ubivm/ubivm -a ./ubivm/output//group_data_5.asm  ./ubic/output//group_data_5 > ./ubivm/output//group_data_5.out (OK)
+Clear output group_data_6
+	rm -f ./ubivm/output//group_data_6.out (OK)
+Running test group_data_6
+	../ubivm/ubivm -a ./ubivm/output//group_data_6.asm  ./ubic/output//group_data_6 > ./ubivm/output//group_data_6.out (OK)
+Clear output group_data_7
+	rm -f ./ubivm/output//group_data_7.out (OK)
+Running test group_data_7
+	../ubivm/ubivm -a ./ubivm/output//group_data_7.asm  ./ubic/output//group_data_7 > ./ubivm/output//group_data_7.out (OK)
+Clear output group_data_8
+	rm -f ./ubivm/output//group_data_8.out (OK)
+Running test group_data_8
+	../ubivm/ubivm -a ./ubivm/output//group_data_8.asm  ./ubic/output//group_data_8 > ./ubivm/output//group_data_8.out (OK)
+Clear output property_1
+	rm -f ./ubivm/output//property_1.out (OK)
+Running test property_1
+	../ubivm/ubivm -a ./ubivm/output//property_1.asm  ./ubic/output//property_1 > ./ubivm/output//property_1.out (OK)
+Clear output property_2
+	rm -f ./ubivm/output//property_2.out (OK)
+Running test property_2
+	../ubivm/ubivm -a ./ubivm/output//property_2.asm  ./ubic/output//property_2 > ./ubivm/output//property_2.out (OK)
+Clear output element_adaptation_1
+	rm -f ./ubivm/output//element_adaptation_1.out (OK)
+Running test element_adaptation_1
+	../ubivm/ubivm -a ./ubivm/output//element_adaptation_1.asm  ./ubic/output//element_adaptation_1 > ./ubivm/output//element_adaptation_1.out (OK)
+Clear output element_property_changed_event_1
+	rm -f ./ubivm/output//element_property_changed_event_1.out (OK)
+Running test element_property_changed_event_1
+	../ubivm/ubivm -a ./ubivm/output//element_property_changed_event_1.asm  ./ubic/output//element_property_changed_event_1 > ./ubivm/output//element_property_changed_event_1.out (OK)
+Clear output context_changed_event_1
+	rm -f ./ubivm/output//context_changed_event_1.out (OK)
+Running test context_changed_event_1
+	../ubivm/ubivm -a ./ubivm/output//context_changed_event_1.asm  ./ubic/output//context_changed_event_1 > ./ubivm/output//context_changed_event_1.out (OK)
+Clear output context_changed_event_2
+	rm -f ./ubivm/output//context_changed_event_2.out (OK)
+Running test context_changed_event_2
+	../ubivm/ubivm -a ./ubivm/output//context_changed_event_2.asm  ./ubic/output//context_changed_event_2 > ./ubivm/output//context_changed_event_2.out (OK)
+Clear output group_event_1
+	rm -f ./ubivm/output//group_event_1.out (OK)
+Running test group_event_1
+	../ubivm/ubivm -a ./ubivm/output//group_event_1.asm  ./ubic/output//group_event_1 > ./ubivm/output//group_event_1.out (OK)
+Clear output group_event_3
+	rm -f ./ubivm/output//group_event_3.out (OK)
+Running test group_event_3
+	../ubivm/ubivm -a ./ubivm/output//group_event_3.asm  ./ubic/output//group_event_3 > ./ubivm/output//group_event_3.out (OK)
+Clear output group_event_5
+	rm -f ./ubivm/output//group_event_5.out (OK)
+Running test group_event_5
+	../ubivm/ubivm -a ./ubivm/output//group_event_5.asm  ./ubic/output//group_event_5 > ./ubivm/output//group_event_5.out (OK)
+Clear output group_event_6
+	rm -f ./ubivm/output//group_event_6.out (OK)
+Running test group_event_6
+	../ubivm/ubivm -a ./ubivm/output//group_event_6.asm  ./ubic/output//group_event_6 > ./ubivm/output//group_event_6.out (OK)
+Clear output group_event_7
+	rm -f ./ubivm/output//group_event_7.out (OK)
+Running test group_event_7
+	../ubivm/ubivm -a ./ubivm/output//group_event_7.asm  ./ubic/output//group_event_7 > ./ubivm/output//group_event_7.out (OK)
+Clear output group_synchronization_1
+	rm -f ./ubivm/output//group_synchronization_1.out (OK)
+Running test group_synchronization_1
+	../ubivm/ubivm -a ./ubivm/output//group_synchronization_1.asm  ./ubic/output//group_synchronization_1 > ./ubivm/output//group_synchronization_1.out (OK)
+Clear output returning_one_value
+	rm -f ./ubivm/output//returning_one_value.out (OK)
+Running test returning_one_value
+	../ubivm/ubivm -a ./ubivm/output//returning_one_value.asm  ./ubic/output//returning_one_value > ./ubivm/output//returning_one_value.out (OK)
+Clear output returning_one_value2
+	rm -f ./ubivm/output//returning_one_value2.out (OK)
+Running test returning_one_value2
+	../ubivm/ubivm -a ./ubivm/output//returning_one_value2.asm  ./ubic/output//returning_one_value2 > ./ubivm/output//returning_one_value2.out (OK)
+Clear output returning_two_values
+	rm -f ./ubivm/output//returning_two_values.out (OK)
+Running test returning_two_values
+	../ubivm/ubivm -a ./ubivm/output//returning_two_values.asm  ./ubic/output//returning_two_values > ./ubivm/output//returning_two_values.out (OK)
+Clear output returning_values
+	rm -f ./ubivm/output//returning_values.out (OK)
+Running test returning_values
+	../ubivm/ubivm -a ./ubivm/output//returning_values.asm  ./ubic/output//returning_values > ./ubivm/output//returning_values.out (OK)
+Clear output test2
+	rm -f ./ubivm/output//test2.out (OK)
+Running test test2
+	../ubivm/ubivm -a ./ubivm/output//test2.asm  ./ubic/output//test2 > ./ubivm/output//test2.out (OK)
+Clear output test3
+	rm -f ./ubivm/output//test3.out (OK)
+Running test test3
+	../ubivm/ubivm -a ./ubivm/output//test3.asm  ./ubic/output//test3 > ./ubivm/output//test3.out (OK)
+Clear output test4
+	rm -f ./ubivm/output//test4.out (OK)
+Running test test4
+	../ubivm/ubivm -a ./ubivm/output//test4.asm  ./ubic/output//test4 > ./ubivm/output//test4.out (OK)
+Clear output test5
+	rm -f ./ubivm/output//test5.out (OK)
+Running test test5
+	../ubivm/ubivm -a ./ubivm/output//test5.asm  ./ubic/output//test5 > ./ubivm/output//test5.out (OK)
+Clear output test5_3
+	rm -f ./ubivm/output//test5_3.out (OK)
+Running test test5_3
+	../ubivm/ubivm -a ./ubivm/output//test5_3.asm  ./ubic/output//test5_3 > ./ubivm/output//test5_3.out (OK)
+Clear output test6
+	rm -f ./ubivm/output//test6.out (OK)
+Running test test6
+	../ubivm/ubivm -a ./ubivm/output//test6.asm  ./ubic/output//test6 > ./ubivm/output//test6.out (OK)
+Clear output test7
+	rm -f ./ubivm/output//test7.out (OK)
+Running test test7
+	../ubivm/ubivm -a ./ubivm/output//test7.asm  ./ubic/output//test7 > ./ubivm/output//test7.out (OK)
+Clear output using_basic_concepts
+	rm -f ./ubivm/output//using_basic_concepts.out (OK)
+Running test using_basic_concepts
+	../ubivm/ubivm -a ./ubivm/output//using_basic_concepts.asm  ./ubic/output//using_basic_concepts > ./ubivm/output//using_basic_concepts.out (OK)
+Clear output element_list_1
+	rm -f ./ubivm/output//element_list_1.out (OK)
+Running test element_list_1
+	../ubivm/ubivm -a ./ubivm/output//element_list_1.asm  ./ubic/output//element_list_1 > ./ubivm/output//element_list_1.out (FAIL)
+Clear output service_list_1
+	rm -f ./ubivm/output//service_list_1.out (OK)
+Running test service_list_1
+	../ubivm/ubivm -a ./ubivm/output//service_list_1.asm  ./ubic/output//service_list_1 > ./ubivm/output//service_list_1.out (FAIL)
+Clear output default_values
+	rm -f ./ubivm/output//default_values.out (OK)
+Running test default_values
+	../ubivm/ubivm -a ./ubivm/output//default_values.asm  ./ubic/output//default_values > ./ubivm/output//default_values.out (OK)
+Clear output executa_construtor
+	rm -f ./ubivm/output//executa_construtor.out (OK)
+Running test executa_construtor
+	../ubivm/ubivm -a ./ubivm/output//executa_construtor.asm  ./ubic/output//executa_construtor > ./ubivm/output//executa_construtor.out (OK)
+Clear output numeros_negativos
+	rm -f ./ubivm/output//numeros_negativos.out (OK)
+Running test numeros_negativos
+	../ubivm/ubivm -a ./ubivm/output//numeros_negativos.asm  ./ubic/output//numeros_negativos > ./ubivm/output//numeros_negativos.out (OK)
+Running check test hello_world
+	cmp ./ubic/output//hello_world.uvm ./ubic/expected//hello_world.uvm -s (OK)
+	cmp ./ubic/output//hello_world.asm ./ubic/expected//hello_world.asm -s (OK)
+	cmp ./ubic/output//hello_world.out ./ubic/expected//hello_world.out -s (OK)
+Running check test hello_world2
+	cmp ./ubic/output//hello_world2.uvm ./ubic/expected//hello_world2.uvm -s (OK)
+	cmp ./ubic/output//hello_world2.asm ./ubic/expected//hello_world2.asm -s (OK)
+	cmp ./ubic/output//hello_world2.out ./ubic/expected//hello_world2.out -s (OK)
+Running check test hello_world3
+	cmp ./ubic/output//hello_world3.uvm ./ubic/expected//hello_world3.uvm -s (OK)
+	cmp ./ubic/output//hello_world3.asm ./ubic/expected//hello_world3.asm -s (OK)
+	cmp ./ubic/output//hello_world3.out ./ubic/expected//hello_world3.out -s (OK)
+Running check test writeln_varios_tipos
+	cmp ./ubic/output//writeln_varios_tipos.uvm ./ubic/expected//writeln_varios_tipos.uvm -s (OK)
+	cmp ./ubic/output//writeln_varios_tipos.asm ./ubic/expected//writeln_varios_tipos.asm -s (OK)
+	cmp ./ubic/output//writeln_varios_tipos.out ./ubic/expected//writeln_varios_tipos.out -s (OK)
+Running check test expr1
+	cmp ./ubic/output//expr1.uvm ./ubic/expected//expr1.uvm -s (OK)
+	cmp ./ubic/output//expr1.asm ./ubic/expected//expr1.asm -s (OK)
+	cmp ./ubic/output//expr1.out ./ubic/expected//expr1.out -s (OK)
+Running check test expr2
+	cmp ./ubic/output//expr2.uvm ./ubic/expected//expr2.uvm -s (OK)
+	cmp ./ubic/output//expr2.asm ./ubic/expected//expr2.asm -s (OK)
+	cmp ./ubic/output//expr2.out ./ubic/expected//expr2.out -s (OK)
+Running check test expr3
+	cmp ./ubic/output//expr3.uvm ./ubic/expected//expr3.uvm -s (OK)
+	cmp ./ubic/output//expr3.asm ./ubic/expected//expr3.asm -s (OK)
+	cmp ./ubic/output//expr3.out ./ubic/expected//expr3.out -s (OK)
+Running check test expr4
+	cmp ./ubic/output//expr4.uvm ./ubic/expected//expr4.uvm -s (OK)
+	cmp ./ubic/output//expr4.asm ./ubic/expected//expr4.asm -s (OK)
+	cmp ./ubic/output//expr4.out ./ubic/expected//expr4.out -s (OK)
+Running check test expr5
+	cmp ./ubic/output//expr5.uvm ./ubic/expected//expr5.uvm -s (OK)
+	cmp ./ubic/output//expr5.asm ./ubic/expected//expr5.asm -s (OK)
+	cmp ./ubic/output//expr5.out ./ubic/expected//expr5.out -s (OK)
+Running check test expr6
+	cmp ./ubic/output//expr6.uvm ./ubic/expected//expr6.uvm -s (OK)
+	cmp ./ubic/output//expr6.asm ./ubic/expected//expr6.asm -s (OK)
+	cmp ./ubic/output//expr6.out ./ubic/expected//expr6.out -s (OK)
+Running check test expr7
+	cmp ./ubic/output//expr7.uvm ./ubic/expected//expr7.uvm -s (OK)
+	cmp ./ubic/output//expr7.asm ./ubic/expected//expr7.asm -s (OK)
+	cmp ./ubic/output//expr7.out ./ubic/expected//expr7.out -s (OK)
+Running check test expr8
+	cmp ./ubic/output//expr8.uvm ./ubic/expected//expr8.uvm -s (OK)
+	cmp ./ubic/output//expr8.asm ./ubic/expected//expr8.asm -s (OK)
+	cmp ./ubic/output//expr8.out ./ubic/expected//expr8.out -s (OK)
+Running check test expr9
+	cmp ./ubic/output//expr9.uvm ./ubic/expected//expr9.uvm -s (OK)
+	cmp ./ubic/output//expr9.asm ./ubic/expected//expr9.asm -s (OK)
+	cmp ./ubic/output//expr9.out ./ubic/expected//expr9.out -s (OK)
+Running check test expr_real_1
+	cmp ./ubic/output//expr_real_1.uvm ./ubic/expected//expr_real_1.uvm -s (OK)
+	cmp ./ubic/output//expr_real_1.asm ./ubic/expected//expr_real_1.asm -s (OK)
+	cmp ./ubic/output//expr_real_1.out ./ubic/expected//expr_real_1.out -s (OK)
+Running check test expr_real_2
+	cmp ./ubic/output//expr_real_2.uvm ./ubic/expected//expr_real_2.uvm -s (OK)
+	cmp ./ubic/output//expr_real_2.asm ./ubic/expected//expr_real_2.asm -s (OK)
+	cmp ./ubic/output//expr_real_2.out ./ubic/expected//expr_real_2.out -s (OK)
+Running check test expr_real_3
+	cmp ./ubic/output//expr_real_3.uvm ./ubic/expected//expr_real_3.uvm -s (OK)
+	cmp ./ubic/output//expr_real_3.asm ./ubic/expected//expr_real_3.asm -s (OK)
+	cmp ./ubic/output//expr_real_3.out ./ubic/expected//expr_real_3.out -s (OK)
+Running check test expr_real_4
+	cmp ./ubic/output//expr_real_4.uvm ./ubic/expected//expr_real_4.uvm -s (OK)
+	cmp ./ubic/output//expr_real_4.asm ./ubic/expected//expr_real_4.asm -s (OK)
+	cmp ./ubic/output//expr_real_4.out ./ubic/expected//expr_real_4.out -s (OK)
+Running check test expr_real_5
+	cmp ./ubic/output//expr_real_5.uvm ./ubic/expected//expr_real_5.uvm -s (OK)
+	cmp ./ubic/output//expr_real_5.asm ./ubic/expected//expr_real_5.asm -s (OK)
+	cmp ./ubic/output//expr_real_5.out ./ubic/expected//expr_real_5.out -s (OK)
+Running check test expr_real_6
+	cmp ./ubic/output//expr_real_6.uvm ./ubic/expected//expr_real_6.uvm -s (OK)
+	cmp ./ubic/output//expr_real_6.asm ./ubic/expected//expr_real_6.asm -s (OK)
+	cmp ./ubic/output//expr_real_6.out ./ubic/expected//expr_real_6.out -s (OK)
+Running check test expr_real_7
+	cmp ./ubic/output//expr_real_7.uvm ./ubic/expected//expr_real_7.uvm -s (OK)
+	cmp ./ubic/output//expr_real_7.asm ./ubic/expected//expr_real_7.asm -s (OK)
+	cmp ./ubic/output//expr_real_7.out ./ubic/expected//expr_real_7.out -s (OK)
+Running check test expr_real_8
+	cmp ./ubic/output//expr_real_8.uvm ./ubic/expected//expr_real_8.uvm -s (OK)
+	cmp ./ubic/output//expr_real_8.asm ./ubic/expected//expr_real_8.asm -s (OK)
+	cmp ./ubic/output//expr_real_8.out ./ubic/expected//expr_real_8.out -s (OK)
+Running check test expr_real_9
+	cmp ./ubic/output//expr_real_9.uvm ./ubic/expected//expr_real_9.uvm -s (OK)
+	cmp ./ubic/output//expr_real_9.asm ./ubic/expected//expr_real_9.asm -s (OK)
+	cmp ./ubic/output//expr_real_9.out ./ubic/expected//expr_real_9.out -s (OK)
+Running check test def_vars
+	cmp ./ubic/output//def_vars.uvm ./ubic/expected//def_vars.uvm -s (OK)
+	cmp ./ubic/output//def_vars.asm ./ubic/expected//def_vars.asm -s (OK)
+	cmp ./ubic/output//def_vars.out ./ubic/expected//def_vars.out -s (OK)
+Running check test attr_int_1
+	cmp ./ubic/output//attr_int_1.uvm ./ubic/expected//attr_int_1.uvm -s (OK)
+	cmp ./ubic/output//attr_int_1.asm ./ubic/expected//attr_int_1.asm -s (OK)
+	cmp ./ubic/output//attr_int_1.out ./ubic/expected//attr_int_1.out -s (OK)
+Running check test attr_int_2
+	cmp ./ubic/output//attr_int_2.uvm ./ubic/expected//attr_int_2.uvm -s (OK)
+	cmp ./ubic/output//attr_int_2.asm ./ubic/expected//attr_int_2.asm -s (OK)
+	cmp ./ubic/output//attr_int_2.out ./ubic/expected//attr_int_2.out -s (OK)
+Running check test attr_int_3
+	cmp ./ubic/output//attr_int_3.uvm ./ubic/expected//attr_int_3.uvm -s (OK)
+	cmp ./ubic/output//attr_int_3.asm ./ubic/expected//attr_int_3.asm -s (OK)
+	cmp ./ubic/output//attr_int_3.out ./ubic/expected//attr_int_3.out -s (OK)
+Running check test attr_real_1
+	cmp ./ubic/output//attr_real_1.uvm ./ubic/expected//attr_real_1.uvm -s (OK)
+	cmp ./ubic/output//attr_real_1.asm ./ubic/expected//attr_real_1.asm -s (OK)
+	cmp ./ubic/output//attr_real_1.out ./ubic/expected//attr_real_1.out -s (OK)
+Running check test attr_real_2
+	cmp ./ubic/output//attr_real_2.uvm ./ubic/expected//attr_real_2.uvm -s (OK)
+	cmp ./ubic/output//attr_real_2.asm ./ubic/expected//attr_real_2.asm -s (OK)
+	cmp ./ubic/output//attr_real_2.out ./ubic/expected//attr_real_2.out -s (OK)
+Running check test attr_real_3
+	cmp ./ubic/output//attr_real_3.uvm ./ubic/expected//attr_real_3.uvm -s (OK)
+	cmp ./ubic/output//attr_real_3.asm ./ubic/expected//attr_real_3.asm -s (OK)
+	cmp ./ubic/output//attr_real_3.out ./ubic/expected//attr_real_3.out -s (OK)
+Running check test attr_string_1
+	cmp ./ubic/output//attr_string_1.uvm ./ubic/expected//attr_string_1.uvm -s (OK)
+	cmp ./ubic/output//attr_string_1.asm ./ubic/expected//attr_string_1.asm -s (OK)
+	cmp ./ubic/output//attr_string_1.out ./ubic/expected//attr_string_1.out -s (OK)
+Running check test attr_string_2
+	cmp ./ubic/output//attr_string_2.uvm ./ubic/expected//attr_string_2.uvm -s (OK)
+	cmp ./ubic/output//attr_string_2.asm ./ubic/expected//attr_string_2.asm -s (OK)
+	cmp ./ubic/output//attr_string_2.out ./ubic/expected//attr_string_2.out -s (OK)
+Running check test attr_string_3
+	cmp ./ubic/output//attr_string_3.uvm ./ubic/expected//attr_string_3.uvm -s (OK)
+	cmp ./ubic/output//attr_string_3.asm ./ubic/expected//attr_string_3.asm -s (OK)
+	cmp ./ubic/output//attr_string_3.out ./ubic/expected//attr_string_3.out -s (OK)
+Running check test add_with_var_int
+	cmp ./ubic/output//add_with_var_int.uvm ./ubic/expected//add_with_var_int.uvm -s (OK)
+	cmp ./ubic/output//add_with_var_int.asm ./ubic/expected//add_with_var_int.asm -s (OK)
+	cmp ./ubic/output//add_with_var_int.out ./ubic/expected//add_with_var_int.out -s (OK)
+Running check test add_with_var_real
+	cmp ./ubic/output//add_with_var_real.uvm ./ubic/expected//add_with_var_real.uvm -s (OK)
+	cmp ./ubic/output//add_with_var_real.asm ./ubic/expected//add_with_var_real.asm -s (OK)
+	cmp ./ubic/output//add_with_var_real.out ./ubic/expected//add_with_var_real.out -s (OK)
+Running check test add_with_var_string
+	cmp ./ubic/output//add_with_var_string.uvm ./ubic/expected//add_with_var_string.uvm -s (OK)
+	cmp ./ubic/output//add_with_var_string.asm ./ubic/expected//add_with_var_string.asm -s (OK)
+	cmp ./ubic/output//add_with_var_string.out ./ubic/expected//add_with_var_string.out -s (OK)
+Running check test if_1
+	cmp ./ubic/output//if_1.uvm ./ubic/expected//if_1.uvm -s (OK)
+	cmp ./ubic/output//if_1.asm ./ubic/expected//if_1.asm -s (OK)
+	cmp ./ubic/output//if_1.out ./ubic/expected//if_1.out -s (OK)
+Running check test if_2
+	cmp ./ubic/output//if_2.uvm ./ubic/expected//if_2.uvm -s (OK)
+	cmp ./ubic/output//if_2.asm ./ubic/expected//if_2.asm -s (OK)
+	cmp ./ubic/output//if_2.out ./ubic/expected//if_2.out -s (OK)
+Running check test if_3
+	cmp ./ubic/output//if_3.uvm ./ubic/expected//if_3.uvm -s (OK)
+	cmp ./ubic/output//if_3.asm ./ubic/expected//if_3.asm -s (OK)
+	cmp ./ubic/output//if_3.out ./ubic/expected//if_3.out -s (OK)
+Running check test if_4
+	cmp ./ubic/output//if_4.uvm ./ubic/expected//if_4.uvm -s (OK)
+	cmp ./ubic/output//if_4.asm ./ubic/expected//if_4.asm -s (OK)
+	cmp ./ubic/output//if_4.out ./ubic/expected//if_4.out -s (OK)
+Running check test exemplo_if
+	cmp ./ubic/output//exemplo_if.uvm ./ubic/expected//exemplo_if.uvm -s (OK)
+	cmp ./ubic/output//exemplo_if.asm ./ubic/expected//exemplo_if.asm -s (OK)
+	cmp ./ubic/output//exemplo_if.out ./ubic/expected//exemplo_if.out -s (OK)
+Running check test for_1
+	cmp ./ubic/output//for_1.uvm ./ubic/expected//for_1.uvm -s (OK)
+	cmp ./ubic/output//for_1.asm ./ubic/expected//for_1.asm -s (OK)
+	cmp ./ubic/output//for_1.out ./ubic/expected//for_1.out -s (OK)
+Running check test for_2
+	cmp ./ubic/output//for_2.uvm ./ubic/expected//for_2.uvm -s (OK)
+	cmp ./ubic/output//for_2.asm ./ubic/expected//for_2.asm -s (OK)
+	cmp ./ubic/output//for_2.out ./ubic/expected//for_2.out -s (OK)
+Running check test for_testing_break
+	cmp ./ubic/output//for_testing_break.uvm ./ubic/expected//for_testing_break.uvm -s (OK)
+	cmp ./ubic/output//for_testing_break.asm ./ubic/expected//for_testing_break.asm -s (OK)
+	cmp ./ubic/output//for_testing_break.out ./ubic/expected//for_testing_break.out -s (OK)
+Running check test for_testing_continue
+	cmp ./ubic/output//for_testing_continue.uvm ./ubic/expected//for_testing_continue.uvm -s (OK)
+	cmp ./ubic/output//for_testing_continue.asm ./ubic/expected//for_testing_continue.asm -s (OK)
+	cmp ./ubic/output//for_testing_continue.out ./ubic/expected//for_testing_continue.out -s (OK)
+Running check test exemplo_for
+	cmp ./ubic/output//exemplo_for.uvm ./ubic/expected//exemplo_for.uvm -s (OK)
+	cmp ./ubic/output//exemplo_for.asm ./ubic/expected//exemplo_for.asm -s (OK)
+	cmp ./ubic/output//exemplo_for.out ./ubic/expected//exemplo_for.out -s (OK)
+Running check test while_1
+	cmp ./ubic/output//while_1.uvm ./ubic/expected//while_1.uvm -s (OK)
+	cmp ./ubic/output//while_1.asm ./ubic/expected//while_1.asm -s (OK)
+	cmp ./ubic/output//while_1.out ./ubic/expected//while_1.out -s (OK)
+Running check test exemplo_while
+	cmp ./ubic/output//exemplo_while.uvm ./ubic/expected//exemplo_while.uvm -s (OK)
+	cmp ./ubic/output//exemplo_while.asm ./ubic/expected//exemplo_while.asm -s (OK)
+	cmp ./ubic/output//exemplo_while.out ./ubic/expected//exemplo_while.out -s (OK)
+Running check test while_testing_break
+	cmp ./ubic/output//while_testing_break.uvm ./ubic/expected//while_testing_break.uvm -s (OK)
+	cmp ./ubic/output//while_testing_break.asm ./ubic/expected//while_testing_break.asm -s (OK)
+	cmp ./ubic/output//while_testing_break.out ./ubic/expected//while_testing_break.out -s (OK)
+Running check test while_testing_continue
+	cmp ./ubic/output//while_testing_continue.uvm ./ubic/expected//while_testing_continue.uvm -s (OK)
+	cmp ./ubic/output//while_testing_continue.asm ./ubic/expected//while_testing_continue.asm -s (OK)
+	cmp ./ubic/output//while_testing_continue.out ./ubic/expected//while_testing_continue.out -s (OK)
+Running check test repeat_until_1
+	cmp ./ubic/output//repeat_until_1.uvm ./ubic/expected//repeat_until_1.uvm -s (OK)
+	cmp ./ubic/output//repeat_until_1.asm ./ubic/expected//repeat_until_1.asm -s (OK)
+	cmp ./ubic/output//repeat_until_1.out ./ubic/expected//repeat_until_1.out -s (OK)
+Running check test repeat_testing_break
+	cmp ./ubic/output//repeat_testing_break.uvm ./ubic/expected//repeat_testing_break.uvm -s (OK)
+	cmp ./ubic/output//repeat_testing_break.asm ./ubic/expected//repeat_testing_break.asm -s (OK)
+	cmp ./ubic/output//repeat_testing_break.out ./ubic/expected//repeat_testing_break.out -s (OK)
+Running check test repeat_testing_continue
+	cmp ./ubic/output//repeat_testing_continue.uvm ./ubic/expected//repeat_testing_continue.uvm -s (OK)
+	cmp ./ubic/output//repeat_testing_continue.asm ./ubic/expected//repeat_testing_continue.asm -s (OK)
+	cmp ./ubic/output//repeat_testing_continue.out ./ubic/expected//repeat_testing_continue.out -s (OK)
+Running check test method_1
+	cmp ./ubic/output//method_1.uvm ./ubic/expected//method_1.uvm -s (OK)
+	cmp ./ubic/output//method_1.asm ./ubic/expected//method_1.asm -s (OK)
+	cmp ./ubic/output//method_1.out ./ubic/expected//method_1.out -s (OK)
+Running check test method_2
+	cmp ./ubic/output//method_2.uvm ./ubic/expected//method_2.uvm -s (OK)
+	cmp ./ubic/output//method_2.asm ./ubic/expected//method_2.asm -s (OK)
+	cmp ./ubic/output//method_2.out ./ubic/expected//method_2.out -s (OK)
+Running check test method_3
+	cmp ./ubic/output//method_3.uvm ./ubic/expected//method_3.uvm -s (OK)
+	cmp ./ubic/output//method_3.asm ./ubic/expected//method_3.asm -s (OK)
+	cmp ./ubic/output//method_3.out ./ubic/expected//method_3.out -s (OK)
+Running check test method_4
+	cmp ./ubic/output//method_4.uvm ./ubic/expected//method_4.uvm -s (OK)
+	cmp ./ubic/output//method_4.asm ./ubic/expected//method_4.asm -s (OK)
+	cmp ./ubic/output//method_4.out ./ubic/expected//method_4.out -s (OK)
+Running check test method_5
+	cmp ./ubic/output//method_5.uvm ./ubic/expected//method_5.uvm -s (OK)
+	cmp ./ubic/output//method_5.asm ./ubic/expected//method_5.asm -s (OK)
+	cmp ./ubic/output//method_5.out ./ubic/expected//method_5.out -s (OK)
+Running check test method_with_result_1
+	cmp ./ubic/output//method_with_result_1.uvm ./ubic/expected//method_with_result_1.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_1.asm ./ubic/expected//method_with_result_1.asm -s (OK)
+	cmp ./ubic/output//method_with_result_1.out ./ubic/expected//method_with_result_1.out -s (OK)
+Running check test method_with_result_2
+	cmp ./ubic/output//method_with_result_2.uvm ./ubic/expected//method_with_result_2.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_2.asm ./ubic/expected//method_with_result_2.asm -s (OK)
+	cmp ./ubic/output//method_with_result_2.out ./ubic/expected//method_with_result_2.out -s (OK)
+Running check test method_with_result_3
+	cmp ./ubic/output//method_with_result_3.uvm ./ubic/expected//method_with_result_3.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_3.asm ./ubic/expected//method_with_result_3.asm -s (OK)
+	cmp ./ubic/output//method_with_result_3.out ./ubic/expected//method_with_result_3.out -s (OK)
+Running check test method_with_result_4
+	cmp ./ubic/output//method_with_result_4.uvm ./ubic/expected//method_with_result_4.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_4.asm ./ubic/expected//method_with_result_4.asm -s (OK)
+	cmp ./ubic/output//method_with_result_4.out ./ubic/expected//method_with_result_4.out -s (OK)
+Running check test method_with_result_5
+	cmp ./ubic/output//method_with_result_5.uvm ./ubic/expected//method_with_result_5.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_5.asm ./ubic/expected//method_with_result_5.asm -s (OK)
+	cmp ./ubic/output//method_with_result_5.out ./ubic/expected//method_with_result_5.out -s (OK)
+Running check test method_with_result_6
+	cmp ./ubic/output//method_with_result_6.uvm ./ubic/expected//method_with_result_6.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_6.asm ./ubic/expected//method_with_result_6.asm -s (OK)
+	cmp ./ubic/output//method_with_result_6.out ./ubic/expected//method_with_result_6.out -s (OK)
+Running check test method_with_result_7
+	cmp ./ubic/output//method_with_result_7.uvm ./ubic/expected//method_with_result_7.uvm -s (OK)
+	cmp ./ubic/output//method_with_result_7.asm ./ubic/expected//method_with_result_7.asm -s (OK)
+	cmp ./ubic/output//method_with_result_7.out ./ubic/expected//method_with_result_7.out -s (OK)
+Running check test fatorial
+	cmp ./ubic/output//fatorial.uvm ./ubic/expected//fatorial.uvm -s (OK)
+	cmp ./ubic/output//fatorial.asm ./ubic/expected//fatorial.asm -s (OK)
+	cmp ./ubic/output//fatorial.out ./ubic/expected//fatorial.out -s (OK)
+Running check test element_1
+	cmp ./ubic/output//element_1.uvm ./ubic/expected//element_1.uvm -s (OK)
+	cmp ./ubic/output//element_1.asm ./ubic/expected//element_1.asm -s (OK)
+	cmp ./ubic/output//element_1.out ./ubic/expected//element_1.out -s (OK)
+Running check test element_2
+	cmp ./ubic/output//element_2.uvm ./ubic/expected//element_2.uvm -s (OK)
+	cmp ./ubic/output//element_2.asm ./ubic/expected//element_2.asm -s (OK)
+	cmp ./ubic/output//element_2.out ./ubic/expected//element_2.out -s (OK)
+Running check test element_3
+	cmp ./ubic/output//element_3.uvm ./ubic/expected//element_3.uvm -s (OK)
+	cmp ./ubic/output//element_3.asm ./ubic/expected//element_3.asm -s (OK)
+	cmp ./ubic/output//element_3.out ./ubic/expected//element_3.out -s (OK)
+Running check test element_4
+	cmp ./ubic/output//element_4.uvm ./ubic/expected//element_4.uvm -s (OK)
+	cmp ./ubic/output//element_4.asm ./ubic/expected//element_4.asm -s (OK)
+	cmp ./ubic/output//element_4.out ./ubic/expected//element_4.out -s (OK)
+Running check test element_5
+	cmp ./ubic/output//element_5.uvm ./ubic/expected//element_5.uvm -s (OK)
+	cmp ./ubic/output//element_5.asm ./ubic/expected//element_5.asm -s (OK)
+	cmp ./ubic/output//element_5.out ./ubic/expected//element_5.out -s (OK)
+Running check test element_6
+	cmp ./ubic/output//element_6.uvm ./ubic/expected//element_6.uvm -s (OK)
+	cmp ./ubic/output//element_6.asm ./ubic/expected//element_6.asm -s (OK)
+	cmp ./ubic/output//element_6.out ./ubic/expected//element_6.out -s (OK)
+Running check test element_7
+	cmp ./ubic/output//element_7.uvm ./ubic/expected//element_7.uvm -s (OK)
+	cmp ./ubic/output//element_7.asm ./ubic/expected//element_7.asm -s (OK)
+	cmp ./ubic/output//element_7.out ./ubic/expected//element_7.out -s (OK)
+Running check test element_method_with_result_1
+	cmp ./ubic/output//element_method_with_result_1.uvm ./ubic/expected//element_method_with_result_1.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_1.asm ./ubic/expected//element_method_with_result_1.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_1.out ./ubic/expected//element_method_with_result_1.out -s (OK)
+Running check test element_method_with_result_2
+	cmp ./ubic/output//element_method_with_result_2.uvm ./ubic/expected//element_method_with_result_2.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_2.asm ./ubic/expected//element_method_with_result_2.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_2.out ./ubic/expected//element_method_with_result_2.out -s (OK)
+Running check test element_method_with_result_3
+	cmp ./ubic/output//element_method_with_result_3.uvm ./ubic/expected//element_method_with_result_3.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_3.asm ./ubic/expected//element_method_with_result_3.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_3.out ./ubic/expected//element_method_with_result_3.out -s (OK)
+Running check test element_method_with_result_4
+	cmp ./ubic/output//element_method_with_result_4.uvm ./ubic/expected//element_method_with_result_4.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_4.asm ./ubic/expected//element_method_with_result_4.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_4.out ./ubic/expected//element_method_with_result_4.out -s (OK)
+Running check test element_method_with_result_5
+	cmp ./ubic/output//element_method_with_result_5.uvm ./ubic/expected//element_method_with_result_5.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_5.asm ./ubic/expected//element_method_with_result_5.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_5.out ./ubic/expected//element_method_with_result_5.out -s (OK)
+Running check test element_method_with_result_6
+	cmp ./ubic/output//element_method_with_result_6.uvm ./ubic/expected//element_method_with_result_6.uvm -s (OK)
+	cmp ./ubic/output//element_method_with_result_6.asm ./ubic/expected//element_method_with_result_6.asm -s (OK)
+	cmp ./ubic/output//element_method_with_result_6.out ./ubic/expected//element_method_with_result_6.out -s (OK)
+Running check test group_1
+	cmp ./ubic/output//group_1.uvm ./ubic/expected//group_1.uvm -s (OK)
+	cmp ./ubic/output//group_1.asm ./ubic/expected//group_1.asm -s (OK)
+	cmp ./ubic/output//group_1.out ./ubic/expected//group_1.out -s (OK)
+Running check test group_2
+	cmp ./ubic/output//group_2.uvm ./ubic/expected//group_2.uvm -s (OK)
+	cmp ./ubic/output//group_2.asm ./ubic/expected//group_2.asm -s (OK)
+	cmp ./ubic/output//group_2.out ./ubic/expected//group_2.out -s (OK)
+Running check test group_3
+	cmp ./ubic/output//group_3.uvm ./ubic/expected//group_3.uvm -s (OK)
+	cmp ./ubic/output//group_3.asm ./ubic/expected//group_3.asm -s (OK)
+	cmp ./ubic/output//group_3.out ./ubic/expected//group_3.out -s (OK)
+Running check test group_4
+	cmp ./ubic/output//group_4.uvm ./ubic/expected//group_4.uvm -s (OK)
+	cmp ./ubic/output//group_4.asm ./ubic/expected//group_4.asm -s (OK)
+	cmp ./ubic/output//group_4.out ./ubic/expected//group_4.out -s (OK)
+Running check test group_5
+	cmp ./ubic/output//group_5.uvm ./ubic/expected//group_5.uvm -s (OK)
+	cmp ./ubic/output//group_5.asm ./ubic/expected//group_5.asm -s (OK)
+	cmp ./ubic/output//group_5.out ./ubic/expected//group_5.out -s (OK)
+Running check test group_6
+	cmp ./ubic/output//group_6.uvm ./ubic/expected//group_6.uvm -s (OK)
+	cmp ./ubic/output//group_6.asm ./ubic/expected//group_6.asm -s (OK)
+	cmp ./ubic/output//group_6.out ./ubic/expected//group_6.out -s (OK)
+Running check test group_7
+	cmp ./ubic/output//group_7.uvm ./ubic/expected//group_7.uvm -s (OK)
+	cmp ./ubic/output//group_7.asm ./ubic/expected//group_7.asm -s (OK)
+	cmp ./ubic/output//group_7.out ./ubic/expected//group_7.out -s (OK)
+Running check test group_8
+	cmp ./ubic/output//group_8.uvm ./ubic/expected//group_8.uvm -s (OK)
+	cmp ./ubic/output//group_8.asm ./ubic/expected//group_8.asm -s (OK)
+	cmp ./ubic/output//group_8.out ./ubic/expected//group_8.out -s (OK)
+Running check test service_1
+	cmp ./ubic/output//service_1.uvm ./ubic/expected//service_1.uvm -s (OK)
+	cmp ./ubic/output//service_1.asm ./ubic/expected//service_1.asm -s (OK)
+	cmp ./ubic/output//service_1.out ./ubic/expected//service_1.out -s (OK)
+Running check test service_2
+	cmp ./ubic/output//service_2.uvm ./ubic/expected//service_2.uvm -s (OK)
+	cmp ./ubic/output//service_2.asm ./ubic/expected//service_2.asm -s (OK)
+	cmp ./ubic/output//service_2.out ./ubic/expected//service_2.out -s (OK)
+Running check test service_4
+	cmp ./ubic/output//service_4.uvm ./ubic/expected//service_4.uvm -s (OK)
+	cmp ./ubic/output//service_4.asm ./ubic/expected//service_4.asm -s (OK)
+	cmp ./ubic/output//service_4.out ./ubic/expected//service_4.out -s (OK)
+Running check test context_1
+	cmp ./ubic/output//context_1.uvm ./ubic/expected//context_1.uvm -s (OK)
+	cmp ./ubic/output//context_1.asm ./ubic/expected//context_1.asm -s (OK)
+	cmp ./ubic/output//context_1.out ./ubic/expected//context_1.out -s (OK)
+Running check test table_1d_1
+	cmp ./ubic/output//table_1d_1.uvm ./ubic/expected//table_1d_1.uvm -s (OK)
+	cmp ./ubic/output//table_1d_1.asm ./ubic/expected//table_1d_1.asm -s (OK)
+	cmp ./ubic/output//table_1d_1.out ./ubic/expected//table_1d_1.out -s (OK)
+Running check test table_1d_2
+	cmp ./ubic/output//table_1d_2.uvm ./ubic/expected//table_1d_2.uvm -s (OK)
+	cmp ./ubic/output//table_1d_2.asm ./ubic/expected//table_1d_2.asm -s (OK)
+	cmp ./ubic/output//table_1d_2.out ./ubic/expected//table_1d_2.out -s (OK)
+Running check test table_1d_3
+	cmp ./ubic/output//table_1d_3.uvm ./ubic/expected//table_1d_3.uvm -s (OK)
+	cmp ./ubic/output//table_1d_3.asm ./ubic/expected//table_1d_3.asm -s (OK)
+	cmp ./ubic/output//table_1d_3.out ./ubic/expected//table_1d_3.out -s (OK)
+Running check test table_1d_4
+	cmp ./ubic/output//table_1d_4.uvm ./ubic/expected//table_1d_4.uvm -s (OK)
+	cmp ./ubic/output//table_1d_4.asm ./ubic/expected//table_1d_4.asm -s (OK)
+	cmp ./ubic/output//table_1d_4.out ./ubic/expected//table_1d_4.out -s (OK)
+Running check test table_1d_5
+	cmp ./ubic/output//table_1d_5.uvm ./ubic/expected//table_1d_5.uvm -s (OK)
+	cmp ./ubic/output//table_1d_5.asm ./ubic/expected//table_1d_5.asm -s (OK)
+	cmp ./ubic/output//table_1d_5.out ./ubic/expected//table_1d_5.out -s (OK)
+Running check test table_1d_6
+	cmp ./ubic/output//table_1d_6.uvm ./ubic/expected//table_1d_6.uvm -s (OK)
+	cmp ./ubic/output//table_1d_6.asm ./ubic/expected//table_1d_6.asm -s (OK)
+	cmp ./ubic/output//table_1d_6.out ./ubic/expected//table_1d_6.out -s (OK)
+Running check test table_1d_7
+	cmp ./ubic/output//table_1d_7.uvm ./ubic/expected//table_1d_7.uvm -s (OK)
+	cmp ./ubic/output//table_1d_7.asm ./ubic/expected//table_1d_7.asm -s (OK)
+	cmp ./ubic/output//table_1d_7.out ./ubic/expected//table_1d_7.out -s (OK)
+Running check test table_1d_8
+	cmp ./ubic/output//table_1d_8.uvm ./ubic/expected//table_1d_8.uvm -s (OK)
+	cmp ./ubic/output//table_1d_8.asm ./ubic/expected//table_1d_8.asm -s (OK)
+	cmp ./ubic/output//table_1d_8.out ./ubic/expected//table_1d_8.out -s (OK)
+Running check test group_data_1
+	cmp ./ubic/output//group_data_1.uvm ./ubic/expected//group_data_1.uvm -s (OK)
+	cmp ./ubic/output//group_data_1.asm ./ubic/expected//group_data_1.asm -s (OK)
+	cmp ./ubic/output//group_data_1.out ./ubic/expected//group_data_1.out -s (OK)
+Running check test lcall_1
+	cmp ./ubic/output//lcall_1.uvm ./ubic/expected//lcall_1.uvm -s (OK)
+	cmp ./ubic/output//lcall_1.asm ./ubic/expected//lcall_1.asm -s (OK)
+	cmp ./ubic/output//lcall_1.out ./ubic/expected//lcall_1.out -s (OK)
+Running check test ncurses_1
+	cmp ./ubic/output//ncurses_1.uvm ./ubic/expected//ncurses_1.uvm -s (OK)
+	cmp ./ubic/output//ncurses_1.asm ./ubic/expected//ncurses_1.asm -s (OK)
+	cmp ./ubic/output//ncurses_1.out ./ubic/expected//ncurses_1.out -s (OK)
+Running check test ncurses_2
+	cmp ./ubic/output//ncurses_2.uvm ./ubic/expected//ncurses_2.uvm -s (OK)
+	cmp ./ubic/output//ncurses_2.asm ./ubic/expected//ncurses_2.asm -s (OK)
+	cmp ./ubic/output//ncurses_2.out ./ubic/expected//ncurses_2.out -s (OK)
+Running check test ncurses_3
+	cmp ./ubic/output//ncurses_3.uvm ./ubic/expected//ncurses_3.uvm -s (OK)
+	cmp ./ubic/output//ncurses_3.asm ./ubic/expected//ncurses_3.asm -s (OK)
+	cmp ./ubic/output//ncurses_3.out ./ubic/expected//ncurses_3.out -s (OK)
+Running check test ncurses_4
+	cmp ./ubic/output//ncurses_4.uvm ./ubic/expected//ncurses_4.uvm -s (OK)
+	cmp ./ubic/output//ncurses_4.asm ./ubic/expected//ncurses_4.asm -s (OK)
+	cmp ./ubic/output//ncurses_4.out ./ubic/expected//ncurses_4.out -s (OK)
+Running check test ncurses_5
+	cmp ./ubic/output//ncurses_5.uvm ./ubic/expected//ncurses_5.uvm -s (OK)
+	cmp ./ubic/output//ncurses_5.asm ./ubic/expected//ncurses_5.asm -s (OK)
+	cmp ./ubic/output//ncurses_5.out ./ubic/expected//ncurses_5.out -s (OK)
+Running check test concurrent_elements_1
+	cmp ./ubic/output//concurrent_elements_1.uvm ./ubic/expected//concurrent_elements_1.uvm -s (OK)
+	cmp ./ubic/output//concurrent_elements_1.asm ./ubic/expected//concurrent_elements_1.asm -s (OK)
+	cmp ./ubic/output//concurrent_elements_1.out ./ubic/expected//concurrent_elements_1.out -s (OK)
+Running check test concurrent_elements_2
+	cmp ./ubic/output//concurrent_elements_2.uvm ./ubic/expected//concurrent_elements_2.uvm -s (OK)
+	cmp ./ubic/output//concurrent_elements_2.asm ./ubic/expected//concurrent_elements_2.asm -s (OK)
+	cmp ./ubic/output//concurrent_elements_2.out ./ubic/expected//concurrent_elements_2.out -s (OK)
+Running check test data_list_1
+	cmp ./ubic/output//data_list_1.uvm ./ubic/expected//data_list_1.uvm -s (OK)
+	cmp ./ubic/output//data_list_1.asm ./ubic/expected//data_list_1.asm -s (OK)
+	cmp ./ubic/output//data_list_1.out ./ubic/expected//data_list_1.out -s (OK)
+Running check test data_list_2
+	cmp ./ubic/output//data_list_2.uvm ./ubic/expected//data_list_2.uvm -s (OK)
+	cmp ./ubic/output//data_list_2.asm ./ubic/expected//data_list_2.asm -s (OK)
+	cmp ./ubic/output//data_list_2.out ./ubic/expected//data_list_2.out -s (OK)
+Running check test tuple_1
+	cmp ./ubic/output//tuple_1.uvm ./ubic/expected//tuple_1.uvm -s (OK)
+	cmp ./ubic/output//tuple_1.asm ./ubic/expected//tuple_1.asm -s (OK)
+	cmp ./ubic/output//tuple_1.out ./ubic/expected//tuple_1.out -s (OK)
+Running check test group_data_2_1
+	cmp ./ubic/output//group_data_2_1.uvm ./ubic/expected//group_data_2_1.uvm -s (OK)
+	cmp ./ubic/output//group_data_2_1.asm ./ubic/expected//group_data_2_1.asm -s (OK)
+	cmp ./ubic/output//group_data_2_1.out ./ubic/expected//group_data_2_1.out -s (OK)
+Running check test group_data_2_2
+	cmp ./ubic/output//group_data_2_2.uvm ./ubic/expected//group_data_2_2.uvm -s (OK)
+	cmp ./ubic/output//group_data_2_2.asm ./ubic/expected//group_data_2_2.asm -s (OK)
+	cmp ./ubic/output//group_data_2_2.out ./ubic/expected//group_data_2_2.out -s (OK)
+Running check test group_data_3_1
+	cmp ./ubic/output//group_data_3_1.uvm ./ubic/expected//group_data_3_1.uvm -s (OK)
+	cmp ./ubic/output//group_data_3_1.asm ./ubic/expected//group_data_3_1.asm -s (OK)
+	cmp ./ubic/output//group_data_3_1.out ./ubic/expected//group_data_3_1.out -s (OK)
+Running check test group_data_3_2
+	cmp ./ubic/output//group_data_3_2.uvm ./ubic/expected//group_data_3_2.uvm -s (OK)
+	cmp ./ubic/output//group_data_3_2.asm ./ubic/expected//group_data_3_2.asm -s (OK)
+	cmp ./ubic/output//group_data_3_2.out ./ubic/expected//group_data_3_2.out -s (OK)
+Running check test group_data_4
+	cmp ./ubic/output//group_data_4.uvm ./ubic/expected//group_data_4.uvm -s (OK)
+	cmp ./ubic/output//group_data_4.asm ./ubic/expected//group_data_4.asm -s (OK)
+	cmp ./ubic/output//group_data_4.out ./ubic/expected//group_data_4.out -s (OK)
+Running check test group_data_5
+	cmp ./ubic/output//group_data_5.uvm ./ubic/expected//group_data_5.uvm -s (OK)
+	cmp ./ubic/output//group_data_5.asm ./ubic/expected//group_data_5.asm -s (OK)
+	cmp ./ubic/output//group_data_5.out ./ubic/expected//group_data_5.out -s (OK)
+Running check test group_data_6
+	cmp ./ubic/output//group_data_6.uvm ./ubic/expected//group_data_6.uvm -s (OK)
+	cmp ./ubic/output//group_data_6.asm ./ubic/expected//group_data_6.asm -s (OK)
+	cmp ./ubic/output//group_data_6.out ./ubic/expected//group_data_6.out -s (OK)
+Running check test group_data_7
+	cmp ./ubic/output//group_data_7.uvm ./ubic/expected//group_data_7.uvm -s (OK)
+	cmp ./ubic/output//group_data_7.asm ./ubic/expected//group_data_7.asm -s (OK)
+	cmp ./ubic/output//group_data_7.out ./ubic/expected//group_data_7.out -s (OK)
+Running check test group_data_8
+	cmp ./ubic/output//group_data_8.uvm ./ubic/expected//group_data_8.uvm -s (OK)
+	cmp ./ubic/output//group_data_8.asm ./ubic/expected//group_data_8.asm -s (OK)
+	cmp ./ubic/output//group_data_8.out ./ubic/expected//group_data_8.out -s (OK)
+Running check test property_1
+	cmp ./ubic/output//property_1.uvm ./ubic/expected//property_1.uvm -s (OK)
+	cmp ./ubic/output//property_1.asm ./ubic/expected//property_1.asm -s (OK)
+	cmp ./ubic/output//property_1.out ./ubic/expected//property_1.out -s (OK)
+Running check test property_2
+	cmp ./ubic/output//property_2.uvm ./ubic/expected//property_2.uvm -s (OK)
+	cmp ./ubic/output//property_2.asm ./ubic/expected//property_2.asm -s (OK)
+	cmp ./ubic/output//property_2.out ./ubic/expected//property_2.out -s (OK)
+Running check test element_adaptation_1
+	cmp ./ubic/output//element_adaptation_1.uvm ./ubic/expected//element_adaptation_1.uvm -s (OK)
+	cmp ./ubic/output//element_adaptation_1.asm ./ubic/expected//element_adaptation_1.asm -s (OK)
+	cmp ./ubic/output//element_adaptation_1.out ./ubic/expected//element_adaptation_1.out -s (OK)
+Running check test element_property_changed_event_1
+	cmp ./ubic/output//element_property_changed_event_1.uvm ./ubic/expected//element_property_changed_event_1.uvm -s (OK)
+	cmp ./ubic/output//element_property_changed_event_1.asm ./ubic/expected//element_property_changed_event_1.asm -s (OK)
+	cmp ./ubic/output//element_property_changed_event_1.out ./ubic/expected//element_property_changed_event_1.out -s (OK)
+Running check test context_changed_event_1
+	cmp ./ubic/output//context_changed_event_1.uvm ./ubic/expected//context_changed_event_1.uvm -s (OK)
+	cmp ./ubic/output//context_changed_event_1.asm ./ubic/expected//context_changed_event_1.asm -s (OK)
+	cmp ./ubic/output//context_changed_event_1.out ./ubic/expected//context_changed_event_1.out -s (OK)
+Running check test context_changed_event_2
+	cmp ./ubic/output//context_changed_event_2.uvm ./ubic/expected//context_changed_event_2.uvm -s (OK)
+	cmp ./ubic/output//context_changed_event_2.asm ./ubic/expected//context_changed_event_2.asm -s (OK)
+	cmp ./ubic/output//context_changed_event_2.out ./ubic/expected//context_changed_event_2.out -s (OK)
+Running check test group_event_1
+	cmp ./ubic/output//group_event_1.uvm ./ubic/expected//group_event_1.uvm -s (OK)
+	cmp ./ubic/output//group_event_1.asm ./ubic/expected//group_event_1.asm -s (OK)
+	cmp ./ubic/output//group_event_1.out ./ubic/expected//group_event_1.out -s (OK)
+Running check test group_event_3
+	cmp ./ubic/output//group_event_3.uvm ./ubic/expected//group_event_3.uvm -s (OK)
+	cmp ./ubic/output//group_event_3.asm ./ubic/expected//group_event_3.asm -s (OK)
+	cmp ./ubic/output//group_event_3.out ./ubic/expected//group_event_3.out -s (OK)
+Running check test group_event_5
+	cmp ./ubic/output//group_event_5.uvm ./ubic/expected//group_event_5.uvm -s (OK)
+	cmp ./ubic/output//group_event_5.asm ./ubic/expected//group_event_5.asm -s (OK)
+	cmp ./ubic/output//group_event_5.out ./ubic/expected//group_event_5.out -s (OK)
+Running check test group_event_6
+	cmp ./ubic/output//group_event_6.uvm ./ubic/expected//group_event_6.uvm -s (OK)
+	cmp ./ubic/output//group_event_6.asm ./ubic/expected//group_event_6.asm -s (OK)
+	cmp ./ubic/output//group_event_6.out ./ubic/expected//group_event_6.out -s (OK)
+Running check test group_event_7
+	cmp ./ubic/output//group_event_7.uvm ./ubic/expected//group_event_7.uvm -s (OK)
+	cmp ./ubic/output//group_event_7.asm ./ubic/expected//group_event_7.asm -s (OK)
+	cmp ./ubic/output//group_event_7.out ./ubic/expected//group_event_7.out -s (OK)
+Running check test group_synchronization_1
+	cmp ./ubic/output//group_synchronization_1.uvm ./ubic/expected//group_synchronization_1.uvm -s (OK)
+	cmp ./ubic/output//group_synchronization_1.asm ./ubic/expected//group_synchronization_1.asm -s (OK)
+	cmp ./ubic/output//group_synchronization_1.out ./ubic/expected//group_synchronization_1.out -s (OK)
+Running check test returning_one_value
+	cmp ./ubic/output//returning_one_value.uvm ./ubic/expected//returning_one_value.uvm -s (OK)
+	cmp ./ubic/output//returning_one_value.asm ./ubic/expected//returning_one_value.asm -s (OK)
+	cmp ./ubic/output//returning_one_value.out ./ubic/expected//returning_one_value.out -s (OK)
+Running check test returning_one_value2
+	cmp ./ubic/output//returning_one_value2.uvm ./ubic/expected//returning_one_value2.uvm -s (OK)
+	cmp ./ubic/output//returning_one_value2.asm ./ubic/expected//returning_one_value2.asm -s (OK)
+	cmp ./ubic/output//returning_one_value2.out ./ubic/expected//returning_one_value2.out -s (OK)
+Running check test returning_two_values
+	cmp ./ubic/output//returning_two_values.uvm ./ubic/expected//returning_two_values.uvm -s (OK)
+	cmp ./ubic/output//returning_two_values.asm ./ubic/expected//returning_two_values.asm -s (OK)
+	cmp ./ubic/output//returning_two_values.out ./ubic/expected//returning_two_values.out -s (OK)
+Running check test returning_values
+	cmp ./ubic/output//returning_values.uvm ./ubic/expected//returning_values.uvm -s (OK)
+	cmp ./ubic/output//returning_values.asm ./ubic/expected//returning_values.asm -s (OK)
+	cmp ./ubic/output//returning_values.out ./ubic/expected//returning_values.out -s (OK)
+Running check test test2
+	cmp ./ubic/output//test2.uvm ./ubic/expected//test2.uvm -s (OK)
+	cmp ./ubic/output//test2.asm ./ubic/expected//test2.asm -s (OK)
+	cmp ./ubic/output//test2.out ./ubic/expected//test2.out -s (OK)
+Running check test test3
+	cmp ./ubic/output//test3.uvm ./ubic/expected//test3.uvm -s (OK)
+	cmp ./ubic/output//test3.asm ./ubic/expected//test3.asm -s (OK)
+	cmp ./ubic/output//test3.out ./ubic/expected//test3.out -s (OK)
+Running check test test4
+	cmp ./ubic/output//test4.uvm ./ubic/expected//test4.uvm -s (OK)
+	cmp ./ubic/output//test4.asm ./ubic/expected//test4.asm -s (OK)
+	cmp ./ubic/output//test4.out ./ubic/expected//test4.out -s (OK)
+Running check test test5
+	cmp ./ubic/output//test5.uvm ./ubic/expected//test5.uvm -s (OK)
+	cmp ./ubic/output//test5.asm ./ubic/expected//test5.asm -s (OK)
+	cmp ./ubic/output//test5.out ./ubic/expected//test5.out -s (OK)
+Running check test test5_3
+	cmp ./ubic/output//test5_3.uvm ./ubic/expected//test5_3.uvm -s (OK)
+	cmp ./ubic/output//test5_3.asm ./ubic/expected//test5_3.asm -s (OK)
+	cmp ./ubic/output//test5_3.out ./ubic/expected//test5_3.out -s (OK)
+Running check test test6
+	cmp ./ubic/output//test6.uvm ./ubic/expected//test6.uvm -s (OK)
+	cmp ./ubic/output//test6.asm ./ubic/expected//test6.asm -s (OK)
+	cmp ./ubic/output//test6.out ./ubic/expected//test6.out -s (OK)
+Running check test test7
+	cmp ./ubic/output//test7.uvm ./ubic/expected//test7.uvm -s (OK)
+	cmp ./ubic/output//test7.asm ./ubic/expected//test7.asm -s (OK)
+	cmp ./ubic/output//test7.out ./ubic/expected//test7.out -s (OK)
+Running check test using_basic_concepts
+	cmp ./ubic/output//using_basic_concepts.uvm ./ubic/expected//using_basic_concepts.uvm -s (OK)
+	cmp ./ubic/output//using_basic_concepts.asm ./ubic/expected//using_basic_concepts.asm -s (OK)
+	cmp ./ubic/output//using_basic_concepts.out ./ubic/expected//using_basic_concepts.out -s (OK)
+Running check test element_list_1
+	cmp ./ubic/output//element_list_1.uvm ./ubic/expected//element_list_1.uvm -s (OK)
+	cmp ./ubic/output//element_list_1.asm ./ubic/expected//element_list_1.asm -s (OK)
+	cmp ./ubic/output//element_list_1.out ./ubic/expected//element_list_1.out -s (OK)
+Running check test service_list_1
+	cmp ./ubic/output//service_list_1.uvm ./ubic/expected//service_list_1.uvm -s (OK)
+	cmp ./ubic/output//service_list_1.asm ./ubic/expected//service_list_1.asm -s (OK)
+	cmp ./ubic/output//service_list_1.out ./ubic/expected//service_list_1.out -s (OK)
+Running check test default_values
+	cmp ./ubic/output//default_values.uvm ./ubic/expected//default_values.uvm -s (OK)
+	cmp ./ubic/output//default_values.asm ./ubic/expected//default_values.asm -s (OK)
+	cmp ./ubic/output//default_values.out ./ubic/expected//default_values.out -s (OK)
+Running check test executa_construtor
+	cmp ./ubic/output//executa_construtor.uvm ./ubic/expected//executa_construtor.uvm -s (OK)
+	cmp ./ubic/output//executa_construtor.asm ./ubic/expected//executa_construtor.asm -s (OK)
+	cmp ./ubic/output//executa_construtor.out ./ubic/expected//executa_construtor.out -s (OK)
+Running check test numeros_negativos
+	cmp ./ubic/output//numeros_negativos.uvm ./ubic/expected//numeros_negativos.uvm -s (OK)
+	cmp ./ubic/output//numeros_negativos.asm ./ubic/expected//numeros_negativos.asm -s (OK)
+	cmp ./ubic/output//numeros_negativos.out ./ubic/expected//numeros_negativos.out -s (OK)
+Running check test hello_world
+	cmp ./ubivm/output//hello_world.out ./ubivm/expected//hello_world.out -s (OK)
+	cmp ./ubic/output/hello_world.asm ./ubivm/output//hello_world.asm -s (OK)
+Running check test hello_world2
+	cmp ./ubivm/output//hello_world2.out ./ubivm/expected//hello_world2.out -s (OK)
+	cmp ./ubic/output/hello_world2.asm ./ubivm/output//hello_world2.asm -s (OK)
+Running check test hello_world3
+	cmp ./ubivm/output//hello_world3.out ./ubivm/expected//hello_world3.out -s (OK)
+	cmp ./ubic/output/hello_world3.asm ./ubivm/output//hello_world3.asm -s (OK)
+Running check test writeln_varios_tipos
+	cmp ./ubivm/output//writeln_varios_tipos.out ./ubivm/expected//writeln_varios_tipos.out -s (OK)
+	cmp ./ubic/output/writeln_varios_tipos.asm ./ubivm/output//writeln_varios_tipos.asm -s (OK)
+Running check test expr1
+	cmp ./ubivm/output//expr1.out ./ubivm/expected//expr1.out -s (OK)
+	cmp ./ubic/output/expr1.asm ./ubivm/output//expr1.asm -s (OK)
+Running check test expr2
+	cmp ./ubivm/output//expr2.out ./ubivm/expected//expr2.out -s (OK)
+	cmp ./ubic/output/expr2.asm ./ubivm/output//expr2.asm -s (OK)
+Running check test expr3
+	cmp ./ubivm/output//expr3.out ./ubivm/expected//expr3.out -s (OK)
+	cmp ./ubic/output/expr3.asm ./ubivm/output//expr3.asm -s (OK)
+Running check test expr4
+	cmp ./ubivm/output//expr4.out ./ubivm/expected//expr4.out -s (OK)
+	cmp ./ubic/output/expr4.asm ./ubivm/output//expr4.asm -s (OK)
+Running check test expr5
+	cmp ./ubivm/output//expr5.out ./ubivm/expected//expr5.out -s (OK)
+	cmp ./ubic/output/expr5.asm ./ubivm/output//expr5.asm -s (OK)
+Running check test expr6
+	cmp ./ubivm/output//expr6.out ./ubivm/expected//expr6.out -s (OK)
+	cmp ./ubic/output/expr6.asm ./ubivm/output//expr6.asm -s (OK)
+Running check test expr7
+	cmp ./ubivm/output//expr7.out ./ubivm/expected//expr7.out -s (OK)
+	cmp ./ubic/output/expr7.asm ./ubivm/output//expr7.asm -s (OK)
+Running check test expr8
+	cmp ./ubivm/output//expr8.out ./ubivm/expected//expr8.out -s (OK)
+	cmp ./ubic/output/expr8.asm ./ubivm/output//expr8.asm -s (OK)
+Running check test expr9
+	cmp ./ubivm/output//expr9.out ./ubivm/expected//expr9.out -s (OK)
+	cmp ./ubic/output/expr9.asm ./ubivm/output//expr9.asm -s (OK)
+Running check test expr_real_1
+	cmp ./ubivm/output//expr_real_1.out ./ubivm/expected//expr_real_1.out -s (OK)
+	cmp ./ubic/output/expr_real_1.asm ./ubivm/output//expr_real_1.asm -s (OK)
+Running check test expr_real_2
+	cmp ./ubivm/output//expr_real_2.out ./ubivm/expected//expr_real_2.out -s (OK)
+	cmp ./ubic/output/expr_real_2.asm ./ubivm/output//expr_real_2.asm -s (OK)
+Running check test expr_real_3
+	cmp ./ubivm/output//expr_real_3.out ./ubivm/expected//expr_real_3.out -s (OK)
+	cmp ./ubic/output/expr_real_3.asm ./ubivm/output//expr_real_3.asm -s (OK)
+Running check test expr_real_4
+	cmp ./ubivm/output//expr_real_4.out ./ubivm/expected//expr_real_4.out -s (OK)
+	cmp ./ubic/output/expr_real_4.asm ./ubivm/output//expr_real_4.asm -s (OK)
+Running check test expr_real_5
+	cmp ./ubivm/output//expr_real_5.out ./ubivm/expected//expr_real_5.out -s (OK)
+	cmp ./ubic/output/expr_real_5.asm ./ubivm/output//expr_real_5.asm -s (OK)
+Running check test expr_real_6
+	cmp ./ubivm/output//expr_real_6.out ./ubivm/expected//expr_real_6.out -s (OK)
+	cmp ./ubic/output/expr_real_6.asm ./ubivm/output//expr_real_6.asm -s (OK)
+Running check test expr_real_7
+	cmp ./ubivm/output//expr_real_7.out ./ubivm/expected//expr_real_7.out -s (OK)
+	cmp ./ubic/output/expr_real_7.asm ./ubivm/output//expr_real_7.asm -s (OK)
+Running check test expr_real_8
+	cmp ./ubivm/output//expr_real_8.out ./ubivm/expected//expr_real_8.out -s (OK)
+	cmp ./ubic/output/expr_real_8.asm ./ubivm/output//expr_real_8.asm -s (OK)
+Running check test expr_real_9
+	cmp ./ubivm/output//expr_real_9.out ./ubivm/expected//expr_real_9.out -s (OK)
+	cmp ./ubic/output/expr_real_9.asm ./ubivm/output//expr_real_9.asm -s (OK)
+Running check test def_vars
+	cmp ./ubivm/output//def_vars.out ./ubivm/expected//def_vars.out -s (OK)
+	cmp ./ubic/output/def_vars.asm ./ubivm/output//def_vars.asm -s (OK)
+Running check test attr_int_1
+	cmp ./ubivm/output//attr_int_1.out ./ubivm/expected//attr_int_1.out -s (OK)
+	cmp ./ubic/output/attr_int_1.asm ./ubivm/output//attr_int_1.asm -s (OK)
+Running check test attr_int_2
+	cmp ./ubivm/output//attr_int_2.out ./ubivm/expected//attr_int_2.out -s (OK)
+	cmp ./ubic/output/attr_int_2.asm ./ubivm/output//attr_int_2.asm -s (OK)
+Running check test attr_int_3
+	cmp ./ubivm/output//attr_int_3.out ./ubivm/expected//attr_int_3.out -s (OK)
+	cmp ./ubic/output/attr_int_3.asm ./ubivm/output//attr_int_3.asm -s (OK)
+Running check test attr_real_1
+	cmp ./ubivm/output//attr_real_1.out ./ubivm/expected//attr_real_1.out -s (OK)
+	cmp ./ubic/output/attr_real_1.asm ./ubivm/output//attr_real_1.asm -s (OK)
+Running check test attr_real_2
+	cmp ./ubivm/output//attr_real_2.out ./ubivm/expected//attr_real_2.out -s (OK)
+	cmp ./ubic/output/attr_real_2.asm ./ubivm/output//attr_real_2.asm -s (OK)
+Running check test attr_real_3
+	cmp ./ubivm/output//attr_real_3.out ./ubivm/expected//attr_real_3.out -s (OK)
+	cmp ./ubic/output/attr_real_3.asm ./ubivm/output//attr_real_3.asm -s (OK)
+Running check test attr_string_1
+	cmp ./ubivm/output//attr_string_1.out ./ubivm/expected//attr_string_1.out -s (OK)
+	cmp ./ubic/output/attr_string_1.asm ./ubivm/output//attr_string_1.asm -s (OK)
+Running check test attr_string_2
+	cmp ./ubivm/output//attr_string_2.out ./ubivm/expected//attr_string_2.out -s (OK)
+	cmp ./ubic/output/attr_string_2.asm ./ubivm/output//attr_string_2.asm -s (OK)
+Running check test attr_string_3
+	cmp ./ubivm/output//attr_string_3.out ./ubivm/expected//attr_string_3.out -s (OK)
+	cmp ./ubic/output/attr_string_3.asm ./ubivm/output//attr_string_3.asm -s (OK)
+Running check test add_with_var_int
+	cmp ./ubivm/output//add_with_var_int.out ./ubivm/expected//add_with_var_int.out -s (OK)
+	cmp ./ubic/output/add_with_var_int.asm ./ubivm/output//add_with_var_int.asm -s (OK)
+Running check test add_with_var_real
+	cmp ./ubivm/output//add_with_var_real.out ./ubivm/expected//add_with_var_real.out -s (OK)
+	cmp ./ubic/output/add_with_var_real.asm ./ubivm/output//add_with_var_real.asm -s (OK)
+Running check test add_with_var_string
+	cmp ./ubivm/output//add_with_var_string.out ./ubivm/expected//add_with_var_string.out -s (OK)
+	cmp ./ubic/output/add_with_var_string.asm ./ubivm/output//add_with_var_string.asm -s (OK)
+Running check test if_1
+	cmp ./ubivm/output//if_1.out ./ubivm/expected//if_1.out -s (OK)
+	cmp ./ubic/output/if_1.asm ./ubivm/output//if_1.asm -s (OK)
+Running check test if_2
+	cmp ./ubivm/output//if_2.out ./ubivm/expected//if_2.out -s (OK)
+	cmp ./ubic/output/if_2.asm ./ubivm/output//if_2.asm -s (OK)
+Running check test if_3
+	cmp ./ubivm/output//if_3.out ./ubivm/expected//if_3.out -s (OK)
+	cmp ./ubic/output/if_3.asm ./ubivm/output//if_3.asm -s (OK)
+Running check test if_4
+	cmp ./ubivm/output//if_4.out ./ubivm/expected//if_4.out -s (OK)
+	cmp ./ubic/output/if_4.asm ./ubivm/output//if_4.asm -s (OK)
+Running check test exemplo_if
+	cmp ./ubivm/output//exemplo_if.out ./ubivm/expected//exemplo_if.out -s (OK)
+	cmp ./ubic/output/exemplo_if.asm ./ubivm/output//exemplo_if.asm -s (OK)
+Running check test for_1
+	cmp ./ubivm/output//for_1.out ./ubivm/expected//for_1.out -s (OK)
+	cmp ./ubic/output/for_1.asm ./ubivm/output//for_1.asm -s (OK)
+Running check test for_2
+	cmp ./ubivm/output//for_2.out ./ubivm/expected//for_2.out -s (OK)
+	cmp ./ubic/output/for_2.asm ./ubivm/output//for_2.asm -s (OK)
+Running check test for_testing_break
+	cmp ./ubivm/output//for_testing_break.out ./ubivm/expected//for_testing_break.out -s (OK)
+	cmp ./ubic/output/for_testing_break.asm ./ubivm/output//for_testing_break.asm -s (OK)
+Running check test for_testing_continue
+	cmp ./ubivm/output//for_testing_continue.out ./ubivm/expected//for_testing_continue.out -s (OK)
+	cmp ./ubic/output/for_testing_continue.asm ./ubivm/output//for_testing_continue.asm -s (OK)
+Running check test exemplo_for
+	cmp ./ubivm/output//exemplo_for.out ./ubivm/expected//exemplo_for.out -s (OK)
+	cmp ./ubic/output/exemplo_for.asm ./ubivm/output//exemplo_for.asm -s (OK)
+Running check test while_1
+	cmp ./ubivm/output//while_1.out ./ubivm/expected//while_1.out -s (OK)
+	cmp ./ubic/output/while_1.asm ./ubivm/output//while_1.asm -s (OK)
+Running check test exemplo_while
+	cmp ./ubivm/output//exemplo_while.out ./ubivm/expected//exemplo_while.out -s (OK)
+	cmp ./ubic/output/exemplo_while.asm ./ubivm/output//exemplo_while.asm -s (OK)
+Running check test while_testing_break
+	cmp ./ubivm/output//while_testing_break.out ./ubivm/expected//while_testing_break.out -s (OK)
+	cmp ./ubic/output/while_testing_break.asm ./ubivm/output//while_testing_break.asm -s (OK)
+Running check test while_testing_continue
+	cmp ./ubivm/output//while_testing_continue.out ./ubivm/expected//while_testing_continue.out -s (OK)
+	cmp ./ubic/output/while_testing_continue.asm ./ubivm/output//while_testing_continue.asm -s (OK)
+Running check test repeat_until_1
+	cmp ./ubivm/output//repeat_until_1.out ./ubivm/expected//repeat_until_1.out -s (OK)
+	cmp ./ubic/output/repeat_until_1.asm ./ubivm/output//repeat_until_1.asm -s (OK)
+Running check test repeat_testing_break
+	cmp ./ubivm/output//repeat_testing_break.out ./ubivm/expected//repeat_testing_break.out -s (OK)
+	cmp ./ubic/output/repeat_testing_break.asm ./ubivm/output//repeat_testing_break.asm -s (OK)
+Running check test repeat_testing_continue
+	cmp ./ubivm/output//repeat_testing_continue.out ./ubivm/expected//repeat_testing_continue.out -s (OK)
+	cmp ./ubic/output/repeat_testing_continue.asm ./ubivm/output//repeat_testing_continue.asm -s (OK)
+Running check test method_1
+	cmp ./ubivm/output//method_1.out ./ubivm/expected//method_1.out -s (OK)
+	cmp ./ubic/output/method_1.asm ./ubivm/output//method_1.asm -s (OK)
+Running check test method_2
+	cmp ./ubivm/output//method_2.out ./ubivm/expected//method_2.out -s (OK)
+	cmp ./ubic/output/method_2.asm ./ubivm/output//method_2.asm -s (OK)
+Running check test method_3
+	cmp ./ubivm/output//method_3.out ./ubivm/expected//method_3.out -s (OK)
+	cmp ./ubic/output/method_3.asm ./ubivm/output//method_3.asm -s (OK)
+Running check test method_4
+	cmp ./ubivm/output//method_4.out ./ubivm/expected//method_4.out -s (OK)
+	cmp ./ubic/output/method_4.asm ./ubivm/output//method_4.asm -s (OK)
+Running check test method_5
+	cmp ./ubivm/output//method_5.out ./ubivm/expected//method_5.out -s (OK)
+	cmp ./ubic/output/method_5.asm ./ubivm/output//method_5.asm -s (OK)
+Running check test method_with_result_1
+	cmp ./ubivm/output//method_with_result_1.out ./ubivm/expected//method_with_result_1.out -s (OK)
+	cmp ./ubic/output/method_with_result_1.asm ./ubivm/output//method_with_result_1.asm -s (OK)
+Running check test method_with_result_2
+	cmp ./ubivm/output//method_with_result_2.out ./ubivm/expected//method_with_result_2.out -s (OK)
+	cmp ./ubic/output/method_with_result_2.asm ./ubivm/output//method_with_result_2.asm -s (OK)
+Running check test method_with_result_3
+	cmp ./ubivm/output//method_with_result_3.out ./ubivm/expected//method_with_result_3.out -s (OK)
+	cmp ./ubic/output/method_with_result_3.asm ./ubivm/output//method_with_result_3.asm -s (OK)
+Running check test method_with_result_4
+	cmp ./ubivm/output//method_with_result_4.out ./ubivm/expected//method_with_result_4.out -s (OK)
+	cmp ./ubic/output/method_with_result_4.asm ./ubivm/output//method_with_result_4.asm -s (OK)
+Running check test method_with_result_5
+	cmp ./ubivm/output//method_with_result_5.out ./ubivm/expected//method_with_result_5.out -s (OK)
+	cmp ./ubic/output/method_with_result_5.asm ./ubivm/output//method_with_result_5.asm -s (OK)
+Running check test method_with_result_6
+	cmp ./ubivm/output//method_with_result_6.out ./ubivm/expected//method_with_result_6.out -s (OK)
+	cmp ./ubic/output/method_with_result_6.asm ./ubivm/output//method_with_result_6.asm -s (OK)
+Running check test method_with_result_7
+	cmp ./ubivm/output//method_with_result_7.out ./ubivm/expected//method_with_result_7.out -s (OK)
+	cmp ./ubic/output/method_with_result_7.asm ./ubivm/output//method_with_result_7.asm -s (OK)
+Running check test fatorial
+	cmp ./ubivm/output//fatorial.out ./ubivm/expected//fatorial.out -s (OK)
+	cmp ./ubic/output/fatorial.asm ./ubivm/output//fatorial.asm -s (OK)
+Running check test element_1
+	cmp ./ubivm/output//element_1.out ./ubivm/expected//element_1.out -s (OK)
+	cmp ./ubic/output/element_1.asm ./ubivm/output//element_1.asm -s (OK)
+Running check test element_2
+	cmp ./ubivm/output//element_2.out ./ubivm/expected//element_2.out -s (OK)
+	cmp ./ubic/output/element_2.asm ./ubivm/output//element_2.asm -s (OK)
+Running check test element_3
+	cmp ./ubivm/output//element_3.out ./ubivm/expected//element_3.out -s (OK)
+	cmp ./ubic/output/element_3.asm ./ubivm/output//element_3.asm -s (OK)
+Running check test element_4
+	cmp ./ubivm/output//element_4.out ./ubivm/expected//element_4.out -s (OK)
+	cmp ./ubic/output/element_4.asm ./ubivm/output//element_4.asm -s (OK)
+Running check test element_5
+	cmp ./ubivm/output//element_5.out ./ubivm/expected//element_5.out -s (OK)
+	cmp ./ubic/output/element_5.asm ./ubivm/output//element_5.asm -s (OK)
+Running check test element_6
+	cmp ./ubivm/output//element_6.out ./ubivm/expected//element_6.out -s (OK)
+	cmp ./ubic/output/element_6.asm ./ubivm/output//element_6.asm -s (OK)
+Running check test element_7
+	cmp ./ubivm/output//element_7.out ./ubivm/expected//element_7.out -s (OK)
+	cmp ./ubic/output/element_7.asm ./ubivm/output//element_7.asm -s (OK)
+Running check test element_method_with_result_1
+	cmp ./ubivm/output//element_method_with_result_1.out ./ubivm/expected//element_method_with_result_1.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_1.asm ./ubivm/output//element_method_with_result_1.asm -s (OK)
+Running check test element_method_with_result_2
+	cmp ./ubivm/output//element_method_with_result_2.out ./ubivm/expected//element_method_with_result_2.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_2.asm ./ubivm/output//element_method_with_result_2.asm -s (OK)
+Running check test element_method_with_result_3
+	cmp ./ubivm/output//element_method_with_result_3.out ./ubivm/expected//element_method_with_result_3.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_3.asm ./ubivm/output//element_method_with_result_3.asm -s (OK)
+Running check test element_method_with_result_4
+	cmp ./ubivm/output//element_method_with_result_4.out ./ubivm/expected//element_method_with_result_4.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_4.asm ./ubivm/output//element_method_with_result_4.asm -s (OK)
+Running check test element_method_with_result_5
+	cmp ./ubivm/output//element_method_with_result_5.out ./ubivm/expected//element_method_with_result_5.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_5.asm ./ubivm/output//element_method_with_result_5.asm -s (OK)
+Running check test element_method_with_result_6
+	cmp ./ubivm/output//element_method_with_result_6.out ./ubivm/expected//element_method_with_result_6.out -s (OK)
+	cmp ./ubic/output/element_method_with_result_6.asm ./ubivm/output//element_method_with_result_6.asm -s (OK)
+Running check test group_1
+	cmp ./ubivm/output//group_1.out ./ubivm/expected//group_1.out -s (OK)
+	cmp ./ubic/output/group_1.asm ./ubivm/output//group_1.asm -s (OK)
+Running check test group_2
+	cmp ./ubivm/output//group_2.out ./ubivm/expected//group_2.out -s (OK)
+	cmp ./ubic/output/group_2.asm ./ubivm/output//group_2.asm -s (OK)
+Running check test group_3
+	cmp ./ubivm/output//group_3.out ./ubivm/expected//group_3.out -s (OK)
+	cmp ./ubic/output/group_3.asm ./ubivm/output//group_3.asm -s (OK)
+Running check test group_4
+	cmp ./ubivm/output//group_4.out ./ubivm/expected//group_4.out -s (OK)
+	cmp ./ubic/output/group_4.asm ./ubivm/output//group_4.asm -s (OK)
+Running check test group_5
+	cmp ./ubivm/output//group_5.out ./ubivm/expected//group_5.out -s (OK)
+	cmp ./ubic/output/group_5.asm ./ubivm/output//group_5.asm -s (OK)
+Running check test group_6
+	cmp ./ubivm/output//group_6.out ./ubivm/expected//group_6.out -s (OK)
+	cmp ./ubic/output/group_6.asm ./ubivm/output//group_6.asm -s (OK)
+Running check test group_7
+	cmp ./ubivm/output//group_7.out ./ubivm/expected//group_7.out -s (OK)
+	cmp ./ubic/output/group_7.asm ./ubivm/output//group_7.asm -s (OK)
+Running check test group_8
+	cmp ./ubivm/output//group_8.out ./ubivm/expected//group_8.out -s (OK)
+	cmp ./ubic/output/group_8.asm ./ubivm/output//group_8.asm -s (OK)
+Running check test service_1
+	cmp ./ubivm/output//service_1.out ./ubivm/expected//service_1.out -s (OK)
+	cmp ./ubic/output/service_1.asm ./ubivm/output//service_1.asm -s (OK)
+Running check test service_2
+	cmp ./ubivm/output//service_2.out ./ubivm/expected//service_2.out -s (OK)
+	cmp ./ubic/output/service_2.asm ./ubivm/output//service_2.asm -s (OK)
+Running check test service_4
+	cmp ./ubivm/output//service_4.out ./ubivm/expected//service_4.out -s (OK)
+	cmp ./ubic/output/service_4.asm ./ubivm/output//service_4.asm -s (OK)
+Running check test context_1
+	cmp ./ubivm/output//context_1.out ./ubivm/expected//context_1.out -s (OK)
+	cmp ./ubic/output/context_1.asm ./ubivm/output//context_1.asm -s (OK)
+Running check test table_1d_1
+	cmp ./ubivm/output//table_1d_1.out ./ubivm/expected//table_1d_1.out -s (OK)
+	cmp ./ubic/output/table_1d_1.asm ./ubivm/output//table_1d_1.asm -s (OK)
+Running check test table_1d_2
+	cmp ./ubivm/output//table_1d_2.out ./ubivm/expected//table_1d_2.out -s (OK)
+	cmp ./ubic/output/table_1d_2.asm ./ubivm/output//table_1d_2.asm -s (OK)
+Running check test table_1d_3
+	cmp ./ubivm/output//table_1d_3.out ./ubivm/expected//table_1d_3.out -s (OK)
+	cmp ./ubic/output/table_1d_3.asm ./ubivm/output//table_1d_3.asm -s (OK)
+Running check test table_1d_4
+	cmp ./ubivm/output//table_1d_4.out ./ubivm/expected//table_1d_4.out -s (OK)
+	cmp ./ubic/output/table_1d_4.asm ./ubivm/output//table_1d_4.asm -s (OK)
+Running check test table_1d_5
+	cmp ./ubivm/output//table_1d_5.out ./ubivm/expected//table_1d_5.out -s (OK)
+	cmp ./ubic/output/table_1d_5.asm ./ubivm/output//table_1d_5.asm -s (OK)
+Running check test table_1d_6
+	cmp ./ubivm/output//table_1d_6.out ./ubivm/expected//table_1d_6.out -s (OK)
+	cmp ./ubic/output/table_1d_6.asm ./ubivm/output//table_1d_6.asm -s (OK)
+Running check test table_1d_7
+	cmp ./ubivm/output//table_1d_7.out ./ubivm/expected//table_1d_7.out -s (OK)
+	cmp ./ubic/output/table_1d_7.asm ./ubivm/output//table_1d_7.asm -s (OK)
+Running check test table_1d_8
+	cmp ./ubivm/output//table_1d_8.out ./ubivm/expected//table_1d_8.out -s (OK)
+	cmp ./ubic/output/table_1d_8.asm ./ubivm/output//table_1d_8.asm -s (OK)
+Running check test group_data_1
+	cmp ./ubivm/output//group_data_1.out ./ubivm/expected//group_data_1.out -s (OK)
+	cmp ./ubic/output/group_data_1.asm ./ubivm/output//group_data_1.asm -s (OK)
+Running check test concurrent_elements_1
+	cmp ./ubivm/output//concurrent_elements_1.out ./ubivm/expected//concurrent_elements_1.out -s (FAIL)
+	cmp ./ubic/output/concurrent_elements_1.asm ./ubivm/output//concurrent_elements_1.asm -s (OK)
+Running check test concurrent_elements_2
+	cmp ./ubivm/output//concurrent_elements_2.out ./ubivm/expected//concurrent_elements_2.out -s (FAIL)
+	cmp ./ubic/output/concurrent_elements_2.asm ./ubivm/output//concurrent_elements_2.asm -s (OK)
+Running check test data_list_1
+	cmp ./ubivm/output//data_list_1.out ./ubivm/expected//data_list_1.out -s (OK)
+	cmp ./ubic/output/data_list_1.asm ./ubivm/output//data_list_1.asm -s (OK)
+Running check test data_list_2
+	cmp ./ubivm/output//data_list_2.out ./ubivm/expected//data_list_2.out -s (OK)
+	cmp ./ubic/output/data_list_2.asm ./ubivm/output//data_list_2.asm -s (OK)
+Running check test tuple_1
+	cmp ./ubivm/output//tuple_1.out ./ubivm/expected//tuple_1.out -s (OK)
+	cmp ./ubic/output/tuple_1.asm ./ubivm/output//tuple_1.asm -s (OK)
+Running check test group_data_4
+	cmp ./ubivm/output//group_data_4.out ./ubivm/expected//group_data_4.out -s (OK)
+	cmp ./ubic/output/group_data_4.asm ./ubivm/output//group_data_4.asm -s (OK)
+Running check test group_data_5
+	cmp ./ubivm/output//group_data_5.out ./ubivm/expected//group_data_5.out -s (OK)
+	cmp ./ubic/output/group_data_5.asm ./ubivm/output//group_data_5.asm -s (OK)
+Running check test group_data_6
+	cmp ./ubivm/output//group_data_6.out ./ubivm/expected//group_data_6.out -s (OK)
+	cmp ./ubic/output/group_data_6.asm ./ubivm/output//group_data_6.asm -s (OK)
+Running check test group_data_7
+	cmp ./ubivm/output//group_data_7.out ./ubivm/expected//group_data_7.out -s (OK)
+	cmp ./ubic/output/group_data_7.asm ./ubivm/output//group_data_7.asm -s (OK)
+Running check test group_data_8
+	cmp ./ubivm/output//group_data_8.out ./ubivm/expected//group_data_8.out -s (OK)
+	cmp ./ubic/output/group_data_8.asm ./ubivm/output//group_data_8.asm -s (OK)
+Running check test property_1
+	cmp ./ubivm/output//property_1.out ./ubivm/expected//property_1.out -s (OK)
+	cmp ./ubic/output/property_1.asm ./ubivm/output//property_1.asm -s (OK)
+Running check test property_2
+	cmp ./ubivm/output//property_2.out ./ubivm/expected//property_2.out -s (OK)
+	cmp ./ubic/output/property_2.asm ./ubivm/output//property_2.asm -s (OK)
+Running check test element_adaptation_1
+	cmp ./ubivm/output//element_adaptation_1.out ./ubivm/expected//element_adaptation_1.out -s (OK)
+	cmp ./ubic/output/element_adaptation_1.asm ./ubivm/output//element_adaptation_1.asm -s (OK)
+Running check test element_property_changed_event_1
+	cmp ./ubivm/output//element_property_changed_event_1.out ./ubivm/expected//element_property_changed_event_1.out -s (OK)
+	cmp ./ubic/output/element_property_changed_event_1.asm ./ubivm/output//element_property_changed_event_1.asm -s (OK)
+Running check test context_changed_event_1
+	cmp ./ubivm/output//context_changed_event_1.out ./ubivm/expected//context_changed_event_1.out -s (OK)
+	cmp ./ubic/output/context_changed_event_1.asm ./ubivm/output//context_changed_event_1.asm -s (OK)
+Running check test context_changed_event_2
+	cmp ./ubivm/output//context_changed_event_2.out ./ubivm/expected//context_changed_event_2.out -s (OK)
+	cmp ./ubic/output/context_changed_event_2.asm ./ubivm/output//context_changed_event_2.asm -s (OK)
+Running check test group_event_1
+	cmp ./ubivm/output//group_event_1.out ./ubivm/expected//group_event_1.out -s (OK)
+	cmp ./ubic/output/group_event_1.asm ./ubivm/output//group_event_1.asm -s (OK)
+Running check test group_event_3
+	cmp ./ubivm/output//group_event_3.out ./ubivm/expected//group_event_3.out -s (OK)
+	cmp ./ubic/output/group_event_3.asm ./ubivm/output//group_event_3.asm -s (OK)
+Running check test group_event_5
+	cmp ./ubivm/output//group_event_5.out ./ubivm/expected//group_event_5.out -s (OK)
+	cmp ./ubic/output/group_event_5.asm ./ubivm/output//group_event_5.asm -s (OK)
+Running check test group_event_6
+	cmp ./ubivm/output//group_event_6.out ./ubivm/expected//group_event_6.out -s (OK)
+	cmp ./ubic/output/group_event_6.asm ./ubivm/output//group_event_6.asm -s (OK)
+Running check test group_event_7
+	cmp ./ubivm/output//group_event_7.out ./ubivm/expected//group_event_7.out -s (OK)
+	cmp ./ubic/output/group_event_7.asm ./ubivm/output//group_event_7.asm -s (OK)
+Running check test group_synchronization_1
+	cmp ./ubivm/output//group_synchronization_1.out ./ubivm/expected//group_synchronization_1.out -s (OK)
+	cmp ./ubic/output/group_synchronization_1.asm ./ubivm/output//group_synchronization_1.asm -s (OK)
+Running check test returning_one_value
+	cmp ./ubivm/output//returning_one_value.out ./ubivm/expected//returning_one_value.out -s (OK)
+	cmp ./ubic/output/returning_one_value.asm ./ubivm/output//returning_one_value.asm -s (OK)
+Running check test returning_one_value2
+	cmp ./ubivm/output//returning_one_value2.out ./ubivm/expected//returning_one_value2.out -s (OK)
+	cmp ./ubic/output/returning_one_value2.asm ./ubivm/output//returning_one_value2.asm -s (OK)
+Running check test returning_two_values
+	cmp ./ubivm/output//returning_two_values.out ./ubivm/expected//returning_two_values.out -s (OK)
+	cmp ./ubic/output/returning_two_values.asm ./ubivm/output//returning_two_values.asm -s (OK)
+Running check test returning_values
+	cmp ./ubivm/output//returning_values.out ./ubivm/expected//returning_values.out -s (OK)
+	cmp ./ubic/output/returning_values.asm ./ubivm/output//returning_values.asm -s (OK)
+Running check test test2
+	cmp ./ubivm/output//test2.out ./ubivm/expected//test2.out -s (OK)
+	cmp ./ubic/output/test2.asm ./ubivm/output//test2.asm -s (OK)
+Running check test test3
+	cmp ./ubivm/output//test3.out ./ubivm/expected//test3.out -s (OK)
+	cmp ./ubic/output/test3.asm ./ubivm/output//test3.asm -s (OK)
+Running check test test4
+	cmp ./ubivm/output//test4.out ./ubivm/expected//test4.out -s (OK)
+	cmp ./ubic/output/test4.asm ./ubivm/output//test4.asm -s (OK)
+Running check test test5
+	cmp ./ubivm/output//test5.out ./ubivm/expected//test5.out -s (OK)
+	cmp ./ubic/output/test5.asm ./ubivm/output//test5.asm -s (OK)
+Running check test test5_3
+	cmp ./ubivm/output//test5_3.out ./ubivm/expected//test5_3.out -s (OK)
+	cmp ./ubic/output/test5_3.asm ./ubivm/output//test5_3.asm -s (OK)
+Running check test test6
+	cmp ./ubivm/output//test6.out ./ubivm/expected//test6.out -s (OK)
+	cmp ./ubic/output/test6.asm ./ubivm/output//test6.asm -s (OK)
+Running check test test7
+	cmp ./ubivm/output//test7.out ./ubivm/expected//test7.out -s (OK)
+	cmp ./ubic/output/test7.asm ./ubivm/output//test7.asm -s (OK)
+Running check test using_basic_concepts
+	cmp ./ubivm/output//using_basic_concepts.out ./ubivm/expected//using_basic_concepts.out -s (OK)
+	cmp ./ubic/output/using_basic_concepts.asm ./ubivm/output//using_basic_concepts.asm -s (OK)
+Running check test element_list_1
+	cmp ./ubivm/output//element_list_1.out ./ubivm/expected//element_list_1.out -s (OK)
+	cmp ./ubic/output/element_list_1.asm ./ubivm/output//element_list_1.asm -s (OK)
+Running check test service_list_1
+	cmp ./ubivm/output//service_list_1.out ./ubivm/expected//service_list_1.out -s (OK)
+	cmp ./ubic/output/service_list_1.asm ./ubivm/output//service_list_1.asm -s (OK)
+Running check test default_values
+	cmp ./ubivm/output//default_values.out ./ubivm/expected//default_values.out -s (OK)
+	cmp ./ubic/output/default_values.asm ./ubivm/output//default_values.asm -s (OK)
+Running check test executa_construtor
+	cmp ./ubivm/output//executa_construtor.out ./ubivm/expected//executa_construtor.out -s (OK)
+	cmp ./ubic/output/executa_construtor.asm ./ubivm/output//executa_construtor.asm -s (OK)
+Running check test numeros_negativos
+	cmp ./ubivm/output//numeros_negativos.out ./ubivm/expected//numeros_negativos.out -s (OK)
+	cmp ./ubic/output/numeros_negativos.asm ./ubivm/output//numeros_negativos.asm -s (OK)
+**** Summary report ****
+Total tests: 148
+Tests passed: 148
+Tests failed: 0
+
+Listing tests results...
+Test	hello_world	PASS	
+Test	hello_world2	PASS	
+Test	hello_world3	PASS	
+Test	writeln_varios_tipos	PASS	
+Test	expr1	PASS	
+Test	expr2	PASS	
+Test	expr3	PASS	
+Test	expr4	PASS	
+Test	expr5	PASS	
+Test	expr6	PASS	
+Test	expr7	PASS	
+Test	expr8	PASS	
+Test	expr9	PASS	
+Test	expr_real_1	PASS	
+Test	expr_real_2	PASS	
+Test	expr_real_3	PASS	
+Test	expr_real_4	PASS	
+Test	expr_real_5	PASS	
+Test	expr_real_6	PASS	
+Test	expr_real_7	PASS	
+Test	expr_real_8	PASS	
+Test	expr_real_9	PASS	
+Test	def_vars	PASS	
+Test	attr_int_1	PASS	
+Test	attr_int_2	PASS	
+Test	attr_int_3	PASS	
+Test	attr_real_1	PASS	
+Test	attr_real_2	PASS	
+Test	attr_real_3	PASS	
+Test	attr_string_1	PASS	
+Test	attr_string_2	PASS	
+Test	attr_string_3	PASS	
+Test	add_with_var_int	PASS	
+Test	add_with_var_real	PASS	
+Test	add_with_var_string	PASS	
+Test	if_1	PASS	
+Test	if_2	PASS	
+Test	if_3	PASS	
+Test	if_4	PASS	
+Test	exemplo_if	PASS	
+Test	for_1	PASS	
+Test	for_2	PASS	
+Test	for_testing_break	PASS	
+Test	for_testing_continue	PASS	
+Test	exemplo_for	PASS	
+Test	while_1	PASS	
+Test	exemplo_while	PASS	
+Test	while_testing_break	PASS	
+Test	while_testing_continue	PASS	
+Test	repeat_until_1	PASS	
+Test	repeat_testing_break	PASS	
+Test	repeat_testing_continue	PASS	
+Test	method_1	PASS	
+Test	method_2	PASS	
+Test	method_3	PASS	
+Test	method_4	PASS	
+Test	method_5	PASS	
+Test	method_with_result_1	PASS	
+Test	method_with_result_2	PASS	
+Test	method_with_result_3	PASS	
+Test	method_with_result_4	PASS	
+Test	method_with_result_5	PASS	
+Test	method_with_result_6	PASS	
+Test	method_with_result_7	PASS	
+Test	fatorial	PASS	
+Test	element_1	PASS	
+Test	element_2	PASS	
+Test	element_3	PASS	
+Test	element_4	PASS	
+Test	element_5	PASS	
+Test	element_6	PASS	
+Test	element_7	PASS	
+Test	element_method_with_result_1	PASS	
+Test	element_method_with_result_2	PASS	
+Test	element_method_with_result_3	PASS	
+Test	element_method_with_result_4	PASS	
+Test	element_method_with_result_5	PASS	
+Test	element_method_with_result_6	PASS	
+Test	group_1	PASS	
+Test	group_2	PASS	
+Test	group_3	PASS	
+Test	group_4	PASS	
+Test	group_5	PASS	
+Test	group_6	PASS	
+Test	group_7	PASS	
+Test	group_8	PASS	
+Test	service_1	PASS	
+Test	service_2	PASS	
+Test	service_4	PASS	
+Test	context_1	PASS	
+Test	table_1d_1	PASS	
+Test	table_1d_2	PASS	
+Test	table_1d_3	PASS	
+Test	table_1d_4	PASS	
+Test	table_1d_5	PASS	
+Test	table_1d_6	PASS	
+Test	table_1d_7	PASS	
+Test	table_1d_8	PASS	
+Test	group_data_1	PASS	
+Test	lcall_1	PASS	
+Test	ncurses_1	PASS	
+Test	ncurses_2	PASS	
+Test	ncurses_3	PASS	
+Test	ncurses_4	PASS	
+Test	ncurses_5	PASS	
+Test	concurrent_elements_1	PASS	
+Test	concurrent_elements_2	PASS	
+Test	data_list_1	PASS	
+Test	data_list_2	PASS	
+Test	tuple_1	PASS	
+Test	group_data_2_1	PASS	
+Test	group_data_2_2	PASS	
+Test	group_data_3_1	PASS	
+Test	group_data_3_2	PASS	
+Test	group_data_4	PASS	
+Test	group_data_5	PASS	
+Test	group_data_6	PASS	
+Test	group_data_7	PASS	
+Test	group_data_8	PASS	
+Test	property_1	PASS	
+Test	property_2	PASS	
+Test	element_adaptation_1	PASS	
+Test	element_property_changed_event_1	PASS	
+Test	context_changed_event_1	PASS	
+Test	context_changed_event_2	PASS	
+Test	group_event_1	PASS	
+Test	group_event_3	PASS	
+Test	group_event_5	PASS	
+Test	group_event_6	PASS	
+Test	group_event_7	PASS	
+Test	group_synchronization_1	PASS	
+Test	returning_one_value	PASS	
+Test	returning_one_value2	PASS	
+Test	returning_two_values	PASS	
+Test	returning_values	PASS	
+Test	test2	PASS	
+Test	test3	PASS	
+Test	test4	PASS	
+Test	test5	PASS	
+Test	test5_3	PASS	
+Test	test6	PASS	
+Test	test7	PASS	
+Test	using_basic_concepts	PASS	
+Test	element_list_1	PASS	
+Test	service_list_1	PASS	
+Test	default_values	PASS	
+Test	executa_construtor	PASS	
+Test	numeros_negativos	PASS	
+**** Summary report ****
+Total tests: 138
+Tests passed: 136
+Tests failed: 2
+
+Listing tests results...
+Test	hello_world	PASS	
+Test	hello_world2	PASS	
+Test	hello_world3	PASS	
+Test	writeln_varios_tipos	PASS	
+Test	expr1	PASS	
+Test	expr2	PASS	
+Test	expr3	PASS	
+Test	expr4	PASS	
+Test	expr5	PASS	
+Test	expr6	PASS	
+Test	expr7	PASS	
+Test	expr8	PASS	
+Test	expr9	PASS	
+Test	expr_real_1	PASS	
+Test	expr_real_2	PASS	
+Test	expr_real_3	PASS	
+Test	expr_real_4	PASS	
+Test	expr_real_5	PASS	
+Test	expr_real_6	PASS	
+Test	expr_real_7	PASS	
+Test	expr_real_8	PASS	
+Test	expr_real_9	PASS	
+Test	def_vars	PASS	
+Test	attr_int_1	PASS	
+Test	attr_int_2	PASS	
+Test	attr_int_3	PASS	
+Test	attr_real_1	PASS	
+Test	attr_real_2	PASS	
+Test	attr_real_3	PASS	
+Test	attr_string_1	PASS	
+Test	attr_string_2	PASS	
+Test	attr_string_3	PASS	
+Test	add_with_var_int	PASS	
+Test	add_with_var_real	PASS	
+Test	add_with_var_string	PASS	
+Test	if_1	PASS	
+Test	if_2	PASS	
+Test	if_3	PASS	
+Test	if_4	PASS	
+Test	exemplo_if	PASS	
+Test	for_1	PASS	
+Test	for_2	PASS	
+Test	for_testing_break	PASS	
+Test	for_testing_continue	PASS	
+Test	exemplo_for	PASS	
+Test	while_1	PASS	
+Test	exemplo_while	PASS	
+Test	while_testing_break	PASS	
+Test	while_testing_continue	PASS	
+Test	repeat_until_1	PASS	
+Test	repeat_testing_break	PASS	
+Test	repeat_testing_continue	PASS	
+Test	method_1	PASS	
+Test	method_2	PASS	
+Test	method_3	PASS	
+Test	method_4	PASS	
+Test	method_5	PASS	
+Test	method_with_result_1	PASS	
+Test	method_with_result_2	PASS	
+Test	method_with_result_3	PASS	
+Test	method_with_result_4	PASS	
+Test	method_with_result_5	PASS	
+Test	method_with_result_6	PASS	
+Test	method_with_result_7	PASS	
+Test	fatorial	PASS	
+Test	element_1	PASS	
+Test	element_2	PASS	
+Test	element_3	PASS	
+Test	element_4	PASS	
+Test	element_5	PASS	
+Test	element_6	PASS	
+Test	element_7	PASS	
+Test	element_method_with_result_1	PASS	
+Test	element_method_with_result_2	PASS	
+Test	element_method_with_result_3	PASS	
+Test	element_method_with_result_4	PASS	
+Test	element_method_with_result_5	PASS	
+Test	element_method_with_result_6	PASS	
+Test	group_1	PASS	
+Test	group_2	PASS	
+Test	group_3	PASS	
+Test	group_4	PASS	
+Test	group_5	PASS	
+Test	group_6	PASS	
+Test	group_7	PASS	
+Test	group_8	PASS	
+Test	service_1	PASS	
+Test	service_2	PASS	
+Test	service_4	PASS	
+Test	context_1	PASS	
+Test	table_1d_1	PASS	
+Test	table_1d_2	PASS	
+Test	table_1d_3	PASS	
+Test	table_1d_4	PASS	
+Test	table_1d_5	PASS	
+Test	table_1d_6	PASS	
+Test	table_1d_7	PASS	
+Test	table_1d_8	PASS	
+Test	group_data_1	PASS	
+Test	concurrent_elements_1	FAIL	
+Test	concurrent_elements_2	FAIL	
+Test	data_list_1	PASS	
+Test	data_list_2	PASS	
+Test	tuple_1	PASS	
+Test	group_data_4	PASS	
+Test	group_data_5	PASS	
+Test	group_data_6	PASS	
+Test	group_data_7	PASS	
+Test	group_data_8	PASS	
+Test	property_1	PASS	
+Test	property_2	PASS	
+Test	element_adaptation_1	PASS	
+Test	element_property_changed_event_1	PASS	
+Test	context_changed_event_1	PASS	
+Test	context_changed_event_2	PASS	
+Test	group_event_1	PASS	
+Test	group_event_3	PASS	
+Test	group_event_5	PASS	
+Test	group_event_6	PASS	
+Test	group_event_7	PASS	
+Test	group_synchronization_1	PASS	
+Test	returning_one_value	PASS	
+Test	returning_one_value2	PASS	
+Test	returning_two_values	PASS	
+Test	returning_values	PASS	
+Test	test2	PASS	
+Test	test3	PASS	
+Test	test4	PASS	
+Test	test5	PASS	
+Test	test5_3	PASS	
+Test	test6	PASS	
+Test	test7	PASS	
+Test	using_basic_concepts	PASS	
+Test	element_list_1	PASS	
+Test	service_list_1	PASS	
+Test	default_values	PASS	
+Test	executa_construtor	PASS	
+Test	numeros_negativos	PASS	
