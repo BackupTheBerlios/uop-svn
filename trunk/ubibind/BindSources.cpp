@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdio.h>
 
 #include "BindSources.hpp"
 
@@ -15,40 +16,40 @@ CBindSources::CBindSources()
 
 
 
-   _mapPop["void*"       ] = "dataStack.pop().getInteger()";
-   _mapPop["const void*" ] = "dataStack.pop().getInteger()";
+   _mapPop["void*"       ] = "dataStack.pop().getPointer()";
+   _mapPop["const void*" ] = "dataStack.pop().getPointer()";
    _mapPop["char"        ] = "dataStack.pop().getInteger()";
    _mapPop["char*"       ] = "dataStack.pop().getString().c_str()";
    _mapPop["const char"  ] = "dataStack.pop().getInteger()";
-   _mapPop["const char*" ] = "dataStack.pop().getInteger()";
+   _mapPop["const char*" ] = "dataStack.pop().getString().c_str()";
    _mapPop["short"       ] = "dataStack.pop().getInteger()";
-   _mapPop["short*"      ] = "dataStack.pop().getInteger()";
+   _mapPop["short*"      ] = "dataStack.pop().getPointer()";
    _mapPop["const short" ] = "dataStack.pop().getInteger()";
-   _mapPop["const short*"] = "dataStack.pop().getInteger()";
+   _mapPop["const short*"] = "dataStack.pop().getPointer()";
    _mapPop["int"         ] = "dataStack.pop().getInteger()";
-   _mapPop["int*"        ] = "dataStack.pop().getInteger()";
+   _mapPop["int*"        ] = "dataStack.pop().getPointer()";
    _mapPop["const int"   ] = "dataStack.pop().getInteger()";
-   _mapPop["const int*"  ] = "dataStack.pop().getInteger()";
+   _mapPop["const int*"  ] = "dataStack.pop().getPointer()";
    _mapPop["bool"              ] = "dataStack.pop().getInteger()";
-   _mapPop["bool*"             ] = "dataStack.pop().getInteger()";
+   _mapPop["bool*"             ] = "dataStack.pop().getPointer()";
    _mapPop["const bool"        ] = "dataStack.pop().getInteger()";
-   _mapPop["const bool*"       ] = "dataStack.pop().getInteger()";
+   _mapPop["const bool*"       ] = "dataStack.pop().getPointer()";
    _mapPop["long"        ] = "dataStack.pop().getInteger()";
-   _mapPop["long*"       ] = "dataStack.pop().getInteger()";
+   _mapPop["long*"       ] = "dataStack.pop().getPointer()";
    _mapPop["const long"  ] = "dataStack.pop().getInteger()";
-   _mapPop["const long*" ] = "dataStack.pop().getInteger()";
+   _mapPop["const long*" ] = "dataStack.pop().getPointer()";
    _mapPop["float"       ] = "dataStack.pop().getReal()";
-   _mapPop["float*"      ] = "dataStack.pop().getInteger()";
+   _mapPop["float*"      ] = "dataStack.pop().getPointer()";
    _mapPop["const float" ] = "dataStack.pop().getReal()";
-   _mapPop["const float*"] = "dataStack.pop().getInteger()";
+   _mapPop["const float*"] = "dataStack.pop().getPointer()";
    _mapPop["double"      ] = "dataStack.pop().getReal()";
-   _mapPop["double*"     ] = "dataStack.pop().getInteger()";
+   _mapPop["double*"     ] = "dataStack.pop().getPointer()";
    _mapPop["const double" ] = "dataStack.pop().getReal()";
-   _mapPop["const double*"] = "dataStack.pop().getInteger()";
+   _mapPop["const double*"] = "dataStack.pop().getPointer()";
    _mapPop["long double" ] = "dataStack.pop().getReal()";
-   _mapPop["long double*"] = "dataStack.pop().getInteger()";
+   _mapPop["long double*"] = "dataStack.pop().getPointer()";
    _mapPop["const long double" ] = "dataStack.pop().getReal()";
-   _mapPop["const long double*"] = "dataStack.pop().getInteger()";
+   _mapPop["const long double*"] = "dataStack.pop().getPointer()";
 
    addTypeMapIn("char",        "char");
    addTypeMapIn("char*",       "char*");
@@ -82,7 +83,7 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln("INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../ -I/usr/local/include/boost-1_39/");
 	makefileSource.writeln("LIB_DIR=-L$(LIBCOMMON)");
 	makefileSource.writeln("CC=g++");
-	makefileSource.writeln("CCFLAGS=-g -Wall -pedantic");
+	makefileSource.writeln("CCFLAGS=-g -Wall -pedantic -fPIC");
 	makefileSource.write("LIBS=");
 
 	for(std::list<std::string>::iterator lib = _linkerLibList.begin(); lib != _linkerLibList.end(); lib++) {
@@ -362,7 +363,6 @@ void CBindSources::addFunction(std::string returnType, std::string functionName,
 void CBindSources::addTypeMapIn(std::string mapFrom, std::string mapTo)
 {
 	// TODO: nesse mapeamento eu nao deveria especificar uma equivalente entre C e UbiL ???
-	std::cout << "mapPush[" << mapFrom << "]=" << mapTo << std::endl;
    _mapPush[mapFrom] = mapTo;
    _mapPush["const " + mapFrom]       = "const " + mapTo;
 //    _mapPush["const " + mapFrom + "*"] = "const " + mapTo + "*";

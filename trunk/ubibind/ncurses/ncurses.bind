@@ -26,7 +26,7 @@ extern "C" void uvm_os_wrap_libncurses_wwriteln(CDataStack& dataStack)
 		out = dataStack.pop().getText() + out;
 	}
 
-	WINDOW* window = (WINDOW*) dataStack.pop().getInteger();
+	WINDOW* window = (WINDOW*) dataStack.pop().getPointer();
 	wprintw(window, "%s\n", out.c_str());
 }
 
@@ -40,7 +40,7 @@ extern "C" void uvm_os_wrap_libncurses_wwrite(CDataStack& dataStack)
 		out = dataStack.pop().getText() + out;
 	}
 
-	WINDOW* window = (WINDOW*) dataStack.pop().getInteger();
+	WINDOW* window = (WINDOW*) dataStack.pop().getPointer();
 	wprintw(window, "%s", out.c_str());
 }
 
@@ -86,7 +86,7 @@ extern "C" void uvm_os_wrap_libncurses_mvwwrite(CDataStack& dataStack)
 
 	int col = dataStack.pop().getInteger();
 	int row = dataStack.pop().getInteger();
-	WINDOW* window = (WINDOW*) dataStack.pop().getInteger();
+	WINDOW* window = (WINDOW*) dataStack.pop().getPointer();
 	mvwprintw(window, row, col, "%s", out.c_str());
 }
 
@@ -102,7 +102,7 @@ extern "C" void uvm_os_wrap_libncurses_mvwwriteln(CDataStack& dataStack)
 
 	int col = dataStack.pop().getInteger();
 	int row = dataStack.pop().getInteger();
-	WINDOW* window = (WINDOW*) dataStack.pop().getInteger();
+	WINDOW* window = (WINDOW*) dataStack.pop().getPointer();
 	mvwprintw(window, row, col, "%s\n", out.c_str());
 }
 
@@ -120,7 +120,7 @@ extern "C" void uvm_os_wrap_libncurses_read(CDataStack& dataStack)
 extern "C" void uvm_os_wrap_libncurses_wread(CDataStack& dataStack)
 {
 	char text[200];
-	WINDOW* window = (WINDOW*) dataStack.pop().getInteger();
+	WINDOW* window = (WINDOW*) dataStack.pop().getPointer();
 
 	wgetnstr(window, text, sizeof(text));
 
@@ -148,10 +148,11 @@ extern "C" void uvm_os_wrap_libncurses_wread(CDataStack& dataStack)
 %typemap out chtype*        = char*; 
 %typemap out const chtype*  = const char*; 
 
-%typemap in  WINDOW*         = int;
+%typemap in  WINDOW*        = void*;
 %typemap in  WINDOW         = int;
+%typemap in  chtype*        = void*;
 %typemap in  chtype         = int;
-%typemap in  SCREEN*        = int;
+%typemap in  SCREEN*        = void*;
 %typemap in  SCREEN         = int;
 %typemap in  attr_t         = int;
 %typemap in  mmask_t        = int;
