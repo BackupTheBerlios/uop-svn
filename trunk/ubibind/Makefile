@@ -3,7 +3,7 @@ LIBCOMMON=../libcommon/
 
 INCLUDE_DIR=-I/usr/local/include/ -I$(LIBCOMMON)
 CC=g++
-CCFLAGS=-g -Wall -pedantic
+CCFLAGS=-g -Wall -pedantic -fPIC
 CCFLAGS_ANTLR=-g -Wall
 
 objects = ubibindLexer.o ubibindParser.o main.o BindSources.o

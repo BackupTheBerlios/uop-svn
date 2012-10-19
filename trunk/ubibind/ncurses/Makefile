@@ -4,7 +4,7 @@ LIBCOMMON=../../libcommon/
 INCLUDE_DIR=-I$(LIBUVM) -I$(UBIVM) -I$(LIBCOMMON) -I../ -I/usr/local/include/boost-1_39/
 LIB_DIR=-L$(LIBCOMMON)
 CC=g++
-CCFLAGS=-g -Wall -pedantic
+CCFLAGS=-g -Wall -pedantic -fPIC
 LIBS=-lncurses 
 
 OBJECTS = uvm_os_ncurses.o
