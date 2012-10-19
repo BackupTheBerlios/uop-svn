@@ -48,6 +48,7 @@ public:
 	CLiteral(CElement* value) { setValue(ElementType, value); }
 	CLiteral(CMultiIndex<CLiteral>* value) { setValue(TableType, value); }
 	CLiteral(CTuple* value) { setValue(TupleType, value); }
+	CLiteral(void* value) { setValue(PointerType, value); }
 	~CLiteral();
 	const void* getValue();
 	void setValue(const void* value);
@@ -62,6 +63,7 @@ public:
 	CElement* getElement();
 	CMultiIndex<CLiteral>* getTable();  // TODO: deveria retornar o ponteiro ???
 	CTuple* getTuple();  // TODO: deveria retornar o ponteiro ???
+	void *getPointer();
 	void bind_event(std::string event_name, CMethodDefinition* method);
 //private:
     LiteralType _type;
@@ -73,6 +75,7 @@ public:
 		CElement* elementValue;
 		CMultiIndex<CLiteral>* tableValue;
 		CTuple* tupleValue;
+		void *pointerValue;
 	} _value;
 	std::map<std::string, CMethodDefinition*> _events;
 };

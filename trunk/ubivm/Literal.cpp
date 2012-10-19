@@ -75,6 +75,8 @@ CLiteral::CLiteral(LiteralType type)
 		_value.tableValue = new CMultiIndex<CLiteral>();
 	} else if (_type == TupleType) {
 		_value.tupleValue = new CTuple();
+	} else if (_type == PointerType) {
+		_value.pointerValue = NULL;
 	}
 }
 
@@ -93,6 +95,8 @@ const void* CLiteral::getValue()
 		return _value.tableValue;
 	} else if (_type == TupleType) {
 		return _value.tupleValue;
+	} else if (_type == PointerType) {
+		return _value.pointerValue;
 	} else {
 		return &_value;
 	}
@@ -124,6 +128,7 @@ void CLiteral::setValue(LiteralType type, const void* value)
 		typeSizeMap[IntegerType] = sizeof(int);
 		typeSizeMap[RealType] = sizeof(double);
 		typeSizeMap[BooleanType] = sizeof(bool);
+		typeSizeMap[PointerType] = sizeof(void*);
 //		typeSizeMap[ElementType] = sizeof(CElement*);
 
 		memcpy(&_value, value, typeSizeMap[type]);
@@ -152,6 +157,9 @@ std::string CLiteral::getText()
 	} else if (_type == TableType) {
 		// TODO: poderia converter os literais para string e retornar...
 		return "Table*";
+	} else if (_type == PointerType) {
+		// TODO: poderia converter os literais para string e retornar...
+		return "Pointer*";
 	} else if (_type == TupleType) {
 		// TODO: poderia converter para string e retornar...
 		std::string result;
@@ -200,6 +208,11 @@ CMultiIndex<CLiteral>* CLiteral::getTable()
 CTuple* CLiteral::getTuple()
 {
 	return _value.tupleValue;
+}
+
+void* CLiteral::getPointer()
+{
+	return _value.pointerValue;
 }
 
 // TODO: trocar nome da funcao para serialize ???
