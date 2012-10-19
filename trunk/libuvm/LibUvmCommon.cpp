@@ -18,6 +18,8 @@ const std::string typeToText(const LiteralType &type)
 		return "table";
 	} else if (type == TupleType) {
 		return "tuple";
+	} else if (type == PointerType) {
+		return "pointer";
 	}
 
 	return "ERRO !!!";

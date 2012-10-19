@@ -130,7 +130,8 @@ enum LiteralType {
 	ElementType= 'E',
 	UserdataType= 'U',
 	TableType = 'L',
-	TupleType = 'T'
+	TupleType = 'T',
+	PointerType = 'P'
 };
 
 
