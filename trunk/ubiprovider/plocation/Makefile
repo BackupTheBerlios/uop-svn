@@ -10,7 +10,9 @@ LIBBASENAME = plocation
 
 OBJECTS = ubip_plocation.o
 
-LIBNAME = libuop_p_$(LIBBASENAME)
+LIBDIR=../../lib/
+
+LIBNAME = $(LIBDIR)libuop_p_$(LIBBASENAME)
 
 all: $(OBJECTS)
 	g++ -shared -o $(LIBNAME).so $(OBJECTS)
