@@ -350,8 +350,9 @@ void CRunBytecode::callSyslib(const std::string &libFunc)
 // 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_LOCAL);
 
 // 		std::string libPath = std::string("../../ubibind/tests/") + std::string("/libuvm_os_") + libName + ".so";
-		std::string libPath = std::string("../ubibind/") + libName + std::string("/libuvm_os_") + libName + ".so";
+//		std::string libPath = std::string("../ubibind/") + libName + std::string("/libuvm_os_") + libName + ".so";
 // 		std::string libPath = libName + std::string("/libuvm_os_") + libName + ".so";
+		std::string libPath = std::string("libuvm_os_") + libName + std::string(".so");
 		dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
 		if (!dlhandler) {
 			fprintf (stderr, "dlopen(%s): %s\n", libPath.c_str(), dlerror());
