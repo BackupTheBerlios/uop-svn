@@ -61,7 +61,8 @@ int CUbiVM::_load_provider(std::string provider_name)
 	void *dlhandler = NULL;
 	char *error;
 
-	std::string libPath = std::string("../../ubiprovider/") + provider_name + "/" + lib_name + ".so";
+//	std::string libPath = std::string("../../ubiprovider/") + provider_name + "/" + lib_name + ".so";
+	std::string libPath = lib_name + ".so";
 	dlhandler = dlopen(libPath.c_str(), RTLD_LAZY|RTLD_GLOBAL);
 	if (!dlhandler) {
 		fprintf (stderr, "dlopen(%s): %s\n", libPath.c_str(), dlerror());
