@@ -5,7 +5,7 @@
 #include <math.h>
 %}
 
-%typemap in long double = double; 
+//%typemap in long double = double; 
 
  
 // extern double My_variable;
@@ -14,4 +14,8 @@
 //char *get_time();
 double cos(double x);
 float cosf(float x);
-long double cosl(long double x);
+//long double cosl(long double x);
+double exp(double x);
+double exp10(double x);
+double sqrt(double x);
+

@@ -1,0 +1,12 @@
+import math;
+
+entity start
+	method constructor()
+		io.writeln("Cos(1.0)=", math.cos(1.0));
+		io.writeln("Cos(0.0)=", math.cos(0.0));
+		io.writeln("Exp(4.0)=", math.exp(4.0));
+		io.writeln("Exp10(4.0)=", math.exp10(4.0));
+		io.writeln("Sqrt(49.0)=", math.sqrt(49.0));
+//		io.writeln("Mod(10,4)=", math.mod(10,4));
+	end
+end
