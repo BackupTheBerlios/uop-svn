@@ -9,7 +9,8 @@ LIBS=-lcommon
 
 OBJECTS = uvm_os_tools.o
 
-LIBNAME = libuvm_os_tools
+LIBDIR  = ../../lib/
+LIBNAME = $(LIBDIR)libuvm_os_tools
 
 all: $(OBJECTS)
 	g++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS) $(LIB_DIR)

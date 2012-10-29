@@ -9,7 +9,8 @@ LIBS=
 
 OBJECTS = uvm_os_math.o
 
-LIBNAME = libuvm_os_math
+LIBDIR  = ../../lib/
+LIBNAME = $(LIBDIR)libuvm_os_math
 
 all: $(OBJECTS)
 	g++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS) $(LIB_DIR)

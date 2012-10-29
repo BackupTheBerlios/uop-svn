@@ -9,7 +9,8 @@ LIBS=-lncurses
 
 OBJECTS = uvm_os_ncurses.o
 
-LIBNAME = libuvm_os_ncurses
+LIBDIR  = ../../lib/
+LIBNAME = $(LIBDIR)libuvm_os_ncurses
 
 all: $(OBJECTS)
 	g++ -shared -o $(LIBNAME).so $(OBJECTS) $(LIBS) $(LIB_DIR)

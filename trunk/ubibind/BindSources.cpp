@@ -95,7 +95,8 @@ void CBindSources::writeHeaders()
 	makefileSource.writeln("OBJECTS = uvm_os_" + _moduleName + ".o");
 	makefileSource.writeln();
 
-	makefileSource.writeln("LIBNAME = libuvm_os_" + _moduleName);
+	makefileSource.writeln("LIBDIR  = ../../lib/");
+	makefileSource.writeln("LIBNAME = $(LIBDIR)libuvm_os_" + _moduleName);
 	makefileSource.writeln();
 
 	makefileSource.writeln("all: $(OBJECTS)");
